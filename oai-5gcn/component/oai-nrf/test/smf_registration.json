@@ -1,0 +1,41 @@
+{
+    "_comment"     : "NRF Profile (6.1.6.2.2, 3GPP TS 29.510 V16.0.0 (2019-06)Type: NFProfile)",
+    "nfInstanceId" : "343a924e-6494-4927-860b-d45692c95c2e",
+    "nfType"       : "SMF",
+    "nfStatus"     : "REGISTERED",
+    "nfInstanceName": "OAI-SMF-NEW",
+    "heartBeatTimer":  10,
+    "sNssais": [
+       { "sst": 100,
+         "sd": "a0a0a0"
+       }
+    ],
+    "ipv4Addresses": [
+       "10.10.10.1", "10.10.10.2"
+    ] ,
+    "priority": 1,
+    "capacity": 100,
+    "smfInfo":  
+    {
+         "sNssaiSmfInfoList": [        
+            {
+               "sNssai": {
+                   "sst": 100,
+                   "sd": "a0a0a0"
+                },
+               "dnnSmfInfoList":
+               [
+                   {"dnn": "default" 
+                   } 
+               ]
+            } 
+         ]
+
+    }
+  
+}
+
+
+
+
+

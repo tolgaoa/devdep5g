@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hss-config
+data:
+  db_fqdn: "cassandra-0.cassandra.oai.svc.cluster.local"
+  db_name: "vhss"
+  db_user: "cassandra"
+  db_password: "cassandra"
+  op_key: "11111111111111111111111111111111"
+  identity: "oai-hss.oai.svc.cluster.local"
+  roaming: "true"

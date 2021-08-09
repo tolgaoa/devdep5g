@@ -1,0 +1,204 @@
+Now setting these variables '@INSTANCE@ @NRF_API_VERSION@ @NRF_INTERFACE_HTTP2_PORT_FOR_SBI@ @NRF_INTERFACE_NAME_FOR_SBI@ @NRF_INTERFACE_PORT_FOR_SBI@ @PID_DIRECTORY@'
+Done setting the configuration
+[2021-03-18T00:41:01.885557] [nrf] [nrf_app] [start] Options parsed
+[2021-03-18T00:41:01.885819] [nrf] [nrf_app] [info ] ==== EURECOM NRF vBranch: HEAD Abrev. Hash: 0e877cb Date: Wed Mar 17 11:20:41 2021 +0100 ====
+[2021-03-18T00:41:01.885829] [nrf] [nrf_app] [info ] Configuration NRF:
+[2021-03-18T00:41:01.885833] [nrf] [nrf_app] [info ] - Instance ..............: 0
+
+[2021-03-18T00:41:01.885836] [nrf] [nrf_app] [info ] - PID dir ...............: /var/run
+
+[2021-03-18T00:41:01.885838] [nrf] [nrf_app] [info ] - SBI Interface:
+[2021-03-18T00:41:01.885841] [nrf] [nrf_app] [info ]     Interface name ......: eth0
+[2021-03-18T00:41:01.885845] [nrf] [nrf_app] [info ]     IPv4 Addr ...........: 192.168.70.130
+[2021-03-18T00:41:01.885848] [nrf] [nrf_app] [info ]     Port ................: 80
+[2021-03-18T00:41:01.885851] [nrf] [nrf_app] [info ]     HTTP2 port ..........: 9090
+[2021-03-18T00:41:01.885854] [nrf] [nrf_app] [info ]     API version..........: v1
+[2021-03-18T00:41:01.885862] [nrf] [nrf_app] [start] Starting...
+[2021-03-18T00:41:01.885992] [nrf] [nrf_app] [start] Started
+[2021-03-18T00:41:01.886637] [nrf] [sbi_srv] [info ] HTTP1 server started
+[2021-03-18T00:41:08.118549] [nrf] [sbi_srv] [info ] Got a request to create a new subscription
+[2021-03-18T00:41:08.118600] [nrf] [nrf_app] [info ] Handle Create a new subscription (HTTP version 1)
+[2021-03-18T00:41:08.129031] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:08.129050] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)
+[2021-03-18T00:41:08.129828] [nrf] [nrf_app] [info ] Check if a profile with this ID 2e0a241f-132d-44c6-be3d-027cd15d5b20 exist
+[2021-03-18T00:41:08.129843] [nrf] [nrf_app] [info ] NF profile (ID 2e0a241f-132d-44c6-be3d-027cd15d5b20) not found
+[2021-03-18T00:41:08.129854] [nrf] [nrf_app] [info ] Handle NF status registered event, profile id 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:08.129858] [nrf] [nrf_app] [info ] 	Find a NF profile with ID 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:08.129862] [nrf] [nrf_app] [info ] 	Verifying subscription, subscription id 1
+[2021-03-18T00:41:12.437483] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:12.437509] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)
+[2021-03-18T00:41:12.437531] [nrf] [nrf_app] [info ] Check if a profile with this ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523 exist
+[2021-03-18T00:41:12.437536] [nrf] [nrf_app] [info ] NF profile (ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523) not found
+[2021-03-18T00:41:12.437547] [nrf] [nrf_app] [info ] Handle NF status registered event, profile id 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:12.437551] [nrf] [nrf_app] [info ] 	Find a NF profile with ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:12.437557] [nrf] [nrf_app] [info ] 	Verifying subscription, subscription id 1
+[2021-03-18T00:41:18.131266] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:18.131297] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:18.131305] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:18.131316] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:41:22.440080] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:22.440113] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:22.440121] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:22.440133] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:41:28.131364] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:28.131393] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:28.131401] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:28.131412] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:41:30.179845] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024490181, current ms 1616024490179
+[2021-03-18T00:41:32.440111] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:32.440141] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:32.440148] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:32.440159] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:41:34.488852] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024494490, current ms 1616024494488
+[2021-03-18T00:41:38.131454] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:38.131481] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:38.131488] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:38.131499] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:41:40.179862] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024500181, current ms 1616024500179
+[2021-03-18T00:41:42.440267] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:42.440296] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:42.440304] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:42.440314] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:41:44.488859] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024504490, current ms 1616024504488
+[2021-03-18T00:41:45.424073] [nrf] [sbi_srv] [info ] Got a request to retrieve  a collection of NF Instances
+[2021-03-18T00:41:45.424106] [nrf] [nrf_app] [info ] Handle Retrieve a collection of NF Instances (HTTP version 1)
+[2021-03-18T00:41:45.435223] [nrf] [sbi_srv] [info ] Got a request to retrieve  a collection of NF Instances
+[2021-03-18T00:41:45.435249] [nrf] [nrf_app] [info ] Handle Retrieve a collection of NF Instances (HTTP version 1)
+[2021-03-18T00:41:45.445545] [nrf] [sbi_srv] [info ] Got a request to retrieve  a collection of NF Instances
+[2021-03-18T00:41:45.445570] [nrf] [nrf_app] [info ] Handle Retrieve a collection of NF Instances (HTTP version 1)
+[2021-03-18T00:41:48.131629] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:48.131659] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:48.131666] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:48.131677] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:41:50.179830] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024510181, current ms 1616024510179
+[2021-03-18T00:41:52.440505] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:52.440532] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:41:52.440539] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:52.440550] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:41:54.488836] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024514490, current ms 1616024514488
+[2021-03-18T00:41:58.131802] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:41:58.131835] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:41:58.131842] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:41:58.131853] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:00.179836] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024520181, current ms 1616024520179
+[2021-03-18T00:42:02.440699] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:02.440731] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:02.440739] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:02.440751] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:04.488834] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024524490, current ms 1616024524488
+[2021-03-18T00:42:08.131980] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:08.132016] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:08.132024] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:08.132036] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:10.179834] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024530181, current ms 1616024530179
+[2021-03-18T00:42:12.440931] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:12.440962] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:12.440970] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:12.440981] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:14.488836] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024534490, current ms 1616024534488
+[2021-03-18T00:42:18.132114] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:18.132145] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:18.132153] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:18.132164] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:18.860342] [nrf] [sbi_srv] [info ] Got a request to discover the set of NF instances that satisfies a number of input query parameters
+[2021-03-18T00:42:18.860380] [nrf] [nrf_app] [info ] Handle NFDiscover to discover the set of NF Instances (HTTP version 1)
+[2021-03-18T00:42:20.183838] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024540181, current ms 1616024540183
+[2021-03-18T00:42:22.441164] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:22.441196] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:22.441203] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:22.441215] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:24.492862] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024544490, current ms 1616024544492
+[2021-03-18T00:42:28.132363] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:28.132396] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:28.132404] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:28.132415] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:30.183835] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024550181, current ms 1616024550183
+[2021-03-18T00:42:32.441353] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:32.441384] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:32.441393] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:32.441405] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:34.492856] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024554490, current ms 1616024554492
+[2021-03-18T00:42:38.132413] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:38.132441] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:38.132448] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:38.132459] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:40.183854] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024560181, current ms 1616024560183
+[2021-03-18T00:42:42.441468] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:42.441499] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:42.441507] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:42.441518] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:44.492873] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024564490, current ms 1616024564492
+[2021-03-18T00:42:48.132797] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:48.132825] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:48.132832] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:48.132843] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:42:50.183859] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024570181, current ms 1616024570183
+[2021-03-18T00:42:52.441871] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:52.441904] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:42:52.441912] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:52.441925] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:42:54.492838] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024574490, current ms 1616024574492
+[2021-03-18T00:42:58.132999] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:42:58.133030] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:42:58.133037] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:42:58.133048] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:43:00.183867] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024580181, current ms 1616024580183
+[2021-03-18T00:43:02.441968] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:02.442001] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:43:02.442009] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:02.442021] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:43:04.492832] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024584490, current ms 1616024584492
+[2021-03-18T00:43:08.133114] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:08.133146] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:43:08.133153] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:08.133164] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:43:10.183812] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024590181, current ms 1616024590183
+[2021-03-18T00:43:12.442027] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:12.442050] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:43:12.442057] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:12.442066] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:43:14.492842] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024594490, current ms 1616024594492
+[2021-03-18T00:43:18.133209] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:18.133234] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:43:18.133242] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:18.133252] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:43:20.183858] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024600181, current ms 1616024600183
+[2021-03-18T00:43:22.442379] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:22.442397] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:43:22.442403] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:22.442413] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)
+[2021-03-18T00:43:24.492838] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523, time 1616024604490, current ms 1616024604492
+[2021-03-18T00:43:28.133365] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:28.133391] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 2e0a241f-132d-44c6-be3d-027cd15d5b20
+[2021-03-18T00:43:28.133398] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:28.133408] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 2e0a241f-132d-44c6-be3d-027cd15d5b20)
+[2021-03-18T00:43:30.183855] [nrf] [nrf_app] [info ] 
+Handle heartbeart timeout (NF update), NF instance ID 2e0a241f-132d-44c6-be3d-027cd15d5b20, time 1616024610181, current ms 1616024610183
+[2021-03-18T00:43:32.442634] [nrf] [sbi_srv] [info ] 
+[2021-03-18T00:43:32.442655] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 1eb55e75-5f8d-4eac-a8d7-344436fbd523
+[2021-03-18T00:43:32.442662] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2021-03-18T00:43:32.442671] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 1eb55e75-5f8d-4eac-a8d7-344436fbd523)

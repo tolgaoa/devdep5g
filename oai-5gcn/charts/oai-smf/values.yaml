@@ -1,0 +1,96 @@
+# Default values for oai-spgwc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+namespace: "oai"
+
+image:
+  registry: local
+  #repository: image-registry.openshift-image-registry.svc:5000/PROJECT/oai-smf
+  #version: TAG
+  repository: stojadin/oai-smf
+  version: develop
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-smf-sa"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  pfcpPort: 8805
+  http1Port: 80
+  http2Port: 9090
+
+start:
+  smf: true
+  tcpdump: true
+
+multus:
+  n4IPadd: "192.168.101.130"
+  n4Netmask: "26"
+  n4Gw: "192.168.101.128"
+
+config:
+  instance: "0"
+  pidDirectory: "/var/run"
+  smfInterfaceNameForN4: "net1"
+  smfInterfaceNameForSBI: "eth0"
+  smfInterfacePortForSBI: "80"
+  smfInterfaceHttp2PortForSBI: "9090"
+  smfApiVersion: "v1"
+  dnsIpv4Address: "192.168.18.129"
+  dnsSecIpv4Address: "192.168.18.129"
+  registerNrf: "yes"
+  discoverUpf: "yes"
+  amfIpv4Address: "192.168.18.177"
+  amfPort: "80"
+  amfApiVersion: "v1"
+  udmIpv4Address: "127.0.0.1"
+  udmPort: "80"
+  udmApiVersion: "v1"
+  nrfIpv4Address: "192.168.18.178"
+  nrfPort : "80"
+  nrfApiVersion: "v1"
+  upfIpv4Address: "192.168.18.179"
+    
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  #requests:
+  #  cpu: 100m
+  #  memory: 256Mi
+
+
+
+tolerations: []
+
+affinity: {}

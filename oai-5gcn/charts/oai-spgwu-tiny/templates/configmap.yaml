@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  pidDirectory: {{ .Values.config.pidDirectory }}
+  sgwS1uIf: {{ .Values.config.sgwS1uIf }}
+  pgwSgiIf: {{ .Values.config.pgwSgiIf }}
+  sgwSxIf: {{ .Values.config.sgwSxIf }}
+  netUeIp: {{ .Values.config.netUeIp }}
+  netUeNatOption: {{ .Values.config.netUeNatOption | quote }}
+  spgwc0IpAdd: {{ .Values.config.spgwc0IpAdd | quote }}
+  nrfIpv4Add: {{ .Values.config.nrfIpv4Add | quote }}
+  nrfPort: {{ .Values.config.nrfPort | quote }}
+  nrfApiVersion: {{ .Values.config.nrfApiVersion | quote }}
+  registerNRF: {{ .Values.config.registerNRF | quote }}

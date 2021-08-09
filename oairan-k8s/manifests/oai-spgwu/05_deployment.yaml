@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-spgwu
+  labels:
+    app: oai-spgwu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oai-spgwu
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oai-spgwu
+      annotations:
+        k8s.v1.cni.cncf.io/networks: spgwu-net1, spgwu-net2, spgwu-net3
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      containers:
+      - name: spgwu
+        image: image-registry.openshift-image-registry.svc:5000/oai/oai-spgwu:develop-vco3
+        imagePullPolicy: Always
+        #command: ['sh', '-c', 'sleep 6000']
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: 8805
+          name: oai-spgwu
+        - containerPort: 2152
+          name: s11
+        env:
+          # MME env vars
+          - name: SGW_S1U_INTERFACE
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: sgw_s1u_if
+          - name: SGW_SX_INTERFACE
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: sgw_sx_if
+          - name: PGW_SGI_INTERFACE
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: pgw_sgi_if
+          - name: NETWORK_UE_IP
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: net_ue_ip
+          - name: PGWC_SX_IP_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: pgwc_sx_ip
+          - name: PGWU_SGI_GW
+            valueFrom:
+              configMapKeyRef:
+                name: spgwu-config
+                key: pgwu_sgi_gw
+      - name: tcpdump
+        image: corfr/tcpdump
+        command:
+          - /bin/sleep
+          - infinity
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccountName: spgwu-sa
+      terminationGracePeriodSeconds: 30

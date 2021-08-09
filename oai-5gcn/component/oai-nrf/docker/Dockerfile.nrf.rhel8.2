@@ -1,0 +1,115 @@
+#/*
+# * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# * contributor license agreements.  See the NOTICE file distributed with
+# * this work for additional information regarding copyright ownership.
+# * The OpenAirInterface Software Alliance licenses this file to You under
+# * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# * except in compliance with the License.
+# * You may obtain a copy of the License at
+# *
+# *      http://www.openairinterface.org/?page_id=698
+# *
+# * Unless required by applicable law or agreed to in writing, software
+# * distributed under the License is distributed on an "AS IS" BASIS,
+# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# * See the License for the specific language governing permissions and
+# * limitations under the License.
+# *-------------------------------------------------------------------------------
+# * For more information about the OpenAirInterface (OAI) Software Alliance:
+# *      contact@openairinterface.org
+# */
+#---------------------------------------------------------------------
+#
+# Dockerfile for the Open-Air-Interface NRF service
+#   Valid for RHEL 8.2
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# BUILDER IMAGE
+#---------------------------------------------------------------------
+
+FROM registry.access.redhat.com/ubi8/ubi:latest AS oai-nrf-builder
+
+ARG NEEDED_GIT_PROXY
+
+COPY tmp/ca/redhat-uep.pem /etc/rhsm/ca
+COPY tmp/entitlement/*.pem /etc/pki/entitlement
+
+RUN rm -f /etc/rhsm-host && \
+    yum repolist --disablerepo=* && \
+    subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms && \	
+    yum update -y && \
+    yum install -y \
+    	psmisc \
+    	git \
+	diffutils \
+        libasan\
+	file && \
+    echo "/usr/local/lib" > /etc/ld.so.conf.d/local-lib.conf && \
+    echo "/usr/local/lib64" >> /etc/ld.so.conf.d/local-lib.conf
+
+# Some GIT configuration command quite useful
+RUN /bin/bash -c "if [[ -v NEEDED_GIT_PROXY ]]; then git config --global http.proxy $NEEDED_GIT_PROXY; fi"
+RUN git config --global https.postBuffer 123289600
+RUN git config --global http.sslverify false
+
+# Copying source code
+WORKDIR /openair-nrf
+COPY . /openair-nrf
+
+# Installing and Building nrf
+WORKDIR /openair-nrf/build/scripts
+RUN ./build_nrf --install-deps --force
+RUN ./build_nrf --clean --Verbose --build-type Release --jobs
+
+RUN rm /etc/pki/entitlement/*pem
+#---------------------------------------------------------------------
+# TARGET IMAGE
+#---------------------------------------------------------------------
+FROM registry.access.redhat.com/ubi8/ubi:latest as oai-nrf
+ENV TZ=Europe/Paris
+
+# We install some debug tools for the moment in addition of mandatory libraries
+RUN yum update -y && \
+    yum install -y --enablerepo="ubi-8-codeready-builder" \
+    psmisc \
+    net-tools \
+    procps-ng\
+    libevent && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copying executable and generated libraries
+WORKDIR /openair-nrf/bin
+COPY --from=oai-nrf-builder /openair-nrf/build/nrf/build/nrf oai_nrf
+COPY --from=oai-nrf-builder /usr/local/lib64/libpistache.so.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/local/lib/libnghttp2_asio.so /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libgflags.so.2.1 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libglog.so.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libdouble-conversion.so.1 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libconfig++.so.9 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_system.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_thread.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_filesystem.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_chrono.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_atomic.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_date_time.so.1.66.0 /usr/lib64/
+COPY --from=oai-nrf-builder /usr/lib64/libboost_regex.so.1.66.0 /usr/lib64/
+
+COPY --from=oai-nrf-builder /openair-nrf/scripts/entrypoint.sh entrypoint.sh
+
+RUN ldconfig
+
+# Copying template configuration files
+# The configuration folder will be flat
+WORKDIR /openair-nrf/etc
+COPY --from=oai-nrf-builder /openair-nrf/etc/nrf.conf .
+
+WORKDIR /openair-nrf
+
+# expose ports
+EXPOSE 80/tcp 9090/tcp
+
+ENTRYPOINT ["/openair-nrf/bin/entrypoint.sh"]
+
+CMD ["/openair-nrf/bin/oai_nrf", "-c", "/openair-nrf/etc/nrf.conf", "-o"]

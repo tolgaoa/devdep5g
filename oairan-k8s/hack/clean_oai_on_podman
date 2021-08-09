@@ -1,0 +1,4 @@
+#!/bin/bash
+
+podman rm -f oai-enb-rru oai-enb-rcc oai-spgwu oai-spgwc oai-mme oai-hss cassandra
+# podman rm -f $(podman ps -a -q)

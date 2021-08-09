@@ -1,0 +1,312 @@
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.openairinterface.org/?page_id=698
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+################################################################################
+
+# file build_helper
+# brief
+# author Laurent Thomas, Lionel GAUTHIER
+#
+#######################################
+#SUPPORTED_DISTRO="Ubuntu 18.04, CentOS 7, RHEL 7"
+SUPPORTED_DISTRO="Ubuntu 18.04,RHEL8"
+if [ ! -f /etc/os-release ]; then
+  echo_fatal "No /etc/os-release file found. You're likely on an unsupported distro."
+fi
+OS_DISTRO=$(grep "^ID=" /etc/os-release | sed "s/ID=//" | sed "s/\"//g")
+OS_RELEASE=$(grep "^VERSION_ID=" /etc/os-release | sed "s/VERSION_ID=//" | sed "s/\"//g")
+case "$OS_DISTRO" in
+  fedora) OS_BASEDISTRO="fedora"; INSTALLER="dnf"; CMAKE="cmake3" ;;
+  rhel)   OS_BASEDISTRO="fedora"; INSTALLER="yum"; CMAKE="cmake3" ;;
+  centos) OS_BASEDISTRO="fedora"; INSTALLER="yum"; CMAKE="cmake3" ;;
+  debian) OS_BASEDISTRO="debian"; INSTALLER="apt-get"; CMAKE="cmake" ;;
+  ubuntu) OS_BASEDISTRO="debian"; INSTALLER="apt-get"; CMAKE="cmake" ;;
+esac
+
+IS_CONTAINER=`egrep -c "docker|kubepods|podman|buildah|libpod" /proc/self/cgroup || true`
+
+if [ $IS_CONTAINER -eq 0 ]
+then
+  SUDO='sudo -S -E'
+else
+  SUDO=''
+fi
+
+###############################
+## echo and  family
+###############################
+black='\E[30m'
+red='\E[31m'
+green='\E[32m'
+yellow='\E[33m'
+blue='\E[1;34m'
+magenta='\E[35m'
+cyan='\E[36m'
+white='\E[37m'
+reset_color='\E[00m'
+COLORIZE=1
+
+#-------------------------------------------------------------------------------
+cecho()  {
+    # Color-echo
+    # arg1 = message
+    # arg2 = color
+    local default_msg="No Message."
+    message=${1:-$default_msg}
+    color=${2:-$green}
+    [ "$COLORIZE" = "1" ] && message="$color$message$reset_color"
+    echo -e "$message"
+    return
+}
+
+echo_error()   { cecho "$*" $red          ;}
+echo_fatal()   { cecho "$*" $red; exit -1 ;}
+echo_warning() { cecho "$*" $yellow       ;}
+echo_success() { cecho "$*" $green        ;}
+echo_info()    { cecho "$*" $blue         ;}
+
+#-------------------------------------------------------------------------------
+# From https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
+# arg1 is a dotted (or not) version number (ex 4.10.6.56-ubunutu) 
+# arg2 is a dotted (or not) version number (ex 4.10.6.56-ubunutu)
+# return 0 if $1 lower or equal $2, else 1
+version_le() {
+  [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
+# From https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
+version_lt() {
+  [ "$1" = "$2" ] && return 1 || version_le $1 $2
+}
+
+# From https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
+version_ge() {
+  [  "$1" = "`echo -e "$1\n$2" | sort -V | tail -n1`" ]
+}
+
+# From https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
+version_gt() {
+  [ "$1" = "$2" ] && return 1 || version_ge $1 $2
+}
+
+########################
+# distribution helpers #
+########################
+
+#-------------------------------------------------------------------------------
+# This function return a string to identify the distribution we are running
+# If we can't check the distribution, it returns "Unknown"
+# This function return always true as exit code by design
+# Examples:
+#   ubuntu18.04
+#   debian8.5
+get_distribution_release() {
+    if [[ ! -z "$OS_DISTRO$OS_RELEASE" ]]; then
+        echo -n "$OS_DISTRO$OS_RELEASE"
+    else
+        echo -n Unknown
+    fi
+}
+
+check_supported_distribution() {
+    local distribution=$(get_distribution_release)
+    case "$distribution" in
+        "ubuntu18.04") return 0 ;;
+        "rhel8")       return 0 ;;
+        "rhel8.2")       return 0 ;;
+        "rhel8.3")       return 0 ;;
+        "rhel8.4")       return 0 ;;
+        #"centos7")     return 0 ;;
+    esac
+    return 1
+}
+
+###########################
+# Cleaners
+###########################
+
+#-------------------------------------------------------------------------------
+clean_kernel() {
+  $SUDO modprobe ip_tables
+  $SUDO modprobe x_tables
+  $SUDO iptables -P INPUT ACCEPT
+  $SUDO iptables -F INPUT
+  $SUDO iptables -P OUTPUT ACCEPT
+  $SUDO iptables -F OUTPUT
+  $SUDO iptables -P FORWARD ACCEPT
+  $SUDO iptables -F FORWARD
+  $SUDO iptables -t nat -F
+  $SUDO iptables -t mangle -F
+  $SUDO iptables -t filter -F
+  $SUDO iptables -t raw -F
+  echo_info "Flushed iptables"
+}
+
+
+#-------------------------------------------------------------------------------
+disable_ipv6() {
+  $SUDO sysctl -w net.ipv6.conf.all.disable_ipv6=1
+}
+
+
+#-------------------------------------------------------------------------------
+# Compare two versions of software. Returns true if $version is greater than $req_version
+# arg1 = version
+# arg2 = req_version
+#
+function version_gt() { 
+  test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; 
+}
+
+
+###################################
+# Compilers
+###################################
+
+# From https://stackoverflow.com/a/20473191
+# test if a list include item
+# arg1 is list, ex "item1 item2 ..."
+# arg2 is item
+function list_include_item {
+  local list="$1"
+  local item="$2"
+  if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+    # yes, list include item
+    result=0
+  else
+    result=1
+  fi
+  return $result
+}
+
+# arg 1 Build directory OPENAIR_DIR/build/?/build
+# arg 2 Executable target name
+# arg 3 Executable name (no path)
+# arg 4 Verbose         (1 or 0)
+compilations() {
+  echo_info "Compilation log for $3 is here: $dlog/$2.txt"
+  cd $OPENAIRCN_DIR/build/$1/build
+  if [ "a$4" == "a1" ]; then
+    set -o pipefail
+    {
+      rm -f $3
+      make $make_args $2
+    } | tee $dlog/$2.txt
+  else
+    {
+      rm -f $3
+      make $make_args $2
+    } > $dlog/$2.txt 2>&1
+  fi
+  if [ $? == 0 -a -s $3 ] ; then
+     echo_success "$2 compiled"
+     return 0
+  else
+     echo_error "$2 compilation failed"
+     return 1
+  fi
+}
+
+###################################
+# make test
+###################################
+
+# arg 1 Build directory OPENAIRCN_DIR/build/?/build
+# arg 2 Executable target name
+# arg 3 Executable name (no path)
+# arg 4 Verbose         (1 or 0)
+make_test() {
+  echo_success "unit tests start"
+  cd $OPENAIRCN_DIR/build/$1/build
+  if [ "a$4" == "a1" ]; then
+    {
+      make test ARGS="-V"
+    } | tee $dlog/$2_test.txt
+  else
+    {
+      make test
+    } > $dlog/$2_test.txt 2>&1
+  fi
+  echo_success "unit tests end"
+}
+
+#-------------------------------------------------------------------------------
+# arg1 is package name
+test_install_package() {
+  # usage: test_install_package package_name
+ if [ $# -eq 1 ]; then
+   dpkg -s "$1" > /dev/null 2>&1 && {
+          echo "$1 is installed."
+      } || {
+      echo "$1 is not installed."
+      $SUDO apt-get install --force-yes $1
+    }
+  fi
+}
+
+
+#-------------------------------------------------------------------------------
+update_package_db() {
+  if [ ! -f /tmp/no_more_update_package_db ]; then
+    $SUDO $INSTALLER update
+    [[ $? -ne 0 ]] && return $?
+    touch /tmp/no_more_update_package_db
+    [[ $? -ne 0 ]] && return $?
+  else
+    let elapsed_time=$(expr `date +%s` - `stat -c %Y /tmp/no_more_update_package_db`)
+    if [ $elapsed_time -gt 3600 ]; then
+      $SUDO $INSTALLER update
+      [[ $? -ne 0 ]] && return $?
+      touch /tmp/no_more_update_package_db
+      [[ $? -ne 0 ]] && return $?
+    fi
+  fi
+  return 0
+}
+
+#-------------------------------------------------------------------------------
+check_enable_epel_repos() {
+  # on Enterprise Linuxes, ensure EPEL repos are installed
+  # (provides: libidn2-devel, vconfig, iperf, phpMyAdmin, dkms, ...)
+  if [[ "$OS_DISTRO" == "rhel" ]] || [[ "$OS_DISTRO" == "centos" ]]; then
+    if rpm -q epel-release > /dev/null; then
+      echo "EPEL repos already present. Good."
+    else
+      echo "EPEL repos not present. Installing them."
+      $SUDO $INSTALLER install $OPTION https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    fi
+  fi
+}
+
+
+################################
+# set_openair_env
+###############################
+#-------------------------------------------------------------------------------
+set_openair_env(){
+  fullpath=`readlink -f $BASH_SOURCE`
+  [ -f "/.$fullpath" ] || fullpath=`readlink -f $PWD/$fullpath`
+  openair_path=${fullpath%/build/*}
+  openair_path=${openair_path%/scripts/*}
+  openair_path=${openair_path%/src/nas/*}
+  openair_path=${openair_path%/src/s6a/*}
+  export OPENAIRCN_DIR=$openair_path
+}
+
+
