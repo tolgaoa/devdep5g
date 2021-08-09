@@ -14,7 +14,7 @@ In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engi
 
 Once the RKE binary is setup, the [cluster.yaml](cluster.yml) file is used in order to setup the K8s cluster. The current file is used to set up a single node cluster, however additional nodes can be added by uncommenting the specified lines in the cluster.yaml file. To proceed with the installation, the following are the required steps: 
 1. A workstation with an ssh key-pair
-2. A minimum of one target node with sufficient capacity to install the cluster accessible from the workstation (we have deployed in on an ESXi VM Ubuntu 18.04 with 32GB RAM, 8 vCPUs and 180 GB disk space). Note that if you choose to create a cluster with multiple nodes you'll have to change the way the K8s volumes are created because the files will need to be shared across multiple nodes, which will require a network file system. (Coming Soon)
+2. A minimum of one target node with sufficient capacity to install the cluster accessible from the workstation (we have deployed on an ESXi VM Ubuntu 18.04 with 32GB RAM, 8 vCPUs and 180 GB disk space). Note that if you choose to create a cluster with multiple nodes you'll have to change the way the K8s volumes are created because the files will need to be shared across multiple nodes, which will require a network file system. (Coming Soon)
 3. Docker installed on the target node
 4. On the target node, set "AllowTCPForwarding" and "PermitRootLogin" to **yes** from /etc/ssh/sshd.conf  
 5. On the target node, add current user, which will be used by the RKE to access the docker daemon to the docker group 
