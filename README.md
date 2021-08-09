@@ -2,7 +2,7 @@
 
 # OAI 5GC and RAN Deployment in K8s 
  
-This repo describes the implementation of the Openairinterface 5G core network and RAN in a Kubernetes cluster. The instructions given below are a debugged and environment specific variant of the deployment instructions provided at the official gitlab of [openairinterface5g](https://gitlab.eurecom.fr/oai) cn5g and openairinterface5g subgroups.
+This is the implementation of the Openairinterface 5G core network and RAN in a Kubernetes cluster. The instructions given below are a debugged and environment specific variant of the deployment instructions provided at the official gitlab of [openairinterface5g](https://gitlab.eurecom.fr/oai) cn5g and openairinterface5g subgroups.
 
 The steps are given below from start to finish in order to replicate a sample deployment where the 5G core network is deployed. Following this an OAI-gNB is connected to the AMF followed by a OAI-nrUE registration.
 
