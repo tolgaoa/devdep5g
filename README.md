@@ -109,7 +109,7 @@ We'll be running the gNB and UE simulators in the Standalone (SA) mode so that t
 ```
 $ kubectl exec -it -n oai <pod name> -- bash
 ```
-2. In the /opt/oai-ran/etc folder modify the "gnb.band78.sa.fr1.106PRB.usrpb210.conf" file, make the following modifications. The values given below are obtained from the [values.yaml](oai-5gcn/charts/oai-amf/values.yaml) in the AMF helm charts. If you changed those values before deploying the charts replace the values given below with ones you selected
+2. In the /opt/oai-ran/etc folder modify the "gnb.band78.sa.fr1.106PRB.usrpb210.conf" file, make the following modifications. The values given below are obtained from the [values.yaml](oai-5gcn/charts/oai-amf/values.yaml) in the AMF helm charts. If you changed those values before deploying the charts replace the values given below with ones you selected (it should be noted that we have updated the operator key inside the AMF helm charts to match the keys of the UEs hard-coded in the source code)
   - tracking_area_code = 0xa000
   - mcc = 208 , this value comes from the first three digits of the IMSI value hardcoded into the UE modem build in the openairinterface5g source code found [here](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/96997d1ecadf3279db64be1b3e97ec56fdb5dee2/openair3/UICC/usim_interface.c)
   - mnc = 99 , this value comes from the 4th, 5th digits of the IMSI value hardcoded into the UE modem build in the openairinterface5g source code 
