@@ -68,11 +68,11 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 $ git clone https://github.com/chateauxvt/oai5gcnRAN.git \ 
 cd oai5gcnRAN 
 ```
-2. Create the persistent volume required for the mysql database which will be holding the subscriber information of the users. Make sure to change the path of where the volume will be created on the host in the file [create_mysql_volume.yaml](chateauxvt/oai5gcnRAN/create_mysql_volume.yaml)
+2. Create the persistent volume required for the mysql database which will be holding the subscriber information of the users. Make sure to change the path of where the volume will be created on the host in the file [create_mysql_volume.yaml](create_mysql_volume.yaml)
 ```
 $ kubectl apply -f create_mysql_volume.yaml
 ```
-3. Create the persistent volume and the persistent volume claim required for the SPGWU. Make sure to change the path of where the volume will be created on the host in the file [create_upf_volume.yaml](chateauxvt/oai5gcnRAN/create_upf_volume.yaml)
+3. Create the persistent volume and the persistent volume claim required for the SPGWU. Make sure to change the path of where the volume will be created on the host in the file [create_upf_volume.yaml](create_upf_volume.yaml)
 ```
 $ kubectl apply -f create_upf_volume.yaml
 $ kubectl apply -f create_upf_volume_claim.yaml
@@ -93,14 +93,14 @@ $ helm install <name-of-spgwu-deployment> oai-spgwu-tiny/ -n oai
 ```
 ## Step 5: Deploying the RAN 
 1. Go into /oairan-k8s/manifests folder. Perform the following modifications in the /oai-gnb
-  - In [04_persistentvolume.yaml](chateauxvt/oairan-k8s/manifests/oai-gnb/04_persistentvolume.yaml) modify the path of the volume to your environment
-  - In [06_multus.yaml](chateauxvt/oairan-k8s/manifests/oai-gnb/06_multus.yaml) change the master network interfaces for both the multus networks to the network interface of your taget node
+  - In [04_persistentvolume.yaml](oairan-k8s/manifests/oai-gnb/04_persistentvolume.yaml) modify the path of the volume to your environment
+  - In [06_multus.yaml](oairan-k8s/manifests/oai-gnb/06_multus.yaml) change the master network interfaces for both the multus networks to the network interface of your taget node
 2. Deploy the OAI-GNB. From inside the /oai-gnb folder 
 ```
 $ kubectl apply -k .
 ```
 3. Go into /oairan-k8s/manifests folder. Perform the following modifications in the /oai-ue
-  - In [04_multus.yaml](chateauxvt/oairan-k8s/manifests/oai-gnb/04_multus.yaml) change the master network interfaces for the multus networks to the network interface of your target node
+  - In [04_multus.yaml](oairan-k8s/manifests/oai-ue/04_multus.yaml) change the master network interfaces for the multus networks to the network interface of your target node
 4. Deploy the OAI-nrUE. From inside the /oai-ue folder 
 ```
 $ kubectl apply -k .
@@ -111,7 +111,7 @@ We'll be running the gNB and UE simulators in the Standalone (SA) mode so that t
 ```
 $ kubectl exec -it -n oai <pod name> -- bash
 ```
-2. In the /opt/oai-ran/etc folder modify the "gnb.band78.sa.fr1.106PRB.usrpb210.conf" file, make the following modifications. The values given below are obtained from the [values.yaml](chateauxvt/oai-5gcn/charts/oai-amf/values.yaml) in the AMF helm charts. If you changed those values before deploying the charts replace the values given below with ones you selected
+2. In the /opt/oai-ran/etc folder modify the "gnb.band78.sa.fr1.106PRB.usrpb210.conf" file, make the following modifications. The values given below are obtained from the [values.yaml](oai-5gcn/charts/oai-amf/values.yaml) in the AMF helm charts. If you changed those values before deploying the charts replace the values given below with ones you selected
   - tracking_area_code = 0xa000
   - mcc = 208
   - mnc = 99
