@@ -1,4 +1,4 @@
-FROM tolgaomeratalay/oaikubran:2.0 AS ran-build
+FROM test:latest AS ran-build
 
 FROM ubuntu:bionic as current-build
 ENV DEBIAN_FRONTEND=noninteractive
