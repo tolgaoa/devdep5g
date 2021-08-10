@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: oai-gnb
-  name: oai-gnb
+    app: oai-gnb2
+  name: oai-gnb2
 spec:
   type: ClusterIP
   clusterIP: None
   ports:
-  - name: oai-gnb
+  - name: oai-gnb2
     port: 22100
     protocol: TCP
     targetPort: 22100

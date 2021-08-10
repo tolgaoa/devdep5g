@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: oai-gnb2
   labels:
-    app: oai-gnb
+    app: oai-gnb2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-gnb
+      app: oai-gnb2
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-gnb
+        app: oai-gnb2
       annotations:
         k8s.v1.cni.cncf.io/networks: gnb-net1, gnb-net2 #, gnb-net3, gnb-net4
     spec:
@@ -33,7 +33,7 @@ spec:
           privileged: true
         ports:
         - containerPort: 22100
-          name: oai-gnb
+          name: oai-gnb2
         - containerPort: 2152
           name: s1u
         - containerPort: 36412
