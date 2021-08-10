@@ -14,10 +14,14 @@ In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engi
 
 Once the RKE binary is setup, the [cluster.yaml](cluster.yml) file is used in order to setup the K8s cluster. The current file is used to set up a single node cluster, however additional nodes can be added by uncommenting the specified lines in the cluster.yaml file. To proceed with the installation, the following are the required steps: 
 1. A workstation with an ssh key-pair
-2. A minimum of one target node with sufficient capacity to install the cluster accessible from the workstation (we have deployed on an ESXi VM Ubuntu 18.04 with 32GB RAM, 8 vCPUs and 180 GB disk space). Note that if you choose to create a cluster with multiple nodes you'll have to change the way the K8s volumes are created because the files will need to be shared across multiple nodes, which will require a network file system. (Coming Soon)
-3. Docker installed on the target node
-4. On the target node, set "AllowTCPForwarding" and "PermitRootLogin" to **yes** from /etc/ssh/sshd.conf  
-5. On the target node, add current user, which will be used by the RKE to access the docker daemon to the docker group 
+Start by copying this repo to the workstation.
+```
+$ git clone https://github.com/chateauxvt/oai5gdep.git
+```
+3. A minimum of one target node with sufficient capacity to install the cluster accessible from the workstation (we have deployed on an ESXi VM Ubuntu 18.04 with 32GB RAM, 8 vCPUs and 180 GB disk space). Note that if you choose to create a cluster with multiple nodes you'll have to change the way the K8s volumes are created because the files will need to be shared across multiple nodes, which will require a network file system. (Coming Soon)
+4. Docker installed on the target node
+5. On the target node, set "AllowTCPForwarding" and "PermitRootLogin" to **yes** from /etc/ssh/sshd.conf  
+6. On the target node, add current user, which will be used by the RKE to access the docker daemon to the docker group 
 ```
 $ sudo usermod -aG docker $USER
 ```
@@ -64,7 +68,7 @@ tar -zxvf helm-v3.5.2-linux-amd64.tar.gz \
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
 ## Step 4: Deploying the Core Network
-From the oai-5gcn folder execute the following,
+From the create_volumes folder execute the following,
 
 1. Create the persistent volume required for the mysql database which will be holding the subscriber information of the users. Make sure to change the path of where the volume will be created on the host in the file [create_mysql_volume.yaml](create_mysql_volume.yaml)
 ```
@@ -81,6 +85,8 @@ $ kubectl apply -f create_upf_volume_claim.yaml
 ```
 $ kubectl create namespace oai
 ```
+From the oai-5gcn folder execute the following,
+
 5. Deploy the core network charts in the given order using the newly created namespace. Wait for each deployment to complete before proceeding with the next. From the directory /oai5gcnRAN/oai-5gcn/charts
 ```
 $ helm install <name-of-mysql-deployment> mysql/ -n oai
@@ -93,13 +99,13 @@ $ helm install <name-of-spgwu-deployment> oai-spgwu-tiny/ -n oai
 1. Go into /oairan-k8s/manifests folder. Perform the following modifications in the /oai-gnb
   - In [04_persistentvolume.yaml](oairan-k8s/manifests/oai-gnb/04_persistentvolume.yaml) modify the path of the volume to your environment
   - In [06_multus.yaml](oairan-k8s/manifests/oai-gnb/06_multus.yaml) change the master network interfaces for both the multus networks to the network interface of your taget node
-2. Deploy the OAI-GNB. From inside the /oai-gnb folder 
+2. Deploy the OAI-GNB. From inside the /oai-gnb(x) folder 
 ```
 $ kubectl apply -k .
 ```
 3. Go into /oairan-k8s/manifests folder. Perform the following modifications in the /oai-ue
   - In [04_multus.yaml](oairan-k8s/manifests/oai-ue/04_multus.yaml) change the master network interfaces for the multus networks to the network interface of your target node
-4. Deploy the OAI-nrUE. From inside the /oai-ue folder 
+4. Deploy the OAI-nrUE. From inside the /oai-ue(x) folder 
 ```
 $ kubectl apply -k .
 ```
@@ -132,6 +138,38 @@ $ RFSIMULATOR=server ../bin/nr-softmodem.Rel15 -O ../etc/gnb.band78.sa.fr1.106PR
 ```
 $ RFSIMULATOR=192.168.18.110 ../bin/nr-uesoftmodem.Rel15 --rfsim --sa --rrc_config_path .
 ```
+
+## Step 7: Running Multiple gNBs 
+Running multiple gNBs only requires the re-deployment of the same docker image with a different deployment name, network and volume configuration. For instance, we have two gNB folders (i.e. oai-gNB1 and oai-gNB2) where the following files have been modified:
+  - In 04_persistentvolume.yaml of each gNB, change the name of the persistent volume and the directory
+  - In 05_persistentvolumeclaim.yaml of each gNB, change the name of the persistent volume claim and the peristent volume it attaches to
+  - In 06_multus of each gNB, change the IP address of the the gnb-net1 network to be unique from any other deployment
+  - In 07_deployment of each gNB, change the deployment name in the metadata section as well as any other labels. Additionally, adjust the names of the persistent volumes and persistent volume claims in the volumeMounts sections
+From this point on, each gNB can be deployed as it was done in Step 6.
+
+## Step 8: Running a new UE with a Different IMSI
+In order to run UEs that are different, one first needs to change the IMSI value of the modem, which have been hard-coded in the source code of the openairinterface5g project. To create a new UE with a different IMSI, follow the steps below. 
+1. Copy the latest tag of the official [openairinterface5g](https://gitlab.eurecom.fr/oai/openairinterface5g) RAN project into home directory of this repo clone at the start.
+2. Inside the project, modify the [usim_interface.c](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/2021.w31/openair3/UICC/usim_interface.c) (found in /openair3/UICC) file by changing the IMSI value to the one you have selected.
+3. Copy the docker file which will be used to create the full build image into the /docker file of the openairinterface5g project
+```
+$ cp /dockerfiles/Dockerfile.ran.ubuntu18 /openairinterface5g-YEAR.tag/docker/Dockerfile.ran.ubuntu18
+```
+4. Go into the openairinterface5g project and create the builder docker image with a chosen tag. This process will take 10-15 minutes
+```
+$ cd openairinterface5g-YEAR.tag
+$ docker build -f docker/Dockerfile.ran.ubuntu18 -t TAG_OF_THE_BUILDER_IMAGE .
+```
+5. Once this process is complete, you can see the new image in your local docker images
+6. Modify the [Dockerfile.nrUE.ubuntu18](dockerfiles/Dockerfile.nrUE.ubuntu18) to point to the newly created builder image as the intermediate container by changing the first line "FROM" location to builder image created in the previous item
+8. To create the new UE image with the modified IMSI using this builder, navigate to the home directory of this repo and execute
+```
+$ docker build -f dockerfiles/Dockerfile.nrUE.ubuntu18 -t TAG_OF_THE_NEW_UE_IMAGE .
+```
+9. The new docker image can now be used during deployment by changing the image path in [05_deployment.yaml](oairan-k8s/manifests/oai-ue1/05_deployment.yaml) of the oai-ue(x)
+
+
+
  
  
  
