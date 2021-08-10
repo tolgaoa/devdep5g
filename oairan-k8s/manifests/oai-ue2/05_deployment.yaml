@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-ue2
+  name: oai-ue1
   labels:
     app: oai-ue
 spec:
@@ -58,16 +58,16 @@ spec:
                 key: band
         volumeMounts:
           - mountPath: /opt/oai-ran/phy/
-            name: oai-ran
+            name: oai-ran1
       - name: tcpdump
         image: corfr/tcpdump
         command:
           - /bin/sleep
           - infinity
       volumes:
-        - name: oai-ran
+        - name: oai-ran1
           persistentVolumeClaim:
-            claimName: oai-ran-claim
+            claimName: oai-ran-claim1
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
