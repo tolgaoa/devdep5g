@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-ue0
+  name: oai-ue1
   labels:
-    app: oai-ue
+    app: oai-ue1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-ue
+      app: oai-ue1
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-ue
+        app: oai-ue1
       annotations:
         k8s.v1.cni.cncf.io/networks: ue-net1
     spec:

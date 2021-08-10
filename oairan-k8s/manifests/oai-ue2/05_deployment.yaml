@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-ue1
+  name: oai-ue2
   labels:
-    app: oai-ue
+    app: oai-ue2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-ue
+      app: oai-ue2
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-ue
+        app: oai-ue2
       annotations:
         k8s.v1.cni.cncf.io/networks: ue-net1
     spec:
@@ -24,7 +24,7 @@ spec:
       containers:
       - name: ue
         #image: image-registry.openshift-image-registry.svc:5000/oai/oai-ue
-        image: tolgaomeratalay/oai-nrue:2.0.2-1
+        image: tolgaomeratalay/oai-nrue:2.0.1
         imagePullPolicy: Always
         #command: ['sh', '-c', 'sleep 6000']
         securityContext:
