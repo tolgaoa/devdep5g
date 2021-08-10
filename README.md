@@ -148,10 +148,10 @@ Running multiple gNBs only requires the re-deployment of the same docker image w
 From this point on, each gNB can be deployed as it was done in Step 6.
 
 ## Step 8: Running a new UE with a Different IMSI
-In order to run UEs that are different, one first needs to change the IMSI value of the modem, which have been hard-coded in the source code of the openairinterface5g project. To create a new UE with a different IMSI, follow the steps below. 
-1. Copy the latest tag of the official [openairinterface5g](https://gitlab.eurecom.fr/oai/openairinterface5g) RAN project into home directory of this repo clone at the start.
+In order to run UEs that are different, one first needs to change the IMSI value of the modem, which has been hard-coded in the source code of the openairinterface5g project. To create a new UE with a different IMSI, follow the steps below. 
+1. Copy the latest tag of the official [openairinterface5g](https://gitlab.eurecom.fr/oai/openairinterface5g) RAN project into home directory of this repo cloned at the start.
 2. Inside the project, modify the [usim_interface.c](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/2021.w31/openair3/UICC/usim_interface.c) (found in /openair3/UICC) file by changing the IMSI value to the one you have selected.
-3. Copy the docker file which will be used to create the full build image into the /docker file of the openairinterface5g project
+3. Copy the docker file which will be used to create the full build image into the /docker directory of the openairinterface5g project
 ```
 $ cp /dockerfiles/Dockerfile.ran.ubuntu18 /openairinterface5g-YEAR.tag/docker/Dockerfile.ran.ubuntu18
 ```
@@ -160,13 +160,12 @@ $ cp /dockerfiles/Dockerfile.ran.ubuntu18 /openairinterface5g-YEAR.tag/docker/Do
 $ cd openairinterface5g-YEAR.tag
 $ docker build -f docker/Dockerfile.ran.ubuntu18 -t TAG_OF_THE_BUILDER_IMAGE .
 ```
-5. Once this process is complete, you can see the new image in your local docker images
-6. Modify the [Dockerfile.nrUE.ubuntu18](dockerfiles/Dockerfile.nrUE.ubuntu18) to point to the newly created builder image as the intermediate container by changing the first line "FROM" location to builder image created in the previous item
-8. To create the new UE image with the modified IMSI using this builder, navigate to the home directory of this repo and execute
+5. Modify the [Dockerfile.nrUE.ubuntu18](dockerfiles/Dockerfile.nrUE.ubuntu18) to point to the newly created builder image as the intermediate container by changing the first line "FROM" location to builder image created in the previous item
+6. To create the new UE image with the modified IMSI using this builder, navigate to the home directory of this repo and execute
 ```
 $ docker build -f dockerfiles/Dockerfile.nrUE.ubuntu18 -t TAG_OF_THE_NEW_UE_IMAGE .
 ```
-9. The new docker image can now be used during deployment by changing the image path in [05_deployment.yaml](oairan-k8s/manifests/oai-ue1/05_deployment.yaml) of the oai-ue(x)
+7. The new docker image can now be used during deployment by changing the image path in [05_deployment.yaml](oairan-k8s/manifests/oai-ue1/05_deployment.yaml) of the oai-ue(x)
 
 
 
