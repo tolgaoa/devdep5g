@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spgwc-config
+data:
+  pgw_sx_if: "net1"
+  sgw_s11_if: "net2"
+  ue_ip_pool: "192.168.20.2-192.168.20.200"
+  ue_dns_server: "192.168.18.129"

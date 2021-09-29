@@ -1,0 +1,40 @@
+{
+    "_comment"     : "NRF Profile (6.1.6.2.2, 3GPP TS 29.510 V16.0.0 (2019-06)Type: NFProfile)",
+    "nfInstanceId" : "343a924e-6494-4927-860b-d45692c95c2d",
+    "nfType"       : "AMF",
+    "nfStatus"     : "REGISTERED",
+    "nfInstanceName": "OAI-AMF-NEW",
+    "heartBeatTimer":  10,
+    "sNssais": [
+       { "sst": 100,
+         "sd": "a0a0a0"
+       }
+    ],
+    "ipv4Addresses": [
+       "10.10.10.1", "10.10.10.2"
+    ] ,
+    "priority": 1,
+    "capacity": 100,
+    "amfInfo":  
+    {
+         "amfSetId" : "1a1a",
+         "amfRegionId": "AA",
+         "guamiList": [        
+            {
+               "plmnId": 
+                {   
+                   "mcc": "208",
+                   "mnc": "95" 
+                },
+               "amfId": "AAAAAA"
+            } 
+         ]
+
+    }
+  
+}
+
+
+
+
+

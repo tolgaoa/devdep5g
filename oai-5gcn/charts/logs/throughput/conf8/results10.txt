@@ -1,0 +1,19 @@
+Connecting to host 192.168.20.13, port 5201
+[  5] local 12.1.1.2 port 42981 connected to 192.168.20.13 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  76.7 MBytes   643 Mbits/sec   15    344 KBytes       
+[  5]   1.00-2.00   sec  74.6 MBytes   626 Mbits/sec  115    287 KBytes       
+[  5]   2.00-3.00   sec  68.6 MBytes   576 Mbits/sec   95    179 KBytes       
+[  5]   3.00-4.00   sec  60.5 MBytes   508 Mbits/sec  168    172 KBytes       
+[  5]   4.00-5.00   sec  67.2 MBytes   563 Mbits/sec   23    233 KBytes       
+[  5]   5.00-6.00   sec  76.9 MBytes   645 Mbits/sec  180    208 KBytes       
+[  5]   6.00-7.00   sec  68.0 MBytes   570 Mbits/sec   11    276 KBytes       
+[  5]   7.00-8.00   sec  64.6 MBytes   542 Mbits/sec   10    229 KBytes       
+[  5]   8.00-9.00   sec  80.3 MBytes   674 Mbits/sec   18    214 KBytes       
+[  5]   9.00-10.00  sec  71.4 MBytes   599 Mbits/sec   24    268 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   709 MBytes   595 Mbits/sec  659             sender
+[  5]   0.00-10.00  sec   707 MBytes   593 Mbits/sec                  receiver
+
+iperf Done.

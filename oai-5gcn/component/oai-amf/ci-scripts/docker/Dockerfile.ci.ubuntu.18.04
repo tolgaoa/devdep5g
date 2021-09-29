@@ -1,0 +1,104 @@
+#/*
+# * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# * contributor license agreements.  See the NOTICE file distributed with
+# * this work for additional information regarding copyright ownership.
+# * The OpenAirInterface Software Alliance licenses this file to You under
+# * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# * except in compliance with the License.
+# * You may obtain a copy of the License at
+# *
+# *      http://www.openairinterface.org/?page_id=698
+# *
+# * Unless required by applicable law or agreed to in writing, software
+# * distributed under the License is distributed on an "AS IS" BASIS,
+# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# * See the License for the specific language governing permissions and
+# * limitations under the License.
+# *-------------------------------------------------------------------------------
+# * For more information about the OpenAirInterface (OAI) Software Alliance:
+# *      contact@openairinterface.org
+# */
+#---------------------------------------------------------------------
+#
+# Dockerfile for the Open-Air-Interface AMF service
+#   Valid for Ubuntu-18.04 (bionic)
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# BUILDER IMAGE
+#---------------------------------------------------------------------
+FROM oai-amf-base:latest as oai-amf-builder
+
+WORKDIR /openair-amf/
+COPY . /openair-amf
+RUN cp -Rf /openair-amf-ext-ref /openair-amf/build/ext
+
+# Building AMF
+WORKDIR /openair-amf/build/scripts
+RUN ./build_amf --clean --Verbose --build-type Release --jobs
+
+#---------------------------------------------------------------------
+# TARGET IMAGE
+#---------------------------------------------------------------------
+FROM ubuntu:bionic as oai-amf
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Paris
+# We install some debug tools for the moment in addition of mandatory libraries
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes \
+      tzdata \
+      psmisc \
+      net-tools \
+      bc \
+      tshark \
+      libconfig++9v5 \
+      libsctp1 \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copying executable and generated libraries
+WORKDIR /openair-amf/bin
+COPY --from=oai-amf-builder /openair-amf/build/amf/build/amf oai_amf
+COPY --from=oai-amf-builder /openair-amf/scripts/entrypoint.sh entrypoint.sh
+
+WORKDIR /usr/lib/x86_64-linux-gnu
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libmysqlclient.so.20 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libboost_system.so.1.65.1 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libcpprest.so.2.10 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libssl.so.1.1 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/librtmp.so.1 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libpsl.so.5 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libldap_r-2.4.so.2 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libsasl2.so.2 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libgssapi.so.3 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libheimntlm.so.0 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libheimbase.so.1 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libkrb5.so.26 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libasn1.so.8 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libhcrypto.so.4 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libroken.so.18 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libwind.so.0 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libhx509.so.5 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 .
+COPY --from=oai-amf-builder /usr/lib/x86_64-linux-gnu/libasan.so.4 .
+
+WORKDIR /usr/local/lib
+COPY --from=oai-amf-builder /usr/local/lib/libpistache.so  .
+
+RUN ldconfig
+
+# Copying template configuration files
+WORKDIR /openair-amf/etc
+COPY --from=oai-amf-builder /openair-amf/etc/amf.conf .
+
+WORKDIR /openair-amf
+
+# expose ports
+EXPOSE 80/tcp 9090/tcp 38412/sctp
+
+ENTRYPOINT ["/bin/bash","/openair-amf/bin/entrypoint.sh"]
+CMD ["/openair-amf/bin/oai_amf", "-c", "/openair-amf/etc/amf.conf", "-o"]

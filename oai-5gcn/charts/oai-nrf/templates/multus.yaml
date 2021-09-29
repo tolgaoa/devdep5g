@@ -1,0 +1,21 @@
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-{{ .Values.namespace }}-net1
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "macvlan",
+      "master": "ens3",
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.config.nrfIpNg "/" .Values.config.nrfNetmaskNg | nospace | quote }},
+                        "gateway": {{- cat .Values.config.nrfGw | quote }}
+                }
+        ]
+      }
+    }'

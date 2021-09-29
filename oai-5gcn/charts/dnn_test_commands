@@ -1,0 +1,6 @@
+apt update; apt install -y iptables iproute2 iperf3 iputils-ping; iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE; ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;exit;
+
+no=10; dnnip=$((no+1)); pod=$(kubectl get pods -n oai | grep gnbsim$no | awk '{print($1)'}); kubectl exec -it -n oai $pod -- ping -c 4 192.168.20.$dnnip | tail -1| awk '{print $4}' | cut -d '/' -f 2 > logs/rtt/conf1/results$no.txt
+
+no=0; dnnip=$((no+1)); simip=$((no-8)); pod=$(kubectl get pods -n oai | grep gnbsim$no | awk '{print($1)'}); kubectl exec -it -n oai $pod -- iperf3 -c 192.16.20.$dnnip -B 12.1.1.$simip | tee logs/throughput/conf3/results$no.txt
+

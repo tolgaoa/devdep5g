@@ -1,0 +1,65 @@
+FROM test:latest AS ran-build
+
+FROM ubuntu:bionic as current-build
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes \
+        software-properties-common \
+        libsctp1 \
+        libnettle6 \
+        libblas3 \
+        libatlas3-base \
+        libconfig9 \
+        openssl \
+        net-tools \
+        iproute2 \
+        iputils-ping \
+        libyaml-0-2 \
+        python \
+        libusb-1.0-0 \
+        build-essential \
+        psmisc \
+        git \
+        xxd \
+        #unzip is needed for protobuf
+        curl \
+        unzip
+
+
+WORKDIR /opt/oai-ran/bin
+#COPY --from=ran-build /oai-ran/targets/bin/. .
+#COPY --from=ran-build /oai-ran/targets/bin/nr-softmodem.Rel15 .
+COPY --from=ran-build /oai-ran/targets/bin/nr-uesoftmodem.Rel15 .
+COPY --from=ran-build /oai-ran/targets/bin/librfsimulator.so.Rel15 .
+
+WORKDIR /usr/local/lib/
+COPY --from=ran-build /oai-ran/targets/bin/libtcp_bridge_oai.so.Rel15 .
+COPY --from=ran-build /oai-ran/targets/bin/librfsimulator.so.Rel15 .
+COPY --from=ran-build /oai-ran/targets/bin/libcoding.so .
+COPY --from=ran-build /oai-ran/targets/bin/libparams_libconfig.so .
+COPY --from=ran-build /oai-ran/cmake_targets/ran_build/build/libdfts.so .
+COPY --from=ran-build /oai-ran/cmake_targets/ran_build/build/libldpc.so .
+COPY --from=ran-build /oai-ran/cmake_targets/ran_build/build/libldpc_optim.so .
+COPY --from=ran-build /oai-ran/cmake_targets/ran_build/build/libldpc_optim8seg.so .
+COPY --from=ran-build /oai-ran/cmake_targets/ran_build/build/libldpc_orig.so .
+
+RUN /bin/bash -c "ln -s /usr/local/lib/liboai_eth_transpro.so.Rel15 /usr/local/lib/liboai_transpro.so"
+RUN /bin/bash -c "ln -s /usr/local/lib/liboai_usrpdevif.so.Rel15 /usr/local/lib/liboai_device.so"
+RUN /bin/bash -c "ln -s /usr/local/lib/librfsimulator.so.Rel15 /usr/local/lib/librfsimulator.so"
+COPY --from=ran-build /usr/local/lib/libprotobuf-c.so.1 .
+
+RUN ldconfig
+
+# Copy the RAN files for gNB and ue
+WORKDIR /opt/oai-ran/etc
+#COPY --from=ran-build /oai-ran/ci-scripts/conf_files/gnb.* ./
+COPY --from=ran-build /oai-ran/ci-scripts/conf_files/ue.* ./
+
+#CMD ["/opt/oai-ran/bin/nr-softmodem", "-O", "/opt/oai-ran/etc/gnb.conf"]
+#ENTRYPOINT ["/opt/oai-ran/bin/entrypoint.sh"]
+CMD ["sleep", "infinity"]
+

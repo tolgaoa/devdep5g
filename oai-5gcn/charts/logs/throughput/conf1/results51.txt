@@ -1,0 +1,29 @@
+Connecting to host 192.168.20.52, port 5201
+[  5] local 12.1.1.43 port 60669 connected to 192.168.20.52 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   912 KBytes  7.47 Mbits/sec   18   21.8 KBytes       
+[  5]   1.00-2.00   sec  1.72 MBytes  14.4 Mbits/sec   55   13.7 KBytes       
+[  5]   2.00-3.00   sec  1.10 MBytes  9.26 Mbits/sec   33   13.7 KBytes       
+[  5]   3.00-4.00   sec  1.41 MBytes  11.8 Mbits/sec   37   13.7 KBytes       
+[  5]   4.00-5.00   sec  1.53 MBytes  12.9 Mbits/sec   22   23.2 KBytes       
+[  5]   5.00-6.00   sec  1.04 MBytes  8.75 Mbits/sec   24   10.9 KBytes       
+[  5]   6.00-7.00   sec  1.29 MBytes  10.8 Mbits/sec   23   17.7 KBytes       
+[  5]   7.00-8.00   sec  1.10 MBytes  9.26 Mbits/sec   23   12.3 KBytes       
+[  5]   8.00-9.00   sec  0.00 Bytes  0.00 bits/sec    2   1.37 KBytes       
+[  5]   9.00-10.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  10.00-11.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  11.00-12.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  12.00-13.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  13.00-14.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  14.00-15.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  15.00-16.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  16.00-17.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  17.00-18.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  18.00-19.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  19.00-20.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-20.00  sec  10.1 MBytes  4.23 Mbits/sec  240             sender
+[  5]   0.00-20.00  sec  9.82 MBytes  4.12 Mbits/sec                  receiver
+
+iperf Done.

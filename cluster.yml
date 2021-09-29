@@ -1,0 +1,152 @@
+nodes:
+- address: 192.168.2.29 # the ip address of your node 
+  port: "22" # the port configured for ssh
+  internal_address: 172.16.1.73
+  role:
+  - controlplane
+  - etcd
+  hostname_override: "ha-control-1"
+  user: ubuntu # user name on your node used for ssh
+  ssh_key_path: "~/.ssh/key.pem" # private key-pair of the public key copied to the authorized keys on the node
+- address: 192.168.2.30 # 
+  port: "22" 
+  internal_address: 172.16.1.142
+  role:
+  - controlplane
+  - etcd
+  hostname_override: "ha-control-2"
+  user: ubuntu 
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.33 
+  port: "22" 
+  internal_address: 172.16.1.110
+  role:
+  - controlplane
+  - etcd
+  hostname_override: "ha-control-3"
+  user: ubuntu 
+  ssh_key_path: "~/.ssh/key.pem" 
+- address: 192.168.2.35                               
+  port: "22"
+  internal_address: 172.16.1.167
+  role:
+  - worker
+  hostname_override: "ha-worker-1"
+  user: ubuntu 
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.37                               
+  port: "22"   
+  internal_address: 172.16.1.131
+  role:
+  - worker
+  hostname_override: "ha-worker-2"  
+  user: ubuntu 
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.46
+  port: "22"
+  internal_address: 172.16.1.77
+  role:
+  - worker
+  hostname_override: "ha-worker-3"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.48
+  port: "22"
+  internal_address: 172.16.1.106
+  role:
+  - worker
+  hostname_override: "ha-worker-4"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.50
+  port: "22"
+  internal_address: 172.16.1.229
+  role:
+  - worker
+  hostname_override: "ha-worker-5"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.54
+  port: "22"
+  internal_address: 172.16.1.209
+  role:
+  - worker
+  hostname_override: "ha-worker-6"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.57
+  port: "22"
+  internal_address: 172.16.1.102
+  role:
+  - worker
+  hostname_override: "ha-worker-7"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.63
+  port: "22"
+  internal_address: 172.16.1.3
+  role:
+  - worker
+  hostname_override: "ha-worker-8"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.69
+  port: "22"
+  internal_address: 172.16.1.202
+  role:
+  - worker
+  hostname_override: "ha-worker-9"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.66
+  port: "22"
+  internal_address: 172.16.1.216
+  role:
+  - worker
+  hostname_override: "ha-worker-10"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.68
+  port: "22"
+  internal_address: 172.16.1.50
+  role:
+  - worker
+  hostname_override: "ha-worker-11"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.36
+  port: "22"
+  internal_address: 172.16.1.120
+  role:
+  - worker
+  hostname_override: "ha-worker-12"
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+services:
+  kube-api:
+    service_cluster_ip_range: 10.43.0.0/16
+    pod_security_policy: false
+    always_pull_images: false
+  kube-controller:
+    cluster_cidr: 10.42.0.0/16
+    service_cluster_ip_range: 10.43.0.0/16
+  kubelet:
+    cluster_domain: cluster.local
+    cluster_dns_server: 10.43.0.10
+    fail_swap_on: false
+network:
+  plugin: canal
+  #mtu: 9000
+authentication:
+  strategy: x509
+ssh_key_path: "~/.ssh/id_rsa"
+ssh_agent_auth: false
+authorization:
+  mode: rbac
+ignore_docker_version: false
+kubernetes_version: "v1.19.9-rancher1-1"
+private_registries:
+- url: docker.io
+  user: tolgaomeratalay
+  password: Starkiller10!
+cluster_name: "oai"

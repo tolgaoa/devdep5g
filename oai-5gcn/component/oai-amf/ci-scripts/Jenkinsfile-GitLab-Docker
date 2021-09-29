@@ -1,0 +1,512 @@
+#!/bin/groovy
+/*
+ * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The OpenAirInterface Software Alliance licenses this file to You under
+ * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+ * except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.openairinterface.org/?page_id=698
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *-------------------------------------------------------------------------------
+ * For more information about the OpenAirInterface (OAI) Software Alliance:
+ *      contact@openairinterface.org
+ */
+
+//-------------------------------------------------------------------------------
+
+// Location of the CN executor node
+def cn_ci_host = params.Host_CN_CI_Server
+
+// for lock
+def cn_ci_resource = params.DockerContainers
+
+// Location of the Remote Ubuntu18 CN executor
+def rem_u18_host_flag = false
+def rem_u18_host = ""
+def rem_u18_host_user = ""
+
+// Location of the Remote RHEL CN executor
+def rem_rhel_host_flag = false
+def rem_rhel_host = ""
+def rem_rhel_host_user = ""
+def rem_rhel8_resource = params.PodmanContainers
+
+// Tags/Branches to use
+def amf_tag = "develop"
+def amf_branch = "develop"
+
+// We are using a base image to speed up CI build.
+// This base image is potentially subject to changes over time.
+def AMF_BASE_IMAGE_TAG = params.AmfBaseImageTag
+
+// Merge Request Link
+def gitlabMergeRequestLink
+
+//-------------------------------------------------------------------------------
+// Pipeline start
+pipeline {
+  agent {
+    label cn_ci_host
+  }
+  options {
+    disableConcurrentBuilds()
+    timestamps()
+    ansiColor('xterm')
+    lock(cn_ci_resource)
+    gitLabConnection('OAI GitLab')
+    gitlabBuilds(builds: [
+      "Build U18 AMF Image",
+      "Build RHEL8 AMF Image",
+      "Static Code Analysis",
+      "Code Formatting Checker",
+      "Test with DsTester"
+    ])
+
+  }
+
+  stages {
+    stage ('Verify Parameters') {
+      steps {
+        script {
+          echo '\u2705 \u001B[32mVerify Parameters\u001B[0m'
+
+          JOB_TIMESTAMP = sh returnStdout: true, script: 'date --utc --rfc-3339=seconds | sed -e "s#+00:00##"'
+          JOB_TIMESTAMP = JOB_TIMESTAMP.trim()
+
+          if (params.Host_CN_CI_2nd_Server_Flag != null) {
+            rem_u18_host_flag = params.Host_CN_CI_2nd_Server_Flag
+            if (rem_u18_host_flag) {
+              rem_u18_host = params.Host_CN_CI_2nd_Server
+              rem_u18_host_user = params.Host_CN_CI_2nd_Server_Login
+              echo "1st Node   is ${NODE_NAME}"
+              echo "2nd Node   is ${rem_u18_host}"
+            } else {
+              echo "U18 Node   is ${NODE_NAME}"
+            }
+          } else {
+            echo "Node       is ${NODE_NAME}"
+          }
+          if (params.Remote_RHEL_Server_Flag != null) {
+            rem_rhel_host_flag = params.Remote_RHEL_Server_Flag
+            if (rem_rhel_host_flag) {
+              rem_rhel_host = params.Remote_RHEL_Server_Name
+              rem_rhel_host_user = params.Remote_RHEL_Server_Login
+              echo "RHEL Node  is ${rem_rhel_host}"
+            }
+          }
+          echo "Git URL    is ${GIT_URL}"
+
+          if ("MERGE".equals(env.gitlabActionType)) {
+            try {
+              myShCmd('docker image inspect --format=\'Size = {{.Size}} bytes\' oai-amf-base:' + AMF_BASE_IMAGE_TAG, rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+            } catch (Exception e) {
+              currentBuild.result = 'FAILURE'
+              echo '\u26D4 \u001B[31mBase Image does not exist\u001B[0m'
+              error "Stopping pipeline!"
+            }
+          }
+        }
+      }
+    }
+    stage ('Prepare Source Code') {
+      steps {
+        script {
+          sh "git clean -x -d -f > /dev/null 2>&1"
+          if ("MERGE".equals(env.gitlabActionType)) {
+            gitlabMergeRequestLink = sh "curl --silent \"https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-amf/merge_requests/${env.gitlabMergeRequestIid}\" | jq .web_url | sed 's#\"##g'"
+            echo "========= THIS IS A MERGE REQUEST =========="
+            echo "MR ID       is ${env.gitlabMergeRequestIid}"
+            echo "MR LINK     is ${gitlabMergeRequestLink}"
+            echo "MR TITLE    is ${env.gitlabMergeRequestTitle}"
+            gitCommitAuthorEmailAddr = env.gitlabUserEmail
+            echo "GitLab Usermail is ${gitCommitAuthorEmailAddr}"
+            sh "git fetch --prune --unshallow"
+            shortenShaOne = sh returnStdout: true, script: 'git log -1 --pretty=format:"%h" ' + env.gitlabMergeRequestLastCommit
+            shortenShaOne = shortenShaOne.trim()
+            sh "./ci-scripts/doGitLabMerge.sh --src-branch ${env.gitlabSourceBranch} --src-commit ${env.gitlabMergeRequestLastCommit} --target-branch ${env.gitlabTargetBranch} --target-commit ${GIT_COMMIT}"
+            sh "sleep 10"
+            amf_tag = "ci-tmp"
+            rhel_amf_tag = 'ci-tmp-pr-' + env.gitlabMergeRequestIid + '-' + shortenShaOne
+            amf_branch = env.gitlabSourceBranch
+            echo "MR TAG      is ${rhel_amf_tag}"
+          } else {
+            echo "======== THIS IS A PUSH REQUEST ========"
+            echo "Git Branch      is ${GIT_BRANCH}"
+            echo "Git Commit      is ${GIT_COMMIT}"
+            gitCommitAuthorEmailAddr = sh returnStdout: true, script: 'git log -n1 --pretty=format:%ae ${GIT_COMMIT}'
+            gitCommitAuthorEmailAddr = gitCommitAuthorEmailAddr.trim()
+            echo "GitLab Usermail is ${gitCommitAuthorEmailAddr}"
+            sh "git log -n1 --pretty=format:\"%s\" > .git/CI_COMMIT_MSG"
+          }
+          sh "tar -cjhf /tmp/openair-amf.tar.bz2 ."
+          sh "mv /tmp/openair-amf.tar.bz2 ."
+          copyTo2ndServer('openair-amf.tar.bz2', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+          copyTo2ndServer('openair-amf.tar.bz2', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+          sh "mkdir -p archives/oai-amf-cfg"
+        }
+      }
+      post {
+        failure {
+          script {
+            def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): Merge Conflicts -- Cannot perform CI"
+            addGitLabMRComment comment: message
+            currentBuild.result = 'FAILURE'
+          }
+        }
+      }
+    }
+    stage('Build Core Network Function') {
+      parallel {
+        stage ('Build U18 AMF Image') {
+          steps {
+            script {
+              gitlabCommitStatus(name: "Build U18 AMF Image") {
+                myShCmd('docker image prune --force', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                if ("PUSH".equals(env.gitlabActionType)) {
+                  // Currently this pipeline only runs for pushes to `develop` branch
+                  // First clean image registry
+                  try {
+                    myShCmd('docker image rm oai-amf:develop', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                  } catch (Exception e) {
+                    echo "Maybe a previous build went wrong"
+                  }
+                  // In case of push to `develop` branch we build from scratch
+                  myShCmd('docker build --no-cache --target oai-amf --tag oai-amf:' + amf_tag + ' --file docker/Dockerfile.ubuntu.18.04 --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" . > archives/amf_docker_image_build.log 2>&1', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                }
+                if ("MERGE".equals(env.gitlabActionType)) {
+                  try {
+                    // Checking if the CI Base image is still there.
+                    // If the inspect command fails, it's not there. If it passes, let remove tag.
+                    myShCmd('docker image inspect oai-amf-base:latest > /dev/null 2>&1', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                    myShCmd('docker rmi oai-amf-base:latest', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                  } catch (Exception e) {
+                    echo 'No need to remove the CI base image'
+                  }
+                  // "latest" is the tag used in the docker file.
+                  myShCmd('docker image tag oai-amf-base:' + AMF_BASE_IMAGE_TAG + ' oai-amf-base:latest', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                  myShCmd('docker build --no-cache --target oai-amf --tag oai-amf:' + amf_tag + ' --file ci-scripts/docker/Dockerfile.ci.ubuntu.18.04 . > archives/amf_docker_image_build.log 2>&1', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                }
+                myShCmd('docker image ls >> archives/amf_docker_image_build.log', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+              }
+            }
+          }
+          post {
+            always {
+              script {
+                copyFrom2ndServer('archives/amf_docker_image_build.log', 'archives', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+              }
+            }
+            success {
+              sh "echo 'OAI-AMF DOCKER IMAGE BUILD: OK' >> archives/amf_docker_image_build.log"
+            }
+            unsuccessful {
+              sh "echo 'OAI-AMF DOCKER IMAGE BUILD: KO' >> archives/amf_docker_image_build.log"
+            }
+          }
+        }
+        stage ('Build RHEL8 AMF Image') {
+          when { expression {rem_rhel_host_flag} }
+          steps {
+            lock (rem_rhel8_resource) {
+              script {
+                gitlabCommitStatus(name: "Build RHEL8 AMF Image") {
+                  if ("PUSH".equals(env.gitlabActionType)) {
+                    // Currently this pipeline only runs for pushes to `develop` branch
+                    // First clean image registry
+                    try {
+                      myShCmd('sudo podman image rm oai-amf:develop || true', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                    } catch (Exception e) {
+                      echo "Maybe a previous build went wrong"
+                    } 
+                  } else {
+                    // In case we forgot during a previous run
+                    myShCmd('sudo podman image rm oai-amf:' + amf_tag + ' || true', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  }
+                  myShCmd('sudo podman image prune --force', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  // Copy the RHEL Host certificates for building
+                  myShCmd('mkdir -p tmp/ca tmp/entitlement', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  myShCmd('cp /etc/pki/entitlement/*pem tmp/entitlement', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  myShCmd('sudo cp /etc/rhsm/ca/redhat-uep.pem tmp/ca', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  myShCmd('sudo podman build --no-cache --target oai-amf --tag oai-amf:' + amf_tag + ' --file docker/Dockerfile.amf.rhel8.2 --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" . > archives/amf_podman_image_build.log 2>&1', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  myShCmd('sudo podman image ls >> archives/amf_podman_image_build.log', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  if ("MERGE".equals(env.gitlabActionType)) {
+                    myShCmd('sudo podman image tag oai-amf:' + amf_tag + ' oai-amf:' + rhel_amf_tag, rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+                  }
+                }
+              }
+            }
+          }
+          post {
+            always {
+              script {
+                copyFrom2ndServer('archives/amf_podman_image_build.log', 'archives', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+              }
+            }
+            success {
+              sh "echo 'OAI-AMF PODMAN RHEL8 IMAGE BUILD: OK' >> archives/amf_podman_image_build.log"
+            }
+            unsuccessful {
+              sh "echo 'OAI-AMF PODMAN RHEL8 IMAGE BUILD: KO' >> archives/amf_podman_image_build.log"
+            }
+          }
+        }
+        // Running CPPCHECK in parallel to gain time
+        stage ('Static Code Analysis') {
+          steps {
+            script {
+              gitlabCommitStatus(name: "Static Code Analysis") {
+                // Running on xenial to have 1.72 version of cppcheck
+                myShCmd('docker run --name ci-cn-cppcheck -d ubuntu:xenial /bin/bash -c "sleep infinity"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-cppcheck /bin/bash -c "apt-get update && apt-get upgrade --yes" > archives/cppcheck_install.log', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-cppcheck /bin/bash -c "apt-get install --yes cppcheck bzip2" >> archives/cppcheck_install.log', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+
+                myShCmd('docker cp ./openair-amf.tar.bz2 ci-cn-cppcheck:/home', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-cppcheck /bin/bash -c "cd /home && tar -xjf openair-amf.tar.bz2"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-cppcheck /bin/bash -c "rm -f /home/openair-amf.tar.bz2"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+
+                myShCmd('docker exec ci-cn-cppcheck /bin/bash -c "cd /home && cppcheck --enable=warning --force --xml --xml-version=2 --suppressions-list=ci-scripts/cppcheck_suppressions.list src 2> cppcheck.xml 1> cppcheck_build.log"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+              }
+            }
+          }
+          post {
+            always {
+              script {
+                myShCmd('docker cp ci-cn-cppcheck:/home/cppcheck.xml archives', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker cp ci-cn-cppcheck:/home/cppcheck_build.log archives', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                copyFrom2ndServer('archives/cppcheck*.*', 'archives', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                // no need to keep the cppcheck container
+                myShCmd('docker rm -f ci-cn-cppcheck', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+              }
+            }
+            success {
+              sh "echo 'CPPCHECK: OK' >> archives/cppcheck_install.log"
+            }
+            unsuccessful {
+              sh "echo 'CPPCHECK: KO' >> archives/cppcheck_install.log"
+            }
+          }
+        }
+        // Running CLANG-FORMATTING check in parallel to gain time
+        stage ('Code Formatting Checker') {
+          steps {
+            script {
+              gitlabCommitStatus(name: "Code Formatting Checker") {
+                myShCmd('docker run --name ci-cn-clang-formatter -d ubuntu:bionic /bin/bash -c "sleep infinity"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "apt-get update && apt-get upgrade --yes" > archives/clang_format_install.log', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "apt-get install --yes git tree bzip2" >> archives/clang_format_install.log', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+
+                myShCmd('docker cp ./openair-amf.tar.bz2 ci-cn-clang-formatter:/home', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "cd /home && tar -xjf openair-amf.tar.bz2"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "rm -f /home/openair-amf.tar.bz2"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+
+                // We install a dedicated version (installed on our CI server).
+                myShCmd('docker cp /opt/clang-format/9.0.0/bin/clang-format ci-cn-clang-formatter:/usr/local/bin', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                if ("MERGE".equals(env.gitlabActionType)) {
+                  myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "cd /home && ./ci-scripts/checkCodingFormattingRules.sh --src-branch ' + env.gitlabSourceBranch +' --target-branch ' + env.gitlabTargetBranch + '"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                } else {
+                  myShCmd('docker exec ci-cn-clang-formatter /bin/bash -c "cd /home && ./ci-scripts/checkCodingFormattingRules.sh"', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                }
+              }
+            }
+          }
+          post {
+            always {
+              script {
+                myShCmd('docker cp ci-cn-clang-formatter:/home/src/oai_rules_result.txt src', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                // May not have been generated
+                try {
+                  myShCmd('docker cp ci-cn-clang-formatter:/home/src/oai_rules_result_list.txt src', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                } catch (Exception e) {
+                  echo "Failed to copy src/oai_rules_result_list.txt! It may not have been generated. That's OK!"
+                }
+                copyFrom2ndServer('archives/clang_format*.*', 'archives', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                copyFrom2ndServer('src/oai_rules*.*', 'src', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+                // no need to keep the clang-formatter container
+                myShCmd('docker rm -f ci-cn-clang-formatter', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+              }
+            }
+          }
+        }
+      }
+    }
+    stage ('Testing in CN-5G-FED environment') {
+      steps {
+        script {
+          gitlabCommitStatus(name: "Test with DsTester") {
+            localStatus = build job: params.CN5G_FED_PipelineName,
+              parameters: [
+                string(name: 'AMF_TAG', value: String.valueOf(amf_tag)),
+                string(name: 'AMF_BRANCH', value: String.valueOf(amf_branch))
+              ], propagate: false
+            localResult = localStatus.getResult()
+
+            if (localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+              echo "Federation Test Job is OK"
+            } else {
+              echo "Federation Test Job is KO"
+              sh "ci-scripts/fail.sh"
+            }
+          }
+        }
+      }
+      post {
+        always {
+          script {
+            copyArtifacts(projectName: params.CN5G_FED_PipelineName,
+                          filter: '*_results_oai_cn5g.html',
+                          selector: lastCompleted())
+          }
+        }
+      }
+    }
+  }
+  post {
+    success {
+      script {
+        if ("MERGE".equals(env.gitlabActionType)) {
+          def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): passed (" + BUILD_URL + ")"
+          echo "This is a MERGE event"
+          addGitLabMRComment comment: message
+        }
+      }
+    }
+    unsuccessful {
+      script {
+        if ("MERGE".equals(env.gitlabActionType)) {
+          def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): failed (" + BUILD_URL + ")"
+          echo "This is a MERGE event"
+          addGitLabMRComment comment: message
+        }
+      }
+    }
+    cleanup {
+      script {
+        if ("MERGE".equals(env.gitlabActionType)) {
+          // Remove CI Base image tag
+          myShCmd('docker rmi oai-amf-base:latest', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+        }
+        // Removing temporary / intermediate images
+        try {
+          if ("MERGE".equals(env.gitlabActionType)) {
+            myShCmd('docker image rm --force oai-amf:ci-tmp', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+          }
+        } catch (Exception e) {
+          echo "We failed to delete the OAI-AMF temp image"
+        }
+        try {
+          if ("MERGE".equals(env.gitlabActionType)) {
+            myShCmd('sudo podman image rm oai-amf:ci-tmp', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+          }
+        } catch (Exception e) {
+          echo "We failed to delete the OAI-AMF temp image"
+        }
+        try {
+          myShCmd('docker image prune --force', rem_u18_host_flag, rem_u18_host_user, rem_u18_host)
+        } catch (Exception e) {
+          echo "We failed to prune all unneeded intermediate images"
+        }
+        if (rem_rhel_host_flag) {
+          try {
+            myShCmd('sudo podman image prune --force', rem_rhel_host_flag, rem_rhel_host_user, rem_rhel_host)
+          } catch (Exception e) {
+            echo "We failed to prune all unneeded intermediate images"
+          }
+        }
+
+        // Zipping all archived log files
+        sh "zip -r -qq docker_logs.zip archives"
+        if (fileExists('docker_logs.zip')) {
+          archiveArtifacts artifacts: 'docker_logs.zip'
+        }
+
+        // Generating the HTML report
+        if ("MERGE".equals(env.gitlabActionType)) {
+          sh "python3 ci-scripts/generateHtmlReport.py --job_name=${JOB_NAME} --job_id=${BUILD_ID} --job_url=${BUILD_URL} --git_url=${GIT_URL} --git_src_branch=${env.gitlabSourceBranch} --git_src_commit=${env.gitlabMergeRequestLastCommit} --git_pull_request=True --git_target_branch=${env.gitlabTargetBranch} --git_target_commit=${GIT_COMMIT}"
+          if (fileExists('test_results_oai_amf.html')) {
+            sh "sed -i -e 's#TEMPLATE_MERGE_REQUEST_LINK#${gitlabMergeRequestLink}#g' test_results_oai_amf.html"
+            sh "sed -i -e 's#TEMPLATE_MERGE_REQUEST_TEMPLATE#${env.gitlabMergeRequestTitle}#' test_results_oai_amf.html"
+          }
+          if (fileExists('test_results_oai_cn5g.html')) {
+            sh "sed -i -e 's#TEMPLATE_MERGE_REQUEST_LINK#${gitlabMergeRequestLink}#g' *_results_oai_cn5g.html"
+            sh "sed -i -e 's#TEMPLATE_MERGE_REQUEST_TEMPLATE#${env.gitlabMergeRequestTitle}#' *_results_oai_cn5g.html"
+          }
+        } else {
+          sh "python3 ci-scripts/generateHtmlReport.py --job_name=${JOB_NAME} --job_id=${BUILD_ID} --job_url=${BUILD_URL} --git_url=${GIT_URL} --git_src_branch=${GIT_BRANCH} --git_src_commit=${GIT_COMMIT}"
+        }
+        sh "sed -i -e 's#TEMPLATE_TIME#${JOB_TIMESTAMP}#' test_results_oai_amf.html"
+        if (fileExists('test_results_oai_amf.html')) {
+          sh "sed -i -e 's#TEMPLATE_TIME#${JOB_TIMESTAMP}#' test_results_oai_amf.html"
+          archiveArtifacts artifacts: 'test_results_oai_amf.html'
+        }
+        if (fileExists('test_results_oai_cn5g.html')) {
+          sh "sed -i -e 's#TEMPLATE_TIME#${JOB_TIMESTAMP}#' *_results_oai_cn5g.html"
+          archiveArtifacts artifacts: '*_results_oai_cn5g.html'
+        }
+
+        // Sending email to commiter
+        if (params.sendToCommitterEmail != null) {
+          if (params.sendToCommitterEmail) {
+            emailext attachmentsPattern: '*results*.html',
+              body: '''Hi,
+
+
+Here are attached HTML report files for $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
+
+Regards,
+OAI CI Team''',
+              replyTo: 'no-reply@openairinterface.org',
+              subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+              to: gitCommitAuthorEmailAddr
+          }
+        }
+      }
+    }
+  }
+}
+
+def copyTo2ndServer(filename, flag, user, host) {
+  if (flag) {
+    if ("openair-amf.tar.bz2".equals(filename)) {
+      sh "ssh ${user}@${host} 'rm -rf /tmp/CI-CN-AMF'"
+      sh "ssh ${user}@${host} 'mkdir -p /tmp/CI-CN-AMF'"
+    }
+    sh "scp ${filename} ${user}@${host}:/tmp/CI-CN-AMF"
+    if ("openair-amf.tar.bz2".equals(filename)) {
+      sh "ssh ${user}@${host} 'cd /tmp/CI-CN-AMF && tar -xjf ${filename}'"
+      sh "ssh ${user}@${host} 'mkdir -p /tmp/CI-CN-AMF/archives/oai-amf-cfg'"
+      sh "ssh ${user}@${host} 'rm -Rf /tmp/CI-CN-AMF/${filename}'"
+    }
+  }
+}
+
+def copyFrom2ndServer(filename, target, flag, user, host) {
+  if (flag) {
+    sh "scp ${user}@${host}:/tmp/CI-CN-AMF/${filename} ${target}"
+  }
+}
+
+def myShCmd(cmd, flag, user, host) {
+  if (flag) {
+    sh "ssh -t -t ${user}@${host} 'cd /tmp/CI-CN-AMF && ${cmd}'"
+  } else {
+    sh "${cmd}"
+  }
+}
+
+def myShRetCmd(cmd, flag, user, host) {
+  if (flag) {
+    ret = sh returnStdout: true, script: "ssh -t -t ${user}@${host} 'cd /tmp/CI-CN-AMF && ${cmd}'"
+  } else {
+    ret = sh returnStdout: true, script: "${cmd}"
+  }
+  ret = ret.trim()
+  return ret
+}

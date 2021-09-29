@@ -1,0 +1,150 @@
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.openairinterface.org/?page_id=698
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+################################################################################
+
+# file build_helper.fb_folly
+# brief
+# author Lionel GAUTHIER
+#
+#######################################
+SCRIPT=$(readlink -f ${BASH_SOURCE})
+THIS_SCRIPT_PATH=`dirname $SCRIPT`
+source $THIS_SCRIPT_PATH/build_helper
+
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_fb_folly_from_source(){
+  echo_info "Starting to install folly from source"
+  if [ $1 -eq 0 ]; then
+    OPTION=""
+    read -p "Do you want to install FaceBook folly (github)? <y/N> " prompt
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+ 
+    if [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      $SUDO $INSTALLER install $OPTION \
+        gcc-c++ \
+        make \
+        boost-devel \
+        libevent-devel \
+        double-conversion-devel \
+        glog-devel \
+        gflags-devel \
+        lz4-devel \
+        zlib-devel\
+        openssl-devel \
+        binutils-devel
+      ret=$?;[[ $ret -ne 0 ]] && return $ret
+    elif [[ $OS_DISTRO == "ubuntu" ]]; then
+      $SUDO $INSTALLER install $OPTION \
+        g++ \
+        cmake \
+        libboost-all-dev \
+        libevent-dev \
+        libdouble-conversion-dev \
+        libgoogle-glog-dev \
+        libgflags-dev \
+        libiberty-dev \
+        liblz4-dev \
+        liblzma-dev \
+        libsnappy-dev \
+        make \
+        zlib1g-dev \
+        binutils-dev \
+        libjemalloc-dev \
+        libssl-dev \
+        pkg-config
+      ret=$?;[[ $ret -ne 0 ]] && return $ret
+    fi
+
+    pushd /tmp
+
+    if [ $debug -eq 1 ]; then
+      # For advanced debugging options
+      $SUDO $INSTALLER install $OPTION \
+        libunwind8-dev \
+        libelf-dev \
+        libdwarf-dev
+      ret=$?;[[ $ret -ne 0 ]] && return $ret
+      
+      wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && \
+      tar zxf release-1.8.0.tar.gz && \
+      rm -f release-1.8.0.tar.gz && \
+      cd googletest-release-1.8.0 && \
+      cmake . && \
+      make && \
+      $SUDO make install
+      ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+      cd ..
+    fi
+
+    
+    $SUDO rm -rf /tmp/folly
+    git clone https://github.com/facebook/folly.git
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    cd folly
+    if [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      git checkout -f v2019.06.17.00
+      echo 'diff --git a/build/fbcode_builder/CMake/FindGflags.cmake b/build/fbcode_builder/CMake/FindGflags.cmake' > patch.diff
+      echo 'index 246ceac..3b96716 100644' >> patch.diff
+      echo '--- a/build/fbcode_builder/CMake/FindGflags.cmake' >> patch.diff
+      echo '+++ b/build/fbcode_builder/CMake/FindGflags.cmake' >> patch.diff
+      echo '@@ -34,6 +34,9 @@ IF (LIBGFLAGS_INCLUDE_DIR)' >> patch.diff
+      echo ' ENDIF ()' >> patch.diff
+      echo '' >> patch.diff
+      echo ' find_package(gflags CONFIG QUIET)' >> patch.diff
+      echo '+get_filename_component (_LIB_PATH "${gflags_CONFIG}/../../../" ABSOLUTE)' >> patch.diff
+      echo '+unset(gflags_LIBRARIES)' >> patch.diff
+      echo '+find_library(gflags_LIBRARIES gflags PATHS ${_LIB_PATH})' >> patch.diff
+      echo ' if (gflags_FOUND)' >> patch.diff
+      echo '   if (NOT Gflags_FIND_QUIETLY)' >> patch.diff
+      echo '     message(STATUS "Found gflags from package config ${gflags_CONFIG}")' >> patch.diff
+      git apply patch.diff
+    else
+        git checkout -f v2019.11.11.00
+    fi
+    mkdir _build && cd _build
+    if [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      cmake3  ..
+    else
+      cmake  ..
+    fi
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    make -j $(nproc)
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  echo_success "End of folly installation"
+  return 0
+}
+

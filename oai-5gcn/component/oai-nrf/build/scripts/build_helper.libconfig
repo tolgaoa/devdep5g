@@ -1,0 +1,95 @@
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.openairinterface.org/?page_id=698
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+################################################################################
+
+# file build_helper.libconfig
+# brief
+# author Lionel GAUTHIER
+#
+#######################################
+SCRIPT=$(readlink -f ${BASH_SOURCE})
+THIS_SCRIPT_PATH=`dirname $SCRIPT`
+source $THIS_SCRIPT_PATH/build_helper
+
+#-------------------------------------------------------------------------------
+# Motivation: seems libconfig++ need to be compiled with same application C++ compiler, 
+# otherwise you encounter strange linker errors. (ubuntu 16.04)
+
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_libconfig_from_source(){
+  if [ $1 -eq 0 ]; then
+    OPTION=""
+    read -p "Do you want to install libconfig (github)? <y/N> " prompt
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    if [[ "$OS_DISTRO" == "ubuntu" ]]; then
+      PACKAGE_LIST="\
+        autoconf \
+        automake \
+        bison \
+        build-essential \
+        flex \
+        gcc \
+        libtool"
+    elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      PACKAGE_LIST="\
+        autoconf \
+        automake \
+        bison \
+        patch \
+        flex \
+        gcc \
+        libtool \
+        textinfo"
+    else
+      echo_fatal "$OS_DISTRO is not a supported distribution."
+    fi
+    $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+
+
+    pushd /tmp
+    $SUDO rm -rf /tmp/libconfig
+    git clone https://github.com/hyperrealm/libconfig.git
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    cd libconfig
+    autoreconf -fi
+    ./configure
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+    make -j `nproc` > /tmp/log_compile_config 2>&1
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  return 0
+}
+

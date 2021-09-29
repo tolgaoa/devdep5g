@@ -1,0 +1,603 @@
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.openairinterface.org/?page_id=698
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+################################################################################
+
+# file build_helper.nrf
+# brief
+# author Laurent Thomas, Lionel GAUTHIER
+#
+#######################################
+################################
+# include helper functions
+################################
+SCRIPT=$(readlink -f ${BASH_SOURCE})
+THIS_SCRIPT_PATH=`dirname $SCRIPT`
+source $THIS_SCRIPT_PATH/build_helper
+source $THIS_SCRIPT_PATH/build_helper.libconfig
+source $THIS_SCRIPT_PATH/build_helper.fb_folly
+
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_fmt() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install open-source formatting library for C++ ? <y/N> " prompt
+    OPTION=""
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+
+  echo "Install fmt from source"
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    cd /tmp
+    echo "Downloading fmt"
+    $SUDO rm -rf /tmp/fmt*
+    git clone https://github.com/fmtlib/fmt.git
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+    cd fmt
+    # Looks like since Nov 11 commits, we cannot build
+    git checkout -f 1936dddc3c53c1c0db55a665cf419dc7a257ba62
+    $CMAKE -DFMT_TEST=FALSE  .
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+    make -j `nproc`
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+    $SUDO make install
+    cd /tmp
+    rm -rf /tmp/fmt*
+  fi
+  return 0
+}
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_spdlog_from_git() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install spdlog ? <y/N> " prompt
+    OPTION=""
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    GIT_URL=https://github.com/gabime/spdlog.git
+    echo "Install spdlog from $GIT_URL"
+    pushd $OPENAIRCN_DIR/build/ext
+    echo "Downloading spdlog"
+    if [[ $OPTION =~ -[yY](es)* ]]
+    then
+      $SUDO rm -rf spdlog
+    fi
+
+    git clone $GIT_URL
+    cd spdlog && git checkout master
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    # enable syslog, Useless (defined in NRF code)
+    sed -i '/#define SPDLOG_ENABLE_SYSLOG/s/^\/\///g' include/spdlog/tweakme.h
+    popd
+  fi
+  return 0
+}
+
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_pistache_from_git() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install Pistache ? <y/N> " prompt
+    OPTION="-y"
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    GIT_URL=https://github.com/oktal/pistache.git
+    echo "Install Pistache from $GIT_URL"
+    pushd $OPENAIRCN_DIR/build/ext
+    echo "Downloading Pistache"
+    if [[ $OPTION =~ -[yY](es)* ]]
+    then
+      $SUDO rm -rf pistache
+    fi
+
+    git clone $GIT_URL
+    git submodule update --init
+    cd pistache && git checkout e18ed9baeb2145af6f9ea41246cf48054ffd9907
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    mkdir _build && cd _build
+    $CMAKE -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    make
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  return 0
+}
+
+
+
+
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_nlohmann_from_git() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install Nlohmann Json ? <y/N> " prompt
+    OPTION=""
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    GIT_URL=https://github.com/nlohmann/json.git
+    echo "Install Nlohmann Json from $GIT_URL"
+    pushd $OPENAIRCN_DIR/build/ext
+    echo "Downloading Nlohmann"
+    if [[ $OPTION =~ -[yY](es)* ]]
+    then
+      $SUDO rm -rf json
+    fi
+
+    git clone $GIT_URL
+    git submodule update --init
+    cd json && git checkout master
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    mkdir _build && cd _build
+    $CMAKE -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DJSON_BuildTests=OFF ..
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    make
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  return 0
+}
+
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_nghttp2_from_git() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install nghttp2 ? <y/N> " prompt
+    OPTION=""
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    if [[ $OS_DISTRO == "ubuntu" ]]; then
+      PACKAGE_LIST="\
+      g++ \
+      cmake \
+      binutils \
+      autoconf \
+      automake \
+      autotools-dev \
+      libtool \
+      pkg-config \
+      zlib1g-dev \
+      libcunit1-dev \
+      libssl-dev \
+      libxml2-dev libev-dev libevent-dev libjansson-dev libc-ares-dev \
+      libjemalloc-dev libsystemd-dev cython python3-dev python-setuptools"
+    elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      PACKAGE_LIST="\
+      gcc-c++ \
+      binutils-devel \
+      autoconf \
+      automake \
+      $CMAKE \
+      make \
+      libtool \
+      pkg-config \
+      zlib-devel \
+      CUnit-devel \
+      openssl-devel \
+      libxml2-devel libev-devel libevent-devel jansson-devel c-ares-devel \
+      jemalloc-devel systemd-devel python3-Cython python3-devel python3-setuptools"
+    else
+      echo_fatal "$OS_DISTRO is not a supported distribution."
+    fi
+    echo "Install build tools"
+    $SUDO $INSTALLER install $OPTION $PACKAGE_LIST    
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+   
+    GIT_URL=https://github.com/nghttp2/nghttp2.git
+    echo "Install nghttp2 from $GIT_URL"
+    pushd $OPENAIRCN_DIR/build/ext
+    echo "Downloading nghttp2"
+    if [[ $OPTION =~ [yY](es)* ]]
+    then
+      $SUDO rm -rf nghttp2
+    fi
+
+    git clone $GIT_URL
+    cd nghttp2
+    git checkout 43ba3125932c1d56addaeded2b7f62637af255cd
+    git submodule update --init
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    autoreconf -i
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    automake
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    autoconf
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    ./configure --enable-asio-lib
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    make
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  return 0  
+}
+
+
+
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+install_cpp_jwt_from_git() {
+  if [ $1 -eq 0 ]; then
+    read -p "Do you want to install CPP-JWT ? <y/N> " prompt
+    OPTION=""
+  else
+    prompt='y'
+    OPTION="-y"
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+
+  if [[ $prompt =~ [yY](es)* ]]
+  then
+    if [[ $OS_DISTRO == "ubuntu" ]]; then
+      PACKAGE_LIST="\
+        libgtest-dev \
+        libssl-dev"
+    elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+      PACKAGE_LIST="\
+        gtest-devel \
+        openssl-devel"
+    else
+      echo_fatal "$OS_DISTRO is not a supported distribution." 
+    fi
+    $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+    ret=$?;[[ $ret -ne 0 ]] && return $ret
+   
+   #install libgtest
+    if [[ $OS_DISTRO == "ubuntu" ]]; then
+      echo "Building the gtest library" 
+      pushd $OPENAIRCN_DIR/build/ext    
+      cd /usr/src/gtest
+      $SUDO $CMAKE CMakeLists.txt
+      $SUDO make
+      $SUDO cp *.a /usr/lib
+      ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+      popd
+    fi
+ 
+    GIT_URL=https://github.com/arun11299/cpp-jwt.git
+    echo "Install Cpp-jwt from $GIT_URL"
+    pushd $OPENAIRCN_DIR/build/ext
+    echo "Downloading CPP-JWT"
+    
+    if [[ $prompt =~ [yY](es)* ]]
+    then
+      $SUDO rm -rf cpp-jwt
+    fi
+
+    git clone $GIT_URL
+    cd cpp-jwt && git checkout master
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    mkdir _build && cd _build
+    $CMAKE ..
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    make
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    $SUDO make install
+    ret=$?;[[ $ret -ne 0 ]] && popd && return $ret
+    popd
+  fi
+  return 0  
+}
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+check_install_nrf_deps() {
+
+  if [ $1 -gt 0 ]; then
+    OPTION="-y"
+  else
+    OPTION=""
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+  echo "Check supported distribution"
+  check_supported_distribution
+  [[ $? -ne 0 ]] && return $?
+
+  # prevent lock on /var/lib/dpkg/lock
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    #$SUDO systemctl mask apt-daily.service
+    #$SUDO systemctl mask apt-daily.timer
+    #$SUDO systemctl mask apt-daily-upgrade.service
+    #$SUDO systemctl mask apt-daily-upgrade.timer
+    $SUDO sed -i 's/1/0/g' /etc/apt/apt.conf.d/10periodic
+  fi
+
+  update_package_db
+
+
+  check_enable_epel_repos
+
+  # Compilers, generators, ...
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    PACKAGE_LIST="\
+      autoconf \
+      automake \
+      bison \
+      build-essential \
+      cmake \
+      daemon \
+      doxygen \
+      flex \
+      gdb \
+      git"
+  elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+    PACKAGE_LIST="\
+      autoconf \
+      automake \
+      bison \
+      $CMAKE \
+      doxygen \
+      flex \
+      gdb \
+      git"
+  else
+    echo_fatal "$OS_DISTRO is not a supported distribution."
+  fi
+  echo "Install build tools"
+  $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+
+  # Libraries
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    case "$(get_distribution_release)" in
+      "ubuntu18.04")
+        specific_packages="libconfig++-dev libasio-dev libboost-all-dev"
+      ;;
+    esac
+    # removed libspdlog-dev
+    PACKAGE_LIST="\
+      $specific_packages \
+      guile-2.0-dev \
+      libcurl4-gnutls-dev \
+      libevent-dev \
+      libgcrypt11-dev \
+      libgmp-dev \
+      libhogweed? \
+      libidn2-0-dev \
+      libidn11-dev \
+      libpthread-stubs0-dev \
+      libssl-dev \
+      libtool \
+      libxml2 \
+      libxml2-dev \
+      openssl \
+      python \
+      nettle-dev \
+      libcurl4 \
+      net-tools \
+      pkg-config"
+  elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+    PACKAGE_LIST="\
+      guile-devel \
+      libconfig-devel \
+      libgcrypt-devel \
+      gmp-devel \
+      libidn-devel \
+      lksctp-tools \
+      lksctp-tools-devel \
+      openssl-devel \
+      libtool \
+      libxml2 \
+      libxml2-devel \
+      openssl \
+      check \
+      nettle-devel \
+      libcurl-devel \
+      python2 \
+      pkgconfig"
+  else
+    echo_fatal "$OS_DISTRO is not a supported distribution."
+  fi
+  echo "Install distro libs"
+  $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  # Use fmt lib included in spdlog
+  #install_fmt $1
+  #ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  install_spdlog_from_git $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+  
+  install_fb_folly_from_source $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+  
+  install_pistache_from_git $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+  
+  install_nlohmann_from_git $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  install_nghttp2_from_git $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  install_cpp_jwt_from_git $1 $2
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+    
+  return 0
+}
+#-------------------------------------------------------------------------------
+#arg1 is force (0 or 1) (no interactive script)
+#arg2 is debug (0 or 1) (install debug libraries)
+check_install_nrf_min_deps() {
+
+  if [ $1 -gt 0 ]; then
+    OPTION="-y"
+  else
+    OPTION=""
+  fi
+  if [ $2 -eq 0 ]; then
+    debug=0
+  else
+    debug=1
+  fi
+
+  echo "Check supported distribution"
+  check_supported_distribution
+  [[ $? -ne 0 ]] && return $?
+
+  # prevent lock on /var/lib/dpkg/lock
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    #$SUDO systemctl mask apt-daily.service
+    #$SUDO systemctl mask apt-daily.timer
+    #$SUDO systemctl mask apt-daily-upgrade.service
+    #$SUDO systemctl mask apt-daily-upgrade.timer
+    $SUDO sed -i 's/1/0/g' /etc/apt/apt.conf.d/10periodic
+  fi
+
+  update_package_db
+
+  check_enable_epel_repos
+
+  # Compilers, generators, ...
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    PACKAGE_LIST="\
+      gdb"
+  elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+    PACKAGE_LIST="\
+      gdb"
+  else
+    echo_fatal "$OS_DISTRO is not a supported distribution."
+  fi
+  echo "Install build tools"
+  $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+
+  # Libraries
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    case "$(get_distribution_release)" in
+      "ubuntu18.04")
+        specific_packages="libconfig++-dev libasio-dev libboost-all-dev"
+      ;;
+    esac
+    # removed libspdlog-dev
+    PACKAGE_LIST="\
+      libtool"
+  elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+    PACKAGE_LIST="\
+      libtool"
+  else
+    echo_fatal "$OS_DISTRO is not a supported distribution."
+  fi
+  echo "Install distro libs"
+  $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  # Networking
+  if [[ $OS_DISTRO == "ubuntu" ]]; then
+    case "$(get_distribution_release)" in
+  "ubuntu18.04")
+      specific_packages="iproute2"
+      ;;
+    esac
+    PACKAGE_LIST="\
+      $specific_packages \
+      ethtool \
+      iptables \
+      vlan"
+  elif [[ "$OS_BASEDISTRO" == "fedora" ]]; then
+    PACKAGE_LIST="\
+      ethtool \
+      iperf \
+      iproute \
+      iptables \
+      vconfig"
+  else
+    echo_fatal "$OS_DISTRO is not a supported distribution."
+  fi
+  echo "Install networking tools"
+  $SUDO $INSTALLER install $OPTION $PACKAGE_LIST
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  return 0
+}
+
+

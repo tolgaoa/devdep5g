@@ -1,0 +1,212 @@
+#!/bin/bash
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the OAI Public License, Version 1.1  (the "License"); you may not use this file
+# except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.openairinterface.org/?page_id=698
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+################################################################################
+# file build_nrf
+# brief
+# author Lionel Gauthier
+# company Eurecom
+# email: lionel.gauthier@eurecom.fr
+#
+
+set -o pipefail
+
+INSTALL_DIR=/usr/local/bin
+################################
+# include helper functions
+################################
+THIS_SCRIPT_PATH=$(dirname $(readlink -f $0))
+source $THIS_SCRIPT_PATH/build_helper.nrf
+
+
+function help()
+{
+  echo_error " "
+  echo_error "Usage: build_nrf [OPTION]..."
+  echo_error "Build the NRF executable."
+  echo_error " "
+  echo_error "Options:"
+  echo_error "Mandatory arguments to long options are mandatory for short options too."
+  echo_error "  -b, --build-type                          Build type as defined in cmake, allowed values are: Debug Release RelWithDebInfo MinSizeRel"
+  echo_error "  -c, --clean                               Clean the build generated files: config, object, executable files (build from scratch)"
+  echo_error "  -f, --force                               No interactive script for installation of software packages."
+  echo_error "  -h, --help                                Print this help."
+  echo_error "  -I, --install-deps                        Check installed software necessary to build and run NRF (support $SUPPORTED_DISTRO)."
+  echo_error "  -i, --install-min-deps                    Check installed software necessary to run a statically linked NRF (support $SUPPORTED_DISTRO)."
+  echo_error "  -j, --jobs                                Multiple jobs for compiling."
+  echo_error "  -v, --verbose                             Build process verbose."
+  echo_error "  -V, --Verbose                             CMake only build process verbose, display compilation warnings and errors."
+  echo_error " "
+}
+
+function main()
+{
+  local -i clean=0
+  local -i force=0
+  local -i debug=0
+  local -i verbose=0
+  local -i var_check_install_min_deps=0
+  local -i var_check_install_deps=0
+  local    cmake_args=" "
+  export   make_args=" "
+
+
+  until [ -z "$1" ]
+    do
+    case "$1" in
+      -a | --auto-test)
+        cmake_args="$cmake_args -DSGW_AUTOTEST=1"
+        shift;
+        ;;
+      -b | --build-type)
+        list_include_item "Debug Release RelWithDebInfo MinSizeRel" $2
+        [[ $? -ne 0 ]] && echo_error "Build type $2 not recognized" && return $?
+        cmake_args="$cmake_args -DCMAKE_BUILD_TYPE=$2"
+        list_include_item "Debug" $2
+        [[ $? -ne 0 ]] && debug=1
+        shift 2;
+        ;;
+      -c | --clean)
+        clean=1
+        echo "Clean the build generated files (build from scratch)"
+        shift;
+        ;;
+      -f | --force)
+        force=1
+        echo "Force set (no interactive)"
+        shift;
+        ;;
+      -h | --help)
+        help
+        shift;
+        return 0
+        ;;
+      -I | --install-deps)
+        echo "Check installed software necessary to build and run NRF (support $SUPPORTED_DISTRO):"
+        set_openair_env
+        var_check_install_deps=1
+        shift;
+        ;;
+      -i | --install-min-deps)
+        echo "Check installed software necessary to run NRF (support $SUPPORTED_DISTRO):"
+        set_openair_env
+        var_check_install_min_deps=1
+        shift;
+        ;;
+      -j | --jobs)
+        make_args="$make_args -j`nproc`"
+        shift;
+        ;;
+      -v | --verbose)
+        echo "Make build process verbose"
+        cmake_args="$cmake_args -DCMAKE_VERBOSE_MAKEFILE=ON"
+        make_args="VERBOSE=1 $make_args"
+        verbose=1
+        shift;
+        ;;
+      -V | --Verbose)
+        echo "CMake build process verbose"
+        verbose=1
+        shift;
+        ;;
+      *)
+        echo "Unknown option $1"
+        help
+        return 1
+        ;;
+    esac
+  done
+
+
+  if [ ! -d /usr/local/etc/oai ]; then
+    $SUDO mkdir -m 777 -p /usr/local/etc/oai
+  fi
+
+  set_openair_env
+
+  local dlog=$OPENAIRCN_DIR/build/log
+  local dext=$OPENAIRCN_DIR/build/ext
+
+  mkdir -m 777 -p $dlog
+  mkdir -m 777 -p $dext
+
+  if [ $var_check_install_min_deps -gt 0 ];then
+    disable_ipv6
+    check_install_nrf_min_deps  $force $debug
+    if [[ $? -ne 0 ]]; then
+        echo_error "Error: NRF minimal deps installation failed"
+        return 1
+    else
+        echo_success "NRF minimal deps installation successful"
+        echo_warning "NRF not compiled, to compile it, re-run build_nrf without -i option"
+        return 0
+    fi
+  fi
+
+  if [ $var_check_install_deps -gt 0 ];then
+    disable_ipv6
+    check_install_nrf_deps  $force $debug
+    if [[ $? -ne 0 ]]; then
+        echo_error "Error: NRF deps installation failed"
+        return 1
+    else
+        echo_success "NRF deps installation successful"
+        echo_warning "NRF not compiled, to compile it, re-run build_nrf without -I option"
+        return 0
+    fi
+  fi
+
+  cmake_args="$cmake_args  -DBUILD_SHARED_LIBS=OFF"
+
+  ##############################################################################
+  # Clean
+  ##############################################################################
+  cd $OPENAIRCN_DIR/build/nrf
+  if [ $clean -ne 0 ]; then
+    if [[ $verbose -eq 1 ]]; then
+      echo "Cleaning NRF: generated configuration files, obj files, executable"
+    fi
+    rm -Rf $OPENAIRCN_DIR/build/nrf/build  2>&1
+    mkdir -m 777 -p -v build
+  fi
+
+  ##############################################################################
+  # Compile NRF
+  ##############################################################################
+  cd $OPENAIRCN_DIR/build/nrf
+  if [ ! -d ./build ]; then
+    mkdir -m 777 -p -v build
+  fi
+
+  cd ./build
+  $CMAKE $cmake_args .. > /dev/null
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  compilations nrf nrf $OPENAIRCN_DIR/build/nrf/build/nrf $verbose
+  ret=$?;[[ $ret -ne 0 ]] && return $ret
+
+  # For daemon should not be group writable
+  $SUDO chmod 755 $OPENAIRCN_DIR/build/nrf/build/nrf
+  $SUDO cp -upv $OPENAIRCN_DIR/build/nrf/build/nrf $INSTALL_DIR && $SUDO chmod 755 $INSTALL_DIR/nrf && echo_success "nrf installed"
+  return 0
+}
+
+
+main "$@"

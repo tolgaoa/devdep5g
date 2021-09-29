@@ -1,0 +1,29 @@
+Connecting to host 192.168.20.18, port 5201
+[  5] local 12.1.1.9 port 45441 connected to 192.168.20.18 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  1.67 MBytes  14.0 Mbits/sec   28   24.6 KBytes       
+[  5]   1.00-2.00   sec  1.23 MBytes  10.3 Mbits/sec   25   2.73 KBytes       
+[  5]   2.00-3.00   sec  1005 KBytes  8.23 Mbits/sec   27   8.19 KBytes       
+[  5]   3.00-4.00   sec  1.23 MBytes  10.3 Mbits/sec   32   8.19 KBytes       
+[  5]   4.00-5.00   sec  1.47 MBytes  12.3 Mbits/sec   22   20.5 KBytes       
+[  5]   5.00-6.00   sec  1.59 MBytes  13.4 Mbits/sec   37   12.3 KBytes       
+[  5]   6.00-7.00   sec  1.10 MBytes  9.26 Mbits/sec   27   16.4 KBytes       
+[  5]   7.00-8.00   sec   628 KBytes  5.14 Mbits/sec   25   1.37 KBytes       
+[  5]   8.00-9.00   sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]   9.00-10.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  10.00-11.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  11.00-12.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  12.00-13.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  13.00-14.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  14.00-15.00  sec  0.00 Bytes  0.00 bits/sec    1   1.37 KBytes       
+[  5]  15.00-16.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  16.00-17.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  17.00-18.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  18.00-19.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+[  5]  19.00-20.00  sec  0.00 Bytes  0.00 bits/sec    0   1.37 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-20.00  sec  9.89 MBytes  4.15 Mbits/sec  227             sender
+[  5]   0.00-20.00  sec  9.73 MBytes  4.08 Mbits/sec                  receiver
+
+iperf Done.

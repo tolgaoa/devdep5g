@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: {{ .Chart.Name }}-pvclaim
+  namespace: oai
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+  storageClassName: nfs 
+  resources:
+    requests:
+      storage: 8Gi
+  volumeName: {{ .Chart.Name }}-pv
+  

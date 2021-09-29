@@ -1,0 +1,179 @@
+version: '3.8'
+services:
+    mysql:
+        container_name: "mysql"
+        image: mysql:5.7
+        volumes:
+            - ./oai_db.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./mysql-healthcheck.sh:/tmp/mysql-healthcheck.sh
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        healthcheck:
+            test: /bin/bash -c "/tmp/mysql-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.131
+    oai-amf:
+        container_name: "oai-amf"
+        image: oai-amf:develop
+        environment:
+            - TZ=Europe/paris
+            - INSTANCE=0
+            - PID_DIRECTORY=/var/run
+            - MCC=208
+            - MNC=95
+            - REGION_ID=128
+            - AMF_SET_ID=1
+            - SERVED_GUAMI_MCC_0=208
+            - SERVED_GUAMI_MNC_0=95
+            - SERVED_GUAMI_REGION_ID_0=128
+            - SERVED_GUAMI_AMF_SET_ID_0=1
+            - SERVED_GUAMI_MCC_1=460
+            - SERVED_GUAMI_MNC_1=11
+            - SERVED_GUAMI_REGION_ID_1=10
+            - SERVED_GUAMI_AMF_SET_ID_1=1
+            - PLMN_SUPPORT_MCC=208
+            - PLMN_SUPPORT_MNC=95
+            - PLMN_SUPPORT_TAC=0xa000
+            - SST_0=222
+            - SD_0=123
+            - SST_1=1
+            - SD_1=12
+            - AMF_INTERFACE_NAME_FOR_NGAP=eth0
+            - AMF_INTERFACE_NAME_FOR_N11=eth0
+            - SMF_INSTANCE_ID_0=1
+            - SMF_IPV4_ADDR_0=192.168.70.133
+            - SMF_HTTP_VERSION_0=v1
+            - SMF_INSTANCE_ID_1=2
+            - SMF_IPV4_ADDR_1=0.0.0.0
+            - SMF_HTTP_VERSION_1=v1
+            - MYSQL_SERVER=192.168.70.131
+            - MYSQL_USER=root
+            - MYSQL_PASS=linux
+            - MYSQL_DB=oai_db
+            - OPERATOR_KEY=63bfa50ee6523365ff14c1f45f88737d
+            - NRF_IPV4_ADDRESS=0.0.0.0
+            - NRF_PORT=80
+            - NF_REGISTRATION=no
+            - SMF_SELECTION=no
+            - NRF_API_VERSION=v1
+            - AUSF_IPV4_ADDRESS=127.0.0.1
+            - AUSF_PORT=80
+            - AUSF_API_VERSION=v1
+        depends_on:
+            - mysql
+        volumes:
+            - ./amf-healthcheck.sh:/openair-amf/bin/amf-healthcheck.sh
+        healthcheck:
+            test: /bin/bash -c "/openair-amf/bin/amf-healthcheck.sh"
+            interval: 10s
+            timeout: 15s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.132
+    oai-smf:
+        container_name: "oai-smf"
+        image: oai-smf:develop
+        environment:
+            - TZ=Europe/Paris
+            - INSTANCE=0
+            - PID_DIRECTORY=/var/run
+            - SMF_INTERFACE_NAME_FOR_N4=eth0
+            - SMF_INTERFACE_NAME_FOR_SBI=eth0
+            - SMF_INTERFACE_PORT_FOR_SBI=80
+            - SMF_INTERFACE_HTTP2_PORT_FOR_SBI=9090
+            - SMF_API_VERSION=v1
+            - DEFAULT_DNS_IPV4_ADDRESS=192.168.18.129
+            - DEFAULT_DNS_SEC_IPV4_ADDRESS=8.8.8.8
+            - AMF_IPV4_ADDRESS=192.168.70.132
+            - AMF_PORT=80
+            - AMF_API_VERSION=v1
+            - UDM_IPV4_ADDRESS=127.0.0.1
+            - UDM_PORT=80
+            - UDM_API_VERSION=v1
+            - UPF_IPV4_ADDRESS=192.168.70.134
+            - NRF_IPV4_ADDRESS=0.0.0.0
+            - NRF_PORT=80
+            - NRF_API_VERSION=v1
+            - REGISTER_NRF=no
+            - DISCOVER_UPF=no
+        depends_on:
+            - oai-amf
+        volumes:
+            - ./smf-healthcheck.sh:/openair-smf/bin/smf-healthcheck.sh
+        healthcheck:
+            test: /bin/bash -c "/openair-smf/bin/smf-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.133
+    oai-spgwu:
+        container_name: "oai-spgwu"
+        image: oai-spgwu-tiny:gtp-ext-header
+        environment:
+            - TZ=Europe/Paris
+            - PID_DIRECTORY=/var/run
+            - SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP=eth0
+            - SGW_INTERFACE_NAME_FOR_SX=eth0
+            - PGW_INTERFACE_NAME_FOR_SGI=eth0
+            - NETWORK_UE_IP=12.1.1.0/24
+            - SPGWC0_IP_ADDRESS=192.168.70.133
+            - NRF_IPV4_ADDRESS=0.0.0.0
+            - NRF_PORT=80
+            - NRF_API_VERSION=v1
+            - REGISTER_NRF=no
+        depends_on:
+            - oai-smf
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        volumes:
+            - ./spgwu-healthcheck.sh:/openair-spgwu-tiny/bin/spgwu-healthcheck.sh
+        healthcheck:
+            test: /bin/bash -c "/openair-spgwu-tiny/bin/spgwu-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.134
+    oai-ext-dn:
+        image: ubuntu:bionic
+        privileged: true
+        container_name: oai-ext-dn
+        entrypoint: /bin/bash -c \
+              "apt update; apt install -y iptables iproute2 iputils-ping;"\
+              "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;"\
+              "ip route add 12.1.1.0/24 via 192.168.70.134 dev eth0; sleep infinity"
+        command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+        depends_on:
+            - oai-spgwu
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.135
+networks:
+#    public_net:
+#        external:
+#            name: demo-oai-public-net
+# Incase the user wants docker-compose to create a bridge rather than creating the bridge manually then uncomment the below lines
+     public_net:
+         driver: bridge
+         name: demo-oai-public-net
+         ipam:
+             config:
+                 - subnet: 192.168.70.128/26
+         driver_opts:
+             com.docker.network.bridge.name: "demo-oai"

@@ -1,0 +1,5 @@
+build/amf/build
+tags
+*.log
+archives/
+*.html

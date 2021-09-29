@@ -1,0 +1,26 @@
+#Registration
+curl -X PUT -H "Content-Type: application/json" -d @amf_registration.json http://192.168.1.23/nnrf-nfm/v1/nf-instances/343a924e-6494-4927-860b-d45692c95c2d 
+#NFListRetrieval
+curl -X GET  "http://192.168.1.23/nnrf-nfm/v1/nf-instances?nf-type="serviceId1"&limit=100"
+
+#NFProfileRetrieval
+curl -X GET  "http://192.168.1.23/nnrf-nfm/v1/nf-instances/
+
+#Update
+curl -X PATCH -H "Content-Type: application/json" http://192.168.1.23/nnrf-nfm/v1/nf-instances/343a924e-6494-4927-860b-d45692c95c2d  -d '[{"op":"replace","path":"/nfInstanceName", "value": "NEW NAME"}]'
+
+curl -X POST http://192.168.1.23:8080/nnrf-nfm/v1/subscriptions -d '{"nfStatusNotificationUri":"http://192.168.1.23:8080/nnrf-nfm/v1/nf-instances/343a924e-6494-4927-860b-d45692c95c2d", "subscrCond": {"NfTypeCond": {"nfType":"SMF"} } }'
+curl -X POST http://192.168.1.23/nnrf-nfm/v1/subscriptions -d '{"nfStatusNotificationUri":"http://192.168.1.23/nnrf-nfm/v1/nf-instances/343a924e-6494-4927-860b-d45692c95c2d", "subscrCond": {"NfInstanceIdCond": {"nfInstanceId":"AMF"} } }'
+
+curl -X POST http://192.168.1.23/nnrf-nfm/v1/subscriptions -d '{"nfStatusNotificationUri":"http://192.168.1.23/nnrf-nfm/v1/nf-instances/343a924e-6494-4927-860b-d45692c95c2d", "subscrCond": {"NfTypeCond": {"nfType":"AMF"} } }'
+
+#Suscription
+curl -X POST -H "Content-Type: application/json" "http://192.168.1.23:8080/nnrf-nfm/v1/subscriptions" -d '{"nfStatusNotificationUri":"http://192.168.1.23/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF", "subscrCond": {"NfTypeCond": {"nfType":"SMF"}}, "reqNotifEvents":["NF_REGISTERED", "NF_DEREGISTERED"], "validityTime":"20210531T235959" }' 
+
+curl -X PATCH -H "Content-Type: application/json" http://192.168.1.23/nnrf-nfm/v1/subscriptions/1  -d '[{"op":"replace","path":"/validityTime", "value": "20201231T235959"}]'
+
+#Discovery
+curl -X GET  "http://192.168.1.23/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF"
+
+#Access Token
+curl -d "grant_type=client_credentials&nfInstanceId=343a924e-6494-4927-860b-d45692c95c2d&scope=nsmf-pdusession" -H "Content-Type: application/x-www-form-urlencoded" -X POST http://192.168.1.23/oauth2/token
