@@ -62,17 +62,16 @@ tar -zxvf helm-v3.5.2-linux-amd64.tar.gz \
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
 ## Step 4: Deploy
-From the oai-5gcn folder execute the following,
+From the oai-5gcn/charts folder execute the following,
 ```
 $ helm install <name-of-mysql-deployment> mysql/ -n oai
 ```
-which will first deploy the MYSQL pod. Once this has finished deploying. Change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are five different scripts that will automate the deployment of various slicing configurations. 
+which will first deploy the MYSQL pod. Once this has finished deploying change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are five different scripts that will automate the deployment of various slicing configurations. 
+```
+$ helm install <name-of-mysql-deployment> mysql/ -n oai
+```
+From configuration 1 to 5 each deployment takes 24, 44, 86, 58, 114 minutes respectively. 
  
-
-$ helm install <name-of-nrf-deployment> oai-nrf/ -n oai
-$ helm install <name-of-amf-deployment> oai-amf/ -n oai
-$ helm install <name-of-smf-deployment> oai-smf/ -n oai
-$ helm install <name-of-spgwu-deployment> oai-spgwu-tiny/ -n oai 
 
 
  
