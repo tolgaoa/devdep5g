@@ -61,26 +61,19 @@ $ wget https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz \
 tar -zxvf helm-v3.5.2-linux-amd64.tar.gz \
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
-## Step 4: Deploying the Core Network
+## Step 4: Deploy
 From the oai-5gcn folder execute the following,
-
+```
 $ helm install <name-of-mysql-deployment> mysql/ -n oai
-which will first deploy the MYSQL pod. 
- 
-Next deploy the  
+```
+which will first deploy the MYSQL pod. Once this has finished deploying. Change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are five different scripts that will automate the deployment of various slicing configurations. 
  
 
 $ helm install <name-of-nrf-deployment> oai-nrf/ -n oai
 $ helm install <name-of-amf-deployment> oai-amf/ -n oai
 $ helm install <name-of-smf-deployment> oai-smf/ -n oai
-$ helm install <name-of-spgwu-deployment> oai-spgwu-tiny/ -n oai
-```
-## Step 5: Deploying the RAN 
-1. Go into /oairan-k8s/manifests folder. Perform the following modifications in the /oai-gnb
-  - In [04_persistentvolume.yaml](oairan-k8s/manifests/oai-gnb1/04_persistentvolume.yaml) modify the path of the volume to your environment
-  - In [06_multus.yaml](oairan-k8s/manifests/oai-gnb1/06_multus.yaml) change the master network interfaces for both the multus networks to the network interface of your taget node
-2. Deploy the OAI-GNB. From inside the /oai-gnb(x) folder 
-```
+$ helm install <name-of-spgwu-deployment> oai-spgwu-tiny/ -n oai 
+
 
  
  
