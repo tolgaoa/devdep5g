@@ -62,15 +62,16 @@ tar -zxvf helm-v3.5.2-linux-amd64.tar.gz \
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
 ## Step 4: Deploy
+From within the charts directory, navigate to the helm templates of each of the following components -- "oai-nrf" , "oai-amf" , "oai-smf" , "oai-spgwu-tiny" -- and change the multus interfaces to the one on your local machine. 
+
 From the oai-5gcn/charts folder execute the following,
 ```
 $ helm install <name-of-mysql-deployment> mysql/ -n oai
 ```
-which will first deploy the MYSQL pod. Once this has finished deploying change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are five different scripts that will automate the deployment of various slicing configurations. 
+which will first deploy the MYSQL pod. Once this has finished deploying change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are 8 different scripts that will automate the deployment of various slicing configurations. 
 ```
-$ helm install <name-of-mysql-deployment> mysql/ -n oai
+$ ./slice_conf<x>.sh
 ```
-From configuration 1 to 5 each deployment takes 24, 44, 86, 58, 114 minutes respectively. 
  
 
 
