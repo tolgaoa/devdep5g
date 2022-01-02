@@ -1,0 +1,314 @@
+#!/bin/groovy
+/*
+ * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The OpenAirInterface Software Alliance licenses this file to You under
+ * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+ * except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.openairinterface.org/?page_id=698
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *-------------------------------------------------------------------------------
+ * For more information about the OpenAirInterface (OAI) Software Alliance:
+ *      contact@openairinterface.org
+ */
+
+//-------------------------------------------------------------------------------
+// Abstraction function to send social media messages:
+// like on Slack or Mattermost
+def sendSocialMediaMessage(pipeChannel, pipeColor, pipeMessage) {
+  if (params.pipelineUsesSlack != null) {
+    if (params.pipelineUsesSlack) {
+      slackSend channel: pipeChannel, color: pipeColor, message: pipeMessage
+    }
+  }
+}
+
+// Location of the CN executor node
+def cn_ci_host = params.Host_CN_CI_Server
+
+// for lock
+def cn_ci_resource = params.DockerContainers
+def ds_tester_ci_resource = params.DsTester
+
+// When triggered by upstream, specify which tag to use
+def upstreamTagToUse = params.upstreamTagToUse
+
+// Location of the CN tester
+def dsT_host_flag = false
+def dsT_host = ""
+def dsT_host_user = ""
+
+// dsTester tag to use
+def dsTesterTag = params.DSTESTER_TAG
+
+// Flags
+def scmEvent = false
+def upstreamEvent = false
+def deployed = true
+
+// Default tags / branches  --> could be passed on by upstream job or by PR content
+def nrfTag = params.nrfTag
+def nrfBranch = params.nrfBranch
+def amfTag = params.amfTag
+def amfBranch = params.amfBranch
+def smfTag = params.smfTag
+def smfBranch = params.smfBranch
+def spgwuTag = params.spgwuTag
+def spgwuBranch = params.spgwuBranch
+
+def ausfTag = params.ausfTag
+def ausfBranch = params.ausfBranch
+def udmTag = params.udmTag
+def udmBranch = params.udmBranch
+def udrTag = params.udrTag
+def udrBranch = params.udrBranch
+
+//-------------------------------------------------------------------------------
+// Pipeline start
+pipeline {
+  agent {
+    label cn_ci_host
+  }
+  options {
+    disableConcurrentBuilds()
+    timestamps()
+    ansiColor('xterm')
+    lock(cn_ci_resource)
+  }
+  stages {
+    stage ('Verify Parameters') {
+      steps {
+        script {
+          echo '\u2705 \u001B[32mVerify Parameters\u001B[0m'
+
+          JOB_TIMESTAMP = sh returnStdout: true, script: 'date --utc --rfc-3339=seconds | sed -e "s#+00:00##"'
+          JOB_TIMESTAMP = JOB_TIMESTAMP.trim()
+
+          echo "Node       is ${NODE_NAME}"
+
+          if (params.DS_Tester_Server_Flag != null) {
+            dsT_host_flag = params.DS_Tester_Server_Flag
+            if (dsT_host_flag) {
+              def allParametersPresent = true
+              if (params.DS_Tester_Server_Name == null) {
+                allParametersPresent = false
+              } else {
+                dsT_host = params.DS_Tester_Server_Name
+              }
+              if (params.DS_Tester_Server_Login == null) {
+                allParametersPresent = false
+              } else {
+                dsT_host_user = params.DS_Tester_Server_Login
+              }
+              if (allParametersPresent) {
+                echo "DS Tester  is on ${dsT_host}"
+              } else {
+                echo "Some DS Tester parameters are missing!"
+                sh "./ci-scripts/fail.sh"
+              }
+            }
+          }
+
+          // Find out the cause of the trigger
+          for (cause in currentBuild.getBuildCauses()) {
+            if (cause.toString() ==~ /.*UpstreamCause.*/) {
+              upstreamEvent = true
+            //} else {
+            //  scmEvent = true
+            }
+          }
+
+          if (upstreamEvent) {
+            if (params.NRF_TAG != null) {
+              nrfTag = params.NRF_TAG
+              echo "Upstream Job passed NRF_TAG to use: ${nrfTag}"
+            }
+            if (params.NRF_BRANCH != null) {
+              nrfBranch = params.NRF_BRANCH
+              echo "Upstream Job passed NRF_BRANCH to use: ${nrfBranch}"
+            }
+            if (params.AMF_TAG != null) {
+              amfTag = params.AMF_TAG
+              echo "Upstream Job passed AMF_TAG to use: ${amfTag}"
+            }
+            if (params.AMF_BRANCH != null) {
+              amfBranch = params.AMF_BRANCH
+              echo "Upstream Job passed AMF_BRANCH to use: ${amfBranch}"
+            }
+            if (params.SMF_TAG != null) {
+              smfTag = params.SMF_TAG
+              echo "Upstream Job passed SMF_TAG to use: ${smfTag}"
+            }
+            if (params.SMF_BRANCH != null) {
+              smfBranch = params.SMF_BRANCH
+              echo "Upstream Job passed SMF_BRANCH to use: ${smfBranch}"
+            }
+            if (params.SPGWU_TAG != null) {
+              spgwuTag = params.SPGWU_TAG
+              echo "Upstream Job passed SPGWU_TAG to use: ${spgwuTag}"
+            }
+            if (params.SPGWU_BRANCH != null) {
+              spgwuBranch = params.SPGWU_BRANCH
+              echo "Upstream Job passed SPGWU_BRANCH to use: ${spgwuBranch}"
+            }
+            if (params.AUSF_TAG != null) {
+              ausfTag = params.AUSF_TAG
+              echo "Upstream Job passed AUSF_TAG to use: ${ausfTag}"
+            }
+            if (params.AUSF_BRANCH != null) {
+              ausfBranch = params.AUSF_BRANCH
+              echo "Upstream Job passed AUSF_TAG to use: ${ausfBranch}"
+            }
+            if (params.UDM_TAG != null) {
+              udmTag = params.UDM_TAG
+              echo "Upstream Job passed UDM_TAG to use: ${udmTag}"
+            }
+            if (params.UDM_BRANCH != null) {
+              udmBranch = params.UDM_BRANCH
+              echo "Upstream Job passed UDM_TAG to use: ${udmBranch}"
+            }
+            if (params.UDR_TAG != null) {
+              udrTag = params.UDR_TAG
+              echo "Upstream Job passed UDR_TAG to use: ${udrTag}"
+            }
+            if (params.UDR_BRANCH != null) {
+              udrBranch = params.UDR_BRANCH
+              echo "Upstream Job passed UDR_TAG to use: ${udrBranch}"
+            }
+            sh "git clean -x -d -f > /dev/null 2>&1"
+            sh "git fetch --prune > /dev/null 2>&1"
+            sh 'git checkout -f ' + upstreamTagToUse
+            sh "zip -r -qq oai-cn5g-fed.zip .git"
+            sh "mkdir -p archives DS-TEST-RESULTS"
+            sh './scripts/syncComponents.sh --nrf-branch ' + nrfBranch + ' --amf-branch ' + amfBranch + ' --smf-branch ' + smfBranch + ' --spgwu-tiny-branch ' + spgwuBranch + ' --ausf-branch ' + ausfBranch + ' --udm-branch ' + udmBranch + ' --udr-branch ' + udrBranch
+          }
+          if (scmEvent) {
+            sh "git clean -x -d -f > /dev/null 2>&1"
+            if ("MERGE".equals(env.gitlabActionType)) {
+              sh "./ci-scripts/doGitLabMerge.sh --src-branch ${env.gitlabSourceBranch} --src-commit ${env.gitlabMergeRequestLastCommit} --target-branch ${env.gitlabTargetBranch} --target-commit ${GIT_COMMIT}"
+            }
+            sh "zip -r -qq oai-cn5g-fed.zip .git"
+            sh "mkdir -p archives DS-TEST-RESULTS"
+            sh './scripts/syncComponents.sh --nrf-branch develop --amf-branch develop --smf-branch develop --spgwu-tiny-branch develop --ausf-branch develop --udm-branch develop --udr-branch develop'
+          }
+          if ((!upstreamEvent) && (!scmEvent)) {
+            sh "git clean -x -d -f > /dev/null 2>&1"
+            sh './scripts/syncComponents.sh --nrf-branch ' + nrfBranch + ' --amf-branch ' + amfBranch + ' --smf-branch ' + smfBranch + ' --spgwu-tiny-branch ' + spgwuBranch + ' --ausf-branch ' + ausfBranch + ' --udm-branch ' + udmBranch + ' --udr-branch ' + udrBranch
+            sh "mkdir -p archives DS-TEST-RESULTS"
+          }
+          // Verify that the images are available
+          try {
+            sh 'echo "OAI_NRF_TAG: oai-nrf:' + nrfTag +'" > archives/oai_nrf_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-nrf:' + nrfTag + ' >> archives/oai_nrf_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-nrf:' + nrfTag + ' >> archives/oai_nrf_image_info.log'
+          } catch (Exception e) {
+            error "OAI NRF Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_AMF_TAG: oai-amf:' + amfTag +'" > archives/oai_amf_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-amf:' + amfTag + ' >> archives/oai_amf_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-amf:' + amfTag + ' >> archives/oai_amf_image_info.log'
+          } catch (Exception e) {
+            error "OAI AMF Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_SMF_TAG: oai-smf:' + smfTag +'" > archives/oai_smf_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-smf:' + smfTag + ' >> archives/oai_smf_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-smf:' + smfTag + ' >> archives/oai_smf_image_info.log'
+          } catch (Exception e) {
+            error "OAI SMF Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_SPGWU_TAG: oai-spgwu-tiny:' + spgwuTag +'" > archives/oai_spgwu_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-spgwu-tiny:' + spgwuTag + ' >> archives/oai_spgwu_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-spgwu-tiny:' + spgwuTag + ' >> archives/oai_spgwu_image_info.log'
+          } catch (Exception e) {
+            error "OAI SPGW-U-Tiny Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_AUSF_TAG: oai-ausf:' + ausfTag +'" > archives/oai_ausf_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-ausf:' + ausfTag + ' >> archives/oai_ausf_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-ausf:' + ausfTag + ' >> archives/oai_ausf_image_info.log'
+          } catch (Exception e) {
+            error "OAI AUSF Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_UDM_TAG: oai-udm:' + udmTag +'" > archives/oai_udm_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-udm:' + udmTag + ' >> archives/oai_udm_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-udm:' + udmTag + ' >> archives/oai_udm_image_info.log'
+          } catch (Exception e) {
+            error "OAI UDM Image tag to test does not exist!"
+          }
+          try {
+            sh 'echo "OAI_UDR_TAG: oai-udr:' + udrTag +'" > archives/oai_udr_image_info.log'
+            sh 'docker image inspect --format=\'Size = {{.Size}} bytes\' oai-udr:' + udrTag + ' >> archives/oai_udr_image_info.log'
+            sh 'docker image inspect --format=\'Date = {{.Created}}\' oai-udr:' + udrTag + ' >> archives/oai_udr_image_info.log'
+          } catch (Exception e) {
+            error "OAI UDR Image tag to test does not exist!"
+          }
+        }
+      }
+    }
+    stage ('Deploy Whole 5G Core Network and Test with DS Tester') {
+      when { expression {dsT_host_flag} }
+      steps {
+        lock (ds_tester_ci_resource) {
+          script {
+            echo '\u2705 \u001B[32mDeploy CN5G using Docker-Compose and Testing with DS Tester\u001B[0m'
+            if (fileExists("dstester")) {
+              sh "rm -Rf dstester > /dev/null 2>&1"
+            }
+            sh "mkdir -p dstester"
+            dir ('dstester') {
+              withCredentials([
+                [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.dsTesterGitLabRepository_Credentials}", usernameVariable: 'git_username', passwordVariable: 'git_token']
+              ]) {
+                sh "git clone https://${git_username}:${git_token}@github.com/OPENAIRINTERFACE/chasseur.git . > ../git_clone.log 2>&1"
+                sh "git checkout -f " + dsTesterTag + " >> ../git_clone.log 2>&1"
+                // First put all correct tags to test
+                sh 'sed -i -e "s#NRF_TAG#' + nrfTag + '#" -i -e "s#AMF_TAG#' + amfTag + '#" -i -e "s#SMF_TAG#' + smfTag + '#" -i -e "s#UPF_TAG#' + spgwuTag + '#" -i -e "s#AUSF_TAG#' + ausfTag + '#" -i -e "s#UDM_TAG#' + udmTag + '#" -i -e "s#UDR_TAG#' + udrTag + '#" ./jenkins/suits/dc/integration/integration-basic.yaml'
+                // Check the route b/w the container and DSTester n/w and add
+                sh 'python3 ../ci-scripts/routeCheck.py --mode Add --userName ' + dsT_host_user + ' --hostName ' + dsT_host + ' --docker_compose docker-compose/integration/integration-basic/integration.tplt'
+                dir ('jenkins') {
+                  try {
+                    sh "python3 ./chasseurdocker.py -f ./suits/dc/integration/integration-basic.yaml | tee ../../DS-TEST-RESULTS/dsTester_Summary.txt"
+                  } catch (Exception e) {
+                    currentBuild.result = 'FAILURE'
+                    echo "dsTester FrameWork FAILED"
+                  }
+                }
+              sh 'python3 ../ci-scripts/routeCheck.py --mode Delete --userName ' + dsT_host_user + ' --hostName ' + dsT_host + ' --docker_compose docker-compose/integration/integration-basic/integration.tplt'
+              }
+            }
+            sh "python3 ./ci-scripts/toCheckDSTesterResult.py"
+          }  
+        }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        // Generating the HTML report
+        sh 'python3 ./ci-scripts/dsTestGenerateHTMLReport.py --job_name ' + JOB_NAME + ' --job_id ' + BUILD_ID + ' --job_url ' + BUILD_URL
+
+        // Zipping all archived log files
+        sh "zip -r -qq cn5g_fed_docker_logs.zip archives DS-TEST-RESULTS"
+        if (fileExists('cn5g_fed_docker_logs.zip')) {
+          archiveArtifacts artifacts: 'cn5g_fed_docker_logs.zip'
+        }
+        if (fileExists('test_results_oai_cn5g_basic.html')) {
+          archiveArtifacts artifacts: 'test_results_oai_cn5g_basic.html'
+        }
+      }
+    }
+  }
+}

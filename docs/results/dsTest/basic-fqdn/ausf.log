@@ -1,0 +1,54 @@
+[2021-09-20T14:15:09.885868] [ausf] [ausf_server] [start] Options parsed
+[2021-09-20T14:15:09.888041] [ausf] [configurations] [info ] ==== OAI-CN5G AUSF vBranch: HEAD Abrev. Hash: 844a11a Date: Thu Sep 2 09:47:28 2021 +0000 ====
+[2021-09-20T14:15:09.888064] [ausf] [configurations] [info ] ================= AUSF =================
+[2021-09-20T14:15:09.888069] [ausf] [configurations] [info ] Configuration AUSF:
+[2021-09-20T14:15:09.888073] [ausf] [configurations] [info ] - Instance ...............: 0
+[2021-09-20T14:15:09.888076] [ausf] [configurations] [info ] - PID Dir ................: /var/run
+[2021-09-20T14:15:09.888080] [ausf] [configurations] [info ] - AUSF Name ..............: OAI_AUSF
+[2021-09-20T14:15:09.888083] [ausf] [configurations] [info ] - SBI Networking:
+[2021-09-20T14:15:09.888087] [ausf] [configurations] [info ]     Iface ................: eth0
+[2021-09-20T14:15:09.888092] [ausf] [configurations] [info ]     IPv4 Addr ............: 192.168.70.138
+[2021-09-20T14:15:09.888098] [ausf] [configurations] [info ]     Port .................: 80
+[2021-09-20T14:15:09.888101] [ausf] [configurations] [info ] - UDM:
+[2021-09-20T14:15:09.888105] [ausf] [configurations] [info ]     IPv4 Addr ............: 192.168.70.137
+[2021-09-20T14:15:09.888109] [ausf] [configurations] [info ]     Port .................: 80  
+[2021-09-20T14:15:09.888113] [ausf] [configurations] [info ]     API version ..........: v1
+[2021-09-20T14:15:09.888117] [ausf] [configurations] [info ]     FQDN .................: oai-udm
+[2021-09-20T14:15:09.888128] [ausf] [ausf_app] [start] Starting...
+[2021-09-20T14:15:09.888140] [ausf] [ausf_app] [start] Started
+[2021-09-20T14:15:09.889225] [ausf] [ausf_server] [info ] HTTP1 server started
+[2021-09-20T14:16:29.630429] [ausf] [ausf_server] [info ] Received ue_authentications_post Request
+[2021-09-20T14:16:29.630637] [ausf] [ausf_app] [info ] Handle UE Authentication Request
+[2021-09-20T14:16:29.630653] [ausf] [ausf_app] [info ] ServingNetworkName 5G:mnc095.mcc208.3gppnetwork.org
+[2021-09-20T14:16:29.630658] [ausf] [ausf_app] [info ] supiOrSuci 208950000000031
+[2021-09-20T14:16:29.630725] [ausf] [ausf_app] [info ] Received authInfo from AMF without ResynchronizationInfo IE
+[2021-09-20T14:16:29.630841] [ausf] [ausf_app] [info ] Send HTTP message with body {"ausfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org"}
+[2021-09-20T14:16:29.756407] [ausf] [ausf_app] [info ] Get response with httpcode (200)
+[2021-09-20T14:16:29.756524] [ausf] [ausf_app] [info ] Response from UDM: {"authType":"5G_AKA","authenticationVector":{"autn":"c881e5f7f7df80009f6e0218940c7ddc","avType":"5G_HE_AKA","kausf":"bf20b21226a7a2d2f42533ba64fb31722c3cc5f81c6baa0f6e7ae4c61bbbe602","rand":"dc8dce2c351d572ef1f85308cd5570f1","xresStar":"bf6838eb57de6c4218ac525ed2076806"}}
+derive_kseaf Kausf
+bf 20 b2 12 26 a7 a2 d2 f4 25 33 ba 64 fb 31 72 2c 3c c5 f8 1c 6b aa f 6e 7a e4 c6 1b bb e6 2 
+derive_kseaf Kseaf
+5d 60 0 be f7 77 a9 5d c0 35 b3 d2 1a 66 c3 76 6f 89 42 52 92 6e 41 68 73 ff a0 be 77 59 57 54 
+[2021-09-20T14:16:29.757337] [ausf] [ausf_server] [info ] Send Auth response to SEAF (Code 201)
+[2021-09-20T14:16:29.761178] [ausf] [ausf_server] [info ] Received ue_authentications_post Request
+[2021-09-20T14:16:29.761362] [ausf] [ausf_app] [info ] Handle UE Authentication Request
+[2021-09-20T14:16:29.761371] [ausf] [ausf_app] [info ] ServingNetworkName 5G:mnc095.mcc208.3gppnetwork.org
+[2021-09-20T14:16:29.761375] [ausf] [ausf_app] [info ] supiOrSuci 208950000000031
+[2021-09-20T14:16:29.761464] [ausf] [ausf_app] [info ] Received authInfo from AMF with ResynchronizationInfo IE
+[2021-09-20T14:16:29.761522] [ausf] [ausf_app] [info ] Send HTTP message with body {"ausfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","resynchronizationInfo":{"auts":"F58056DA762CC775BD6A1859A7D7","rand":"dc8dce2c351d572ef1f85308cd5570f1"},"servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org"}
+[2021-09-20T14:16:29.840091] [ausf] [ausf_app] [info ] Get response with httpcode (200)
+[2021-09-20T14:16:29.840180] [ausf] [ausf_app] [info ] Response from UDM: {"authType":"5G_AKA","authenticationVector":{"autn":"371a51f7f872800099a6a3951ced9917","avType":"5G_HE_AKA","kausf":"7916a60a9992ef4495c736d3b7271db466aa81d4fd0720ddc5ed6ff0b943269b","rand":"dc8dce2c351d572ef1f85308cd5570f1","xresStar":"bf6838eb57de6c4218ac525ed2076806"}}
+derive_kseaf Kausf
+79 16 a6 a 99 92 ef 44 95 c7 36 d3 b7 27 1d b4 66 aa 81 d4 fd 7 20 dd c5 ed 6f f0 b9 43 26 9b 
+derive_kseaf Kseaf
+13 f4 26 f2 45 99 7b 31 fe 78 c1 63 fb e3 dd c1 8a fa 6f 6f 85 39 4d fd 75 3c 45 b0 56 27 99 98 
+[2021-09-20T14:16:29.840904] [ausf] [ausf_server] [info ] Send Auth response to SEAF (Code 201)
+[2021-09-20T14:16:29.845345] [ausf] [ausf_server] [info ] Received 5g_aka_confirmation Request
+[2021-09-20T14:16:29.845381] [ausf] [ausf_server] [info ] 5gaka confirmation received with authctxID 371a51f7f872800099a6a3951ced9917
+[2021-09-20T14:16:29.845500] [ausf] [ausf_app] [info ] Received authCtxId 371a51f7f872800099a6a3951ced9917
+[2021-09-20T14:16:29.845508] [ausf] [ausf_app] [info ] Received res* BF6838EB57DE6C4218AC525ED2076806
+[2021-09-20T14:16:29.845539] [ausf] [ausf_app] [info ] AV is up to date, handling received res*...
+[2021-09-20T14:16:29.845584] [ausf] [ausf_app] [info ] Authentication successful by home network!
+[2021-09-20T14:16:29.845722] [ausf] [ausf_app] [info ] Send HTTP message with body {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2021-09-20T12:16:29Z"}
+[2021-09-20T14:16:29.881472] [ausf] [ausf_app] [info ] Get response with httpcode (201)
+[2021-09-20T14:16:29.881682] [ausf] [ausf_server] [info ] Send 5g-aka-confirmation response to SEAF (Code 200)

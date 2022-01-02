@@ -1,0 +1,272 @@
+#!/bin/groovy
+/*
+ * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The OpenAirInterface Software Alliance licenses this file to You under
+ * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+ * except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.openairinterface.org/?page_id=698
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *-------------------------------------------------------------------------------
+ * For more information about the OpenAirInterface (OAI) Software Alliance:
+ *      contact@openairinterface.org
+ */
+
+//-------------------------------------------------------------------------------
+// Abstraction function to send social media messages:
+// like on Slack or Mattermost
+def sendSocialMediaMessage(pipeChannel, pipeColor, pipeMessage) {
+  if (params.pipelineUsesSlack != null) {
+    if (params.pipelineUsesSlack) {
+      slackSend channel: pipeChannel, color: pipeColor, message: pipeMessage
+    }
+  }
+}
+
+// Location of the CN executor node
+def cn_ci_host = params.Host_CN_CI_Server
+
+// for lock
+def cn_ci_resource = params.CN_CI_Resource
+def ds_tester_ci_resource = params.DsTester
+
+// When triggered by upstream, specify which tag to use
+def upstreamTagToUse = params.upstreamTagToUse
+
+// Location of the CN tester
+def dsT_host_flag = false
+def dsT_host = ""
+def dsT_host_user = ""
+def dsT_host_ip_addr = ""
+
+// dsTester tag to use
+def dsTesterTag = params.DSTESTER_TAG
+
+// Flags
+def scmEvent = false
+def upstreamEvent = false
+
+// Default tags  --> could be passed on by upstream job or by PR content
+def nrfTag = params.nrfTag
+def amfTag = params.amfTag
+def smfTag = params.smfTag
+def spgwuTag = params.spgwuTag
+def udrTag = params.udrTag
+def udmTag = params.udmTag
+def ausfTag = params.ausfTag
+
+//-------------------------------------------------------------------------------
+// Pipeline start
+pipeline {
+  agent {
+    label cn_ci_host
+  }
+  options {
+    disableConcurrentBuilds()
+    timestamps()
+    ansiColor('xterm')
+    lock(cn_ci_resource)
+  }
+  stages {
+    stage ('Verify Parameters') {
+      steps {
+        script {
+          echo '\u2705 \u001B[32mVerify Parameters\u001B[0m'
+
+          JOB_TIMESTAMP = sh returnStdout: true, script: 'date --utc --rfc-3339=seconds | sed -e "s#+00:00##"'
+          JOB_TIMESTAMP = JOB_TIMESTAMP.trim()
+
+          def allParametersPresent = true
+          if (params.OC_Credentials == null) {
+            allParametersPresent = false
+          }
+          if (params.OC_ProjectName == null) {
+            allParametersPresent = false
+          }
+          if (allParametersPresent) {
+            echo "Cluster Access parameters are present"
+          } else {
+            echo "Some Cluster Access parameters are missing"
+            sh "./ci-scripts/fail.sh"
+          }
+          if (params.DS_Tester_Server_Flag != null) {
+            dsT_host_flag = params.DS_Tester_Server_Flag
+            if (dsT_host_flag) {
+              allParametersPresent = true
+              if (params.DS_Tester_Server_Name == null) {
+                allParametersPresent = false
+              } else {
+                dsT_host = params.DS_Tester_Server_Name
+              }
+              if (params.DS_Tester_Server_Login == null) {
+                allParametersPresent = false
+              } else {
+                dsT_host_user = params.DS_Tester_Server_Login
+              }
+              if (params.DS_Tester_Server_IP_Addr == null) {
+                allParametersPresent = false
+              } else {
+                dsT_host_ip_addr = params.DS_Tester_Server_IP_Addr
+              }
+              if (params.dsTesterGitLabRepository_Credentials == null) {
+                allParametersPresent = false
+              }
+              if (allParametersPresent) {
+                echo "DS Tester  is on ${dsT_host}"
+              } else {
+                echo "Some DS Tester parameters are missing!"
+                sh "./ci-scripts/fail.sh"
+              }
+            }
+          }
+
+          // Clean workspace and prepare artifacts location
+          sh "git clean -x -d -f > /dev/null 2>&1"
+          sh "mkdir -p archives DS-TEST-RESULTS"
+
+          // Find out the cause of the trigger
+          for (cause in currentBuild.getBuildCauses()) {
+            if (cause.toString() ==~ /.*UpstreamCause.*/) {
+              upstreamEvent = true
+            }
+          }
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.OC_Credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+          ]) {
+            if (upstreamEvent) {
+              if (params.NRF_TAG != null) {
+                nrfTag = params.NRF_TAG
+                echo "Upstream Job passed NRF_TAG to use: ${nrfTag}"
+              }
+              if (params.AMF_TAG != null) {
+                amfTag = params.AMF_TAG
+                echo "Upstream Job passed AMF_TAG to use: ${amfTag}"
+              }
+              if (params.SMF_TAG != null) {
+                smfTag = params.SMF_TAG
+                echo "Upstream Job passed SMF_TAG to use: ${smfTag}"
+              }
+              if (params.SPGWU_TAG != null) {
+                spgwuTag = params.SPGWU_TAG
+                echo "Upstream Job passed SPGWU_TAG to use: ${spgwuTag}"
+              }
+              if (params.UDR_TAG != null) {
+                udrTag = params.UDR_TAG
+                echo "Upstream Job passed UDR_TAG to use: ${udrTag}"
+              }
+              if (params.UDM_TAG != null) {
+                udmTag = params.UDM_TAG
+                echo "Upstream Job passed UDM_TAG to use: ${udmTag}"
+              }
+              if (params.AUSF_TAG != null) {
+                ausfTag = params.AUSF_TAG
+                echo "Upstream Job passed AUSF_TAG to use: ${ausfTag}"
+              }
+              sh "git clean -x -d -f > /dev/null 2>&1"
+              sh "git fetch --prune > /dev/null 2>&1"
+              sh 'git checkout -f ' + upstreamTagToUse
+              sh 'mkdir -p archives DS-TEST-RESULTS'
+            }
+            imageTags = "mysql:5.7.30,oai-nrf:${nrfTag},oai-udr:${udrTag},oai-udm:${udmTag},oai-ausf:${ausfTag},oai-amf:${amfTag},oai-smf:${smfTag},oai-spgwu-tiny:${spgwuTag}"
+          }
+        }
+      }
+    }
+    stage ('Deploy Whole 5G Core Network') {
+      steps {
+        script {
+          echo '\u2705 \u001B[32mDeploy CN5G on Cluster\u001B[0m'
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.OC_Credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+          ]) {
+            sh "python3 ci-scripts/helmDeploy.py --mode=Deploy --OCUserName=${OC_Username} --OCPassword=${OC_Password} --OCProjectName=${OC_ProjectName} --imageTags=${imageTags}"
+          }
+        }
+      }
+    }
+    stage ('Check with DS Tester') {
+      when { expression {dsT_host_flag} }
+      steps {
+        lock (ds_tester_ci_resource) {
+          script {
+            echo '\u2705 \u001B[32mTesting with DS Tester\u001B[0m'
+            if (fileExists("dstester")) {
+              sh "rm -Rf dstester > /dev/null 2>&1"
+            }
+            sh "mkdir -p dstester"
+            dir ('dstester') {
+              withCredentials([
+                [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.dsTesterGitLabRepository_Credentials}", usernameVariable: 'git_username', passwordVariable: 'git_token']
+              ]) {
+                sh "git clone https://${git_username}:${git_token}@github.com/OPENAIRINTERFACE/chasseur.git . > ../git_clone.log 2>&1"
+                sh "git checkout -f " + dsTesterTag + " >> ../git_clone.log 2>&1"
+                dir ('jenkins') {
+                  try {
+                    sh "python3 ./dogmatix-agent.py -f ./suits/hc/integration.yaml -d true | tee ../../DS-TEST-RESULTS/dsTester_Summary.txt"
+                  } catch (Exception e) {
+                    currentBuild.result = 'FAILURE'
+                    echo "dsTester Running FAILED"
+                  }
+                } 
+              }
+            }
+            withCredentials([
+              [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.OC_Credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+            ]) {
+              try {
+                sh "python3 ci-scripts/helmDeploy.py --mode=GetLogs --OCUserName=${OC_Username} --OCPassword=${OC_Password} --OCProjectName=${OC_ProjectName} --imageTags=${imageTags}"
+              } catch (Exception e) {
+                echo "Unable to collect the logs, configs, pcaps"
+              }
+            }
+            sh "python3 ./ci-scripts/toCheckDSTesterResult1.py"
+          }
+        }
+      }
+    }
+    stage ('Undeploy 5G-CN') {
+      steps {
+        script {
+          echo '\u2705 \u001B[32mUnDeploy CN5G on Cluster\u001B[0m'
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.OC_Credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+          ]) {
+            sh "python3 ci-scripts/helmDeploy.py --mode=UnDeploy --OCUserName=${OC_Username} --OCPassword=${OC_Password} --OCProjectName=${OC_ProjectName} --imageTags=${imageTags}"
+          }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        withCredentials([
+          [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.OC_Credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+        ]) {
+        // Remove any leftover containers/networks
+          sh "python3 ci-scripts/helmDeploy.py --mode=UnDeploy --OCUserName=${OC_Username} --OCPassword=${OC_Password} --OCProjectName=${OC_ProjectName} --imageTags=${imageTags}"
+        }
+        // Generating the HTML report
+        sh 'python3 ./ci-scripts/dsTestGenerateHTMLReport1.py --job_name=' + JOB_NAME + ' --job_id=' + BUILD_ID + ' --job_url=' + BUILD_URL
+  
+        // Zipping all archived log files
+        sh "zip -r -qq cn5g_fed_cluster_logs.zip archives DS-TEST-RESULTS"
+        sh "rm -rf archives DS-TEST-RESULTS"
+        if (fileExists('cn5g_fed_cluster_logs.zip')) {
+          archiveArtifacts artifacts: 'cn5g_fed_cluster_logs.zip'
+        }
+        if (fileExists('test_results_oai_cn5g_oc.html')) {
+          archiveArtifacts artifacts: 'test_results_oai_cn5g_oc.html'
+        }
+      }
+    }
+  }
+}

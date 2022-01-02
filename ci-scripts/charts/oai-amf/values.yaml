@@ -1,0 +1,129 @@
+# Default values for oai-amf.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+namespace: "oaicicd-5gcn-tmp"
+
+image:
+  registry: local
+  repository: image-registry.openshift-image-registry.svc:5000/oaicicd-5gcn-tmp/oai-amf
+  version: "TAG"
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-amf-svc"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  sctpPort: 38412
+  http1Port: 80
+  http2Port: 9090
+
+start:
+  amf: true
+  tcpdump: true
+
+multus:
+  ngapIPadd: "192.168.18.177"
+  ngapNetmask: "24"
+  ngapGateway: "192.168.18.129"
+
+config:
+  instance: "0"
+  pidDirectory: "/var/run"
+  mcc: "208"
+  mnc: "95"
+  regionId: "128"
+  amfsetId: "1"
+  servedGuamiMcc0: "208"
+  servedGuamiMnc0: "95"
+  servedGuamiRegionId0: "128"
+  servedGuamiAmfSetId0: "1"
+  servedGuamiMcc1: "460"
+  servedGuamiMnc1: "11"
+  servedGuamiRegionId1: "10"
+  servedGuamiAmfSetId1: "1"
+  plmnSupportMcc: "208"
+  plmnSupportMnc: "95"
+  plmnSupportTac: "0xa000"
+  sst0: "222"
+  sd0: "123"
+  sst1: "1"
+  sd1: "12"
+  amfInterfaceNameForNGAP: "net1"
+  amfInterfaceNameForN11: "eth0"
+  smfInstanceId0: "1"
+  smfIpv4Addr0: "0.0.0.0"
+  smfHttpVersion0: "v1"
+  smfFqdn0: "oai-amf-svc"
+  selected0: "true"
+  smfInstanceId1: "2"
+  smfIpv4Addr1: "127.0.0.1"
+  smfHttpVersion1: "v1"
+  smfFqdn1: "oai-amf-svc"
+  selected1: "false"
+  nrfIpv4Addr: "192.168.18.178"
+  nrfPort: 80
+  nrfApiVersion: "v1"
+  nrfFqdn: "oai-nrf-svc"
+  ausfIpv4Addr: "127.0.0.1"
+  ausfPort: 80
+  ausfApiVersion: "v1"
+  ausfFqdn: "oai-ausf-svc"
+  nfRegistration: "yes"
+  smfSelection: "yes"
+  useFqdnDns: "yes"
+  externalAusf: "yes"
+  mySqlServer: "mysql"
+  mySqlUser: "root"
+  mySqlPass: "linux"
+  mySqlDb: "oai_db"
+  operatorKey: "63bfa50ee6523365ff14c1f45f88737d"
+
+persistence:
+  # make it true for the first time when you want to create persistance volume 
+  # and then false
+  enabled: false
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+nodeSelector:
+  env: dev
+
+tolerations: []
+
+affinity: {}

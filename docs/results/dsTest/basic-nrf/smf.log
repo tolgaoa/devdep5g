@@ -1,0 +1,396 @@
+Now setting these variables '@AMF_API_VERSION@ @AMF_FQDN@ @AMF_IPV4_ADDRESS@ @AMF_PORT@ @DEFAULT_DNS_IPV4_ADDRESS@ @DEFAULT_DNS_SEC_IPV4_ADDRESS@ @DISCOVER_UPF@ @DOMAIN_ACCESS@ @DOMAIN_CORE@ @HTTP_VERSION@ @INSTANCE@ @NRF_API_VERSION@ @NRF_FQDN@ @NRF_IPV4_ADDRESS@ @NRF_PORT@ @PID_DIRECTORY@ @REGISTER_NRF@ @SMF_API_VERSION@ @SMF_INTERFACE_HTTP2_PORT_FOR_SBI@ @SMF_INTERFACE_NAME_FOR_N4@ @SMF_INTERFACE_NAME_FOR_SBI@ @SMF_INTERFACE_PORT_FOR_SBI@ @UDM_API_VERSION@ @UDM_FQDN@ @UDM_IPV4_ADDRESS@ @UDM_PORT@ @UPF_FQDN_0@ @UPF_IPV4_ADDRESS@ @USE_FQDN_DNS@ @USE_NETWORK_INSTANCE@'
+Done setting the configuration
+[2021-09-20T13:49:09.355461] [smf] [smf_app] [start] Options parsed
+[2021-09-20T13:49:09.356291] [smf] [smf_app] [info ] SettingNotFoundException : SMF.ITTI_TASKS, using defaults
+[2021-09-20T13:49:09.356433] [smf] [smf_app] [info ] SettingNotFoundException : SMF.INTERFACES.N4.SCHED_PARAMS, using defaults
+[2021-09-20T13:49:09.356476] [smf] [smf_app] [info ] SettingNotFoundException : SMF.INTERFACES.SBI.SCHED_PARAMS, using defaults
+[2021-09-20T13:49:09.356685] [smf] [smf_app] [info ] Finalize config...
+[2021-09-20T13:49:09.356694] [smf] [smf_app] [info ] Finalized config
+[2021-09-20T13:49:09.356756] [smf] [smf_app] [info ] ==== OAI-CN5G SMF vBranch: HEAD Abrev. Hash: 58fce642b Date: Tue Sep 14 08:47:16 2021 +0000 ====
+[2021-09-20T13:49:09.356762] [smf] [smf_app] [info ] Configuration SMF:
+[2021-09-20T13:49:09.356768] [smf] [smf_app] [info ] - Instance ..............: 0
+
+[2021-09-20T13:49:09.356771] [smf] [smf_app] [info ] - PID dir ...............: /var/run
+
+[2021-09-20T13:49:09.356777] [smf] [smf_app] [info ] - N4 Networking:
+[2021-09-20T13:49:09.356781] [smf] [smf_app] [info ]     Interface name ......: eth0
+[2021-09-20T13:49:09.356786] [smf] [smf_app] [info ]     IPv4 Addr ...........: 192.168.70.133
+[2021-09-20T13:49:09.356790] [smf] [smf_app] [info ]     Port ................: 8805
+[2021-09-20T13:49:09.356793] [smf] [smf_app] [info ] - SBI Networking:
+[2021-09-20T13:49:09.356798] [smf] [smf_app] [info ]     Interface name ......: eth0
+[2021-09-20T13:49:09.356802] [smf] [smf_app] [info ]     IPv4 Addr ...........: 192.168.70.133
+[2021-09-20T13:49:09.356806] [smf] [smf_app] [info ]     Port ................: 80
+[2021-09-20T13:49:09.356810] [smf] [smf_app] [info ]     HTTP2 port ..........: 9090
+[2021-09-20T13:49:09.356814] [smf] [smf_app] [info ]     API version..........: v1
+[2021-09-20T13:49:09.356817] [smf] [smf_app] [info ] - N4 Threading:
+[2021-09-20T13:49:09.356821] [smf] [smf_app] [info ]     CPU id ..............: 0
+[2021-09-20T13:49:09.356824] [smf] [smf_app] [info ]     Scheduling policy ...: 1
+[2021-09-20T13:49:09.356828] [smf] [smf_app] [info ]     Scheduling prio .....: 90
+[2021-09-20T13:49:09.356832] [smf] [smf_app] [info ] - ITTI Timer Task Threading:
+[2021-09-20T13:49:09.356836] [smf] [smf_app] [info ]     CPU id ..............: 0
+[2021-09-20T13:49:09.356839] [smf] [smf_app] [info ]     Scheduling policy ...: 1
+[2021-09-20T13:49:09.356843] [smf] [smf_app] [info ]     Scheduling prio .....: 85
+[2021-09-20T13:49:09.356846] [smf] [smf_app] [info ] - ITTI N4 Task Threading :
+[2021-09-20T13:49:09.356850] [smf] [smf_app] [info ]     CPU id ..............: 0
+[2021-09-20T13:49:09.356854] [smf] [smf_app] [info ]     Scheduling policy ...: 1
+[2021-09-20T13:49:09.356857] [smf] [smf_app] [info ]     Scheduling prio .....: 84
+[2021-09-20T13:49:09.356861] [smf] [smf_app] [info ] - ITTI SMF_APP task Threading:
+[2021-09-20T13:49:09.356865] [smf] [smf_app] [info ]     CPU id ..............: 0
+[2021-09-20T13:49:09.356868] [smf] [smf_app] [info ]     Scheduling policy ...: 1
+[2021-09-20T13:49:09.356872] [smf] [smf_app] [info ]     Scheduling prio .....: 84
+[2021-09-20T13:49:09.356875] [smf] [smf_app] [info ] - ITTI ASYNC_CMD task Threading:
+[2021-09-20T13:49:09.356879] [smf] [smf_app] [info ]     CPU id ..............: 0
+[2021-09-20T13:49:09.356882] [smf] [smf_app] [info ]     Scheduling policy ...: 1
+[2021-09-20T13:49:09.356886] [smf] [smf_app] [info ]     Scheduling prio .....: 84
+[2021-09-20T13:49:09.356889] [smf] [smf_app] [info ] - IP_ADDRESS_POOL:
+[2021-09-20T13:49:09.356894] [smf] [smf_app] [info ]     IPv4 pool 0 .........: 12.1.1.2 - 12.1.1.128
+[2021-09-20T13:49:09.356900] [smf] [smf_app] [info ]     IPv4 pool 1 .........: 10.10.10.2 - 10.10.10.253
+[2021-09-20T13:49:09.356905] [smf] [smf_app] [info ]     IPv4 pool 2 .........: 12.1.1.129 - 12.1.1.224
+[2021-09-20T13:49:09.356911] [smf] [smf_app] [info ]     IPv6 pool 0 .........: 2001:1:2:: / 64
+[2021-09-20T13:49:09.356915] [smf] [smf_app] [info ]     IPv6 pool 1 .........: 3001:1:2:: / 64
+[2021-09-20T13:49:09.356920] [smf] [smf_app] [info ]     IPv6 pool 2 .........: 4001:1:2:: / 64
+[2021-09-20T13:49:09.356924] [smf] [smf_app] [info ] - DEFAULT DNS:
+[2021-09-20T13:49:09.356928] [smf] [smf_app] [info ]     Primary DNS .........: 192.168.18.129
+[2021-09-20T13:49:09.356932] [smf] [smf_app] [info ]     Secondary DNS .......: 192.168.18.129
+[2021-09-20T13:49:09.356937] [smf] [smf_app] [info ]     Primary DNS v6 ......: 2001:4860:4860::8888
+[2021-09-20T13:49:09.356941] [smf] [smf_app] [info ]     Secondary DNS v6 ....: 2001:4860:4860::8844
+[2021-09-20T13:49:09.356945] [smf] [smf_app] [info ] - DNN_LIST:
+[2021-09-20T13:49:09.356949] [smf] [smf_app] [info ]     DNN 0:
+[2021-09-20T13:49:09.356952] [smf] [smf_app] [info ]         DNN_NI:  default
+[2021-09-20T13:49:09.356957] [smf] [smf_app] [info ]         PDU_SESSION_TYPE:  IPV4
+[2021-09-20T13:49:09.356962] [smf] [smf_app] [info ]         IPV4_POOL:  0 ( 12.1.1.2 - 12.1.1.128)
+[2021-09-20T13:49:09.356966] [smf] [smf_app] [info ]     DNN 1:
+[2021-09-20T13:49:09.356970] [smf] [smf_app] [info ]         DNN_NI:  carrier.com
+[2021-09-20T13:49:09.356974] [smf] [smf_app] [info ]         PDU_SESSION_TYPE:  IPV4
+[2021-09-20T13:49:09.356978] [smf] [smf_app] [info ]         IPV4_POOL:  2 ( 10.10.10.2 - 10.10.10.253)
+[2021-09-20T13:49:09.356982] [smf] [smf_app] [info ]     DNN 2:
+[2021-09-20T13:49:09.356986] [smf] [smf_app] [info ]         DNN_NI:  oai
+[2021-09-20T13:49:09.356989] [smf] [smf_app] [info ]         PDU_SESSION_TYPE:  IPV4
+[2021-09-20T13:49:09.356994] [smf] [smf_app] [info ]         IPV4_POOL:  1 ( 12.1.1.129 - 12.1.1.224)
+[2021-09-20T13:49:09.356998] [smf] [smf_app] [info ] - Supported Features:
+[2021-09-20T13:49:09.357002] [smf] [smf_app] [info ]     Register to NRF............: Yes
+[2021-09-20T13:49:09.357006] [smf] [smf_app] [info ]     Discover UPF...............: Yes
+[2021-09-20T13:49:09.357010] [smf] [smf_app] [info ]     Use Local Subscription Info: Yes
+[2021-09-20T13:49:09.357013] [smf] [smf_app] [info ]     Push PCO (DNS+MTU).........: No
+[2021-09-20T13:49:09.357017] [smf] [smf_app] [info ]     Use FQDN ..................: No
+[2021-09-20T13:49:09.357021] [smf] [smf_app] [info ]     Use NWI  ..................: No
+[2021-09-20T13:49:09.357024] [smf] [smf_app] [info ] - AMF:
+[2021-09-20T13:49:09.357028] [smf] [smf_app] [info ]     IPv4 Addr ...........: 192.168.70.132
+[2021-09-20T13:49:09.357033] [smf] [smf_app] [info ]     Port ................: 80  
+[2021-09-20T13:49:09.357036] [smf] [smf_app] [info ]     API version .........: v1
+[2021-09-20T13:49:09.357041] [smf] [smf_app] [info ] - NRF:
+[2021-09-20T13:49:09.357045] [smf] [smf_app] [info ]     IPv4 Addr ...........: 192.168.70.130
+[2021-09-20T13:49:09.357049] [smf] [smf_app] [info ]     Port ................: 80  
+[2021-09-20T13:49:09.357052] [smf] [smf_app] [info ]     API version .........: v1
+[2021-09-20T13:49:09.357056] [smf] [smf_app] [info ] - SESSION_MANAGEMENT_SUBSCRIPTION_LIST:
+[2021-09-20T13:49:09.357060] [smf] [smf_app] [info ]     Session Management Subscription Data 0:
+[2021-09-20T13:49:09.357064] [smf] [smf_app] [info ]         NSSAI_SST:  222, NSSAI_SD 123
+[2021-09-20T13:49:09.357068] [smf] [smf_app] [info ]         DNN:  default
+[2021-09-20T13:49:09.357072] [smf] [smf_app] [info ]         DEFAULT_SESSION_TYPE:  IPV4
+[2021-09-20T13:49:09.357075] [smf] [smf_app] [info ]         DEFAULT_SSC_MODE:  1
+[2021-09-20T13:49:09.357079] [smf] [smf_app] [info ]         QOS_PROFILE_5QI:  6
+[2021-09-20T13:49:09.357082] [smf] [smf_app] [info ]         QOS_PROFILE_PRIORITY_LEVEL:  1
+[2021-09-20T13:49:09.357086] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PRIORITY_LEVEL:  1
+[2021-09-20T13:49:09.357090] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PREEMPTCAP:  NOT_PREEMPT
+[2021-09-20T13:49:09.357094] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PREEMPTVULN:  NOT_PREEMPTABLE
+[2021-09-20T13:49:09.357098] [smf] [smf_app] [info ]         SESSION_AMBR_UL:  20Mbps
+[2021-09-20T13:49:09.357102] [smf] [smf_app] [info ]         SESSION_AMBR_DL:  22Mbps
+[2021-09-20T13:49:09.357106] [smf] [smf_app] [info ]     Session Management Subscription Data 1:
+[2021-09-20T13:49:09.357110] [smf] [smf_app] [info ]         NSSAI_SST:  1, NSSAI_SD 1
+[2021-09-20T13:49:09.357113] [smf] [smf_app] [info ]         DNN:  oai
+[2021-09-20T13:49:09.357117] [smf] [smf_app] [info ]         DEFAULT_SESSION_TYPE:  IPV4
+[2021-09-20T13:49:09.357120] [smf] [smf_app] [info ]         DEFAULT_SSC_MODE:  1
+[2021-09-20T13:49:09.357124] [smf] [smf_app] [info ]         QOS_PROFILE_5QI:  7
+[2021-09-20T13:49:09.357127] [smf] [smf_app] [info ]         QOS_PROFILE_PRIORITY_LEVEL:  1
+[2021-09-20T13:49:09.357131] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PRIORITY_LEVEL:  1
+[2021-09-20T13:49:09.357136] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PREEMPTCAP:  NOT_PREEMPT
+[2021-09-20T13:49:09.357140] [smf] [smf_app] [info ]         QOS_PROFILE_ARP_PREEMPTVULN:  NOT_PREEMPTABLE
+[2021-09-20T13:49:09.357144] [smf] [smf_app] [info ]         SESSION_AMBR_UL:  20Mbps
+[2021-09-20T13:49:09.357149] [smf] [smf_app] [info ]         SESSION_AMBR_DL:  22Mbps
+[2021-09-20T13:49:09.357155] [smf] [itti   ] [start] Starting...
+[2021-09-20T13:49:09.357388] [smf] [itti   ] [start] Started
+[2021-09-20T13:49:09.357398] [smf] [async_c] [start] Starting...
+[2021-09-20T13:49:09.357397] [smf] [itti   ] [info ] Starting timer_manager_task
+[2021-09-20T13:49:09.357482] [smf] [itti   ] [warn ] Could not set schedparam to ITTI task 0, err=1
+[2021-09-20T13:49:09.357596] [smf] [async_c] [warn ] Could not set schedparam to ITTI task 1, err=1
+[2021-09-20T13:49:09.358655] [smf] [async_c] [start] Started
+[2021-09-20T13:49:09.358693] [smf] [smf_app] [start] Starting...
+[2021-09-20T13:49:09.358701] [smf] [smf_app] [info ] Apply config...
+[2021-09-20T13:49:09.358744] [smf] [smf_app] [info ] Applied config default
+[2021-09-20T13:49:09.358763] [smf] [smf_app] [info ] Applied config carrier.com
+[2021-09-20T13:49:09.358775] [smf] [smf_app] [info ] Applied config oai
+[2021-09-20T13:49:09.358781] [smf] [smf_app] [info ] Applied config
+[2021-09-20T13:49:09.360111] [smf] [pfcp   ] [info ] pfcp_l4_stack created listening to 192.168.70.133:8805
+[2021-09-20T13:49:09.360335] [smf] [udp    ] [warn ] Could not set schedparam to ITTI task 6, err=1
+[2021-09-20T13:49:09.360483] [smf] [smf_n4 ] [start] Starting...
+[2021-09-20T13:49:09.360540] [smf] [udp    ] [warn ] Could not set schedparam to ITTI task 6, err=1
+[2021-09-20T13:49:09.361731] [smf] [smf_n4 ] [start] Started
+[2021-09-20T13:49:09.361804] [smf] [smf_sbi] [start] Starting...
+[2021-09-20T13:49:09.363348] [smf] [smf_sbi] [start] Started
+[2021-09-20T13:49:09.363362] [smf] [smf_app] [start] Started
+[2021-09-20T13:49:09.364462] [smf] [sbi_srv] [info ] HTTP1 server started
+[2021-09-20T13:49:09.364661] [smf] [sbi_srv] [info ] HTTP2 server started
+[2021-09-20T13:49:13.196749] [smf] [smf_n4 ] [info ] handle_receive(37 bytes)
+[2021-09-20T13:49:13.196987] [smf] [smf_app] [info ] Node ID Type FQDN: oai-spgwu
+[2021-09-20T13:49:13.198003] [smf] [smf_app] [info ] Node ID Type FQDN: oai-spgwu, IPv4 Addr: 192.168.70.134
+[2021-09-20T13:49:13.231644] [smf] [sbi_srv] [info ] NFStatusNotifyApiImpl, received a NF status notification...
+[2021-09-20T13:49:13.232041] [smf] [smf_app] [info ] Handle a NF status notification from NRF (HTTP version 1)
+[2021-09-20T13:49:13.232622] [smf] [smf_n4 ] [info ] handle_receive(42 bytes)
+[2021-09-20T13:49:13.232658] [smf] [smf_n4 ] [info ] Received N4 ASSOCIATION SETUP RESPONSE from an UPF
+[2021-09-20T13:49:13.232674] [smf] [smf_n4 ] [info ] Received N4 ASSOCIATION SETUP RESPONSE
+[2021-09-20T13:49:13.232681] [smf] [smf_app] [info ] Node ID Type FQDN: oai-spgwu
+[2021-09-20T13:49:13.232917] [smf] [smf_app] [info ] Node ID Type FQDN: oai-spgwu, IPv4 Addr: 192.168.70.134
+[2021-09-20T13:49:18.198672] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:18.232458] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 5
+[2021-09-20T13:49:19.377183] [smf] [smf_app] [info ] TIME-OUT event timer id 1
+[2021-09-20T13:49:23.198306] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 3
+[2021-09-20T13:49:23.198346] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:23.198746] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:23.199111] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:23.233061] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 6
+[2021-09-20T13:49:23.233081] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:23.233286] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:28.198561] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 11
+[2021-09-20T13:49:28.199438] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:28.233247] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 16
+[2021-09-20T13:49:29.377509] [smf] [smf_app] [info ] TIME-OUT event timer id 8
+[2021-09-20T13:49:33.199000] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 12
+[2021-09-20T13:49:33.199038] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:33.199369] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:33.199767] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:33.233464] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 17
+[2021-09-20T13:49:33.233485] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:33.233707] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:38.199234] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 22
+[2021-09-20T13:49:38.200130] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:38.233646] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 27
+[2021-09-20T13:49:39.377699] [smf] [smf_app] [info ] TIME-OUT event timer id 19
+[2021-09-20T13:49:43.199572] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 23
+[2021-09-20T13:49:43.199605] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:43.199944] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:43.200465] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:43.233863] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 28
+[2021-09-20T13:49:43.233879] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:43.234035] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:48.199818] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 33
+[2021-09-20T13:49:48.200835] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:48.234032] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 38
+[2021-09-20T13:49:49.377913] [smf] [smf_app] [info ] TIME-OUT event timer id 30
+[2021-09-20T13:49:53.200139] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 34
+[2021-09-20T13:49:53.200172] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:53.200505] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:53.201116] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:53.234195] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 39
+[2021-09-20T13:49:53.234216] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:49:53.234382] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:58.200370] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 44
+[2021-09-20T13:49:58.201443] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:58.234368] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 49
+[2021-09-20T13:49:59.378102] [smf] [smf_app] [info ] TIME-OUT event timer id 41
+[2021-09-20T13:50:03.200686] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 45
+[2021-09-20T13:50:03.200723] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:03.201071] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:03.201775] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:03.234555] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 50
+[2021-09-20T13:50:03.234575] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:03.234775] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:08.200913] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 55
+[2021-09-20T13:50:08.202140] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:08.234740] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 60
+[2021-09-20T13:50:09.378307] [smf] [smf_app] [info ] TIME-OUT event timer id 52
+[2021-09-20T13:50:13.201288] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 56
+[2021-09-20T13:50:13.201326] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:13.201704] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:13.202464] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:13.234937] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 61
+[2021-09-20T13:50:13.234954] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:13.235146] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:18.201569] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 66
+[2021-09-20T13:50:18.202849] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:18.235133] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 71
+[2021-09-20T13:50:18.480702] [smf] [sbi_srv] [info ] Received a SM context create request from AMF.
+[2021-09-20T13:50:18.480970] [smf] [sbi_srv] [info ] PDU Session Create SM Context Request.
+[2021-09-20T13:50:18.481039] [smf] [smf_app] [warn ] No SelMode available
+[2021-09-20T13:50:18.481118] [smf] [smf_app] [info ] Handle a PDU Session Create SM Context Request from an AMF (HTTP version 1)
+[2021-09-20T13:50:18.481128] [smf] [smf_n1 ] [info ] Decode NAS message from N1 SM Container.
+[2021-09-20T13:50:18.481187] [smf] [smf_app] [info ] Handle a PDU Session Create SM Context Request message from AMF, SUPI 208950000000031, SNSSAI SST 222, SD 123
+[2021-09-20T13:50:18.481351] [smf] [smf_app] [info ] Inserted DNN Subscription, key: 222, dnn default
+[2021-09-20T13:50:18.481370] [smf] [smf_app] [info ] Handle a PDU Session Create SM Context Request message from AMF (HTTP version 1)
+[2021-09-20T13:50:18.481438] [smf] [smf_app] [info ] Find a DNN Subscription with key: 222, map size 1
+[2021-09-20T13:50:18.481446] [smf] [smf_app] [info ] Find DNN configuration with DNN default
+[2021-09-20T13:50:18.481455] [smf] [smf_app] [info ] PAA, Ipv4 Address: 12.1.1.2
+[2021-09-20T13:50:18.481509] [smf] [smf_app] [info ] Create a procedure to process this message.
+[2021-09-20T13:50:18.481520] [smf] [smf_app] [info ] Perform a procedure - Create SM Context Request
+[2021-09-20T13:50:18.481528] [smf] [smf_app] [info ] Could not found UPF profile, select the first available UPF
+[2021-09-20T13:50:18.481570] [smf] [smf_app] [info ] Get default QoS for a PDU Session, key 222
+[2021-09-20T13:50:18.481577] [smf] [smf_app] [info ] Find a DNN Subscription with key: 222, map size 1
+[2021-09-20T13:50:18.481581] [smf] [smf_app] [info ] Find DNN configuration with DNN default
+[2021-09-20T13:50:18.481586] [smf] [smf_app] [info ] Default qfi 6
+[2021-09-20T13:50:18.481596] [smf] [smf_app] [info ] Get default QoS rule for a PDU Session (PDU session type 1)
+[2021-09-20T13:50:18.481603] [smf] [smf_app] [info ] Add QoS Rule with Rule Id 1
+[2021-09-20T13:50:18.481612] [smf] [smf_app] [info ] Sending ITTI message 37itti_n4_session_establishment_request to task TASK_SMF_N4
+[2021-09-20T13:50:18.482236] [smf] [smf_n4 ] [info ] handle_receive(76 bytes)
+[2021-09-20T13:50:18.482385] [smf] [smf_app] [info ] Handle N4 Session Establishment Response (PDU Session Id 1)
+[2021-09-20T13:50:18.482453] [smf] [smf_app] [info ] Get default QoS Rule this PDU Session (ID 1)
+[2021-09-20T13:50:18.482467] [smf] [smf_n1 ] [info ] Create N1 SM Container, PDU Session Establishment Accept
+[2021-09-20T13:50:18.482482] [smf] [smf_n1 ] [info ] PDU_SESSION_ESTABLISHMENT_ACCEPT, encode starting...
+[2021-09-20T13:50:18.482498] [smf] [smf_app] [info ] Find a DNN Subscription with key: 222, map size 1
+[2021-09-20T13:50:18.482505] [smf] [smf_app] [info ] Find DNN configuration with DNN default
+[2021-09-20T13:50:18.482555] [smf] [smf_app] [info ] Get default QoS Flow Description (PDU session type 1)
+[2021-09-20T13:50:18.482578] [smf] [smf_n1 ] [info ] Encode PDU Session Establishment Accept
+[2021-09-20T13:50:18.482652] [smf] [smf_n2 ] [info ] Create N2 SM Information, PDU Session Resource Setup Request Transfer
+[2021-09-20T13:50:18.482665] [smf] [smf_n2 ] [info ] QoS parameters: QFI 6, Priority level 1, ARP priority level 1
+[2021-09-20T13:50:18.482706] [smf] [smf_app] [info ] Find a DNN Subscription with key: 222, map size 1
+[2021-09-20T13:50:18.482715] [smf] [smf_app] [info ] Find DNN configuration with DNN default
+[2021-09-20T13:50:18.482741] [smf] [smf_n2 ] [info ] QoS parameters: QFI 6, ARP priority level 1, qos_flow.qos_profile.arp.preempt_cap NOT_PREEMPT, qos_flow.qos_profile.arp.preempt_vuln NOT_PREEMPTABLE
+[2021-09-20T13:50:18.483089] [smf] [smf_app] [info ] Sending ITTI message N11_SESSION_CREATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP
+[2021-09-20T13:50:18.485440] [smf] [smf_app] [info ] Process N1N2MessageTransfer Response
+[2021-09-20T13:50:18.485460] [smf] [smf_app] [info ] PDU_SESSION_ESTABLISHMENT_UE_REQUESTED
+[2021-09-20T13:50:18.485465] [smf] [smf_app] [info ] Update PDU Session Status
+[2021-09-20T13:50:18.485476] [smf] [smf_app] [info ] Set PDU Session Status to PDU_SESSION_ESTABLISHMENT_PENDING
+[2021-09-20T13:50:18.485487] [smf] [smf_app] [info ] Set PDU Session Status to PDU_SESSION_ESTABLISHMENT_PENDING
+[2021-09-20T13:50:18.485493] [smf] [smf_app] [info ] Update UpCnx_State
+[2021-09-20T13:50:18.485501] [smf] [smf_app] [info ] Set upCnxState to UPCNX_STATE_ACTIVATING
+[2021-09-20T13:50:18.485507] [smf] [smf_app] [info ] Set PDU Session UpCnxState to UPCNX_STATE_ACTIVATING
+[2021-09-20T13:50:18.488192] [smf] [sbi_srv] [info ] Received a SM context update request from AMF.
+[2021-09-20T13:50:18.488314] [smf] [sbi_srv] [info ] Received a PDUSession_UpdateSMContext Request from AMF.
+[2021-09-20T13:50:18.488348] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request from an AMF (HTTP version 1)
+[2021-09-20T13:50:18.488362] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request message from an AMF (HTTP version 1)
+[2021-09-20T13:50:18.488376] [smf] [smf_app] [info ] PDU Session Resource Setup Response Transfer
+[2021-09-20T13:50:18.488382] [smf] [smf_n2 ] [info ] Decode NGAP message (PDUSessionResourceSetupResponseTransfer) from N2 SM Information
+[2021-09-20T13:50:18.488454] [smf] [smf_app] [info ] PDU Session Establishment Request, processing N2 SM Information
+[2021-09-20T13:50:18.488466] [smf] [smf_app] [info ] Perform a procedure - Update SM Context Request
+[2021-09-20T13:50:18.488544] [smf] [smf_app] [info ] Sending ITTI message 36itti_n4_session_modification_request to task TASK_SMF_N4
+[2021-09-20T13:50:18.488954] [smf] [smf_n4 ] [info ] handle_receive(31 bytes)
+[2021-09-20T13:50:18.489052] [smf] [smf_app] [info ] Handle N4 Session Modification Response (PDU Session Id 1)
+[2021-09-20T13:50:18.489101] [smf] [smf_app] [info ] PDU Session Establishment Request (UE-Initiated)
+[2021-09-20T13:50:18.489116] [smf] [smf_app] [info ] Set PDU Session Status to PDU_SESSION_ACTIVE
+[2021-09-20T13:50:18.489121] [smf] [smf_app] [info ] Set upCnxState to UPCNX_STATE_ACTIVATED
+[2021-09-20T13:50:18.489152] [smf] [smf_app] [info ] Sending ITTI message N11_SESSION_UPDATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP
+[2021-09-20T13:50:18.489238] [smf] [smf_app] [info ] Handle N4 Session Modification Response with SMF context 
+SMF CONTEXT:
+	SUPI:				208950000000031
+DNN CONTEXT:
+	In use:				1
+	DNN:				default
+PDN CONNECTION:
+	PDN type:			IPV4
+	PAA IPv4:			12.1.1.2
+	Default QFI:			6
+	SEID:				2
+Default QoS Flow:
+	QFI:				6
+	UL FTEID:		TEID=1, IPv4=192.168.70.134
+	DL FTEID:		TEID=1, IPv4=192.168.18.184
+	PDR ID UL:			1
+	PDR ID DL:			2
+	Precedence:			0
+	FAR ID UL:			1
+	FAR ID DL:			2
+
+[2021-09-20T13:50:19.378539] [smf] [smf_app] [info ] TIME-OUT event timer id 63
+[2021-09-20T13:50:23.201926] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 67
+[2021-09-20T13:50:23.201966] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:23.202294] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.203342] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.235337] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 72
+[2021-09-20T13:50:23.235357] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:23.235597] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.482045] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 75
+[2021-09-20T13:50:23.488854] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 77
+[2021-09-20T13:50:23.490599] [smf] [sbi_srv] [info ] Received a SM context update request from AMF.
+[2021-09-20T13:50:23.490721] [smf] [sbi_srv] [info ] Received a PDUSession_UpdateSMContext Request from AMF.
+[2021-09-20T13:50:23.490769] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request from an AMF (HTTP version 1)
+[2021-09-20T13:50:23.490827] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request message from an AMF (HTTP version 1)
+[2021-09-20T13:50:23.490843] [smf] [smf_n1 ] [info ] Decode NAS message from N1 SM Container.
+[2021-09-20T13:50:23.490861] [smf] [smf_app] [info ] PDU Session Release (UE-Initiated), processing N1 SM Information
+[2021-09-20T13:50:23.490867] [smf] [smf_app] [info ] PTI 2
+[2021-09-20T13:50:23.490879] [smf] [smf_app] [info ] Perform a procedure - Update SM Context Request
+[2021-09-20T13:50:23.490915] [smf] [smf_app] [info ] Sending ITTI message 36itti_n4_session_modification_request to task TASK_SMF_N4
+[2021-09-20T13:50:23.491361] [smf] [smf_n4 ] [info ] handle_receive(21 bytes)
+[2021-09-20T13:50:23.491427] [smf] [smf_app] [info ] Handle N4 Session Modification Response (PDU Session Id 1)
+[2021-09-20T13:50:23.491448] [smf] [smf_app] [info ] PDU Session Update SM Context (PDU Session Release) accepted by UPF
+[2021-09-20T13:50:23.491455] [smf] [smf_app] [info ] Resources associated with this QoS Flow (6) have been released
+[2021-09-20T13:50:23.491468] [smf] [smf_app] [info ] Resources associated with this PDU Session have been released
+[2021-09-20T13:50:23.491473] [smf] [smf_app] [info ] PDU Session Release UE-initiated (Step 1))
+[2021-09-20T13:50:23.491478] [smf] [smf_n1 ] [info ] Create N1 SM Container, PDU Session Release Command (pdu_session_update_sm_context_response)
+[2021-09-20T13:50:23.491485] [smf] [smf_n1 ] [info ] PDU_SESSION_RELEASE_COMMAND, encode starting...
+[2021-09-20T13:50:23.491553] [smf] [smf_app] [info ] Set PDU Session Status to PDU_SESSION_INACTIVE_PENDING
+[2021-09-20T13:50:23.491561] [smf] [smf_app] [info ] Set upCnxState to UPCNX_STATE_DEACTIVATED
+[2021-09-20T13:50:23.491573] [smf] [smf_app] [info ] Sending ITTI message N11_SESSION_UPDATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP
+[2021-09-20T13:50:23.491617] [smf] [smf_app] [info ] Handle N4 Session Modification Response with SMF context 
+SMF CONTEXT:
+	SUPI:				208950000000031
+DNN CONTEXT:
+	In use:				1
+	DNN:				default
+PDN CONNECTION:
+	PDN type:			IPV4
+	Default QFI:			No QFI available
+	SEID:				0
+
+[2021-09-20T13:50:23.495552] [smf] [sbi_srv] [info ] Received a SM context update request from AMF.
+[2021-09-20T13:50:23.495648] [smf] [sbi_srv] [info ] Received a PDUSession_UpdateSMContext Request from AMF.
+[2021-09-20T13:50:23.495678] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request from an AMF (HTTP version 1)
+[2021-09-20T13:50:23.495692] [smf] [smf_app] [info ] Handle a PDU Session Update SM Context Request message from an AMF (HTTP version 1)
+[2021-09-20T13:50:23.495700] [smf] [smf_n1 ] [info ] Decode NAS message from N1 SM Container.
+[2021-09-20T13:50:23.495710] [smf] [smf_app] [info ] PDU Session Release Complete (UE-Initiated), processing N1 SM Information
+[2021-09-20T13:50:23.495715] [smf] [smf_app] [info ] PTI 2
+[2021-09-20T13:50:23.495719] [smf] [smf_app] [info ] Set PDU Session Status to PDU_SESSION_INACTIVE
+[2021-09-20T13:50:23.495749] [smf] [smf_app] [info ] Sending ITTI message N11_SESSION_UPDATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP to trigger response
+[2021-09-20T13:50:28.202162] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 81
+[2021-09-20T13:50:28.203760] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:28.235544] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 86
+[2021-09-20T13:50:28.491159] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 89
+[2021-09-20T13:50:29.378728] [smf] [smf_app] [info ] TIME-OUT event timer id 78
+[2021-09-20T13:50:33.202485] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 82
+[2021-09-20T13:50:33.202516] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:33.202775] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:33.204072] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:33.235775] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 87
+[2021-09-20T13:50:33.235804] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:33.236022] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:38.202762] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 95
+[2021-09-20T13:50:38.204426] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:38.235993] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 100
+[2021-09-20T13:50:39.378945] [smf] [smf_app] [info ] TIME-OUT event timer id 92
+[2021-09-20T13:50:43.202999] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 96
+[2021-09-20T13:50:43.203039] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:43.203421] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:43.204808] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:43.236200] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 101
+[2021-09-20T13:50:43.236220] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:43.236469] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:48.203295] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 106
+[2021-09-20T13:50:48.205156] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:48.236442] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 111
+[2021-09-20T13:50:49.379156] [smf] [smf_app] [info ] TIME-OUT event timer id 103
+[2021-09-20T13:50:53.203615] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 107
+[2021-09-20T13:50:53.203654] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:53.204005] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:53.205505] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:53.236632] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 112
+[2021-09-20T13:50:53.236650] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:50:53.236873] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:58.203850] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 117
+[2021-09-20T13:50:58.205886] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:58.236801] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 122
+[2021-09-20T13:50:59.379372] [smf] [smf_app] [info ] TIME-OUT event timer id 114
+[2021-09-20T13:51:03.204201] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 118
+[2021-09-20T13:51:03.204235] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:51:03.204516] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:03.206205] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:03.237049] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 123
+[2021-09-20T13:51:03.237066] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:51:03.237252] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:08.204445] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 128
+[2021-09-20T13:51:08.206509] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:08.237242] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 133
+[2021-09-20T13:51:09.379574] [smf] [smf_app] [info ] TIME-OUT event timer id 125
+[2021-09-20T13:51:13.204707] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 129
+[2021-09-20T13:51:13.204739] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:51:13.205018] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:13.206815] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:13.237415] [smf] [smf_n4 ] [info ] TIME-OUT event timer id 134
+[2021-09-20T13:51:13.237433] [smf] [smf_n4 ] [info ] PFCP HEARTBEAT PROCEDURE hash 2252777664 starting
+[2021-09-20T13:51:13.237624] [smf] [smf_n4 ] [info ] handle_receive(16 bytes)

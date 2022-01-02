@@ -1,0 +1,243 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-spgwu-tiny.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "oai-spgwu-tiny.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "oai-spgwu-tiny.selectorLabels" . | nindent 8 }}
+      annotations:
+        k8s.v1.cni.cncf.io/networks: >-
+          [{
+                 "name": "{{ .Chart.Name }}-{{ .Values.namespace }}-s1u-net1",
+                 "default-route": ["{{ .Values.multus.pgwuSgiGw }}"]
+          }]
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+      - name: tcpdump
+        image: image-registry.openshift-image-registry.svc:5000/oai/tcpdump-internal:latest
+        {{- if .Values.start.tcpdump}}
+        command:
+          - /bin/sh
+          - -c
+          - /usr/sbin/tcpdump -i any -w /pcap/oai-spgwu_`date +%Y-%m-%d_%H_%M-%S-%Z`.pcap
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        volumeMounts:
+        - mountPath: "/pcap"
+          name: cn5g-pv
+      - name: spgwu
+        image: "{{ .Values.image.repository }}:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+        ports:
+        - containerPort: {{ .Values.service.pfcpPort }}
+          name: oai-spgwu
+        - containerPort: {{ .Values.service.gtpuPort }}
+          name: s1u
+        - containerPort: 5001
+          name: iperf
+        {{- if .Values.start.spgwu}}
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        env:
+          - name: GW_ID
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: gwId
+          - name: MNC03
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: mnc03
+          - name: MCC
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: mcc
+          - name: MNC
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: mnc 
+          - name: TAC
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: tac
+          - name: REALM
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: realm
+          - name: PID_DIRECTORY
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: pidDirectory
+          - name: SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: sgwS1uIf
+          - name: THREAD_S1U_PRIO
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: threadS1Upriority
+          - name: S1U_THREADS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: s1uThreads
+          - name: SGW_INTERFACE_NAME_FOR_SX
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: sgwSxIf
+          - name: THREAD_SX_PRIO
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: threadSXpriority
+          - name: SX_THREADS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: sxThreads
+          - name: PGW_INTERFACE_NAME_FOR_SGI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: pgwSgiIf
+          - name: THREAD_SGI_PRIO
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: threadSGIpriority
+          - name: SGI_THREADS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: sgiThreads
+          - name: NETWORK_UE_NAT_OPTION
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: netUeNatOption
+          - name: GTP_EXTENSION_HEADER_PRESENT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: gtpExtentionHeaderPresent
+          - name: NETWORK_UE_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: netUeIp
+          - name: SPGWC0_IP_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: spgwc0IpAdd
+          - name: BYPASS_UL_PFCP_RULES
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: bypassUlPfcpRules
+          - name: ENABLE_5G_FEATURES
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: enable5GFeatures
+          - name: REGISTER_NRF
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: registerNrf
+          - name: USE_FQDN_NRF
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: useFqdnNrf
+          - name: UPF_FQDN_5G
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: upfFqdn5g
+          - name: NRF_IPV4_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfIpv4Add
+          - name: NRF_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfPort
+          - name: NRF_API_VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfApiVersion
+          - name: NRF_FQDN
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfFqdn
+          - name: NSSAI_SST_0
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nssaiSst0
+          - name: NSSAI_SD_0
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nssaiSd0
+          - name: DNN_0
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: dnn0
+        {{- with .Values.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+      volumes:
+      - name: cn5g-pv
+        persistentVolumeClaim:
+          claimName: cn5g-pvc  
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      terminationGracePeriodSeconds: 15
+

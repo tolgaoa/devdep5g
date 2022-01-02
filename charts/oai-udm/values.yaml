@@ -1,0 +1,92 @@
+# Default values for oai-udm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+namespace: "oai"
+
+nfimage:
+  registry: local
+  repository: tolgaomeratalay/oai-udm          ## rdefosseoai/oai-udm # image name either locally present or in a public/private repository
+  version: "6.0"             ## latest/v1.1.2 stable and develop for experimental
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: Always
+
+tcpdumpimage:
+  registry: local
+  repository: corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: Always
+
+## good to use when pulling images from docker-hub mention 
+#imagePullSecrets: 
+#  - name: "personalkey"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-udm-sa"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: false
+
+service:
+  type: ClusterIP
+  httpPort: 80
+
+start:
+  udm: true
+  tcpdump: false
+
+multus:
+  nudmIP: "192.168.13.10"
+  nudmIPGw: "192.168.10.1"
+  nudmIPnetmask: "16"
+
+config:
+  tz: "Europe/Paris"
+  instance: "0"
+  pidDirectory: "/var/run"
+  udmName: "OAI_UDM"
+  sbiIfName: "net1"
+  sbiPort: "80"
+  udmVersionNb: "v1"
+  useFqdnDns: "no"
+  udrIpAddress: "192.168.12.10"
+  udrPort: "80"
+  udrVersionNb: "v1"
+  udrFqdn: "oai-udr-svc"
+
+persistence:
+  sharedvolume: false
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+resources:
+  define: false
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 256Mi
+
+readinessProbe: true
+
+livenessProbe: true
+
+terminationGracePeriodSeconds: 30
+
+nodeSelector: {}
+
+nodeName: 

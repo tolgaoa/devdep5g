@@ -1,0 +1,117 @@
+[2021-09-20T13:55:39.093132] [udm] [udm_server] [start] Options parsed
+[2021-09-20T13:55:39.093849] [udm] [configurations] [info ] ==== OAI-CN5G UDM vBranch: HEAD Abrev. Hash: 5d938a2 Date: Thu Sep 2 09:58:39 2021 +0000 ====
+[2021-09-20T13:55:39.093862] [udm] [configurations] [info ] ============== UDM =============
+[2021-09-20T13:55:39.093866] [udm] [configurations] [info ] Configuration UDM:
+[2021-09-20T13:55:39.093870] [udm] [configurations] [info ] - Instance................: 0
+[2021-09-20T13:55:39.093873] [udm] [configurations] [info ] - PID Dir.................: /var/run
+[2021-09-20T13:55:39.093877] [udm] [configurations] [info ] - UDM name................: OAI_UDM
+[2021-09-20T13:55:39.093880] [udm] [configurations] [info ] - SBI:
+[2021-09-20T13:55:39.093883] [udm] [configurations] [info ]     Iface name............: eth0
+[2021-09-20T13:55:39.093888] [udm] [configurations] [info ]     IPv4 Addr.............: 192.168.70.137
+[2021-09-20T13:55:39.093891] [udm] [configurations] [info ]     Port..................: 80
+[2021-09-20T13:55:39.093894] [udm] [configurations] [info ] - UDR:
+[2021-09-20T13:55:39.093898] [udm] [configurations] [info ]     IPv4 Addr.............: 192.168.70.136
+[2021-09-20T13:55:39.093901] [udm] [configurations] [info ]     Port..................: 80  
+[2021-09-20T13:55:39.093904] [udm] [configurations] [info ]     API version...........: v1
+[2021-09-20T13:55:39.093913] [udm] [udm_app] [start] Starting...
+[2021-09-20T13:55:39.093917] [udm] [udm_app] [start] Started
+[2021-09-20T13:55:39.095995] [udm] [udm_server] [info ] HTTP1 server started
+[2021-09-20T13:56:59.296181] [udm] [udm_ueau] [info ] Handle generate_auth_data()
+[2021-09-20T13:56:59.296218] [udm] [udm_ueau] [info ] Handle Generate Auth Data Request
+[2021-09-20T13:56:59.296274] [udm] [udm_ueau] [info ] Send HTTP message with body 
+[2021-09-20T13:56:59.300186] [udm] [udm_ueau] [info ] Get response with httpcode (200)
+[2021-09-20T13:56:59.300439] [udm] [udm_ueau] [info ] Result For F1-Alg Key
+c a 34 60 1d 4f 7 67 73 3 65 2c 4 62 53 5b 
+[2021-09-20T13:56:59.300464] [udm] [udm_ueau] [info ] Result For F1-Alg OPC
+63 bf a5 e e6 52 33 65 ff 14 c1 f4 5f 88 73 7d 
+[2021-09-20T13:56:59.300490] [udm] [udm_ueau] [info ] Result For F1-Alg AMF
+80 0 
+[2021-09-20T13:56:59.300509] [udm] [udm_ueau] [info ] Result For F1-Alg SQN: 
+0 0 0 0 0 20 
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+9a e5 cb f9 a1 ef f 29 11 40 3d f0 25 75 3c cf 
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+6 4e af 3 18 15 cf 31 8d eb 59 a 9c 8f fc d6 
+9 50 fc 36 e3 a7 3b 41 eb ee ca a0 e 26 c8 3a 
+f2 e2 8 46 85 a2 a8 eb 79 47 fe 4f 1 38 9b 9 
+[2021-09-20T13:56:59.301544] [udm] [udm_ueau] [info ] XRES*(new)
+8f 1 70 e8 3c e6 1d bf 43 f2 7d 6d 99 c4 f3 1f 1b 30 a4 7d 58 af 1f 69 61 1 5 a5 a5 20 23 3c 
+[2021-09-20T13:56:59.301575] [udm] [udm_ueau] [info ] derive_kausf key
+dc 96 57 40 98 0 60 f3 73 50 7d c5 77 22 a5 25 46 6d 64 25 ae 56 2b 5a 95 3c 7f 47 a 64 cb 80 
+[2021-09-20T13:56:59.301594] [udm] [udm_ueau] [info ] derive_kausf kausf
+f b4 51 66 8d eb c3 85 ea b7 ea f1 36 a8 fd 32 cc dd 2d c4 82 9a 83 a0 11 ab a4 99 a5 2d 39 4a 
+[2021-09-20T13:56:59.301805] [udm] [udm_ueau] [info ] new_sqn = 000000000040
+[2021-09-20T13:56:59.302026] [udm] [udm_ueau] [info ] Update UDR with PATCH message, body:  [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000040\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.302047] [udm] [udm_ueau] [info ] Send HTTP message with body [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000040\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.335765] [udm] [udm_ueau] [info ] Get response with httpcode (204)
+[2021-09-20T13:56:59.335834] [udm] [udm_ueau] [info ] Send 200 Ok response to AUSF
+[2021-09-20T13:56:59.335905] [udm] [udm_ueau] [info ] AuthInfoResult {"authType":"5G_AKA","authenticationVector":{"autn":"db16c38d547b800069294b79b956479f","avType":"5G_HE_AKA","kausf":"0fb451668debc385eab7eaf136a8fd32ccdd2dc4829a83a011aba499a52d394a","rand":"847d3d25db5685597d22f0236407ec91","xresStar":"1b30a47d58af1f69610105a5a520233c"}}
+[2021-09-20T13:56:59.336192] [udm] [udm_ueau] [info ] Send response to AUSF
+[2021-09-20T13:56:59.336372] [udm] [udm_ueau] [info ] Update sqn in Database
+[2021-09-20T13:56:59.343629] [udm] [udm_ueau] [info ] Handle generate_auth_data()
+[2021-09-20T13:56:59.343648] [udm] [udm_ueau] [info ] Handle Generate Auth Data Request
+[2021-09-20T13:56:59.343684] [udm] [udm_ueau] [info ] Send HTTP message with body 
+[2021-09-20T13:56:59.345110] [udm] [udm_ueau] [info ] Get response with httpcode (200)
+[2021-09-20T13:56:59.345294] [udm] [udm_ueau] [info ] Result For F1-Alg Key
+c a 34 60 1d 4f 7 67 73 3 65 2c 4 62 53 5b 
+[2021-09-20T13:56:59.345320] [udm] [udm_ueau] [info ] Result For F1-Alg OPC
+63 bf a5 e e6 52 33 65 ff 14 c1 f4 5f 88 73 7d 
+[2021-09-20T13:56:59.345341] [udm] [udm_ueau] [info ] Result For F1-Alg AMF
+80 0 
+[2021-09-20T13:56:59.345350] [udm] [udm_ueau] [info ] Result For F1-Alg SQN: 
+0 0 0 0 0 40 
+[2021-09-20T13:56:59.345355] [udm] [udm_ueau] [info ] Start resynchronization procedure
+[2021-09-20T13:56:59.345372] [udm] [udm_ueau] [info ] [resync] r_rand = 847d3d25db5685597d22f0236407ec91
+[2021-09-20T13:56:59.345389] [udm] [udm_ueau] [info ] [resync] r_auts = 72F525668188F5B755F112046EA9
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+94 e7 9b ec 17 b 9c 4 76 59 ad 7a fa 8a 6f 75 
+[2021-09-20T13:56:59.345412] [udm] [udm_ueau] [info ] sqn_ms_derive() KEY    : 
+c a 34 60 1d 4f 7 67 73 3 65 2c 4 62 53 5b 
+[2021-09-20T13:56:59.345427] [udm] [udm_ueau] [info ] sqn_ms_derive() RAND   : 
+84 7d 3d 25 db 56 85 59 7d 22 f0 23 64 7 ec 91 
+[2021-09-20T13:56:59.345439] [udm] [udm_ueau] [info ] sqn_ms_derive() AUTS   : 
+72 f5 25 66 81 88 f5 b7 55 f1 12 4 6e a9 
+[2021-09-20T13:56:59.345448] [udm] [udm_ueau] [info ] sqn_ms_derive() AK     : 
+8d 6e 91 66 8e 5 
+[2021-09-20T13:56:59.345453] [udm] [udm_ueau] [info ] sqn_ms_derive() SQN_MS : 
+ff 9b b4 0 f 8d 
+[2021-09-20T13:56:59.345465] [udm] [udm_ueau] [info ] sqn_ms_derive() MAC_S  : 
+f5 b7 55 f1 12 4 6e a9 
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+65 7e 7f f9 ae 42 8f 29 ee db 89 f0 2a d8 bc cf 
+[2021-09-20T13:56:59.345484] [udm] [udm_ueau] [info ] MAC_S +: 
+f5 b7 55 f1 12 4 6e a9 
+[2021-09-20T13:56:59.345491] [udm] [udm_ueau] [info ] Valid AUTS, generate new AV with SQNms
+[2021-09-20T13:56:59.345583] [udm] [udm_ueau] [info ] Sequence Number {"lastIndexes":{"ausf":0},"sqn":"ff9bb4000f8d","sqnScheme":"NON_TIME_BASED"}
+[2021-09-20T13:56:59.345682] [udm] [udm_ueau] [info ] PATCH Request body: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"ff9bb4000f8d\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.345692] [udm] [udm_ueau] [info ] Send HTTP message with body [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"ff9bb4000f8d\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.377604] [udm] [udm_ueau] [info ] Get response with httpcode (204)
+[2021-09-20T13:56:59.377701] [udm] [udm_ueau] [info ] SQNms
+ff 9b b4 0 f 8d 
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+65 7e 7f f9 ae 42 f 29 ee db 89 f0 2a d8 3c cf 
+eb c8 ac 4b 20 4b b1 5b f1 35 54 fb 3f ed cc b7 
+6 4e af 3 18 15 cf 31 8d eb 59 a 9c 8f fc d6 
+9 50 fc 36 e3 a7 3b 41 eb ee ca a0 e 26 c8 3a 
+f2 e2 8 46 85 a2 a8 eb 79 47 fe 4f 1 38 9b 9 
+[2021-09-20T13:56:59.378566] [udm] [udm_ueau] [info ] XRES*(new)
+8f 1 70 e8 3c e6 1d bf 43 f2 7d 6d 99 c4 f3 1f 1b 30 a4 7d 58 af 1f 69 61 1 5 a5 a5 20 23 3c 
+[2021-09-20T13:56:59.378589] [udm] [udm_ueau] [info ] derive_kausf key
+dc 96 57 40 98 0 60 f3 73 50 7d c5 77 22 a5 25 46 6d 64 25 ae 56 2b 5a 95 3c 7f 47 a 64 cb 80 
+[2021-09-20T13:56:59.378601] [udm] [udm_ueau] [info ] derive_kausf kausf
+45 ab ce bc f6 a5 b8 1f b5 df 69 25 80 65 fc cc 6f d0 70 a7 c8 c3 4c 57 6d 0 c4 9e bb 2d 17 2f 
+[2021-09-20T13:56:59.378748] [udm] [udm_ueau] [info ] new_sqn = ff9bb4000fad
+[2021-09-20T13:56:59.378979] [udm] [udm_ueau] [info ] Update UDR with PATCH message, body:  [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"ff9bb4000fad\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.379002] [udm] [udm_ueau] [info ] Send HTTP message with body [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"ff9bb4000fad\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2021-09-20T13:56:59.411258] [udm] [udm_ueau] [info ] Get response with httpcode (204)
+[2021-09-20T13:56:59.411324] [udm] [udm_ueau] [info ] Send 200 Ok response to AUSF
+[2021-09-20T13:56:59.411378] [udm] [udm_ueau] [info ] AuthInfoResult {"authType":"5G_AKA","authenticationVector":{"autn":"248d778d5bd680009674cd7ca6aaa103","avType":"5G_HE_AKA","kausf":"45abcebcf6a5b81fb5df69258065fccc6fd070a7c8c34c576d00c49ebb2d172f","rand":"847d3d25db5685597d22f0236407ec91","xresStar":"1b30a47d58af1f69610105a5a520233c"}}
+[2021-09-20T13:56:59.411650] [udm] [udm_ueau] [info ] Send response to AUSF
+[2021-09-20T13:56:59.411753] [udm] [udm_ueau] [info ] Update sqn in Database
+[2021-09-20T13:56:59.417601] [udm] [udm_ueau] [info ] Handle confirm_auth()
+[2021-09-20T13:56:59.417658] [udm] [udm_ueau] [info ] Send HTTP message with body 
+[2021-09-20T13:56:59.419053] [udm] [udm_ueau] [info ] Get response with httpcode (200)
+[2021-09-20T13:56:59.419286] [udm] [udm_ueau] [info ] Send HTTP message with body {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2021-09-20T11:56:59Z"}
+[2021-09-20T13:56:59.453157] [udm] [udm_ueau] [info ] Get response with httpcode (204)
+[2021-09-20T13:56:59.453261] [udm] [udm_ueau] [info ] Send 201 Created response to AUSF
+[2021-09-20T13:56:59.453417] [udm] [udm_ueau] [info ] Send response to AUSF

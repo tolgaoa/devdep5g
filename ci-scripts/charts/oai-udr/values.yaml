@@ -1,0 +1,90 @@
+# Default values for oai-udr.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+namespace: "oaicicd-5gcn-tmp"
+
+image:
+  registry: local
+  repository: image-registry.openshift-image-registry.svc:5000/oaicicd-5gcn-tmp/oai-udr
+  version: "TAG"
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-udr-sa"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  http1Port: 80
+  http2Port: 8080
+
+start:
+  udr: true
+  tcpdump: true
+
+multus:
+  create: false
+  n4IPadd: "192.168.101.129"
+  n4Netmask: "26"
+  n4Gw: "192.168.101.128"
+
+config:
+  tz: "Europe/Paris"
+  instance: "0"
+  pidDirectory: "/var/run"
+  udrInterfaceNameForNudr: "eth0"
+  udrInterfaceHttp1PortForNudr: "80"
+  udrInterfaceHttp2PortForNudr: "8080"
+  udrApiVersion: "v2"
+  mySqlServer: "mysql"
+  mySqlUser: "root"
+  mySqlPass: "linux"
+  mySqlDb: "oai_db"
+
+persistence:
+  # make it true for the first time when you want to create persistance volume 
+  # and then false
+  enabled: false
+  
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  #requests:
+  #  cpu: 100m
+  #  memory: 256Mi
+
+nodeSelector:
+  env: dev
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,368 @@
+[2021-09-20T13:49:13.192106] [spgwu] [spgwu_app] [start] Options parsed
+[2021-09-20T13:49:13.192444] [spgwu] [spgwu_app] [info ] SettingNotFoundException : SPGW-U.ITTI_TASKS, using defaults
+[2021-09-20T13:49:13.192542] [spgwu] [spgwu_app] [info ] THREAD_POOL_SIZE : 1
+[2021-09-20T13:49:13.192584] [spgwu] [spgwu_app] [info ] THREAD_POOL_SIZE : 1
+[2021-09-20T13:49:13.192620] [spgwu] [spgwu_app] [info ] THREAD_POOL_SIZE : 1
+[2021-09-20T13:49:13.192669] [spgwu] [spgwu_app] [info ] ==== EURECOM SPGW-U vBranch: HEAD Abrev. Hash: 10c7e3d Date: Tue Sep 7 11:50:36 2021 +0200 ====
+[2021-09-20T13:49:13.192676] [spgwu] [spgwu_app] [info ] Configuration:
+[2021-09-20T13:49:13.192678] [spgwu] [spgwu_app] [info ] - FQDN ..................: oai-spgwu
+[2021-09-20T13:49:13.192681] [spgwu] [spgwu_app] [info ] - Instance ..............: 0
+[2021-09-20T13:49:13.192683] [spgwu] [spgwu_app] [info ] - PID dir ...............: /var/run
+[2021-09-20T13:49:13.192686] [spgwu] [spgwu_app] [info ] - ITTI tasks:
+[2021-09-20T13:49:13.192688] [spgwu] [spgwu_app] [info ]     ITTI Timer task:
+[2021-09-20T13:49:13.192690] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192692] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192695] [spgwu] [spgwu_app] [info ]       sched priority..: 85
+[2021-09-20T13:49:13.192697] [spgwu] [spgwu_app] [info ]     SPGWU-S1U task:
+[2021-09-20T13:49:13.192699] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192701] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192703] [spgwu] [spgwu_app] [info ]       sched priority..: 84
+[2021-09-20T13:49:13.192705] [spgwu] [spgwu_app] [info ]     SPGWU-SX task:
+[2021-09-20T13:49:13.192707] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192709] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192712] [spgwu] [spgwu_app] [info ]       sched priority..: 84
+[2021-09-20T13:49:13.192714] [spgwu] [spgwu_app] [info ]     SPGWU_APP task:
+[2021-09-20T13:49:13.192716] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192718] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192720] [spgwu] [spgwu_app] [info ]       sched priority..: 84
+[2021-09-20T13:49:13.192722] [spgwu] [spgwu_app] [info ]     ASYNC_SHELL_CMD task:
+[2021-09-20T13:49:13.192724] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192727] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192729] [spgwu] [spgwu_app] [info ]       sched priority..: 84
+[2021-09-20T13:49:13.192731] [spgwu] [spgwu_app] [info ] - S1u_S12_S4:
+[2021-09-20T13:49:13.192733] [spgwu] [spgwu_app] [info ]     iface ............: eth0
+[2021-09-20T13:49:13.192736] [spgwu] [spgwu_app] [info ]     ipv4.addr ........: 192.168.70.134
+[2021-09-20T13:49:13.192739] [spgwu] [spgwu_app] [info ]     ipv4.mask ........: 255.255.255.192
+[2021-09-20T13:49:13.192741] [spgwu] [spgwu_app] [info ]     mtu ..............: 1500
+[2021-09-20T13:49:13.192744] [spgwu] [spgwu_app] [info ]     port .............: 2152
+[2021-09-20T13:49:13.192746] [spgwu] [spgwu_app] [info ]     Reader thread:
+[2021-09-20T13:49:13.192748] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192750] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192752] [spgwu] [spgwu_app] [info ]       sched priority..: 80
+[2021-09-20T13:49:13.192754] [spgwu] [spgwu_app] [info ]       thread pool size: 1
+[2021-09-20T13:49:13.192756] [spgwu] [spgwu_app] [info ] - SXA-SXB:
+[2021-09-20T13:49:13.192758] [spgwu] [spgwu_app] [info ]     iface ............: eth0
+[2021-09-20T13:49:13.192761] [spgwu] [spgwu_app] [info ]     ipv4.addr ........: 192.168.70.134
+[2021-09-20T13:49:13.192763] [spgwu] [spgwu_app] [info ]     ipv4.mask ........: 255.255.255.192
+[2021-09-20T13:49:13.192765] [spgwu] [spgwu_app] [info ]     mtu ..............: 1500
+[2021-09-20T13:49:13.192768] [spgwu] [spgwu_app] [info ]     port .............: 8805
+[2021-09-20T13:49:13.192770] [spgwu] [spgwu_app] [info ]     Reader thread:
+[2021-09-20T13:49:13.192772] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0 (TODO)
+[2021-09-20T13:49:13.192774] [spgwu] [spgwu_app] [info ]       sched policy....: 1 (TODO)
+[2021-09-20T13:49:13.192776] [spgwu] [spgwu_app] [info ]       sched priority..: 81 (TODO)
+[2021-09-20T13:49:13.192779] [spgwu] [spgwu_app] [info ]       thread pool size: 1 (TODO)
+[2021-09-20T13:49:13.192781] [spgwu] [spgwu_app] [info ] - SGi:
+[2021-09-20T13:49:13.192783] [spgwu] [spgwu_app] [info ]     iface ............: eth0
+[2021-09-20T13:49:13.192785] [spgwu] [spgwu_app] [info ]     ipv4.addr ........: 192.168.70.134
+[2021-09-20T13:49:13.192788] [spgwu] [spgwu_app] [info ]     ipv4.mask ........: 255.255.255.192
+[2021-09-20T13:49:13.192790] [spgwu] [spgwu_app] [info ]     mtu ..............: 1500
+[2021-09-20T13:49:13.192792] [spgwu] [spgwu_app] [info ]     gateway ..........: 
+[2021-09-20T13:49:13.192794] [spgwu] [spgwu_app] [info ]     Reader thread:
+[2021-09-20T13:49:13.192796] [spgwu] [spgwu_app] [info ]       CPU ID .........: 0
+[2021-09-20T13:49:13.192798] [spgwu] [spgwu_app] [info ]       sched policy....: 1
+[2021-09-20T13:49:13.192800] [spgwu] [spgwu_app] [info ]       sched priority..: 80
+[2021-09-20T13:49:13.192802] [spgwu] [spgwu_app] [info ]       thread pool size: 1
+[2021-09-20T13:49:13.192804] [spgwu] [spgwu_app] [info ] - PDN networks:
+[2021-09-20T13:49:13.192806] [spgwu] [spgwu_app] [info ]     SNAT .............: yes
+[2021-09-20T13:49:13.192810] [spgwu] [spgwu_app] [info ]        NW .............: 12.1.1.0/24
+[2021-09-20T13:49:13.192812] [spgwu] [spgwu_app] [info ] - NON_STANDART_FEATURES:
+[2021-09-20T13:49:13.192814] [spgwu] [spgwu_app] [info ]     bypass_ul_pfcp_rules: no
+[2021-09-20T13:49:13.192816] [spgwu] [spgwu_app] [info ] - SUPPORT_5G_FEATURES:
+[2021-09-20T13:49:13.192819] [spgwu] [spgwu_app] [info ]     enable_5g_features: yes
+[2021-09-20T13:49:13.192821] [spgwu] [spgwu_app] [info ]     register_nrf: yes
+[2021-09-20T13:49:13.192823] [spgwu] [spgwu_app] [info ]     use_fqdn_nrf: no
+[2021-09-20T13:49:13.192825] [spgwu] [spgwu_app] [info ]     NRF:
+[2021-09-20T13:49:13.192827] [spgwu] [spgwu_app] [info ]         IPv4 Addr .......: 192.168.70.130
+[2021-09-20T13:49:13.192829] [spgwu] [spgwu_app] [info ]         Port ............: 80  
+[2021-09-20T13:49:13.192831] [spgwu] [spgwu_app] [info ]         API version .....: v1
+[2021-09-20T13:49:13.192835] [spgwu] [itti     ] [start] Starting...
+[2021-09-20T13:49:13.192898] [spgwu] [itti     ] [start] Started
+[2021-09-20T13:49:13.192908] [spgwu] [async_c  ] [start] Starting...
+[2021-09-20T13:49:13.192923] [spgwu] [itti     ] [info ] Starting timer_manager_task
+[2021-09-20T13:49:13.194046] [spgwu] [async_c  ] [start] Started
+[2021-09-20T13:49:13.194060] [spgwu] [spgwu_app] [start] Starting...
+[2021-09-20T13:49:13.195203] [spgwu] [pfcp     ] [info ] pfcp_l4_stack created listening to 192.168.70.134:8805
+[2021-09-20T13:49:13.195371] [spgwu] [spgwu_sx ] [start] Starting...
+[2021-09-20T13:49:13.196708] [spgwu] [spgwu_sx ] [start] Started
+[2021-09-20T13:49:13.196738] [spgwu] [gtpv1_u  ] [info ] gtpu_l4_stack created listening to 192.168.70.134:2152
+[2021-09-20T13:49:13.196837] [spgwu] [spgwu_s1u] [start] Starting...
+[2021-09-20T13:49:13.197962] [spgwu] [spgwu_s1u] [start] Started
+[2021-09-20T13:49:13.198308] [spgwu] [spgwu_sx ] [info ] handle_receive(35 bytes)
+[2021-09-20T13:49:13.198374] [spgwu] [spgwu_sx ] [info ] Received SX ASSOCIATION SETUP RESPONSE
+net.ipv4.conf.eth0.rp_filter = 0
+net.ipv4.conf.all.forwarding = 1
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+[2021-09-20T13:49:13.228195] [spgwu] [spgwu_app] [start] Starting...
+[2021-09-20T13:49:13.229395] [spgwu] [spgwu_app] [info ] Send NF Instance Registration to NRF
+[2021-09-20T13:49:13.232446] [spgwu] [spgwu_sx ] [info ] handle_receive(30 bytes)
+[2021-09-20T13:49:13.232498] [spgwu] [spgwu_sx ] [info ] Handle SX ASSOCIATION SETUP REQUEST
+[2021-09-20T13:49:13.233033] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 201
+[2021-09-20T13:49:13.233091] [spgwu] [spgwu_app] [info ] Response from NRF, JSON data: 
+ {"capacity":100,"fqdn":"oai-spgwu","heartBeatTimer":10,"ipv4Addresses":["192.168.70.134"],"json_data":null,"nfInstanceId":"15fbed52-87fd-4a5f-95dc-b28cf85f3337","nfInstanceName":"OAI-UPF","nfServices":[],"nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"123","sst":222}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"default"}],"sNssai":{"sd":"123","sst":222}}]}}
+[2021-09-20T13:49:13.233152] [spgwu] [spgwu_app] [start] Started
+[2021-09-20T13:49:13.233164] [spgwu] [spgwu_app] [start] Started
+[2021-09-20T13:49:18.196656] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 2
+[2021-09-20T13:49:18.198508] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 3
+[2021-09-20T13:49:18.198522] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:18.198914] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:18.198940] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:23.198558] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:23.198605] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:23.198628] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 8
+[2021-09-20T13:49:23.199042] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 9
+[2021-09-20T13:49:23.199052] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:23.199216] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:23.199231] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:23.233181] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:23.233207] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:23.233232] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 5
+[2021-09-20T13:49:23.233280] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:49:23.284150] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:49:23.284170] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:49:28.199180] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 13
+[2021-09-20T13:49:28.199297] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 14
+[2021-09-20T13:49:28.199303] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:28.199563] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:28.199582] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:33.199204] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:33.199253] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:33.199406] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 19
+[2021-09-20T13:49:33.199661] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 20
+[2021-09-20T13:49:33.199670] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:33.199893] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:33.199911] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:33.233433] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 16
+[2021-09-20T13:49:33.233476] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:49:33.233588] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:33.233616] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:33.234230] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:49:33.234254] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:49:38.199807] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 24
+[2021-09-20T13:49:38.199978] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 25
+[2021-09-20T13:49:38.199986] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:38.200268] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:38.200288] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:43.199785] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:43.199832] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:43.200096] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 30
+[2021-09-20T13:49:43.200361] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 31
+[2021-09-20T13:49:43.200371] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:43.200572] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:43.200588] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:43.233581] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 26
+[2021-09-20T13:49:43.233614] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:49:43.233955] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:43.233977] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:43.234284] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:49:43.234303] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:49:48.200493] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 35
+[2021-09-20T13:49:48.200659] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 36
+[2021-09-20T13:49:48.200670] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:48.200959] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:48.200979] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:53.200359] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:53.200404] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:53.200798] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 41
+[2021-09-20T13:49:53.201050] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 42
+[2021-09-20T13:49:53.201057] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:53.201210] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:53.201225] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:49:53.233738] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 37
+[2021-09-20T13:49:53.233775] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:49:53.234302] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:53.234324] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:49:53.234435] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:49:53.234456] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:49:58.201169] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 46
+[2021-09-20T13:49:58.201291] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 47
+[2021-09-20T13:49:58.201299] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:49:58.201572] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:49:58.201592] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:03.200922] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:03.200973] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:03.201407] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 52
+[2021-09-20T13:50:03.201668] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 53
+[2021-09-20T13:50:03.201675] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:03.201920] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:03.201939] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:03.233906] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 48
+[2021-09-20T13:50:03.233947] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:03.234681] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:03.234709] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:03.234745] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:03.234768] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:08.201779] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 57
+[2021-09-20T13:50:08.202004] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 58
+[2021-09-20T13:50:08.202012] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:08.202289] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:08.202310] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:13.201546] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:13.201600] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:13.202124] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 63
+[2021-09-20T13:50:13.202381] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 64
+[2021-09-20T13:50:13.202390] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:13.202605] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:13.202625] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:13.234051] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 59
+[2021-09-20T13:50:13.234088] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:13.234866] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:13.234888] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:13.235051] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:13.235077] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:18.202539] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 68
+[2021-09-20T13:50:18.202694] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 69
+[2021-09-20T13:50:18.202703] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:18.203082] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:18.203110] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:18.481945] [spgwu] [spgwu_sx ] [info ] handle_receive(127 bytes)
+[2021-09-20T13:50:18.482047] [spgwu] [spgwu_app] [info ] Received SXAB_SESSION_ESTABLISHMENT_REQUEST seid 0x0 
+[2021-09-20T13:50:18.482103] [spgwu] [spgwu_sx ] [info ] pfcp_session::add(far) seid 0x1 
+[2021-09-20T13:50:18.482131] [spgwu] [spgwu_sx ] [info ] pfcp_session::add(pdr) seid 0x1 
+[2021-09-20T13:50:18.488743] [spgwu] [spgwu_sx ] [info ] handle_receive(100 bytes)
+[2021-09-20T13:50:18.488813] [spgwu] [spgwu_app] [info ] Received SXAB_SESSION_MODIFICATION_REQUEST seid 0x1 
+[2021-09-20T13:50:18.488858] [spgwu] [spgwu_sx ] [info ] pfcp_session::add(far) seid 0x1 
+[2021-09-20T13:50:18.488873] [spgwu] [spgwu_sx ] [info ] pfcp_session::add(pdr) seid 0x1 
+[2021-09-20T13:50:23.202143] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.202202] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:23.202890] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 74
+[2021-09-20T13:50:23.203228] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 75
+[2021-09-20T13:50:23.203240] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:23.203514] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.203535] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:23.234218] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 70
+[2021-09-20T13:50:23.234257] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:23.235136] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:23.235168] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:23.235471] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:23.235499] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:23.491119] [spgwu] [spgwu_sx ] [info ] handle_receive(50 bytes)
+[2021-09-20T13:50:23.491205] [spgwu] [spgwu_app] [info ] Received SXAB_SESSION_MODIFICATION_REQUEST seid 0x1 
+[2021-09-20T13:50:28.203373] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 81
+[2021-09-20T13:50:28.203602] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 82
+[2021-09-20T13:50:28.203609] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:28.203903] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:28.203926] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:33.202657] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:33.202704] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:33.203744] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 88
+[2021-09-20T13:50:33.204003] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 89
+[2021-09-20T13:50:33.204010] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:33.204190] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:33.204207] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:33.234397] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 83
+[2021-09-20T13:50:33.234441] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:33.235166] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:33.235183] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:33.235921] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:33.235954] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:38.204182] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 93
+[2021-09-20T13:50:38.204278] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 94
+[2021-09-20T13:50:38.204284] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:38.204580] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:38.204608] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:43.203253] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:43.203306] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:43.204431] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 99
+[2021-09-20T13:50:43.204687] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 100
+[2021-09-20T13:50:43.204696] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:43.204928] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:43.204949] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:43.234600] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 95
+[2021-09-20T13:50:43.234654] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:43.235508] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:43.235533] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:43.236344] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:43.236373] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:48.204832] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 104
+[2021-09-20T13:50:48.205016] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 105
+[2021-09-20T13:50:48.205024] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:48.205293] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:48.205315] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:53.203842] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:53.203897] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:53.205157] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 110
+[2021-09-20T13:50:53.205393] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 111
+[2021-09-20T13:50:53.205401] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:53.205626] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:53.205646] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:50:53.234762] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 106
+[2021-09-20T13:50:53.234823] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:50:53.235560] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:50:53.235580] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:50:53.236744] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:53.236771] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:50:58.205533] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 115
+[2021-09-20T13:50:58.205726] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 116
+[2021-09-20T13:50:58.205739] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:50:58.206016] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:50:58.206037] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:03.204397] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:03.204443] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:03.205877] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 121
+[2021-09-20T13:51:03.206136] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 122
+[2021-09-20T13:51:03.206143] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:03.206289] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:03.206306] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:03.234922] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 117
+[2021-09-20T13:51:03.234955] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:51:03.235651] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:51:03.235670] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:51:03.237162] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:03.237191] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:08.206272] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 126
+[2021-09-20T13:51:08.206372] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 127
+[2021-09-20T13:51:08.206380] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:08.206640] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:08.206662] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:13.204898] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:13.204944] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:13.206516] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 132
+[2021-09-20T13:51:13.206736] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 133
+[2021-09-20T13:51:13.206743] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:13.206926] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:13.206944] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:13.235058] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 128
+[2021-09-20T13:51:13.235093] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:51:13.235801] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:51:13.235820] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:51:13.237532] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:13.237560] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:18.206884] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 137
+[2021-09-20T13:51:18.207012] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 138
+[2021-09-20T13:51:18.207020] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:18.207284] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:18.207305] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:23.205406] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:23.205452] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:23.207123] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 143
+[2021-09-20T13:51:23.207377] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 144
+[2021-09-20T13:51:23.207384] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:23.207533] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:23.207549] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:23.235191] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 139
+[2021-09-20T13:51:23.235223] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:51:23.235934] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:51:23.235953] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:51:23.237923] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:23.237948] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:28.207510] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 148
+[2021-09-20T13:51:28.207615] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 149
+[2021-09-20T13:51:28.207623] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:28.207893] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:28.207913] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:33.205927] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:33.205972] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST
+[2021-09-20T13:51:33.207763] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 154
+[2021-09-20T13:51:33.208013] [spgwu] [spgwu_sx ] [info ] TIME-OUT event timer id 155
+[2021-09-20T13:51:33.208021] [spgwu] [spgwu_sx ] [info ] PFCP HEARTBEAT PROCEDURE hash 2236000448 starting
+[2021-09-20T13:51:33.208204] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:33.208219] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT RESPONSE
+[2021-09-20T13:51:33.235346] [spgwu] [spgwu_app] [info ] TIME-OUT event timer id 150
+[2021-09-20T13:51:33.235379] [spgwu] [spgwu_app] [info ] Send NF Update to NRF
+[2021-09-20T13:51:33.236014] [spgwu] [spgwu_app] [info ] Response from NRF, HTTP Code: 204
+[2021-09-20T13:51:33.236032] [spgwu] [spgwu_app] [info ] Got successful response from NRF
+[2021-09-20T13:51:33.238261] [spgwu] [spgwu_sx ] [info ] handle_receive(16 bytes)
+[2021-09-20T13:51:33.238289] [spgwu] [spgwu_sx ] [info ] Received SX HEARTBEAT REQUEST

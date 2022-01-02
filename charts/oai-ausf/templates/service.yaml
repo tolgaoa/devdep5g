@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "oai-ausf.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      # Port accessible outside cluster
+      port: {{ .Values.service.httpPort }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.service.httpPort }}
+      protocol: TCP
+
+  selector:
+    {{- include "oai-ausf.selectorLabels" . | nindent 4 }}
