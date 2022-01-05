@@ -30,6 +30,11 @@ spec:
 {{- end }}
 {{- with .Values.podAnnotations }}
       annotations:
+        k8s.v1.cni.cncf.io/networks: >-
+          [{
+                  "name": "{{ .Chart.Name }}-{{ .Values.namespace }}-mysql-net1",
+                  "default-route": ["{{ .Values.multus.mysqlGateway }}"]
+          }]        
 {{ toYaml . | indent 8 }}
 {{- end }}
     spec:
@@ -57,7 +62,7 @@ spec:
 {{ toYaml .Values.initContainer.resources | indent 10 }}
         command:  ["rm", "-fr", "/var/lib/mysql/lost+found"]
         volumeMounts:
-        - name: data
+        - name: {{ template "mysql.fullname" . }}-pv
           mountPath: /var/lib/mysql
           {{- if .Values.persistence.subPath }}
           subPath: {{ .Values.persistence.subPath }}
@@ -166,7 +171,7 @@ spec:
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
         volumeMounts:
-        - name: data
+        - name: {{ template "mysql.fullname" . }}-pv
           mountPath: /var/lib/mysql
           {{- if .Values.persistence.subPath }}
           subPath: {{ .Values.persistence.subPath }}
@@ -247,10 +252,11 @@ spec:
         secret:
           secretName: {{ .Values.ssl.secret }}
       {{- end }}
-      - name: data
+      - name: {{ template "mysql.fullname" . }}-pv
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistence.existingClaim | default (include "mysql.fullname" .) }}
+          #claimName: {{ .Values.persistence.existingClaim | default (include "mysql.fullname" .) }}
+          claimName: {{ template "mysql.fullname" . }}-pvclaim
       {{- else }}
         emptyDir: {}
       {{- end -}}

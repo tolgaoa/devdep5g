@@ -13,4 +13,5 @@ icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
 sources:
 - https://github.com/kubernetes/charts
 - https://github.com/docker-library/mysql
+deprecated: true
 engine: gotpl
