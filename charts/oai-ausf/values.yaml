@@ -49,8 +49,8 @@ start:
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
 
 multus:
-  nausfIP: "192.168.14.10"
-  nausfIPGw: "192.168.10.1"
+  nausfIP: "192.100.14.10"
+  nausfIPGw: "192.100.10.1"
   nausfIPnetmask: "16"
 
 config:

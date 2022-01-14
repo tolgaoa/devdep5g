@@ -53,8 +53,8 @@ start:
 
 
 multus:
-  nrfIpNg: "192.168.11.10"
-  nrfGw: "192.168.10.1"
+  nrfIpNg: "192.100.11.10"
+  nrfGw: "192.100.10.1"
   nrfNetmaskNg: "16"  
 
 config:
@@ -81,9 +81,9 @@ resources:
 
 terminationGracePeriodSeconds: 30
 
-readinessProbe: true
+readinessProbe: false
 
-livenessProbe: true
+livenessProbe: false
 
 nodeSelector: {}
 

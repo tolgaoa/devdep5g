@@ -49,8 +49,8 @@ start:
   tcpdump: false
 
 multus:
-  nudmIP: "192.168.13.10"
-  nudmIPGw: "192.168.10.1"
+  nudmIP: "192.100.13.10"
+  nudmIPGw: "192.100.10.1"
   nudmIPnetmask: "16"
 
 config:

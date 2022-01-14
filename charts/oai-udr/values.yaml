@@ -46,8 +46,8 @@ start:
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
 
 multus:
-  nudrIP: "192.168.12.10"
-  nudrIPGw: "192.168.10.1"
+  nudrIP: "192.100.12.10"
+  nudrIPGw: "192.100.10.1"
   nudrIPnetmask: "16"
 
 

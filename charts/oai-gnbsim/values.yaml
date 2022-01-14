@@ -30,12 +30,12 @@ start:
   gnbsim: true
 
 multus:
-  ngapIPadd: "192.168.19.10"
+  ngapIPadd: "192.100.19.10"
   ngapNetmask: "16"
-  ngapGateway: "192.168.10.1"
-  gtpIPadd: "192.168.20.10"
+  ngapGateway: "192.100.10.1"
+  gtpIPadd: "192.100.20.10"
   gtpNetmask: "16"
-  gtpGateway: "192.168.10.1"
+  gtpGateway: "192.100.10.1"
 
 config:
   mcc: "208"
@@ -53,10 +53,10 @@ config:
   key: "0C1A34601D4F07677303652C04625010"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "default"
-  url: "http://192.168.76.205:8000"
+  url: "http://192.100.76.205:8000"
   nrcellid: "1"
-  ngappeeraddr: "192.168.15.10"
-  gtpulocaladdr: "192.168.19.10"
+  ngappeeraddr: "192.100.15.10"
+  gtpulocaladdr: "192.100.19.10"
   gtpuifname: "net2"
   usefqdn: "no"
 persistence:

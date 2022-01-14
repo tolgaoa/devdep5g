@@ -50,12 +50,12 @@ start:
 # create an extra interface for N3 incase the gNB is outside the cluster network or there is a need to have dedicated interface for N3
 multus:
   create: true
-  nupfIP1: "192.168.17.10"
+  nupfIP1: "192.100.17.10"
   nupfIP1netmask: "16"
-  nupfIP1Gw: "192.168.17.10"
-  nupfIP2: "192.168.18.10"
+  nupfIP1Gw: "192.100.17.10"
+  nupfIP2: "192.100.18.10"
   nupfIP2netmask: "16"
-  nupfIP2Gw: "192.168.18.10"
+  nupfIP2Gw: "192.100.18.10"
   hostInterface: "wlp4s0"
 
 config:
@@ -79,12 +79,12 @@ config:
   nssaiSst0: 1 # should match with SMF information
   nssaiSd0: "1"  # should match with SMF information
   dnn0: "oai" # should match with SMF information
-  spgwc0IpAdd: "192.168.16.10" # SMF ip-address incase NRF is not used to initiate a PFCP session
+  spgwc0IpAdd: "192.100.16.10" # SMF ip-address incase NRF is not used to initiate a PFCP session
   bypassUlPfcpRules: "no"
   enable5GFeatures: "yes" # This will make SPGWU to function as 5G UPF, if set no then it will work for 4G
   registerNRF: "yes" 
   useFqdnNrf: "no"  # use FQDN to resolve nrf ip-address 
-  nrfIpv4Add: "192.168.11.10" # set it if nrf FQDN can not be resolved
+  nrfIpv4Add: "192.100.11.10" # set it if nrf FQDN can not be resolved
   nrfPort: "80"
   nrfApiVersion: "v1" 
   nrfFqdn: "oai-nrf-svc" # make sure this can be resolved by container dns

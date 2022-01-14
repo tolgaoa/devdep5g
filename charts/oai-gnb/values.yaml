@@ -8,7 +8,7 @@ namespace: "oai"
 
 nfimage:   # image name either locally present or in a public/private repository
   registry: local
-  repository: tolgaomeratalay/oai-gnb           ## dockerhub rdefosseoai/oai-gnb  
+  repository: tolgaomeratalay/oai-gnb          ## dockerhub rdefosseoai/oai-gnb  
   version: latest # image tag
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
@@ -59,10 +59,10 @@ start:
  
 multus:    # needed when gnB service will run on another interface rather than traditional eth0
   create: true
-  ipadd: "192.168.20.10"
+  ipadd: "192.100.20.10"
   netmask: "16"
-  hostInterface: "wlp4s0"
-  gateway: "192.168.10.1"
+  hostInterface: "eno2np1"
+  gateway: "192.100.10.1"
 
 config:
   timeZone: "Europe/Paris"
@@ -76,11 +76,11 @@ config:
   nssaiSst: "1"  #currently only 4 standard values are allowed 1,2,3,4 
   nssaiSd0: "00007b"    #values in hexa-decimal format
   nssaiSd1: "00007b"  
-  amfIpAddress: "192.168.15.10"  # amf ip-address currently we can not provide the amf service name to be used by gNB
+  amfIpAddress: "192.100.15.10"  # amf ip-address currently we can not provide the amf service name to be used by gNB
   gnbNgaIfName: "net1"   #ngap interface
-  gnbNgaIpAddress: "192.168.20.10"
+  gnbNgaIpAddress: "192.100.20.10"
   gnbNguIfName: "net1"   #gtu interface for upf/spgwu
-  gnbNguIpAddress: "192.168.20.10"
+  gnbNguIpAddress: "192.100.20.10"
   useAdditionalOptions: "--sa -E --rfsim"
 
 persistence:
