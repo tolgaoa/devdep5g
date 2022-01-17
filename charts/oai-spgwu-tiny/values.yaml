@@ -56,7 +56,6 @@ multus:
   nupfIP2: "192.100.18.10"
   nupfIP2netmask: "16"
   nupfIP2Gw: "192.100.18.10"
-  hostInterface: "wlp4s0"
 
 config:
   gwId: 1 # no need to configure
@@ -75,7 +74,7 @@ config:
   pgwSgiIf: "net1"  # net1 if gNB is outside the cluster network and multus creation is true else eth0 (important because it sends the traffic towards internet)
   netUeNatOption: "yes" # yes to get the traffic out towards internet
   gtpExtentionHeaderPresent: "yes" # needed for 5G (Always true)
-  netUeIp: "12.1.0.0/16"  # The range in which UE ip-address will be allocated should be configured the same in SMF
+  netUeIp: "12.2.1.0/24"  # The range in which UE ip-address will be allocated should be configured the same in SMF
   nssaiSst0: 1 # should match with SMF information
   nssaiSd0: "1"  # should match with SMF information
   dnn0: "oai" # should match with SMF information
