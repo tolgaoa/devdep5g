@@ -1,6 +1,6 @@
 # OAI 5GC and RAN Deployment in K8s 
  
-This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster. 
+This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale. [WCNC 2022] 
 
 The steps are given below from start to finish in order to replicate a sample deployment.
 
