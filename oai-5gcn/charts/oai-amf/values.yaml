@@ -11,7 +11,7 @@ image:
   #repository: image-registry.openshift-image-registry.svc:5000/PROJECT/oai-amf
   #version: "TAG"
   repository: tolgaomeratalay/oai-amf
-  version: "4.1"
+  version: 4.1  #4.1 for stable
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 
@@ -92,12 +92,13 @@ config:
   nrffqdn: "nrf"
   nrfPort: 80
   nrfApiVersion: "v1"
+  ausffqdn: "oai-ausf"
   ausfIpv4Addr: "127.0.0.1"
   ausfPort: 80
   ausfApiVersion: "v1"
   nfRegistration: "yes"
   smfSelection: "yes"
-  mySqlServer: "10.42.8.106"
+  mySqlServer: "10.42.0.197"
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"

@@ -10,8 +10,8 @@ image:
   registry: local
   #repository: image-registry.openshift-image-registry.svc:5000/PROJECT/oai-spgwu-tiny
   #version: TAG
-  repository: stojadin/oai-spgwu-tiny
-  version: gtp-ext-header
+  repository: stojadin/oai-spgwu-tiny #tolgaomeratalay/oai-spgwu-tiny
+  version: gtp-ext-header #5.0.0
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 
@@ -68,9 +68,29 @@ config:
   nrfPort: "80"
   nrfApiVersion: "v1"
   registerNRF: "yes"
+
+
+
   #mcc: "208"
   #mnc: "95"
-  #tac: "0xa000"
+  #tac: "0x00a000"
+  #gwId: 1
+  #realm: "3ggp.org"
+  #s1uThreads: 1
+  #sxThreads: 1
+  #sgiThreads: 1
+  #threadS1Upriority: 98
+  #threadSXpriority: 98
+  #threadSGIpriority: 98
+  #gtpExtentionHeaderPresent: "yes"
+  #nssaiSst0: 222
+  #nssaiSd0: 123
+  #dnn: "oai"
+  #bypassUlPfcpRules: "no"
+  #enable5GFeatures: "yes"
+  #useFqdnNrf: "no"
+  #nrfFqdn: "oai-nrf-svc"
+  #upfFqdn5g: "oai-spgwu-tiny-svc"
 
 persistence:
   # make it true for the first time when you want to create persistance volume 

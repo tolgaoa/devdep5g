@@ -5,7 +5,7 @@ metadata:
 spec:      
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
-  storageClassName: nfs
+  storageClassName: standard
   resources:
     requests:
       storage: {{ .Values.persistence.size | quote }}

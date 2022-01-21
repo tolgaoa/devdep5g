@@ -24,11 +24,11 @@ spec:
       containers:
       - name: gnb
         #image: image-registry.openshift-image-registry.svc:5000/oai/oai-gnb:develop-nr
-        image: tolgaomeratalay/oaiorbgnb:latest
+        image: tolgaomeratalay/oai-build:latest
         imagePullPolicy: Always
-        # command:
-        #   - /bin/sleep
-        #   - infinity
+        command:
+          - /bin/sleep
+          - infinity
         securityContext:
           privileged: true
         ports:

@@ -222,6 +222,11 @@ spec:
               configMapKeyRef:
                 name: {{ .Chart.Name }}-configmap
                 key: ausfPort
+          - name: AUSF_FQDN
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: ausffqdn
           - name: AUSF_API_VERSION
             valueFrom:
               configMapKeyRef:

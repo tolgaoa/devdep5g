@@ -5,7 +5,7 @@ namespace: "oaicicd-tmp"
 image:
   registry: local
   repository: tolgaomeratalay/gnbsim
-  version: latest
+  version: "2.2" #latest
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -13,7 +13,7 @@ imagePullSecrets: []
 serviceAccount:
   create: true
   annotations: {}
-  name: "oai-gnbsim-sa89"
+  name: "oai-gnbsim-sa10"
 
 podSecurityContext:
   runAsUser: 0
@@ -30,33 +30,33 @@ start:
   gnbsim: true
 
 multus:
-  ngapIPadd: "192.168.16.89"
+  ngapIPadd: "192.168.16.10"
   ngapNetmask: "16"
   ngapGateway: "192.168.10.1"
-  gtpIPadd: "192.168.17.89"
+  gtpIPadd: "192.168.17.10"
   gtpNetmask: "16"
   gtpGateway: "192.168.10.1"
 
 config:
   mcc: "208"
   mnc: "95"
-  gnbid: "89"
+  gnbid: "10"
   tac: "0x00a000"
   sst: "222"
   sd: "00007b"
   pagingdrx: "v32"
   ranuengapid: "0"
   imeisv: "35609204079514"
-  msin: "1000000089"
+  msin: "1000000010"
   routingindicator: "1234"
   protectionscheme: "null"
-  key: "0C1A34601D4F07677303652C04625089"
+  key: "0C1A34601D4F07677303652C04625010"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "default"
   url: "http://192.168.76.205:8000"
   nrcellid: "1"
   ngappeeraddr: "192.168.12.10"
-  gtpulocaladdr: "192.168.16.89"
+  gtpulocaladdr: "192.168.16.10"
   gtpuifname: "net2"
   usefqdn: "no"
 persistence:

@@ -23,8 +23,15 @@ spec:
         runAsGroup: 0
       containers:
       - name: dnn
-        image: ubuntu:bionic
-        command: ["/bin/sleep", "3650d"]
+        image: tolgaomeratalay/oai-dnn:latest
+        #command: ['bash', '-c', "iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE; ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;"]
+        #command: ["/bin/bash"]
+        #args: ["-c", "iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE;ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;"]
+        #  - iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE;
+        #  - ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;
+        command:
+          - sleep
+          - infinity
         imagePullPolicy: Always
         securityContext:
           privileged: true

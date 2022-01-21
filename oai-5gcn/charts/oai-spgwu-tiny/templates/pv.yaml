@@ -8,10 +8,12 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
-  storageClassName: nfs
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  nfs:
-    path: {{ .Values.persistence.volumePath | quote }}
-    server: 192.168.2.73
+  storageClassName: standard
+  hostPath:
+    path: "/home/nsslm/sharedpvupf"
+  #mountOptions:
+  #  - hard
+  #  - nfsvers=4.1
+  #nfs:
+  #  path: {{ .Values.persistence.volumePath | quote }}
+  #  server: 192.168.2.73

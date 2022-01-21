@@ -12,6 +12,8 @@ supfc1=10
 supfc2=40
 gnbsimc=10
 
+nousers=$1
+
 for ((nrf=1;nrf<=1;nrf++))
 do
 	#----------------------------------NRF Deployment----------------------------------------------------------
@@ -62,7 +64,7 @@ do
 		helm install upf$supfc1 oai-spgwu-tiny/ -n oai
 		kubectl wait --for=condition=available --timeout=200s deployment/oai-spgwu-tiny$supfc1 -n oai
 
-		for ((sim=1;sim<=80;sim++))
+		for ((sim=1;sim<=nousers;sim++))
 		do
 
 			sed -i "/name/c\name: oai-gnbsim$gnbsimc" oai-gnbsim/Chart.yaml
@@ -132,3 +134,4 @@ do
 	done
 	((nrfc+=1))
 done
+

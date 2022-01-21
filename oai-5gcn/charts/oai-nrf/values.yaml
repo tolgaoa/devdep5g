@@ -11,8 +11,8 @@ image:
   registry: local
   #repository: image-registry.openshift-image-registry.svc:5000/PROJECT/oai-nrf
   #version: TAG
-  repository: stojadin/oai-nrf
-  version: develop
+  repository: stojadin/oai-nrf #stojadin/oai-nrf
+  version: develop #develop
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 

@@ -9,10 +9,12 @@ spec:
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  nfs:
-    path: {{ .Values.persistence.volumePath | quote }}
-    server: 192.168.2.73
+  storageClassName: standard
+  hostPath:
+    path: "/home/nsslm/sharedpvmysql"
+  #mountOptions:
+  #  - hard
+  #  - nfsvers=4.1
+  #nfs:
+    #path: {{ .Values.persistence.volumePath | quote }}
+    #server: 192.168.2.73

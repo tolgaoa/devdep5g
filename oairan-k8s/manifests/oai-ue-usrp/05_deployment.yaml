@@ -24,9 +24,11 @@ spec:
       containers:
       - name: ue
         #image: image-registry.openshift-image-registry.svc:5000/oai/oai-ue
-        image: tolgaomeratalay/oaiorbnrue:latest
+        image: tolgaomeratalay/oai-build:latest
         imagePullPolicy: Always
-        #command: ['sh', '-c', 'sleep 6000']
+        command: 
+          - /bin/sleep
+          - infinity
         securityContext:
           privileged: true
         ports:
