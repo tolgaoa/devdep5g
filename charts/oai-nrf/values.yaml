@@ -9,8 +9,8 @@ namespace: "oai"
 # NF image
 nfimage:
   registry: local
-  repository: tolgaomeratalay/oai-nrf
-  version: "6.0"
+  repository: rdefosseoai/oai-nrf #tolgaomeratalay/oai-nrf
+  version: develop #"6.0"
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 

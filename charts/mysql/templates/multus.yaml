@@ -1,0 +1,21 @@
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-{{ .Values.namespace }}-net1
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "macvlan",
+      "master": "eno2np1",
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.nmysqlIP "/" .Values.multus.nmysqlIPnetmask | nospace | quote }},
+                        "gateway": {{- cat .Values.multus.nmysqlIPGw | quote }}
+                
+        ]
+      }
+    }'

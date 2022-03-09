@@ -8,8 +8,8 @@ namespace: "oai"
 
 nfimage:
   registry: local
-  repository:  tolgaomeratalay/oai-udr # image name either locally present or in a public/private repository
-  version: "6.0" # image tag
+  repository: rdefosseoai/oai-udr # tolgaomeratalay/oai-udr # image name either locally present or in a public/private repository
+  version: develop #"6.0" # image tag
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -59,7 +59,8 @@ config:
   udrInterfaceHttp1PortForNudr: "80"
   udrInterfaceHttp2PortForNudr: "8080"
   udrApiVersion: "v1"
-  mySqlServer: "mysql"
+  #mySqlServer: "192.100.10.10"
+  mySqlServer: "10.9.0.148"
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"

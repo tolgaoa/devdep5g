@@ -8,8 +8,8 @@ namespace: "oai"
 
 nfimage:
   registry: local
-  repository: tolgaomeratalay/oai-udm          ## rdefosseoai/oai-udm # image name either locally present or in a public/private repository
-  version: "6.0"             ## latest/v1.1.2 stable and develop for experimental
+  repository: rdefosseoai/oai-udm #tolgaomeratalay/oai-udm          ## rdefosseoai/oai-udm # image name either locally present or in a public/private repository
+  version: latest #"6.0"             ## latest/v1.1.2 stable and develop for experimental
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 
@@ -62,7 +62,7 @@ config:
   sbiPort: "80"
   udmVersionNb: "v1"
   useFqdnDns: "no"
-  udrIpAddress: "192.168.12.10"
+  udrIpAddress: "192.100.12.10"
   udrPort: "80"
   udrVersionNb: "v1"
   udrFqdn: "oai-udr-svc"
@@ -81,9 +81,9 @@ resources:
    cpu: 100m
    memory: 256Mi
 
-readinessProbe: true
+readinessProbe: false
 
-livenessProbe: true
+livenessProbe: false
 
 terminationGracePeriodSeconds: 30
 

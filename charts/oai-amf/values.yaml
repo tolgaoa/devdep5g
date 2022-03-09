@@ -7,8 +7,8 @@ namespace: "oai"
 
 nfimage:  # image name either locally present or in a public/private repository
   registry: local
-  repository: tolgaomeratalay/oai-amf           ## dockerhub rdefosseoai/oai-amf 
-  version: "6.0" # image tag   ### v1.1.0  develop for experimental features
+  repository: rdefosseoai/oai-amf #tolgaomeratalay/oai-amf           ## dockerhub rdefosseoai/oai-amf 
+  version: develop #"6.0" # image tag   ### v1.1.0  develop for experimental features
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 
@@ -97,14 +97,15 @@ config:
   nrfApiVersion: "v1"
   nrfFqdn: "oai-nrf-svc"  # amf communicates using FQDN
   ausfFqdn: "oai-ausf-svc"
-  externalAusf: "no"
+  externalAusf: "yes"
   ausfIpv4Addr: "192.100.14.10" # configure only if there is an external AUSF else it will communicate with mysql directly
   ausfPort: 80
   ausfApiVersion: "v1"
   nfRegistration: "yes" 
   smfSelection: "yes" 
   useFqdnDns: "no"  # Important to avoid mentioning any static ip-address
-  mySqlServer: "10.42.0.12" # used only if not using AUSF
+  #mySqlServer: "192.100.10.10" # used only if not using AUSF
+  mySqlServer: "10.9.0.148" # used only if not using AUSF
   mySqlUser: "root" # used only if not using AUSF
   mySqlPass: "linux" # used only if not using AUSF
   mySqlDb: "oai_db" # used only if not using AUSF

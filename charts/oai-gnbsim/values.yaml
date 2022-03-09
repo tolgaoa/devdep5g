@@ -36,7 +36,6 @@ multus:
   gtpIPadd: "192.100.20.10"
   gtpNetmask: "16"
   gtpGateway: "192.100.10.1"
-
 config:
   mcc: "208"
   mnc: "95"
@@ -47,10 +46,10 @@ config:
   pagingdrx: "v32"
   ranuengapid: "0"
   imeisv: "35609204079514"
-  msin: "1000000010"
+  msin: "0000000031"
   routingindicator: "1234"
   protectionscheme: "null"
-  key: "0C1A34601D4F07677303652C04625010"
+  key: "0C0A34601D4F07677303652C0462535B"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "default"
   url: "http://192.100.25.10:8000"
