@@ -17,7 +17,7 @@ tcpdumpimage:
   repository: corfr/tcpdump
   version: latest
   #pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 
 ## good to use when pulling images from docker-hub mention 
@@ -29,7 +29,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-smf-sa"
+  name: "oai-smf-sa10"
 
 podSecurityContext:
   runAsUser: 0
@@ -51,9 +51,9 @@ start:
 # create multus only if there is a need to have seperate N4 and Nsmf interfaces
 multus:
   create: true
-  nsmfIP: "192.100.16.10"
+  nsmfIPmain: "10.100.16.10"
   nsmfIPnetmask: "16"
-  nsmfIPGw: "192.100.10.1"
+  nsmfIPGw: "10.100.10.1"
 
 config:
   instance: "0"
@@ -63,24 +63,24 @@ config:
   smfInterfacePortForSBI: "80"
   smfInterfaceHttp2PortForSBI: "9090"
   smfApiVersion: "v1"
-  dnsIpv4Address: "192.100.10.1" # configure the dns for UE don't use Kubernetes DNS
-  dnsSecIpv4Address: "192.100.10.1" # configure the dns for UE don't use Kubernetes DNS
+  dnsIpv4Address: "10.100.10.1" # configure the dns for UE don't use Kubernetes DNS
+  dnsSecIpv4Address: "10.100.10.1" # configure the dns for UE don't use Kubernetes DNS
   registerNrf: "yes" # if wants to use NRF registry and discovery
   discoverUpf: "yes" # discovery UPF 
   useFqdnDns: "no" # use only when the DNS can resolve FQDN of other network functions
-  amfIpv4Address: "192.100.15.10" # configure if NRF is not used 
+  amfIpv4Address: "10.100.15.10"
   amfPort: "80" # configure if NRF is not used
   amfApiVersion: "v1" # configure if NRF is not used
   amfFqdn: "oai-amf-svc" # configure if NRF is not used
-  udmIpv4Address: "192.100.13.10" # configure if UDM is used
+  udmIpv4Address: "10.100.13.10"
   udmPort: "80" # configure if UDM is used
   udmApiVersion: "v2" # configure if UDM is used
   udmFqdn: "localhost" # configure if UDM is used
-  nrfIpv4Address: "192.100.11.10" # configure if NRF can only be reached using ip-address
+  nrfIpv4Address: "10.100.11.10"
   nrfPort : "80" 
   nrfApiVersion: "v1"
   nrfFqdn: "oai-nrf-svc" # configure if NRF can be reached using Kubernetes service
-  upfIpv4Address: "192.100.17.10" # configure if NRF is not used 
+  upfIpv4Address: "10.100.17.10"
   upfFqdn0: "oai-spgwu-svc" # configure if NRF is not used and useFqdnDns is true
     
 ## currently only used by tcpdump container to store the tcpdump, this volume will be shared between all the network functions

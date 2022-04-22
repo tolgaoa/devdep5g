@@ -27,7 +27,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-udr-sa"
+  name: "oai-udr-sa10"
 
 podSecurityContext:
   runAsUser: 0
@@ -46,8 +46,8 @@ start:
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
 
 multus:
-  nudrIP: "192.100.12.10"
-  nudrIPGw: "192.100.10.1"
+  nudrIPmain: "10.100.12.10"
+  nudrIPGw: "10.100.10.1"
   nudrIPnetmask: "16"
 
 
@@ -59,8 +59,7 @@ config:
   udrInterfaceHttp1PortForNudr: "80"
   udrInterfaceHttp2PortForNudr: "8080"
   udrApiVersion: "v1"
-  #mySqlServer: "192.100.10.10"
-  mySqlServer: "10.9.0.148"
+  mySqlServer: "10.95.5.29"
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"

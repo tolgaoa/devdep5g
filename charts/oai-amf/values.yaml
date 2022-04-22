@@ -10,7 +10,7 @@ nfimage:  # image name either locally present or in a public/private repository
   repository: rdefosseoai/oai-amf #tolgaomeratalay/oai-amf           ## dockerhub rdefosseoai/oai-amf 
   version: develop #"6.0" # image tag   ### v1.1.0  develop for experimental features
   # pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 tcpdumpimage:
   registry: local
@@ -30,7 +30,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-amf-sa"
+  name: "oai-amf-sa10"
 
 podSecurityContext:
   runAsUser: 0
@@ -54,9 +54,9 @@ start:
 
 multus:
   create: true
-  namfIP: "192.100.15.10"
+  namfIPmain: "10.100.15.10"
   namfIPnetmask: "16"
-  namfIPGw: "192.100.10.1"
+  namfIPGw: "10.100.10.1"
 
 config:
   instance: "0"
@@ -85,27 +85,26 @@ config:
   amfInterfaceNameForNGAP: "net1" # If multus creation is true then net1 else eth0
   amfInterfaceNameForN11: "net1"  # Service based interface
   smfInstanceId0: "1"  # Only configure if not using NRF
-  smfIpv4Addr0: "192.100.16.10" # Only configure if not using NRF       
+  smfIpv4Addr0: "10.100.16.10"
   smfHttpVersion0: "v1" # Only configure if not using NRF
   smfFqdn0: "localhost" # Only configure if not using NRF
   smfInstanceId1: "2"  # Currently disabled in the amf.conf no need to configure
-  smfIpv4Addr1: "192.100.16.40" # Currently disabled in the amf.conf no need to configure
+  smfIpv4Addr1: "10.100.16.40"
   smfHttpVersion1: "v1" # Currently disabled in the amf.conf no need to configure
   smfFqdn1: "localhost" # Currently disabled in the amf.conf no need to configure
-  nrfIpv4Addr: "192.100.11.10" 
+  nrfIpv4Addr: "10.100.11.10"
   nrfPort: 80
   nrfApiVersion: "v1"
   nrfFqdn: "oai-nrf-svc"  # amf communicates using FQDN
   ausfFqdn: "oai-ausf-svc"
   externalAusf: "yes"
-  ausfIpv4Addr: "192.100.14.10" # configure only if there is an external AUSF else it will communicate with mysql directly
+  ausfIpv4Addr: "10.100.14.10"
   ausfPort: 80
   ausfApiVersion: "v1"
   nfRegistration: "yes" 
   smfSelection: "yes" 
   useFqdnDns: "no"  # Important to avoid mentioning any static ip-address
-  #mySqlServer: "192.100.10.10" # used only if not using AUSF
-  mySqlServer: "10.9.0.148" # used only if not using AUSF
+  mySqlServer: "10.95.5.29"
   mySqlUser: "root" # used only if not using AUSF
   mySqlPass: "linux" # used only if not using AUSF
   mySqlDb: "oai_db" # used only if not using AUSF

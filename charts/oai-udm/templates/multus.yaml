@@ -7,13 +7,13 @@ spec:
   config: '{ 
       "cniVersion": "0.3.0",
       "type": "macvlan",
-      "master": "eno2np1",
+      "master": "ens3",
       "mode": "bridge",
       "ipam": {
         "type": "static",
         "addresses": [
                 {
-                        "address": {{- cat .Values.multus.nudmIP "/" .Values.multus.nudmIPnetmask | nospace | quote }},
+                        "address": {{- cat .Values.multus.nudmIPmain "/" .Values.multus.nudmIPnetmask | nospace | quote }},
                         "gateway": {{- cat .Values.multus.nudmIPGw | quote }}
                 }
         ]

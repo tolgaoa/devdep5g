@@ -23,15 +23,6 @@ spec:
 {{- with .Values.podLabels }}
 {{ toYaml . | indent 8 }}
 {{- end }}
-#{{- with .Values.podAnnotations }}
-      annotations:
-        k8s.v1.cni.cncf.io/networks: >-
-          [{
-                  "name": "{{ .Chart.Name }}-{{ .Values.namespace }}-net1"
-          }]
-          #{{ toYaml . | indent 8 }}
-          #{{- end }}
-
   template:
     metadata:
       labels:

@@ -12,7 +12,7 @@ nfimage:
   repository: rdefosseoai/oai-nrf #tolgaomeratalay/oai-nrf
   version: develop #"6.0"
   # pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 tcpdumpimage:
   registry: local
@@ -30,7 +30,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-nrf-sa"
+  name: "oai-nrf-sa10"
 
 podSecurityContext:
   runAsUser: 0
@@ -53,8 +53,8 @@ start:
 
 
 multus:
-  nrfIpNg: "192.100.11.10"
-  nrfGw: "192.100.10.1"
+  nrfIpNg: "10.100.11.10"
+  nrfGw: "10.100.10.1"
   nrfNetmaskNg: "16"  
 
 config:

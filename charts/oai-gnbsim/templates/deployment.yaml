@@ -140,6 +140,11 @@ spec:
               configMapKeyRef:
                 name: {{ .Chart.Name }}-configmap
                 key: usefqdn
+          - name: DEREG_AFTER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: deregafter
 #        command: ["/bin/bash","-c"]
 #        args: ["sleep infinity"]
       dnsPolicy: ClusterFirst

@@ -5,15 +5,14 @@ namespace: "oaicicd-tmp"
 image:
   registry: local
   repository: tolgaomeratalay/gnbsim
-  version: latest
+  version: nhbodua
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 
 serviceAccount:
   create: true
-  annotations: {}
-  name: "oai-gnbsim-sa10"
+  name: "oai-gnbsim-sa60"
 
 podSecurityContext:
   runAsUser: 0
@@ -30,41 +29,42 @@ start:
   gnbsim: true
 
 multus:
-  ngapIPadd: "192.100.19.10"
+  ngapIPadd: "10.100.19.60"
   ngapNetmask: "16"
-  ngapGateway: "192.100.10.1"
-  gtpIPadd: "192.100.20.10"
+  ngapGateway: "10.100.10.1"
+  gtpIPadd: "10.100.20.60"
   gtpNetmask: "16"
-  gtpGateway: "192.100.10.1"
+  gtpGateway: "10.100.10.1"
 config:
   mcc: "208"
   mnc: "95"
-  gnbid: "10"
+  gnbid: "60"
   tac: "0x00a000"
   sst: "222"
   sd: "00007b"
   pagingdrx: "v32"
   ranuengapid: "0"
   imeisv: "35609204079514"
-  msin: "0000000031"
+  msin: "0000000060"
   routingindicator: "1234"
   protectionscheme: "null"
-  key: "0C0A34601D4F07677303652C0462535B"
+  key: "0C0A34601D4F07677303652C04625360"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "default"
-  url: "http://192.100.25.10:8000"
+  url: "http://10.100.25.10:8000"
   nrcellid: "1"
-  ngappeeraddr: "192.100.15.10"
-  gtpulocaladdr: "192.100.20.10"
-  gtpuifname: "net2"
+  ngappeeraddr: "10.100.15.10"
+  gtpulocaladdr: "10.100.19.60"
+  gtpuifname: "net1"
   usefqdn: "no"
+  deregafter: "360000"
 persistence:
   enabled: false
 
 resources: 
   requests:
-    cpu: 100m
-    memory: 256Mi
+    cpu: 300m
+    memory: 2560Mi
 
 nodeSelector: {}
 

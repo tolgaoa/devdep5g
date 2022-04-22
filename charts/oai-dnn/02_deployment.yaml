@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-dnn11
+  name: oai-dnn60
   labels:
-    app: oai-dnn11
+    app: oai-dnn60
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-dnn11
+      app: oai-dnn60
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-dnn11
+        app: oai-dnn60
       annotations:
-        k8s.v1.cni.cncf.io/networks: dnn-net1
+        k8s.v1.cni.cncf.io/networks: dnn-net60
     spec:
       securityContext:
         runAsUser: 0
         runAsGroup: 0
       containers:
       - name: dnn
-        image: tolgaomeratalay/oai-dnn:latest
+        image: tolgaomeratalay/oai-dnn:zoom
         #command: ['bash', '-c', "iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE; ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;"]
         #command: ["/bin/bash"]
         #args: ["-c", "iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE;ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;"]
@@ -32,7 +32,7 @@ spec:
         command:
           - sleep
           - infinity
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
       dnsPolicy: ClusterFirst
