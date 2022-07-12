@@ -8,8 +8,8 @@ namespace: "oai"
 
 nfimage:
   registry: local
-  repository: stojadin/oai-spgwu-tiny #rdefosseoai/oai-spgwu-tiny 
-  version: gtp-ext-header # v1.1.2  
+  repository: rdefosseoai/oai-spgwu-tiny #stojadin/oai-spgwu-tiny
+  version: v1.1.2 #gtp-ext-header 
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
