@@ -22,10 +22,11 @@ To be able to accurately reflect the load on the user plane of the 5GC, real tra
 
 ![Alt text](traffictypes.png?raw=true)
 
-------------------------------------------------------------------------------
+
 **Note**
+
 All the OAI 5G core components are v1.3.0 or newer.
-------------------------------------------------------------------------------
+
 
 ## Deploying the Cluster and Running the Users
 
@@ -33,10 +34,11 @@ All the OAI 5G core components are v1.3.0 or newer.
 
 In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engine (RKE) which can be installed following this [link](https://rancher.com/docs/rke/latest/en/installation/). Certain RKE versions can only setup certain versions of Kubernetes. We used rke 1.2.11 with Kubernetes 1.19.
 
-------------------------------------------------------------------------------
+
 **Warning**
+
 Using Ubuntu 22.04 might cause issues with the SSH server used during the RKE cluster setup process
-------------------------------------------------------------------------------
+
 
 Once the RKE binary is setup, the [cluster.yaml](cluster.yml) file is used in order to setup the K8s cluster. The given file shows how to configure multiple nodes to be used in the same cluster. In order to adapt the yaml to one's own environment, change the following parameters:
 
