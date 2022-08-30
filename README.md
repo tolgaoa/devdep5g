@@ -14,8 +14,18 @@ Our testbed is comprised of a PowerEdge T640 Server with 2 x Intel Xeon Gold 624
 ------------------------------------------------------------------------------
 ## Feature Set
 
+To emulate 5G network slices we utilize the OAI 5G core and the gNBSIM entity to create end-to-end packet data unit (PDU) sessions with multiple users. The deployment scheme is given below.
 
+![Alt text](oaiflow.png?raw=true)
 
+To be able to accurately reflect the load on the user plane of the 5GC, real traffic patterns are used from actual use cases. To capture the traffic patterns pertaining to each use case, we use an OpenWRT router and filter out the downlink and uplink packets related to the desired connection. The utilized patterns are given below.
+
+![Alt text](traffictypes.png?raw=true)
+
+------------------------------------------------------------------------------
+**Note**
+All the OAI 5G core components are v1.3.0 or newer.
+------------------------------------------------------------------------------
 
 ## Deploying the Cluster and Running the Users
 
