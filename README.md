@@ -1,8 +1,14 @@
 # OAI 5GC and RAN Deployment in K8s 
  
-This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale. Various stress tests and scaling experiments are conducted [WCNC 2022] 
+This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale in order emulate various user traffic patterns pertaining to real-life use cases. [Globecom 2022] 
 
-The steps are given below from start to finish in order to replicate a sample deployment.
+------------------------------------------------------------------------------
+
+The infrastructure that we used for the large-scale deployments in given below.
+
+![Alt text](infra.png?raw=true)
+
+Our testbed is comprised of a PowerEdge T640 Server with 2 x Intel Xeon Gold 6240R 2.4G CPUs, 768 GB RAM, 2TB disk space and two Precision 7920 Tower servers with 2 x Intel Xeon Gold 5218R 2.1GHz CPUs, 512GB RAM, 1TB disk space.
 
 ------------------------------------------------------------------------------
 
