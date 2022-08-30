@@ -105,15 +105,25 @@ kubectl create ns oai
 
 From the oai-5gcn/charts folder execute the following,
 ```
-$ helm install <name-of-mysql-deployment> mysql/ -n oai
+$ helm install mysql5 charts/mysql/ -n oai
 ```
-which will first deploy the MYSQL pod. Once this has finished deploying change the MYSQL server IP parameter in AMF [values.yaml](oai-5gcn/charts/oai-amf/values.yaml). Next there are 8 different scripts that will automate the deployment of various slicing configurations. 
-```
-$ ./slice_conf<x>.sh
-```
- 
+One thing to note is that mysql by default allows no more than 151 connections at the same time. Furthermore, to preserve stability of the 5G user connections, no more than 50 users are recommended per slice. For this reason, in the next step, do not set the value to more than 50.
 
+To start running the experiments, simply run. Before running, you have the option of selecting which type of slice you want to create. As mentioned in the features, there are three different user types available. To select, simply leave the line corresponding to the user type you want uncommented and comment out all the other ones.
 
+The "run_all.sh" script takes five values as input:
+1. Number of users to start 
+2. Number of aggregations to perform on the same user. (!! This is provided as an option, however, aggregation is unstable and does not yield linear patterns in terms of traffic load)
+3. Number of rounds to repeat the experiment.
+4. Name of the dnn image (DO NOT CHANGE)
+5. Name of the gnbsim image (DO NOT CHANGE)
+```
+$ ./run_all.sh
+```
+This script will execute 3 sub-scripts in the /charts folder.
+1. "slice_confxl_nodeplog.sh" which will instantiate the slices. 
+2. "start_traffic_cm.sh" will start the UDP clients both in the uplink and downlink direction. Run throughput experiments and log them. Measure the compute patterns during different traffic loads.
+3. "undeploy_all.sh" will undeploy the slices.
  
  
  
