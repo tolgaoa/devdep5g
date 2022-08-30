@@ -1,0 +1,99 @@
+nodes:
+- address: 192.168.2.29
+  internal_address: 172.16.1.206
+  port: "22" 
+  role:
+  - controlplane
+  - etcd
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem" 
+- address: 192.168.2.30                              
+  internal_address: 172.16.1.194
+  port: "22" 
+  role:
+  - controlplane
+  - etcd
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.35                              
+  internal_address: 172.16.1.65
+  port: "22" 
+  role:
+  - controlplane
+  - etcd
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.33
+  internal_address: 172.16.1.167
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.36
+  internal_address: 172.16.1.60
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.37
+  internal_address: 172.16.1.61
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.46
+  internal_address: 172.16.1.168
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.48
+  internal_address: 172.16.1.105
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.50
+  internal_address: 172.16.1.251
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+- address: 192.168.2.66
+  internal_address: 172.16.1.26
+  hostname_override: "workerLarge"
+  port: "22"
+  role:
+  - worker
+  user: ubuntu
+  ssh_key_path: "~/.ssh/key.pem"
+services:
+  kube-api:
+    service_cluster_ip_range: 10.43.0.0/16
+    pod_security_policy: false
+    always_pull_images: false
+  kube-controller:
+    cluster_cidr: 10.42.0.0/16
+    service_cluster_ip_range: 10.43.0.0/16
+  kubelet:
+    cluster_domain: cluster.local
+    cluster_dns_server: 10.43.0.10
+    fail_swap_on: false
+network:
+  plugin: canal
+  #mtu: 9000
+authentication:
+  strategy: x509
+ssh_key_path: "~/.ssh/key.pem"
+ssh_agent_auth: false
+authorization:
+  mode: rbac
+ignore_docker_version: false
+kubernetes_version: "v1.19.9-rancher1-1"
+cluster_name: "oai"
