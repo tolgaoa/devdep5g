@@ -1,0 +1,332 @@
+12:47:54.496638 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:47:54.499452 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:48:04.183546 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 693730933:693731203, ack 591429144, win 21922, options [nop,nop,TS val 160413 ecr 1537925914], length 270
+12:48:04.261427 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 270, win 1446, options [nop,nop,TS val 1537940842 ecr 160413], length 0
+12:48:04.266192 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 270:516, ack 1, win 21922, options [nop,nop,TS val 160421 ecr 1537940842], length 246
+12:48:04.303056 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 516, win 1446, options [nop,nop,TS val 1537940884 ecr 160421], length 0
+12:48:04.314547 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 1:279, ack 516, win 1446, options [nop,nop,TS val 1537940897 ecr 160421], length 278
+12:48:04.320278 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 279, win 21853, options [nop,nop,TS val 160426 ecr 1537940897], length 0
+12:48:07.542979 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 516:781, ack 279, win 21922, options [nop,nop,TS val 160749 ecr 1537940897], length 265
+12:48:07.581761 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 279:557, ack 781, win 1446, options [nop,nop,TS val 1537944163 ecr 160749], length 278
+12:48:07.584740 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 557, win 21853, options [nop,nop,TS val 160753 ecr 1537944163], length 0
+12:49:07.124434 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 781:1046, ack 557, win 21922, options [nop,nop,TS val 166708 ecr 1537944163], length 265
+12:49:07.162763 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 557:835, ack 1046, win 1446, options [nop,nop,TS val 1538003744 ecr 166708], length 278
+12:49:07.167967 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 835, win 21853, options [nop,nop,TS val 166712 ecr 1538003744], length 0
+12:49:12.320599 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:49:12.337823 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:49:13.525365 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 835:2283, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.526741 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 2283:3731, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.527377 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 3731:5179, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.527935 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 5179:6627, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.528459 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 6627:8075, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.528935 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 8075:9056, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 981
+12:49:13.529822 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 9056:10504, ack 1046, win 1446, options [nop,nop,TS val 1538010105 ecr 166712], length 1448
+12:49:13.554376 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 2283, win 21843, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555093 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 3731, win 21481, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555095 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 5179, win 21119, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555095 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 6627, win 20757, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555526 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 8075, win 20395, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555527 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 9056, win 20150, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.555527 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 10504, win 19788, options [nop,nop,TS val 167350 ecr 1538010105], length 0
+12:49:13.593001 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 10504:11952, ack 1046, win 1446, options [nop,nop,TS val 1538010173 ecr 167350], length 1448
+12:49:13.595470 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 11952, win 19426, options [nop,nop,TS val 167355 ecr 1538010173], length 0
+12:49:13.595764 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 11952:13400, ack 1046, win 1446, options [nop,nop,TS val 1538010178 ecr 167350], length 1448
+12:49:13.596123 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 13400:14848, ack 1046, win 1446, options [nop,nop,TS val 1538010178 ecr 167350], length 1448
+12:49:13.596542 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 14848:16296, ack 1046, win 1446, options [nop,nop,TS val 1538010178 ecr 167350], length 1448
+12:49:13.598226 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 13400, win 19064, options [nop,nop,TS val 167355 ecr 1538010178], length 0
+12:49:13.598781 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 14848, win 18702, options [nop,nop,TS val 167355 ecr 1538010178], length 0
+12:49:13.599305 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 16296, win 18340, options [nop,nop,TS val 167355 ecr 1538010178], length 0
+12:49:13.600195 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 16296:17744, ack 1046, win 1446, options [nop,nop,TS val 1538010183 ecr 167350], length 1448
+12:49:13.600638 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 17744:19192, ack 1046, win 1446, options [nop,nop,TS val 1538010183 ecr 167350], length 1448
+12:49:13.600982 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 19192:20640, ack 1046, win 1446, options [nop,nop,TS val 1538010183 ecr 167350], length 1448
+12:49:13.610469 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 17744, win 19908, options [nop,nop,TS val 167356 ecr 1538010183], length 0
+12:49:13.611003 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 19192, win 19546, options [nop,nop,TS val 167356 ecr 1538010183], length 0
+12:49:13.612164 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 20640, win 19184, options [nop,nop,TS val 167356 ecr 1538010183], length 0
+12:49:13.631782 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 20640:22088, ack 1046, win 1446, options [nop,nop,TS val 1538010214 ecr 167355], length 1448
+12:49:13.636332 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 22088:23536, ack 1046, win 1446, options [nop,nop,TS val 1538010219 ecr 167355], length 1448
+12:49:13.636699 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 23536:24984, ack 1046, win 1446, options [nop,nop,TS val 1538010219 ecr 167355], length 1448
+12:49:13.640231 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 22088, win 18822, options [nop,nop,TS val 167359 ecr 1538010214], length 0
+12:49:13.643220 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 23536, win 18460, options [nop,nop,TS val 167360 ecr 1538010219], length 0
+12:49:13.645923 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 24984:26432, ack 1046, win 1446, options [nop,nop,TS val 1538010228 ecr 167356], length 1448
+12:49:13.646292 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 26432:27880, ack 1046, win 1446, options [nop,nop,TS val 1538010228 ecr 167356], length 1448
+12:49:13.646622 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 27880:28994, ack 1046, win 1446, options [nop,nop,TS val 1538010228 ecr 167356], length 1114
+12:49:13.687422 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 28994, win 17096, options [nop,nop,TS val 167364 ecr 1538010219], length 0
+12:50:07.805264 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 1046:1311, ack 28994, win 21922, options [nop,nop,TS val 172777 ecr 1538010219], length 265
+12:50:07.845957 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 28994:29272, ack 1311, win 1446, options [nop,nop,TS val 1538064427 ecr 172777], length 278
+12:50:07.852457 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 29272, win 21853, options [nop,nop,TS val 172781 ecr 1538064427], length 0
+12:50:12.992600 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:50:13.000758 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:50:25.258318 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 29272:30720, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.259451 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 30720:32168, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.260010 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 32168:33616, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.261137 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 33616:35064, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.261731 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 35064:36512, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.262347 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 36512:37960, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.262923 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 37960:39408, ack 1311, win 1446, options [nop,nop,TS val 1538081840 ecr 172781], length 1448
+12:50:25.271319 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 30720, win 21843, options [nop,nop,TS val 174523 ecr 1538081840], length 0
+12:50:25.275151 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 32168, win 21481, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.277114 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 33616, win 21119, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.277908 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 35064, win 20757, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.277909 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 36512, win 20395, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.277910 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 37960, win 20033, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.277910 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 39408, win 19671, options [nop,nop,TS val 174524 ecr 1538081840], length 0
+12:50:25.308155 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 39408:40856, ack 1311, win 1446, options [nop,nop,TS val 1538081889 ecr 174523], length 1448
+12:50:25.311347 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 40856:42304, ack 1311, win 1446, options [nop,nop,TS val 1538081894 ecr 174524], length 1448
+12:50:25.312148 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 42304:48096, ack 1311, win 1446, options [nop,nop,TS val 1538081894 ecr 174524], length 5792
+12:50:25.312694 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 40856, win 21843, options [nop,nop,TS val 174528 ecr 1538081889], length 0
+12:50:25.314205 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 42304, win 21481, options [nop,nop,TS val 174528 ecr 1538081894], length 0
+12:50:25.316154 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 48096:49544, ack 1311, win 1446, options [nop,nop,TS val 1538081899 ecr 174524], length 1448
+12:50:25.340352 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 43752, win 21119, options [nop,nop,TS val 174529 ecr 1538081894], length 0
+12:50:25.344998 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174530 ecr 1538081894], length 0
+12:50:25.344999 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174530 ecr 1538081894,nop,nop,sack 1 {46648:48096}], length 0
+12:50:25.345000 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174530 ecr 1538081894,nop,nop,sack 1 {46648:49544}], length 0
+12:50:25.346428 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 49544:50992, ack 1311, win 1446, options [nop,nop,TS val 1538081929 ecr 174528], length 1448
+12:50:25.346817 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 50992:52440, ack 1311, win 1446, options [nop,nop,TS val 1538081929 ecr 174528], length 1448
+12:50:25.351235 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 52440:53888, ack 1311, win 1446, options [nop,nop,TS val 1538081934 ecr 174528], length 1448
+12:50:25.368655 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174532 ecr 1538081894,nop,nop,sack 1 {46648:50992}], length 0
+12:50:25.369121 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174532 ecr 1538081894,nop,nop,sack 1 {46648:52440}], length 0
+12:50:25.374121 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 53888:55336, ack 1311, win 1446, options [nop,nop,TS val 1538081957 ecr 174530], length 1448
+12:50:25.374439 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 55336:56784, ack 1311, win 1446, options [nop,nop,TS val 1538081957 ecr 174530], length 1448
+12:50:25.374774 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174534 ecr 1538081894,nop,nop,sack 1 {46648:53888}], length 0
+12:50:25.376771 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174534 ecr 1538081894,nop,nop,sack 1 {46648:55336}], length 0
+12:50:25.377305 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174534 ecr 1538081894,nop,nop,sack 1 {46648:56784}], length 0
+12:50:25.379082 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 56784:57402, ack 1311, win 1446, options [nop,nop,TS val 1538081962 ecr 174530], length 618
+12:50:25.383272 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 45200, win 20757, options [nop,nop,TS val 174535 ecr 1538081894,nop,nop,sack 1 {46648:57402}], length 0
+12:50:25.396131 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 45200:46648, ack 1311, win 1446, options [nop,nop,TS val 1538081979 ecr 174530], length 1448
+12:50:25.410790 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 57402, win 18747, options [nop,nop,TS val 174537 ecr 1538081979], length 0
+12:50:53.876721 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 57402:58850, ack 1311, win 1446, options [nop,nop,TS val 1538110457 ecr 174537], length 1448
+12:50:53.877847 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 58850:60298, ack 1311, win 1446, options [nop,nop,TS val 1538110457 ecr 174537], length 1448
+12:50:53.878486 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 60298:61746, ack 1311, win 1446, options [nop,nop,TS val 1538110457 ecr 174537], length 1448
+12:50:53.878945 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 61746:63194, ack 1311, win 1446, options [nop,nop,TS val 1538110457 ecr 174537], length 1448
+12:50:53.879447 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 63194:64642, ack 1311, win 1446, options [nop,nop,TS val 1538110457 ecr 174537], length 1448
+12:50:53.993385 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 64642:66090, ack 1311, win 1446, options [nop,nop,TS val 1538110575 ecr 174537], length 1448
+12:50:54.152492 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 58850, win 21843, options [nop,nop,TS val 177412 ecr 1538110457], length 0
+12:50:54.153105 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 60298, win 21481, options [nop,nop,TS val 177412 ecr 1538110457], length 0
+12:50:54.153107 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 61746, win 21119, options [nop,nop,TS val 177412 ecr 1538110457], length 0
+12:50:54.153107 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 63194, win 20757, options [nop,nop,TS val 177412 ecr 1538110457], length 0
+12:50:54.153489 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 64642, win 20395, options [nop,nop,TS val 177412 ecr 1538110457], length 0
+12:50:54.153735 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 66090, win 20033, options [nop,nop,TS val 177412 ecr 1538110575], length 0
+12:50:54.188137 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 66090:67538, ack 1311, win 1446, options [nop,nop,TS val 1538110771 ecr 177412], length 1448
+12:50:54.192605 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 67538, win 21843, options [nop,nop,TS val 177416 ecr 1538110771], length 0
+12:50:54.193064 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 67538:68986, ack 1311, win 1446, options [nop,nop,TS val 1538110776 ecr 177412], length 1448
+12:50:54.193283 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 68986:70434, ack 1311, win 1446, options [nop,nop,TS val 1538110776 ecr 177412], length 1448
+12:50:54.193459 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 70434:71882, ack 1311, win 1446, options [nop,nop,TS val 1538110776 ecr 177412], length 1448
+12:50:54.193655 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 71882:73330, ack 1311, win 1446, options [nop,nop,TS val 1538110776 ecr 177412], length 1448
+12:50:54.193820 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 73330:74778, ack 1311, win 1446, options [nop,nop,TS val 1538110776 ecr 177412], length 1448
+12:50:54.204011 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 68986, win 21481, options [nop,nop,TS val 177417 ecr 1538110776], length 0
+12:50:54.204708 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 70434, win 21119, options [nop,nop,TS val 177417 ecr 1538110776], length 0
+12:50:54.204709 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 71882, win 20757, options [nop,nop,TS val 177417 ecr 1538110776], length 0
+12:50:54.204709 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 73330, win 20395, options [nop,nop,TS val 177417 ecr 1538110776], length 0
+12:50:54.204709 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 74778, win 20033, options [nop,nop,TS val 177417 ecr 1538110776], length 0
+12:50:54.228344 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 74778:76226, ack 1311, win 1446, options [nop,nop,TS val 1538110811 ecr 177416], length 1448
+12:50:54.228754 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 76226:77674, ack 1311, win 1446, options [nop,nop,TS val 1538110811 ecr 177416], length 1448
+12:50:54.230946 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 76226, win 19671, options [nop,nop,TS val 177420 ecr 1538110811], length 0
+12:50:54.231476 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 77674, win 19309, options [nop,nop,TS val 177420 ecr 1538110811], length 0
+12:50:54.237661 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 77674:79122, ack 1311, win 1446, options [nop,nop,TS val 1538110821 ecr 177417], length 1448
+12:50:54.238027 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 79122:82018, ack 1311, win 1446, options [nop,nop,TS val 1538110821 ecr 177417], length 2896
+12:50:54.238481 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 82018:83466, ack 1311, win 1446, options [nop,nop,TS val 1538110821 ecr 177417], length 1448
+12:50:54.242478 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], seq 83466:84914, ack 1311, win 1446, options [nop,nop,TS val 1538110826 ecr 177417], length 1448
+12:50:54.245725 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 79122, win 18947, options [nop,nop,TS val 177421 ecr 1538110821], length 0
+12:50:54.248944 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 80570, win 18585, options [nop,nop,TS val 177421 ecr 1538110821], length 0
+12:50:54.264536 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 84914:85533, ack 1311, win 1446, options [nop,nop,TS val 1538110848 ecr 177420], length 619
+12:50:54.273916 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 85533, win 17345, options [nop,nop,TS val 177424 ecr 1538110821], length 0
+12:50:59.072605 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:51:00.096646 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:51:00.261096 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:51:00.261097 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:51:04.093600 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 1311:1581, ack 85533, win 21922, options [nop,nop,TS val 178406 ecr 1538110821], length 270
+12:51:04.173236 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 1581, win 1446, options [nop,nop,TS val 1538120755 ecr 178406], length 0
+12:51:04.182063 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 1581:1827, ack 85533, win 21922, options [nop,nop,TS val 178415 ecr 1538120755], length 246
+12:51:04.219086 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 1827, win 1446, options [nop,nop,TS val 1538120801 ecr 178415], length 0
+12:51:04.226936 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 85533:85811, ack 1827, win 1446, options [nop,nop,TS val 1538120810 ecr 178415], length 278
+12:51:04.241158 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 85811, win 21853, options [nop,nop,TS val 178421 ecr 1538120810], length 0
+12:51:07.335800 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 1827:2092, ack 85811, win 21922, options [nop,nop,TS val 178731 ecr 1538120810], length 265
+12:51:07.375037 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 85811:86089, ack 2092, win 1446, options [nop,nop,TS val 1538123957 ecr 178731], length 278
+12:51:07.378390 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 86089, win 21853, options [nop,nop,TS val 178735 ecr 1538123957], length 0
+12:51:44.923813 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2092:2359, ack 86089, win 21922, options [nop,nop,TS val 182490 ecr 1538123957], length 267
+12:51:44.961795 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 86089:86451, ack 2359, win 1446, options [nop,nop,TS val 1538161544 ecr 182490], length 362
+12:51:44.967876 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 86451, win 21843, options [nop,nop,TS val 182494 ecr 1538161544], length 0
+12:51:45.552271 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2359:2627, ack 86451, win 21922, options [nop,nop,TS val 182553 ecr 1538161544], length 268
+12:51:45.633664 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 2627, win 1446, options [nop,nop,TS val 1538162215 ecr 182553], length 0
+12:51:45.829914 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2359:2627, ack 86451, win 21922, options [nop,nop,TS val 182581 ecr 1538161544], length 268
+12:51:45.863234 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 2627, win 1446, options [nop,nop,TS val 1538162447 ecr 182581,nop,nop,sack 1 {2359:2627}], length 0
+12:51:46.389509 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2359:2627, ack 86451, win 21922, options [nop,nop,TS val 182637 ecr 1538161544], length 268
+12:51:46.423687 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 2627, win 1446, options [nop,nop,TS val 1538163007 ecr 182637,nop,nop,sack 1 {2359:2627}], length 0
+12:51:46.480357 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2627:2909, ack 86451, win 21922, options [nop,nop,TS val 182646 ecr 1538162215], length 282
+12:51:46.514481 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 2909, win 1446, options [nop,nop,TS val 1538163098 ecr 182646], length 0
+12:51:46.516510 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 86451:86729, ack 2909, win 1446, options [nop,nop,TS val 1538163100 ecr 182646], length 278
+12:51:46.518766 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 86729, win 21853, options [nop,nop,TS val 182649 ecr 1538163100], length 0
+12:51:50.016638 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:51:50.021157 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:52:07.937449 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 2909:3174, ack 86729, win 21922, options [nop,nop,TS val 184792 ecr 1538163100], length 265
+12:52:07.975989 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 86729:87007, ack 3174, win 1446, options [nop,nop,TS val 1538184558 ecr 184792], length 278
+12:52:07.979307 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 87007, win 21853, options [nop,nop,TS val 184796 ecr 1538184558], length 0
+12:53:08.512848 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 3174:3439, ack 87007, win 21922, options [nop,nop,TS val 190850 ecr 1538184558], length 265
+12:53:08.552167 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 87007:87285, ack 3439, win 1446, options [nop,nop,TS val 1538245134 ecr 190850], length 278
+12:53:08.556921 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 87285, win 21853, options [nop,nop,TS val 190854 ecr 1538245134], length 0
+12:53:13.728637 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:53:13.731423 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:54:04.021132 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 3439:3709, ack 87285, win 21922, options [nop,nop,TS val 196402 ecr 1538245134], length 270
+12:54:04.101272 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 3709, win 1446, options [nop,nop,TS val 1538300684 ecr 196402], length 0
+12:54:04.108240 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 3709:3955, ack 87285, win 21922, options [nop,nop,TS val 196410 ecr 1538300684], length 246
+12:54:04.145251 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 3955, win 1446, options [nop,nop,TS val 1538300728 ecr 196410], length 0
+12:54:04.150131 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 87285:87563, ack 3955, win 1446, options [nop,nop,TS val 1538300735 ecr 196410], length 278
+12:54:04.151803 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 87563, win 21853, options [nop,nop,TS val 196415 ecr 1538300735], length 0
+12:54:08.150150 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 3955:4220, ack 87563, win 21922, options [nop,nop,TS val 196815 ecr 1538300735], length 265
+12:54:08.190050 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 87563:87841, ack 4220, win 1446, options [nop,nop,TS val 1538304771 ecr 196815], length 278
+12:54:08.197132 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 87841, win 21853, options [nop,nop,TS val 196819 ecr 1538304771], length 0
+12:54:09.280870 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:54:09.285931 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:55:08.732660 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 4220:4485, ack 87841, win 21922, options [nop,nop,TS val 202874 ecr 1538304771], length 265
+12:55:08.771194 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 87841:88119, ack 4485, win 1446, options [nop,nop,TS val 1538365354 ecr 202874], length 278
+12:55:08.775329 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 88119, win 21853, options [nop,nop,TS val 202878 ecr 1538365354], length 0
+12:55:13.792663 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:55:13.795996 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:56:08.312874 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 4485:4750, ack 88119, win 21922, options [nop,nop,TS val 208833 ecr 1538365354], length 265
+12:56:08.351765 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 88119:88397, ack 4750, win 1446, options [nop,nop,TS val 1538424935 ecr 208833], length 278
+12:56:08.359331 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 88397, win 21853, options [nop,nop,TS val 208837 ecr 1538424935], length 0
+12:56:13.440601 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:56:13.443414 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:57:06.744648 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 4750:5020, ack 88397, win 21922, options [nop,nop,TS val 214667 ecr 1538424935], length 270
+12:57:06.828971 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 5020, win 1446, options [nop,nop,TS val 1538483413 ecr 214667], length 0
+12:57:06.832331 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 5020:5265, ack 88397, win 21922, options [nop,nop,TS val 214685 ecr 1538483413], length 245
+12:57:06.869643 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 5265, win 1446, options [nop,nop,TS val 1538483454 ecr 214685], length 0
+12:57:06.880651 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 88397:88675, ack 5265, win 1446, options [nop,nop,TS val 1538483467 ecr 214685], length 278
+12:57:06.884932 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 88675, win 21853, options [nop,nop,TS val 214690 ecr 1538483467], length 0
+12:57:08.834181 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 5265:5530, ack 88675, win 21922, options [nop,nop,TS val 214886 ecr 1538483467], length 265
+12:57:08.872214 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 88675:88953, ack 5530, win 1446, options [nop,nop,TS val 1538485456 ecr 214886], length 278
+12:57:09.145091 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 88675:88953, ack 5530, win 1446, options [nop,nop,TS val 1538485729 ecr 214886], length 278
+12:57:09.243388 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 88953, win 21853, options [nop,nop,TS val 214927 ecr 1538485729], length 0
+12:57:12.064640 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:57:12.283397 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:58:08.415438 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 5530:5795, ack 88953, win 21922, options [nop,nop,TS val 220845 ecr 1538485729], length 265
+12:58:08.456158 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 88953:89231, ack 5795, win 1446, options [nop,nop,TS val 1538545041 ecr 220845], length 278
+12:58:08.465792 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 89231, win 21853, options [nop,nop,TS val 220850 ecr 1538545041], length 0
+12:58:13.504601 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:58:13.507439 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+12:59:07.998672 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 5795:6060, ack 89231, win 21922, options [nop,nop,TS val 226804 ecr 1538545041], length 265
+12:59:08.037177 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 89231:89509, ack 6060, win 1446, options [nop,nop,TS val 1538604622 ecr 226804], length 278
+12:59:08.040035 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 89509, win 21853, options [nop,nop,TS val 226808 ecr 1538604622], length 0
+12:59:13.152634 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+12:59:13.159674 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:00:08.678639 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 6060:6325, ack 89509, win 21922, options [nop,nop,TS val 232873 ecr 1538604622], length 265
+13:00:08.718293 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 89509:89787, ack 6325, win 1446, options [nop,nop,TS val 1538665304 ecr 232873], length 278
+13:00:08.721607 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 89787, win 21853, options [nop,nop,TS val 232877 ecr 1538665304], length 0
+13:00:13.824638 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:00:13.828095 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:01:08.259541 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 6325:6590, ack 89787, win 21922, options [nop,nop,TS val 238832 ecr 1538665304], length 265
+13:01:08.298243 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 89787:90065, ack 6590, win 1446, options [nop,nop,TS val 1538724884 ecr 238832], length 278
+13:01:08.301650 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 90065, win 21853, options [nop,nop,TS val 238836 ecr 1538724884], length 0
+13:01:13.472600 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:01:14.342713 IP ecobee1.lan > igmp.mcast.net: igmp v3 report, 1 group record(s)
+13:01:14.496599 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:01:14.499222 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:01:14.834621 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QU)? ecobee1._hap._tcp.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. (159)
+13:01:14.835181 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QU)? ecobee1._hap._tcp.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. (159)
+13:01:15.091928 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:01:15.091929 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:01:15.349875 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:01:15.350395 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:01:15.623181 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:15.623689 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:16.665899 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:16.666402 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:18.630261 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:18.630960 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:22.640973 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:01:22.641559 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:02:08.936605 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 6590:6855, ack 90065, win 21922, options [nop,nop,TS val 244890 ecr 1538724884], length 265
+13:02:08.975367 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 90065:90343, ack 6855, win 1446, options [nop,nop,TS val 1538785562 ecr 244890], length 278
+13:02:08.979872 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 90343, win 21853, options [nop,nop,TS val 244905 ecr 1538785562], length 0
+13:02:14.144636 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:02:14.151884 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:02:48.945782 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 6855:7128, ack 90343, win 21922, options [nop,nop,TS val 248902 ecr 1538785562], length 273
+13:02:49.024779 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 7128, win 1446, options [nop,nop,TS val 1538825612 ecr 248902], length 0
+13:02:49.044408 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 7128:7796, ack 90343, win 21922, options [nop,nop,TS val 248911 ecr 1538825612], length 668
+13:02:49.085574 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 7796, win 1446, options [nop,nop,TS val 1538825672 ecr 248911], length 0
+13:02:49.085702 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 90343:90621, ack 7796, win 1446, options [nop,nop,TS val 1538825674 ecr 248911], length 278
+13:02:49.087835 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 90621, win 21853, options [nop,nop,TS val 248916 ecr 1538825674], length 0
+13:03:08.333059 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 7796:8061, ack 90621, win 21922, options [nop,nop,TS val 250841 ecr 1538825674], length 265
+13:03:08.371542 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 90621:90899, ack 8061, win 1446, options [nop,nop,TS val 1538844958 ecr 250841], length 278
+13:03:08.374317 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 90899, win 21853, options [nop,nop,TS val 250845 ecr 1538844958], length 0
+13:03:13.536599 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:03:13.551311 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:04:08.025419 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 8061:8326, ack 90899, win 21922, options [nop,nop,TS val 256811 ecr 1538844958], length 265
+13:04:08.068295 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 90899:91177, ack 8326, win 1446, options [nop,nop,TS val 1538904656 ecr 256811], length 278
+13:04:08.073462 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 91177, win 21853, options [nop,nop,TS val 256816 ecr 1538904656], length 0
+13:04:13.184601 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:04:13.187387 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:04:54.180609 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 8326:8593, ack 91177, win 21922, options [nop,nop,TS val 261417 ecr 1538904656], length 267
+13:04:54.218762 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 91177:91539, ack 8593, win 1446, options [nop,nop,TS val 1538950806 ecr 261417], length 362
+13:04:54.221651 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 91539, win 21843, options [nop,nop,TS val 261431 ecr 1538950806], length 0
+13:04:59.264671 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:05:00.029004 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:05:08.575370 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 8593:8858, ack 91539, win 21922, options [nop,nop,TS val 262867 ecr 1538950806], length 265
+13:05:08.613447 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 91539:91817, ack 8858, win 1446, options [nop,nop,TS val 1538965201 ecr 262867], length 278
+13:05:08.623209 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 91817, win 21853, options [nop,nop,TS val 262871 ecr 1538965201], length 0
+13:05:50.999402 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 8858:9128, ack 91817, win 21922, options [nop,nop,TS val 267110 ecr 1538965201], length 270
+13:05:51.077215 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 9128, win 1446, options [nop,nop,TS val 1539007665 ecr 267110], length 0
+13:05:51.080056 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 9128:9374, ack 91817, win 21922, options [nop,nop,TS val 267118 ecr 1539007665], length 246
+13:05:51.117012 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 9374, win 1446, options [nop,nop,TS val 1539007705 ecr 267118], length 0
+13:05:51.139802 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 91817:92095, ack 9374, win 1446, options [nop,nop,TS val 1539007729 ecr 267118], length 278
+13:05:51.143584 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 92095, win 21853, options [nop,nop,TS val 267124 ecr 1539007729], length 0
+13:05:56.096600 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:05:57.120648 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:05:57.226819 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:06:08.111458 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 9374:9639, ack 92095, win 21922, options [nop,nop,TS val 268821 ecr 1539007729], length 265
+13:06:08.151698 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 92095:92373, ack 9639, win 1446, options [nop,nop,TS val 1539024737 ecr 268821], length 278
+13:06:08.245329 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 92373, win 21853, options [nop,nop,TS val 268835 ecr 1539024737], length 0
+13:07:08.787714 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 9639:9904, ack 92373, win 21922, options [nop,nop,TS val 274890 ecr 1539024737], length 265
+13:07:08.825552 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 92373:92651, ack 9904, win 1446, options [nop,nop,TS val 1539085413 ecr 274890], length 278
+13:07:08.835883 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 92651, win 21853, options [nop,nop,TS val 274894 ecr 1539085413], length 0
+13:07:13.920641 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:07:13.924019 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:08:08.369933 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 9904:10169, ack 92651, win 21922, options [nop,nop,TS val 280849 ecr 1539085413], length 265
+13:08:08.408483 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 92651:92929, ack 10169, win 1446, options [nop,nop,TS val 1539144997 ecr 280849], length 278
+13:08:08.411353 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 92929, win 21853, options [nop,nop,TS val 280853 ecr 1539144997], length 0
+13:08:13.568639 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:08:13.575108 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:09:07.953422 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 10169:10434, ack 92929, win 21922, options [nop,nop,TS val 286808 ecr 1539144997], length 265
+13:09:07.991493 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 92929:93207, ack 10434, win 1446, options [nop,nop,TS val 1539204580 ecr 286808], length 278
+13:09:07.994370 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 93207, win 21853, options [nop,nop,TS val 286812 ecr 1539204580], length 0
+13:09:13.216598 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:09:13.225329 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:10:08.523088 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 10434:10699, ack 93207, win 21922, options [nop,nop,TS val 292866 ecr 1539204580], length 265
+13:10:08.561923 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 93207:93485, ack 10699, win 1446, options [nop,nop,TS val 1539265151 ecr 292866], length 278
+13:10:08.567254 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 93485, win 21853, options [nop,nop,TS val 292870 ecr 1539265151], length 0
+13:10:13.632637 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:10:13.635410 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:11:08.107607 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 10699:10964, ack 93485, win 21922, options [nop,nop,TS val 298825 ecr 1539265151], length 265
+13:11:08.144690 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 93485:93763, ack 10964, win 1446, options [nop,nop,TS val 1539324735 ecr 298825], length 278
+13:11:08.162029 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 93763, win 21853, options [nop,nop,TS val 298830 ecr 1539324735], length 0
+13:11:13.280690 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:11:13.285509 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:11:18.852181 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 10964:11234, ack 93763, win 21922, options [nop,nop,TS val 299900 ecr 1539324735], length 270
+13:11:18.933744 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 11234, win 1446, options [nop,nop,TS val 1539335523 ecr 299900], length 0
+13:11:18.939544 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 11234:11479, ack 93763, win 21922, options [nop,nop,TS val 299908 ecr 1539335523], length 245
+13:11:18.976730 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [.], ack 11479, win 1446, options [nop,nop,TS val 1539335567 ecr 299908], length 0
+13:11:18.980094 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 93763:94041, ack 11479, win 1446, options [nop,nop,TS val 1539335572 ecr 299908], length 278
+13:11:18.982024 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 94041, win 21853, options [nop,nop,TS val 299913 ecr 1539335572], length 0
+13:11:31.780778 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 11479:11744, ack 94041, win 21922, options [nop,nop,TS val 301193 ecr 1539335572], length 265
+13:11:31.822059 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 94041:94438, ack 11744, win 1446, options [nop,nop,TS val 1539348412 ecr 301193], length 397
+13:11:31.822749 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 94438:94899, ack 11744, win 1446, options [nop,nop,TS val 1539348412 ecr 301193], length 461
+13:11:31.823495 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 94899:95160, ack 11744, win 1446, options [nop,nop,TS val 1539348412 ecr 301193], length 261
+13:11:31.825794 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 94438, win 21843, options [nop,nop,TS val 301197 ecr 1539348412], length 0
+13:11:31.826399 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 94899, win 21728, options [nop,nop,TS val 301197 ecr 1539348412], length 0
+13:11:31.826400 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 95160, win 21663, options [nop,nop,TS val 301197 ecr 1539348412], length 0
+13:12:08.704692 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [P.], seq 11744:12009, ack 95160, win 21922, options [nop,nop,TS val 304886 ecr 1539348412], length 265
+13:12:08.743931 IP idt.ecobee.com.8190 > ecobee1.lan.59914: Flags [P.], seq 95160:95438, ack 12009, win 1446, options [nop,nop,TS val 1539385334 ecr 304886], length 278
+13:12:08.747061 IP ecobee1.lan.59914 > idt.ecobee.com.8190: Flags [.], ack 95438, win 21853, options [nop,nop,TS val 304890 ecr 1539385334], length 0
+13:12:13.952852 ARP, Request who-has ecobee1.lan tell OpenWrt.lan, length 28
+13:12:13.979589 ARP, Reply ecobee1.lan is-at 44:61:32:61:86:11 (oui Unknown), length 28
+13:12:31.391212 IP ecobee1.lan > igmp.mcast.net: igmp v3 report, 1 group record(s)
+13:12:31.884043 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QU)? ecobee1._hap._tcp.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. (159)
+13:12:31.884546 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QU)? ecobee1._hap._tcp.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. ANY (QU)? ecobee1.local. (159)
+13:12:32.142319 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:12:32.144372 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:12:32.402340 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:12:32.402983 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0 [4q] [4n] ANY (QM)? ecobee1._hap._tcp.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. ANY (QM)? ecobee1.local. (159)
+13:12:32.664061 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:12:32.664697 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:12:33.673244 IP ecobee1.lan.5353 > 224.0.0.251.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)
+13:12:33.681882 IP6 fe80::4661:32ff:fe61:8611.5353 > ff02::fb.5353: 0*- [0q] 10/0/5 (Cache flush) TXT "c#=6" "ff=1" "id=9B:A2:4B:32:96:01" "md=ecobee3 lite" "pv=1.1" "s#=1" "sf=1" "ci=9" "sh=cMnFvA==", PTR _hap._tcp.local., PTR ecobee1._hap._tcp.local., (Cache flush) SRV ecobee1.local.:41449 0 0, (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) PTR ecobee1.local., (Cache flush) A 192.168.3.220, (Cache flush) AAAA fd25:35b5:b5a1:0:4661:32ff:fe61:8611, (Cache flush) AAAA fe80::4661:32ff:fe61:8611 (572)

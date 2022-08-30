@@ -1,0 +1,587 @@
+13:42:07.468255 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 4165527931, win 21, options [nop,nop,TS val 3549339875 ecr 105993], length 0
+13:42:07.468452 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1, win 2668, options [nop,nop,TS val 107624 ecr 3549323573], length 0
+13:42:16.226713 IP hubv2-d052a8a7feff0001.lan.46249 > OpenWrt.lan.53: 48552+ A? api.smartthings.com. (37)
+13:42:16.239275 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.46249: 48552 5/0/0 A 52.205.2.10, A 54.161.223.90, A 34.231.181.220, A 34.234.133.142, A 44.194.133.196 (117)
+13:42:16.241454 IP hubv2-d052a8a7feff0001.lan.50112 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [S], seq 120572126, win 29200, options [mss 1460,sackOK,TS val 108501 ecr 0,nop,wscale 6], length 0
+13:42:16.257787 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50112: Flags [S.], seq 3920418521, ack 120572127, win 26847, options [mss 1460,sackOK,TS val 2811112050 ecr 108501,nop,wscale 8], length 0
+13:42:16.258039 IP hubv2-d052a8a7feff0001.lan.50112 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 108503 ecr 2811112050], length 0
+13:42:16.258400 IP hubv2-d052a8a7feff0001.lan.50112 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 1:121, ack 1, win 457, options [nop,nop,TS val 108503 ecr 2811112050], length 120
+13:42:16.277827 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50112: Flags [.], ack 121, win 105, options [nop,nop,TS val 2811112070 ecr 108503], length 0
+13:42:16.278484 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50112: Flags [R.], seq 1, ack 121, win 105, options [nop,nop,TS val 2811112070 ecr 108503], length 0
+13:42:19.979705 IP hubv2-d052a8a7feff0001.lan.58229 > OpenWrt.lan.53: 1082+ A? api.smartthings.com. (37)
+13:42:19.981054 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.58229: 1082 5/0/0 A 44.194.133.196, A 34.234.133.142, A 34.231.181.220, A 54.161.223.90, A 52.205.2.10 (117)
+13:42:19.981330 IP hubv2-d052a8a7feff0001.lan.58229 > OpenWrt.lan.53: 2609+ AAAA? api.smartthings.com. (37)
+13:42:19.981804 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.58229: 2609 0/0/0 (37)
+13:42:19.983067 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [S], seq 1546057096, win 29200, options [mss 1460,sackOK,TS val 108875 ecr 0,nop,wscale 6], length 0
+13:42:19.999546 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [S.], seq 2126850817, ack 1546057097, win 26847, options [mss 1460,sackOK,TS val 64868767 ecr 108875,nop,wscale 8], length 0
+13:42:20.000473 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 108877 ecr 64868767], length 0
+13:42:20.118956 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 108889 ecr 64868767], length 237
+13:42:20.137614 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [.], ack 238, win 110, options [nop,nop,TS val 64868905 ecr 108889], length 0
+13:42:20.139513 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 64868906 ecr 108889], length 1448
+13:42:20.139825 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 108891 ecr 64868906], length 0
+13:42:20.141020 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 64868906 ecr 108889], length 1448
+13:42:20.141338 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 108891 ecr 64868906], length 0
+13:42:20.142399 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 64868906 ecr 108889], length 418
+13:42:20.142585 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 108891 ecr 64868906], length 0
+13:42:20.152071 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 108892 ecr 64868906], length 75
+13:42:20.152312 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 108892 ecr 64868906], length 6
+13:42:20.152313 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 108892 ecr 64868906], length 45
+13:42:20.171753 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [.], ack 364, win 110, options [nop,nop,TS val 64868939 ecr 108892], length 0
+13:42:20.172825 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 64868939 ecr 108892], length 51
+13:42:20.179877 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 108895 ecr 64868939], length 131
+13:42:20.195932 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 64868962 ecr 108895], length 199
+13:42:20.197040 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 108897 ecr 64868962], length 31
+13:42:20.207782 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 108898 ecr 64868962], length 0
+13:42:20.212488 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 64868979 ecr 108897], length 0
+13:42:20.213191 IP hubv2-d052a8a7feff0001.lan.38940 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 108898 ecr 64868979], length 0
+13:42:20.221611 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38940: Flags [.], ack 527, win 114, options [nop,nop,TS val 64868989 ecr 108898], length 0
+13:42:21.312870 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:42:21.313899 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:42:22.146295 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1:46, ack 1, win 2668, options [nop,nop,TS val 109092 ecr 3549323573], length 45
+13:42:22.173492 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1:48, ack 46, win 21, options [nop,nop,TS val 3549354582 ecr 109092], length 47
+13:42:22.173720 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 48, win 2668, options [nop,nop,TS val 109094 ecr 3549354582], length 0
+13:42:27.948134 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 46, win 21, options [nop,nop,TS val 3549360356 ecr 109094], length 0
+13:42:27.948331 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 48, win 2668, options [nop,nop,TS val 109672 ecr 3549354582], length 0
+13:42:48.421927 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 46, win 21, options [nop,nop,TS val 3549380831 ecr 109672], length 0
+13:42:48.422126 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 48, win 2668, options [nop,nop,TS val 111719 ecr 3549354582], length 0
+13:42:53.155301 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 46:91, ack 48, win 2668, options [nop,nop,TS val 112193 ecr 3549354582], length 45
+13:42:53.182267 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 48:95, ack 91, win 21, options [nop,nop,TS val 3549385591 ecr 112193], length 47
+13:42:53.182489 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 95, win 2668, options [nop,nop,TS val 112195 ecr 3549385591], length 0
+13:43:08.906690 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 91, win 21, options [nop,nop,TS val 3549401312 ecr 112195], length 0
+13:43:08.906889 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 95, win 2668, options [nop,nop,TS val 113768 ecr 3549385591], length 0
+13:43:14.048637 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:43:14.048815 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:43:18.642781 IP hubv2-d052a8a7feff0001.lan.55133 > OpenWrt.lan.53: 11397+ A? fw-update2.smartthings.com. (44)
+13:43:18.642782 IP hubv2-d052a8a7feff0001.lan.55133 > OpenWrt.lan.53: 12421+ AAAA? fw-update2.smartthings.com. (44)
+13:43:18.655484 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55133: 11397 5/0/0 A 3.86.119.99, A 35.173.146.140, A 52.23.91.236, A 52.205.6.197, A 34.200.5.134 (124)
+13:43:18.660348 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55133: 12421 0/1/0 (126)
+13:43:18.660985 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [S], seq 3336849516, win 29200, options [mss 1460,sackOK,TS val 114743 ecr 0,nop,wscale 6], length 0
+13:43:18.678320 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [S.], seq 2462027762, ack 3336849517, win 26847, options [mss 1460,sackOK,TS val 3228340838 ecr 114743,nop,wscale 12], length 0
+13:43:18.678556 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 114745 ecr 3228340838], length 0
+13:43:18.681310 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 1:294, ack 1, win 457, options [nop,nop,TS val 114745 ecr 3228340838], length 293
+13:43:18.697254 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [.], ack 294, win 7, options [nop,nop,TS val 3228340857 ecr 114745], length 0
+13:43:18.698255 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1:97, ack 294, win 7, options [nop,nop,TS val 3228340857 ecr 114745], length 96
+13:43:18.699507 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 97, win 457, options [nop,nop,TS val 114747 ecr 3228340857], length 0
+13:43:18.700010 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 97:1455, ack 294, win 7, options [nop,nop,TS val 3228340857 ecr 114745], length 1358
+13:43:18.700377 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 1455, win 502, options [nop,nop,TS val 114747 ecr 3228340857], length 0
+13:43:18.701127 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1455:1665, ack 294, win 7, options [nop,nop,TS val 3228340858 ecr 114745], length 210
+13:43:18.701344 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 1665, win 544, options [nop,nop,TS val 114747 ecr 3228340858], length 0
+13:43:18.702156 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1665:1674, ack 294, win 7, options [nop,nop,TS val 3228340858 ecr 114745], length 9
+13:43:18.702346 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 1674, win 544, options [nop,nop,TS val 114748 ecr 3228340858], length 0
+13:43:18.713934 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 294:420, ack 1674, win 544, options [nop,nop,TS val 114749 ecr 3228340858], length 126
+13:43:18.729352 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [.], ack 420, win 7, options [nop,nop,TS val 3228340890 ecr 114749], length 0
+13:43:18.730417 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1674:1793, ack 420, win 7, options [nop,nop,TS val 3228340890 ecr 114749], length 119
+13:43:18.731508 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1793:1844, ack 420, win 7, options [nop,nop,TS val 3228340890 ecr 114749], length 51
+13:43:18.731736 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [.], ack 1844, win 544, options [nop,nop,TS val 114750 ecr 3228340890], length 0
+13:43:18.732385 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 420:486, ack 1844, win 544, options [nop,nop,TS val 114751 ecr 3228340890], length 66
+13:43:18.752648 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1844:1889, ack 486, win 7, options [nop,nop,TS val 3228340912 ecr 114751], length 45
+13:43:18.753169 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 486:566, ack 1889, win 544, options [nop,nop,TS val 114753 ecr 3228340912], length 80
+13:43:18.769890 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1889:1943, ack 566, win 7, options [nop,nop,TS val 3228340929 ecr 114753], length 54
+13:43:18.770317 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 566:685, ack 1943, win 544, options [nop,nop,TS val 114754 ecr 3228340929], length 119
+13:43:18.786663 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1943:1980, ack 685, win 7, options [nop,nop,TS val 3228340946 ecr 114754], length 37
+13:43:18.787175 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [P.], seq 685:1220, ack 1980, win 544, options [nop,nop,TS val 114756 ecr 3228340946], length 535
+13:43:18.800388 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 1980:2055, ack 1220, win 8, options [nop,nop,TS val 3228340962 ecr 114756], length 75
+13:43:18.800766 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [F.], seq 1220, ack 2055, win 544, options [nop,nop,TS val 114757 ecr 3228340962], length 0
+13:43:18.813991 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [P.], seq 2055:2086, ack 1221, win 8, options [nop,nop,TS val 3228340975 ecr 114757], length 31
+13:43:18.814245 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [R], seq 3336850737, win 0, length 0
+13:43:18.815202 IP ec2-3-86-119-99.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.39234: Flags [F.], seq 2086, ack 1221, win 8, options [nop,nop,TS val 3228340975 ecr 114757], length 0
+13:43:18.815382 IP hubv2-d052a8a7feff0001.lan.39234 > ec2-3-86-119-99.compute-1.amazonaws.com.443: Flags [R], seq 3336850737, win 0, length 0
+13:43:20.029556 IP hubv2-d052a8a7feff0001.lan.45309 > OpenWrt.lan.53: 62447+ A? api.smartthings.com. (37)
+13:43:20.030870 IP hubv2-d052a8a7feff0001.lan.45309 > OpenWrt.lan.53: 63471+ AAAA? api.smartthings.com. (37)
+13:43:20.031775 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.45309: 63471 0/0/0 (37)
+13:43:20.042736 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.45309: 62447 5/0/0 A 54.161.223.90, A 52.205.2.10, A 34.231.181.220, A 34.234.133.142, A 44.194.133.196 (117)
+13:43:20.045790 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [S], seq 1536125815, win 29200, options [mss 1460,sackOK,TS val 114882 ecr 0,nop,wscale 6], length 0
+13:43:20.062522 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [S.], seq 1097077828, ack 1536125816, win 26847, options [mss 1460,sackOK,TS val 1940338484 ecr 114882,nop,wscale 8], length 0
+13:43:20.062777 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 114884 ecr 1940338484], length 0
+13:43:20.168674 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 114894 ecr 1940338484], length 237
+13:43:20.192770 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [.], ack 238, win 110, options [nop,nop,TS val 1940338614 ecr 114894], length 0
+13:43:20.194666 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 1940338615 ecr 114894], length 1448
+13:43:20.194980 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 114897 ecr 1940338615], length 0
+13:43:20.196161 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 1940338615 ecr 114894], length 1448
+13:43:20.196466 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 114897 ecr 1940338615], length 0
+13:43:20.197018 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 1940338615 ecr 114894], length 418
+13:43:20.197208 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 114897 ecr 1940338615], length 0
+13:43:20.206600 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 114898 ecr 1940338615], length 75
+13:43:20.206858 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 114898 ecr 1940338615], length 6
+13:43:20.206859 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 114898 ecr 1940338615], length 45
+13:43:20.226524 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [.], ack 364, win 110, options [nop,nop,TS val 1940338648 ecr 114898], length 0
+13:43:20.227507 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 1940338648 ecr 114898], length 51
+13:43:20.234538 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 114901 ecr 1940338648], length 131
+13:43:20.252357 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 1940338673 ecr 114901], length 199
+13:43:20.253497 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 114903 ecr 1940338673], length 31
+13:43:20.263734 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 114904 ecr 1940338673], length 0
+13:43:20.269719 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 1940338691 ecr 114903], length 0
+13:43:20.269962 IP hubv2-d052a8a7feff0001.lan.58620 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 114904 ecr 1940338691], length 0
+13:43:20.279506 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58620: Flags [.], ack 527, win 114, options [nop,nop,TS val 1940338701 ecr 114904], length 0
+13:43:24.164318 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 91:136, ack 95, win 2668, options [nop,nop,TS val 115294 ecr 3549385591], length 45
+13:43:24.190842 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 95:142, ack 136, win 21, options [nop,nop,TS val 3549416599 ecr 115294], length 47
+13:43:24.191057 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 142, win 2668, options [nop,nop,TS val 115296 ecr 3549416599], length 0
+13:43:29.382361 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 136, win 21, options [nop,nop,TS val 3549421791 ecr 115296], length 0
+13:43:29.382558 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 142, win 2668, options [nop,nop,TS val 115816 ecr 3549416599], length 0
+13:43:49.866108 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 136, win 21, options [nop,nop,TS val 3549442272 ecr 115816], length 0
+13:43:49.866316 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 142, win 2668, options [nop,nop,TS val 117864 ecr 3549416599], length 0
+13:43:55.008638 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:43:55.008816 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:43:55.173010 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 136:181, ack 142, win 2668, options [nop,nop,TS val 118395 ecr 3549416599], length 45
+13:43:55.199591 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 142:189, ack 181, win 21, options [nop,nop,TS val 3549447609 ecr 118395], length 47
+13:43:55.199806 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 189, win 2668, options [nop,nop,TS val 118397 ecr 3549447609], length 0
+13:44:10.342950 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 181, win 21, options [nop,nop,TS val 3549462751 ecr 118397], length 0
+13:44:10.343164 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 189, win 2668, options [nop,nop,TS val 119912 ecr 3549447609], length 0
+13:44:19.150429 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 181:230, ack 189, win 2668, options [nop,nop,TS val 120793 ecr 3549447609], length 49
+13:44:19.176915 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 189:244, ack 230, win 21, options [nop,nop,TS val 3549471586 ecr 120793], length 55
+13:44:19.177138 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 244, win 2668, options [nop,nop,TS val 120795 ecr 3549471586], length 0
+13:44:20.011250 IP hubv2-d052a8a7feff0001.lan.50085 > OpenWrt.lan.53: 23533+ A? api.smartthings.com. (37)
+13:44:20.013679 IP hubv2-d052a8a7feff0001.lan.50085 > OpenWrt.lan.53: 25069+ AAAA? api.smartthings.com. (37)
+13:44:20.014359 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.50085: 25069 0/0/0 (37)
+13:44:20.024904 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.50085: 23533 5/0/0 A 34.231.181.220, A 52.205.2.10, A 44.194.133.196, A 54.161.223.90, A 34.234.133.142 (117)
+13:44:20.027831 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [S], seq 516860384, win 29200, options [mss 1460,sackOK,TS val 120880 ecr 0,nop,wscale 6], length 0
+13:44:20.044526 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [S.], seq 3685277000, ack 516860385, win 26847, options [mss 1460,sackOK,TS val 3305756192 ecr 120880,nop,wscale 8], length 0
+13:44:20.047206 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 120882 ecr 3305756192], length 0
+13:44:20.152034 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 120893 ecr 3305756192], length 237
+13:44:20.168586 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [.], ack 238, win 110, options [nop,nop,TS val 3305756316 ecr 120893], length 0
+13:44:20.170135 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 3305756317 ecr 120893], length 1448
+13:44:20.170444 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 120895 ecr 3305756317], length 0
+13:44:20.171823 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 3305756317 ecr 120893], length 1448
+13:44:20.172167 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 120895 ecr 3305756317], length 0
+13:44:20.172698 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 3305756317 ecr 120893], length 418
+13:44:20.172932 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 120895 ecr 3305756317], length 0
+13:44:20.182545 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 120896 ecr 3305756317], length 75
+13:44:20.182782 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 120896 ecr 3305756317], length 6
+13:44:20.182783 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 120896 ecr 3305756317], length 45
+13:44:20.201827 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [.], ack 364, win 110, options [nop,nop,TS val 3305756349 ecr 120896], length 0
+13:44:20.202831 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 3305756349 ecr 120896], length 51
+13:44:20.209609 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 120898 ecr 3305756349], length 131
+13:44:20.224987 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 3305756372 ecr 120898], length 199
+13:44:20.226006 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 120900 ecr 3305756372], length 31
+13:44:20.235820 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 120901 ecr 3305756372], length 0
+13:44:20.240507 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 3305756387 ecr 120900], length 0
+13:44:20.241581 IP hubv2-d052a8a7feff0001.lan.33878 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 120902 ecr 3305756387], length 0
+13:44:20.261385 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33878: Flags [.], ack 527, win 114, options [nop,nop,TS val 3305756398 ecr 120901], length 0
+13:44:30.824696 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 230, win 21, options [nop,nop,TS val 3549483232 ecr 120795], length 0
+13:44:30.824908 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 244, win 2668, options [nop,nop,TS val 121960 ecr 3549471586], length 0
+13:44:35.968640 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:44:35.969024 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:44:40.229935 IP hubv2-d052a8a7feff0001.lan.48278 > OpenWrt.lan.53: 46425+ A? api.smartthings.com. (37)
+13:44:40.233026 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.48278: 46425 5/0/0 A 34.231.181.220, A 34.234.133.142, A 54.161.223.90, A 44.194.133.196, A 52.205.2.10 (117)
+13:44:40.234842 IP hubv2-d052a8a7feff0001.lan.45690 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [S], seq 1442741993, win 29200, options [mss 1460,sackOK,TS val 122900 ecr 0,nop,wscale 6], length 0
+13:44:40.251526 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45690: Flags [S.], seq 1326283230, ack 1442741994, win 26847, options [mss 1460,sackOK,TS val 4232764984 ecr 122900,nop,wscale 8], length 0
+13:44:40.251767 IP hubv2-d052a8a7feff0001.lan.45690 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 122902 ecr 4232764984], length 0
+13:44:40.252110 IP hubv2-d052a8a7feff0001.lan.45690 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 1:121, ack 1, win 457, options [nop,nop,TS val 122902 ecr 4232764984], length 120
+13:44:40.272694 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45690: Flags [.], ack 121, win 105, options [nop,nop,TS val 4232765004 ecr 122902], length 0
+13:44:40.273434 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45690: Flags [R.], seq 1, ack 121, win 105, options [nop,nop,TS val 4232765004 ecr 122902], length 0
+13:44:50.195069 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 230:275, ack 244, win 2668, options [nop,nop,TS val 123893 ecr 3549471586], length 45
+13:44:50.252219 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 244:291, ack 275, win 21, options [nop,nop,TS val 3549502633 ecr 123893], length 47
+13:44:50.267105 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 291, win 2668, options [nop,nop,TS val 123902 ecr 3549502633], length 0
+13:44:51.373676 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 275, win 21, options [nop,nop,TS val 3549503715 ecr 123902], length 0
+13:44:51.417471 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 291, win 2668, options [nop,nop,TS val 124014 ecr 3549502633], length 0
+13:45:09.087576 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 275:421, ack 291, win 2668, options [nop,nop,TS val 125786 ecr 3549502633], length 146
+13:45:09.160745 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 421, win 22, options [nop,nop,TS val 3549521570 ecr 125786], length 0
+13:45:11.794258 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 421, win 22, options [nop,nop,TS val 3549524192 ecr 125786], length 0
+13:45:11.794455 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 291, win 2668, options [nop,nop,TS val 126056 ecr 3549521570], length 0
+13:45:14.368638 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:45:14.368978 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:45:20.077452 IP hubv2-d052a8a7feff0001.lan.51572 > OpenWrt.lan.53: 54707+ A? api.smartthings.com. (37)
+13:45:20.078579 IP hubv2-d052a8a7feff0001.lan.51572 > OpenWrt.lan.53: 56243+ AAAA? api.smartthings.com. (37)
+13:45:20.079083 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.51572: 56243 0/0/0 (37)
+13:45:20.090038 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.51572: 54707 5/0/0 A 52.205.2.10, A 34.234.133.142, A 54.161.223.90, A 44.194.133.196, A 34.231.181.220 (117)
+13:45:20.093116 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [S], seq 3275026025, win 29200, options [mss 1460,sackOK,TS val 126886 ecr 0,nop,wscale 6], length 0
+13:45:20.110496 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [S.], seq 2347150009, ack 3275026026, win 26847, options [mss 1460,sackOK,TS val 2811295901 ecr 126886,nop,wscale 8], length 0
+13:45:20.113343 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 126888 ecr 2811295901], length 0
+13:45:20.224747 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 126899 ecr 2811295901], length 237
+13:45:20.243577 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [.], ack 238, win 110, options [nop,nop,TS val 2811296034 ecr 126899], length 0
+13:45:20.245139 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 2811296035 ecr 126899], length 1448
+13:45:20.245444 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 126901 ecr 2811296035], length 0
+13:45:20.246584 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 2811296035 ecr 126899], length 1448
+13:45:20.246904 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 126902 ecr 2811296035], length 0
+13:45:20.247522 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 2811296035 ecr 126899], length 418
+13:45:20.247736 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 126902 ecr 2811296035], length 0
+13:45:20.264431 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 126903 ecr 2811296035], length 75
+13:45:20.264765 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 126903 ecr 2811296035], length 6
+13:45:20.264766 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 126903 ecr 2811296035], length 45
+13:45:20.281908 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [.], ack 364, win 110, options [nop,nop,TS val 2811296072 ecr 126903], length 0
+13:45:20.283332 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 2811296073 ecr 126903], length 51
+13:45:20.291651 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 126906 ecr 2811296073], length 131
+13:45:20.307188 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 2811296097 ecr 126906], length 199
+13:45:20.308304 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 126908 ecr 2811296097], length 31
+13:45:20.318364 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 126909 ecr 2811296097], length 0
+13:45:20.324616 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 2811296115 ecr 126908], length 0
+13:45:20.324857 IP hubv2-d052a8a7feff0001.lan.50124 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 126909 ecr 2811296115], length 0
+13:45:20.333709 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50124: Flags [.], ack 527, win 114, options [nop,nop,TS val 2811296124 ecr 126909], length 0
+13:45:32.262964 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 421, win 22, options [nop,nop,TS val 3549544672 ecr 126056], length 0
+13:45:32.263158 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 291, win 2668, options [nop,nop,TS val 128103 ecr 3549521570], length 0
+13:45:40.086458 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 421:466, ack 291, win 2668, options [nop,nop,TS val 128886 ecr 3549521570], length 45
+13:45:40.111526 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 466, win 22, options [nop,nop,TS val 3549552521 ecr 128886], length 0
+13:45:40.113020 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 291:338, ack 466, win 22, options [nop,nop,TS val 3549552522 ecr 128886], length 47
+13:45:40.113171 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 338, win 2668, options [nop,nop,TS val 128888 ecr 3549552522], length 0
+13:45:52.746060 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 466, win 22, options [nop,nop,TS val 3549565152 ecr 128888], length 0
+13:45:52.746257 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 338, win 2668, options [nop,nop,TS val 130152 ecr 3549552522], length 0
+13:45:57.888667 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:45:57.891160 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:46:11.097709 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 466:511, ack 338, win 2668, options [nop,nop,TS val 131987 ecr 3549552522], length 45
+13:46:11.124545 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 338:385, ack 511, win 22, options [nop,nop,TS val 3549583534 ecr 131987], length 47
+13:46:11.124831 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 385, win 2668, options [nop,nop,TS val 131990 ecr 3549583534], length 0
+13:46:13.222431 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 511, win 22, options [nop,nop,TS val 3549585632 ecr 131990], length 0
+13:46:13.222623 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 385, win 2668, options [nop,nop,TS val 132199 ecr 3549583534], length 0
+13:46:20.082519 IP hubv2-d052a8a7feff0001.lan.33375 > OpenWrt.lan.53: 49015+ A? api.smartthings.com. (37)
+13:46:20.084892 IP hubv2-d052a8a7feff0001.lan.33375 > OpenWrt.lan.53: 50039+ AAAA? api.smartthings.com. (37)
+13:46:20.085418 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.33375: 50039 0/0/0 (37)
+13:46:20.095842 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.33375: 49015 5/0/0 A 34.234.133.142, A 54.161.223.90, A 34.231.181.220, A 44.194.133.196, A 52.205.2.10 (117)
+13:46:20.097992 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [S], seq 1991129704, win 29200, options [mss 1460,sackOK,TS val 132887 ecr 0,nop,wscale 6], length 0
+13:46:20.114485 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [S.], seq 4204222495, ack 1991129705, win 26847, options [mss 1460,sackOK,TS val 4232864847 ecr 132887,nop,wscale 8], length 0
+13:46:20.114902 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 132889 ecr 4232864847], length 0
+13:46:20.219293 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 132899 ecr 4232864847], length 237
+13:46:20.236541 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [.], ack 238, win 110, options [nop,nop,TS val 4232864968 ecr 132899], length 0
+13:46:20.238114 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 4232864969 ecr 132899], length 1448
+13:46:20.238409 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 132901 ecr 4232864969], length 0
+13:46:20.239501 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 4232864969 ecr 132899], length 1448
+13:46:20.239805 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 132901 ecr 4232864969], length 0
+13:46:20.240422 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 4232864969 ecr 132899], length 418
+13:46:20.240751 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 132901 ecr 4232864969], length 0
+13:46:20.250346 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 132902 ecr 4232864969], length 75
+13:46:20.250598 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 132902 ecr 4232864969], length 6
+13:46:20.250599 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 132902 ecr 4232864969], length 45
+13:46:20.269590 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [.], ack 364, win 110, options [nop,nop,TS val 4232865002 ecr 132902], length 0
+13:46:20.270640 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 4232865002 ecr 132902], length 51
+13:46:20.277542 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 132905 ecr 4232865002], length 131
+13:46:20.292951 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 4232865025 ecr 132905], length 199
+13:46:20.295028 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 132907 ecr 4232865025], length 31
+13:46:20.303983 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 132908 ecr 4232865025], length 0
+13:46:20.310648 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 4232865043 ecr 132907], length 0
+13:46:20.310889 IP hubv2-d052a8a7feff0001.lan.45694 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 132908 ecr 4232865043], length 0
+13:46:20.317518 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45694: Flags [.], ack 527, win 114, options [nop,nop,TS val 4232865050 ecr 132908], length 0
+13:46:33.704229 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 511, win 22, options [nop,nop,TS val 3549606112 ecr 132199], length 0
+13:46:33.704427 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 385, win 2668, options [nop,nop,TS val 134248 ecr 3549583534], length 0
+13:46:37.526374 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 511:742, ack 385, win 2668, options [nop,nop,TS val 134630 ecr 3549583534], length 231
+13:46:37.553465 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 385:432, ack 742, win 23, options [nop,nop,TS val 3549609963 ecr 134630], length 47
+13:46:37.553713 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 432, win 2668, options [nop,nop,TS val 134633 ecr 3549609963], length 0
+13:46:38.850023 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:46:38.850218 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:46:54.183044 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 742, win 23, options [nop,nop,TS val 3549626592 ecr 134633], length 0
+13:46:54.183244 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 432, win 2668, options [nop,nop,TS val 136296 ecr 3549609963], length 0
+13:47:04.223804 IP hubv2-d052a8a7feff0001.lan.53419 > OpenWrt.lan.53: 36311+ A? api.smartthings.com. (37)
+13:47:04.235957 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.53419: 36311 5/0/0 A 52.205.2.10, A 44.194.133.196, A 34.231.181.220, A 54.161.223.90, A 34.234.133.142 (117)
+13:47:04.238003 IP hubv2-d052a8a7feff0001.lan.50128 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [S], seq 2562073424, win 29200, options [mss 1460,sackOK,TS val 137301 ecr 0,nop,wscale 6], length 0
+13:47:04.254629 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50128: Flags [S.], seq 1273285952, ack 2562073425, win 26847, options [mss 1460,sackOK,TS val 2811400045 ecr 137301,nop,wscale 8], length 0
+13:47:04.254879 IP hubv2-d052a8a7feff0001.lan.50128 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 137303 ecr 2811400045], length 0
+13:47:04.255207 IP hubv2-d052a8a7feff0001.lan.50128 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 1:121, ack 1, win 457, options [nop,nop,TS val 137303 ecr 2811400045], length 120
+13:47:04.272918 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50128: Flags [.], ack 121, win 105, options [nop,nop,TS val 2811400063 ecr 137303], length 0
+13:47:04.273359 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50128: Flags [R.], seq 1, ack 121, win 105, options [nop,nop,TS val 2811400063 ecr 137303], length 0
+13:47:08.532791 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 742:787, ack 432, win 2668, options [nop,nop,TS val 137731 ecr 3549609963], length 45
+13:47:08.560049 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 432:479, ack 787, win 23, options [nop,nop,TS val 3549640969 ecr 137731], length 47
+13:47:08.560285 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 479, win 2668, options [nop,nop,TS val 137733 ecr 3549640969], length 0
+13:47:13.664638 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:47:13.665741 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:47:14.663818 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 787, win 23, options [nop,nop,TS val 3549647072 ecr 137733], length 0
+13:47:14.664014 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 479, win 2668, options [nop,nop,TS val 138344 ecr 3549640969], length 0
+13:47:20.213961 IP hubv2-d052a8a7feff0001.lan.37617 > OpenWrt.lan.53: 13827+ A? api.smartthings.com. (37)
+13:47:20.213962 IP hubv2-d052a8a7feff0001.lan.37617 > OpenWrt.lan.53: 15107+ AAAA? api.smartthings.com. (37)
+13:47:20.215921 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.37617: 15107 0/0/0 (37)
+13:47:20.227854 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.37617: 13827 5/0/0 A 52.205.2.10, A 34.231.181.220, A 44.194.133.196, A 54.161.223.90, A 34.234.133.142 (117)
+13:47:20.229296 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [S], seq 557045057, win 29200, options [mss 1460,sackOK,TS val 138900 ecr 0,nop,wscale 6], length 0
+13:47:20.245557 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [S.], seq 3726842330, ack 557045058, win 26847, options [mss 1460,sackOK,TS val 2811416035 ecr 138900,nop,wscale 8], length 0
+13:47:20.245835 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 138902 ecr 2811416035], length 0
+13:47:20.386948 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 138916 ecr 2811416035], length 237
+13:47:20.402874 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [.], ack 238, win 110, options [nop,nop,TS val 2811416193 ecr 138916], length 0
+13:47:20.404525 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 2811416193 ecr 138916], length 1448
+13:47:20.404925 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 138918 ecr 2811416193], length 0
+13:47:20.406006 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 2811416193 ecr 138916], length 1448
+13:47:20.406347 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 138918 ecr 2811416193], length 0
+13:47:20.406834 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 2811416193 ecr 138916], length 418
+13:47:20.407041 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 138918 ecr 2811416193], length 0
+13:47:20.416758 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 138919 ecr 2811416193], length 75
+13:47:20.416759 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 138919 ecr 2811416193], length 6
+13:47:20.416759 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 138919 ecr 2811416193], length 45
+13:47:20.437095 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [.], ack 364, win 110, options [nop,nop,TS val 2811416226 ecr 138919], length 0
+13:47:20.437779 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 2811416226 ecr 138919], length 51
+13:47:20.451134 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 138922 ecr 2811416226], length 131
+13:47:20.467038 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 2811416256 ecr 138922], length 199
+13:47:20.468157 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 138924 ecr 2811416256], length 31
+13:47:20.479418 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 138925 ecr 2811416256], length 0
+13:47:20.483647 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 2811416273 ecr 138924], length 0
+13:47:20.483949 IP hubv2-d052a8a7feff0001.lan.50130 > ec2-52-205-2-10.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 138926 ecr 2811416273], length 0
+13:47:20.493574 IP ec2-52-205-2-10.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.50130: Flags [.], ack 527, win 114, options [nop,nop,TS val 2811416284 ecr 138925], length 0
+13:47:35.142618 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 787, win 23, options [nop,nop,TS val 3549667552 ecr 138344], length 0
+13:47:35.143414 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 479, win 2668, options [nop,nop,TS val 140392 ecr 3549640969], length 0
+13:47:39.532246 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 787:832, ack 479, win 2668, options [nop,nop,TS val 140831 ecr 3549640969], length 45
+13:47:39.562120 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 479:526, ack 832, win 23, options [nop,nop,TS val 3549671969 ecr 140831], length 47
+13:47:39.562344 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 526, win 2668, options [nop,nop,TS val 140834 ecr 3549671969], length 0
+13:47:44.640655 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:47:44.641011 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:47:55.623216 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 832, win 23, options [nop,nop,TS val 3549688033 ecr 140834], length 0
+13:47:55.623413 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 526, win 2668, options [nop,nop,TS val 142440 ecr 3549671969], length 0
+13:48:10.540618 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 832:877, ack 526, win 2668, options [nop,nop,TS val 143932 ecr 3549671969], length 45
+13:48:10.568509 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 526:573, ack 877, win 23, options [nop,nop,TS val 3549702978 ecr 143932], length 47
+13:48:10.568775 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 573, win 2668, options [nop,nop,TS val 143934 ecr 3549702978], length 0
+13:48:15.616660 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:48:15.616823 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:48:16.102992 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 877, win 23, options [nop,nop,TS val 3549708512 ecr 143934], length 0
+13:48:16.103187 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 573, win 2668, options [nop,nop,TS val 144488 ecr 3549702978], length 0
+13:48:20.134691 IP hubv2-d052a8a7feff0001.lan.39007 > OpenWrt.lan.53: 44954+ A? api.smartthings.com. (37)
+13:48:20.136500 IP hubv2-d052a8a7feff0001.lan.39007 > OpenWrt.lan.53: 45978+ AAAA? api.smartthings.com. (37)
+13:48:20.138028 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.39007: 45978 0/0/0 (37)
+13:48:20.148969 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.39007: 44954 5/0/0 A 44.194.133.196, A 34.234.133.142, A 54.161.223.90, A 34.231.181.220, A 52.205.2.10 (117)
+13:48:20.156029 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [S], seq 3381373110, win 29200, options [mss 1460,sackOK,TS val 144893 ecr 0,nop,wscale 6], length 0
+13:48:20.172759 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [S.], seq 1209408703, ack 3381373111, win 26847, options [mss 1460,sackOK,TS val 65228940 ecr 144893,nop,wscale 8], length 0
+13:48:20.173029 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 144895 ecr 65228940], length 0
+13:48:20.190370 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 877:926, ack 573, win 2668, options [nop,nop,TS val 144897 ecr 3549702978], length 49
+13:48:20.217205 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 573:628, ack 926, win 23, options [nop,nop,TS val 3549712627 ecr 144897], length 55
+13:48:20.217445 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 628, win 2668, options [nop,nop,TS val 144899 ecr 3549712627], length 0
+13:48:20.282461 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 144906 ecr 65228940], length 237
+13:48:20.299570 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [.], ack 238, win 110, options [nop,nop,TS val 65229066 ecr 144906], length 0
+13:48:20.301304 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 65229067 ecr 144906], length 1448
+13:48:20.301609 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 144908 ecr 65229067], length 0
+13:48:20.303066 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 65229067 ecr 144906], length 1448
+13:48:20.303376 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 144908 ecr 65229067], length 0
+13:48:20.304143 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 65229067 ecr 144906], length 418
+13:48:20.304353 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 144908 ecr 65229067], length 0
+13:48:20.314041 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 144909 ecr 65229067], length 75
+13:48:20.314318 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 144909 ecr 65229067], length 6
+13:48:20.314319 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 144909 ecr 65229067], length 45
+13:48:20.334835 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [.], ack 364, win 110, options [nop,nop,TS val 65229100 ecr 144909], length 0
+13:48:20.335894 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 65229100 ecr 144909], length 51
+13:48:20.343296 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 144912 ecr 65229100], length 131
+13:48:20.361397 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 65229128 ecr 144912], length 199
+13:48:20.362547 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 144914 ecr 65229128], length 31
+13:48:20.373544 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 144915 ecr 65229128], length 0
+13:48:20.377621 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 65229145 ecr 144914], length 0
+13:48:20.379231 IP hubv2-d052a8a7feff0001.lan.38958 > ec2-44-194-133-196.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 144916 ecr 65229145], length 0
+13:48:20.388757 IP ec2-44-194-133-196.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.38958: Flags [.], ack 527, win 114, options [nop,nop,TS val 65229155 ecr 144915], length 0
+13:48:36.584778 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 926, win 23, options [nop,nop,TS val 3549728993 ecr 144899], length 0
+13:48:36.584986 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 628, win 2668, options [nop,nop,TS val 146535 ecr 3549712627], length 0
+13:48:51.202030 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 926:971, ack 628, win 2668, options [nop,nop,TS val 147997 ecr 3549712627], length 45
+13:48:51.235908 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 628:675, ack 971, win 23, options [nop,nop,TS val 3549743646 ecr 147997], length 47
+13:48:51.236125 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 675, win 2668, options [nop,nop,TS val 148000 ecr 3549743646], length 0
+13:48:56.320656 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:48:56.321046 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:48:57.063608 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 971, win 23, options [nop,nop,TS val 3549749472 ecr 148000], length 0
+13:48:57.066977 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 675, win 2668, options [nop,nop,TS val 148583 ecr 3549743646], length 0
+13:49:17.543333 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 971, win 23, options [nop,nop,TS val 3549769953 ecr 148583], length 0
+13:49:17.543537 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 675, win 2668, options [nop,nop,TS val 150631 ecr 3549743646], length 0
+13:49:20.152736 IP hubv2-d052a8a7feff0001.lan.51252 > OpenWrt.lan.53: 32648+ A? api.smartthings.com. (37)
+13:49:20.156726 IP hubv2-d052a8a7feff0001.lan.51252 > OpenWrt.lan.53: 33672+ AAAA? api.smartthings.com. (37)
+13:49:20.157472 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.51252: 33672 0/0/0 (37)
+13:49:20.165956 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.51252: 32648 5/0/0 A 34.231.181.220, A 44.194.133.196, A 52.205.2.10, A 34.234.133.142, A 54.161.223.90 (117)
+13:49:20.171819 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [S], seq 2931816181, win 29200, options [mss 1460,sackOK,TS val 150894 ecr 0,nop,wscale 6], length 0
+13:49:20.197581 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [S.], seq 3077253559, ack 2931816182, win 26847, options [mss 1460,sackOK,TS val 3306056343 ecr 150894,nop,wscale 8], length 0
+13:49:20.197841 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 150897 ecr 3306056343], length 0
+13:49:20.286935 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 150906 ecr 3306056343], length 237
+13:49:20.309590 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [.], ack 238, win 110, options [nop,nop,TS val 3306056456 ecr 150906], length 0
+13:49:20.311422 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 3306056456 ecr 150906], length 1448
+13:49:20.311762 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 150908 ecr 3306056456], length 0
+13:49:20.313644 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 3306056456 ecr 150906], length 1448
+13:49:20.313988 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 150908 ecr 3306056456], length 0
+13:49:20.314540 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 3306056456 ecr 150906], length 418
+13:49:20.314730 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 150908 ecr 3306056456], length 0
+13:49:20.330965 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 150910 ecr 3306056456], length 75
+13:49:20.331196 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 150910 ecr 3306056456], length 6
+13:49:20.331197 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 150910 ecr 3306056456], length 45
+13:49:20.351169 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [.], ack 364, win 110, options [nop,nop,TS val 3306056497 ecr 150910], length 0
+13:49:20.352386 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 3306056497 ecr 150910], length 51
+13:49:20.359255 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 150913 ecr 3306056497], length 131
+13:49:20.376271 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 3306056521 ecr 150913], length 199
+13:49:20.377399 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 150915 ecr 3306056521], length 31
+13:49:20.391769 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 150916 ecr 3306056521], length 0
+13:49:20.392824 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 3306056538 ecr 150915], length 0
+13:49:20.393096 IP hubv2-d052a8a7feff0001.lan.33892 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 150916 ecr 3306056538], length 0
+13:49:20.405646 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33892: Flags [.], ack 527, win 114, options [nop,nop,TS val 3306056552 ecr 150916], length 0
+13:49:22.209643 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 971:1016, ack 675, win 2668, options [nop,nop,TS val 151098 ecr 3549743646], length 45
+13:49:22.241445 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 675:722, ack 1016, win 23, options [nop,nop,TS val 3549774647 ecr 151098], length 47
+13:49:22.241674 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 722, win 2668, options [nop,nop,TS val 151101 ecr 3549774647], length 0
+13:49:25.248636 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:49:25.249137 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:49:28.228476 IP hubv2-d052a8a7feff0001.lan.57985 > OpenWrt.lan.53: 26234+ A? api.smartthings.com. (37)
+13:49:28.229844 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.57985: 26234 5/0/0 A 54.161.223.90, A 34.234.133.142, A 52.205.2.10, A 44.194.133.196, A 34.231.181.220 (117)
+13:49:28.231915 IP hubv2-d052a8a7feff0001.lan.58638 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [S], seq 706369951, win 29200, options [mss 1460,sackOK,TS val 151700 ecr 0,nop,wscale 6], length 0
+13:49:28.249088 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58638: Flags [S.], seq 1339952582, ack 706369952, win 26847, options [mss 1460,sackOK,TS val 1940706670 ecr 151700,nop,wscale 8], length 0
+13:49:28.249343 IP hubv2-d052a8a7feff0001.lan.58638 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 151702 ecr 1940706670], length 0
+13:49:28.249695 IP hubv2-d052a8a7feff0001.lan.58638 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 1:121, ack 1, win 457, options [nop,nop,TS val 151702 ecr 1940706670], length 120
+13:49:28.269215 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58638: Flags [.], ack 121, win 105, options [nop,nop,TS val 1940706690 ecr 151702], length 0
+13:49:28.269824 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58638: Flags [R.], seq 1, ack 121, win 105, options [nop,nop,TS val 1940706691 ecr 151702], length 0
+13:49:37.258287 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1016:1062, ack 722, win 2668, options [nop,nop,TS val 152603 ecr 3549774647], length 46
+13:49:37.286422 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 722:769, ack 1062, win 23, options [nop,nop,TS val 3549789697 ecr 152603], length 47
+13:49:37.286667 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 769, win 2668, options [nop,nop,TS val 152606 ecr 3549789697], length 0
+13:49:38.339960 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1062, win 23, options [nop,nop,TS val 3549790751 ecr 152606], length 0
+13:49:38.340164 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 769, win 2668, options [nop,nop,TS val 152711 ecr 3549789697], length 0
+13:49:42.242899 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1062:1371, ack 769, win 2668, options [nop,nop,TS val 153101 ecr 3549789697], length 309
+13:49:42.312804 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1371, win 23, options [nop,nop,TS val 3549794723 ecr 153101], length 0
+13:49:58.501114 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1371, win 23, options [nop,nop,TS val 3549810911 ecr 153101], length 0
+13:49:58.501318 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 769, win 2668, options [nop,nop,TS val 154727 ecr 3549794723], length 0
+13:50:03.648638 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:50:03.649776 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:50:13.248345 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1371:1416, ack 769, win 2668, options [nop,nop,TS val 156202 ecr 3549794723], length 45
+13:50:13.273547 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1416, win 23, options [nop,nop,TS val 3549825685 ecr 156202], length 0
+13:50:13.275022 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 769:816, ack 1416, win 23, options [nop,nop,TS val 3549825685 ecr 156202], length 47
+13:50:13.275219 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 816, win 2668, options [nop,nop,TS val 156205 ecr 3549825685], length 0
+13:50:18.985540 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1416, win 23, options [nop,nop,TS val 3549831394 ecr 156205], length 0
+13:50:18.985744 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 816, win 2668, options [nop,nop,TS val 156776 ecr 3549825685], length 0
+13:50:20.169192 IP hubv2-d052a8a7feff0001.lan.49715 > OpenWrt.lan.53: 24494+ A? api.smartthings.com. (37)
+13:50:20.170861 IP hubv2-d052a8a7feff0001.lan.49715 > OpenWrt.lan.53: 25518+ AAAA? api.smartthings.com. (37)
+13:50:20.171410 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.49715: 25518 0/0/0 (37)
+13:50:20.182203 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.49715: 24494 5/0/0 A 34.231.181.220, A 52.205.2.10, A 54.161.223.90, A 44.194.133.196, A 34.234.133.142 (117)
+13:50:20.184751 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [S], seq 1242247830, win 29200, options [mss 1460,sackOK,TS val 156896 ecr 0,nop,wscale 6], length 0
+13:50:20.206681 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [S.], seq 3400121590, ack 1242247831, win 26847, options [mss 1460,sackOK,TS val 3306116352 ecr 156896,nop,wscale 8], length 0
+13:50:20.206954 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 156898 ecr 3306116352], length 0
+13:50:20.308323 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 156908 ecr 3306116352], length 237
+13:50:20.325674 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [.], ack 238, win 110, options [nop,nop,TS val 3306116471 ecr 156908], length 0
+13:50:20.327237 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 3306116472 ecr 156908], length 1448
+13:50:20.327527 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 156910 ecr 3306116472], length 0
+13:50:20.328735 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 3306116472 ecr 156908], length 1448
+13:50:20.329071 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 156910 ecr 3306116472], length 0
+13:50:20.329674 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 3306116472 ecr 156908], length 418
+13:50:20.329884 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 156910 ecr 3306116472], length 0
+13:50:20.339872 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 156911 ecr 3306116472], length 75
+13:50:20.339873 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 156911 ecr 3306116472], length 6
+13:50:20.340164 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 156911 ecr 3306116472], length 45
+13:50:20.358714 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [.], ack 364, win 110, options [nop,nop,TS val 3306116504 ecr 156911], length 0
+13:50:20.359714 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 3306116504 ecr 156911], length 51
+13:50:20.366247 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 156914 ecr 3306116504], length 131
+13:50:20.382277 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 3306116527 ecr 156914], length 199
+13:50:20.383307 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 156915 ecr 3306116527], length 31
+13:50:20.392475 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 156916 ecr 3306116527], length 0
+13:50:20.401133 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 3306116546 ecr 156915], length 0
+13:50:20.401400 IP hubv2-d052a8a7feff0001.lan.33896 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 156917 ecr 3306116546], length 0
+13:50:20.409707 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33896: Flags [.], ack 527, win 114, options [nop,nop,TS val 3306116555 ecr 156916], length 0
+13:50:39.461507 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1416, win 23, options [nop,nop,TS val 3549851872 ecr 156776], length 0
+13:50:39.461723 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 816, win 2668, options [nop,nop,TS val 158823 ecr 3549825685], length 0
+13:50:42.585026 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1416:1470, ack 816, win 2668, options [nop,nop,TS val 159136 ecr 3549825685], length 54
+13:50:42.656909 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1470, win 23, options [nop,nop,TS val 3549855068 ecr 159136], length 0
+13:50:44.586884 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1470:1741, ack 816, win 2668, options [nop,nop,TS val 159336 ecr 3549855068], length 271
+13:50:44.608712 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:50:44.610786 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:50:44.613300 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1741, win 24, options [nop,nop,TS val 3549857024 ecr 159336], length 0
+13:50:44.613525 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1741:1795, ack 816, win 2668, options [nop,nop,TS val 159339 ecr 3549857024], length 54
+13:50:44.614842 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 816:907, ack 1741, win 24, options [nop,nop,TS val 3549857025 ecr 159336], length 91
+13:50:44.615014 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 907, win 2668, options [nop,nop,TS val 159339 ecr 3549857025], length 0
+13:50:44.680080 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1795, win 24, options [nop,nop,TS val 3549857092 ecr 159339], length 0
+13:50:44.680300 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1795:1844, ack 907, win 2668, options [nop,nop,TS val 159345 ecr 3549857092], length 49
+13:50:44.701349 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1844, win 24, options [nop,nop,TS val 3549857114 ecr 159345], length 0
+13:50:44.702082 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 907:954, ack 1844, win 24, options [nop,nop,TS val 3549857115 ecr 159345], length 47
+13:50:44.702218 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 954, win 2668, options [nop,nop,TS val 159347 ecr 3549857115], length 0
+13:50:44.703267 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1844:1891, ack 954, win 2668, options [nop,nop,TS val 159348 ecr 3549857115], length 47
+13:50:44.770713 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1891, win 24, options [nop,nop,TS val 3549857184 ecr 159348], length 0
+13:50:59.944046 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1891, win 24, options [nop,nop,TS val 3549872354 ecr 159348], length 0
+13:50:59.944232 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 954, win 2668, options [nop,nop,TS val 160872 ecr 3549857184], length 0
+13:51:15.705013 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1891:1936, ack 954, win 2668, options [nop,nop,TS val 162448 ecr 3549857184], length 45
+13:51:15.729954 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1936, win 24, options [nop,nop,TS val 3549888141 ecr 162448], length 0
+13:51:15.731536 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 954:1001, ack 1936, win 24, options [nop,nop,TS val 3549888142 ecr 162448], length 47
+13:51:15.781694 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1001, win 2668, options [nop,nop,TS val 162456 ecr 3549888142], length 0
+13:51:20.188421 IP hubv2-d052a8a7feff0001.lan.55771 > OpenWrt.lan.53: 40286+ A? api.smartthings.com. (37)
+13:51:20.190786 IP hubv2-d052a8a7feff0001.lan.55771 > OpenWrt.lan.53: 41310+ AAAA? api.smartthings.com. (37)
+13:51:20.191391 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55771: 41310 0/0/0 (37)
+13:51:20.201289 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55771: 40286 5/0/0 A 54.161.223.90, A 52.205.2.10, A 34.231.181.220, A 34.234.133.142, A 44.194.133.196 (117)
+13:51:20.202423 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [S], seq 1945323759, win 29200, options [mss 1460,sackOK,TS val 162898 ecr 0,nop,wscale 6], length 0
+13:51:20.219634 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [S.], seq 3347877134, ack 1945323760, win 26847, options [mss 1460,sackOK,TS val 1940818641 ecr 162898,nop,wscale 8], length 0
+13:51:20.219917 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 162899 ecr 1940818641], length 0
+13:51:20.332056 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 162911 ecr 1940818641], length 237
+13:51:20.348760 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [.], ack 238, win 110, options [nop,nop,TS val 1940818770 ecr 162911], length 0
+13:51:20.350355 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 1940818771 ecr 162911], length 1448
+13:51:20.350691 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 162912 ecr 1940818771], length 0
+13:51:20.352114 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 1940818771 ecr 162911], length 1448
+13:51:20.352648 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 162913 ecr 1940818771], length 0
+13:51:20.352919 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 1940818771 ecr 162911], length 418
+13:51:20.353110 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 162913 ecr 1940818771], length 0
+13:51:20.362233 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 162914 ecr 1940818771], length 75
+13:51:20.362484 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 162914 ecr 1940818771], length 6
+13:51:20.362486 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 162914 ecr 1940818771], length 45
+13:51:20.383206 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [.], ack 364, win 110, options [nop,nop,TS val 1940818804 ecr 162914], length 0
+13:51:20.384485 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 1940818804 ecr 162914], length 51
+13:51:20.391119 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 162916 ecr 1940818804], length 131
+13:51:20.411685 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 1940818832 ecr 162916], length 199
+13:51:20.412744 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 162919 ecr 1940818832], length 31
+13:51:20.422070 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 1936, win 24, options [nop,nop,TS val 3549892832 ecr 162456], length 0
+13:51:20.422325 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1001, win 2668, options [nop,nop,TS val 162920 ecr 3549888142], length 0
+13:51:20.422639 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 162920 ecr 1940818832], length 0
+13:51:20.427627 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 1940818850 ecr 162919], length 0
+13:51:20.430595 IP hubv2-d052a8a7feff0001.lan.58644 > ec2-54-161-223-90.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 162920 ecr 1940818850], length 0
+13:51:20.442818 IP ec2-54-161-223-90.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.58644: Flags [.], ack 527, win 114, options [nop,nop,TS val 1940818864 ecr 162920], length 0
+13:51:20.960599 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:51:20.961118 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:51:22.845840 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 1936:2082, ack 1001, win 2668, options [nop,nop,TS val 163162 ecr 3549888142], length 146
+13:51:22.912340 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2082, win 25, options [nop,nop,TS val 3549895324 ecr 163162], length 0
+13:51:40.906492 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2082, win 25, options [nop,nop,TS val 3549913314 ecr 163162], length 0
+13:51:40.906700 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1001, win 2668, options [nop,nop,TS val 164968 ecr 3549895324], length 0
+13:51:42.636705 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2082:2136, ack 1001, win 2668, options [nop,nop,TS val 165141 ecr 3549895324], length 54
+13:51:42.661893 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2136, win 25, options [nop,nop,TS val 3549915073 ecr 165141], length 0
+13:51:44.637482 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2136:2407, ack 1001, win 2668, options [nop,nop,TS val 165341 ecr 3549915073], length 271
+13:51:44.662241 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2407, win 25, options [nop,nop,TS val 3549917074 ecr 165341], length 0
+13:51:44.662530 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2407:2461, ack 1001, win 2668, options [nop,nop,TS val 165344 ecr 3549917074], length 54
+13:51:44.666394 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1001:1092, ack 2407, win 25, options [nop,nop,TS val 3549917075 ecr 165341], length 91
+13:51:44.666594 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1092, win 2668, options [nop,nop,TS val 165344 ecr 3549917075], length 0
+13:51:44.728186 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2461, win 25, options [nop,nop,TS val 3549917140 ecr 165344], length 0
+13:51:44.728405 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2461:2510, ack 1092, win 2668, options [nop,nop,TS val 165350 ecr 3549917140], length 49
+13:51:44.749384 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2510, win 25, options [nop,nop,TS val 3549917162 ecr 165350], length 0
+13:51:44.750112 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1092:1139, ack 2510, win 25, options [nop,nop,TS val 3549917163 ecr 165350], length 47
+13:51:44.750250 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1139, win 2668, options [nop,nop,TS val 165352 ecr 3549917163], length 0
+13:51:44.751284 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2510:2557, ack 1139, win 2668, options [nop,nop,TS val 165353 ecr 3549917163], length 47
+13:51:44.818678 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2557, win 25, options [nop,nop,TS val 3549917232 ecr 165353], length 0
+13:51:52.224904 IP hubv2-d052a8a7feff0001.lan.50137 > OpenWrt.lan.53: 15330+ A? api.smartthings.com. (37)
+13:51:52.239366 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.50137: 15330 5/0/0 A 34.231.181.220, A 54.161.223.90, A 52.205.2.10, A 44.194.133.196, A 34.234.133.142 (117)
+13:51:52.241428 IP hubv2-d052a8a7feff0001.lan.33904 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [S], seq 1015813088, win 29200, options [mss 1460,sackOK,TS val 166102 ecr 0,nop,wscale 6], length 0
+13:51:52.266036 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33904: Flags [S.], seq 575839374, ack 1015813089, win 26847, options [mss 1460,sackOK,TS val 3306208410 ecr 166102,nop,wscale 8], length 0
+13:51:52.266279 IP hubv2-d052a8a7feff0001.lan.33904 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 166104 ecr 3306208410], length 0
+13:51:52.266621 IP hubv2-d052a8a7feff0001.lan.33904 > ec2-34-231-181-220.compute-1.amazonaws.com.443: Flags [P.], seq 1:121, ack 1, win 457, options [nop,nop,TS val 166104 ecr 3306208410], length 120
+13:51:52.285631 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33904: Flags [.], ack 121, win 105, options [nop,nop,TS val 3306208430 ecr 166104], length 0
+13:51:52.286944 IP ec2-34-231-181-220.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.33904: Flags [R.], seq 1, ack 121, win 105, options [nop,nop,TS val 3306208430 ecr 166104], length 0
+13:51:57.312827 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:51:57.315435 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:52:01.381523 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2557, win 25, options [nop,nop,TS val 3549933792 ecr 165353], length 0
+13:52:01.381752 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1139, win 2668, options [nop,nop,TS val 167016 ecr 3549917232], length 0
+13:52:15.753069 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2557:2602, ack 1139, win 2668, options [nop,nop,TS val 168453 ecr 3549917232], length 45
+13:52:15.778095 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2602, win 25, options [nop,nop,TS val 3549948190 ecr 168453], length 0
+13:52:15.779560 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1139:1186, ack 2602, win 25, options [nop,nop,TS val 3549948190 ecr 168453], length 47
+13:52:15.829373 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1186, win 2668, options [nop,nop,TS val 168461 ecr 3549948190], length 0
+13:52:20.224183 IP hubv2-d052a8a7feff0001.lan.55520 > OpenWrt.lan.53: 19983+ A? api.smartthings.com. (37)
+13:52:20.224185 IP hubv2-d052a8a7feff0001.lan.55520 > OpenWrt.lan.53: 21007+ AAAA? api.smartthings.com. (37)
+13:52:20.225684 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55520: 19983 5/0/0 A 34.234.133.142, A 44.194.133.196, A 52.205.2.10, A 54.161.223.90, A 34.231.181.220 (117)
+13:52:20.226133 IP OpenWrt.lan.53 > hubv2-d052a8a7feff0001.lan.55520: 21007 0/0/0 (37)
+13:52:20.227489 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [S], seq 3964952418, win 29200, options [mss 1460,sackOK,TS val 168900 ecr 0,nop,wscale 6], length 0
+13:52:20.244705 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [S.], seq 1635369800, ack 3964952419, win 26847, options [mss 1460,sackOK,TS val 4233224975 ecr 168900,nop,wscale 8], length 0
+13:52:20.244983 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 1, win 457, options [nop,nop,TS val 168902 ecr 4233224975], length 0
+13:52:20.358038 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 1:238, ack 1, win 457, options [nop,nop,TS val 168913 ecr 4233224975], length 237
+13:52:20.373650 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [.], ack 238, win 110, options [nop,nop,TS val 4233225106 ecr 168913], length 0
+13:52:20.375244 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [.], seq 1:1449, ack 238, win 110, options [nop,nop,TS val 4233225106 ecr 168913], length 1448
+13:52:20.375528 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 1449, win 502, options [nop,nop,TS val 168915 ecr 4233225106], length 0
+13:52:20.376688 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [.], seq 1449:2897, ack 238, win 110, options [nop,nop,TS val 4233225106 ecr 168913], length 1448
+13:52:20.377004 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 2897, win 547, options [nop,nop,TS val 168915 ecr 4233225106], length 0
+13:52:20.377588 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [P.], seq 2897:3315, ack 238, win 110, options [nop,nop,TS val 4233225106 ecr 168913], length 418
+13:52:20.377769 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 3315, win 592, options [nop,nop,TS val 168915 ecr 4233225106], length 0
+13:52:20.386590 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 238:313, ack 3315, win 592, options [nop,nop,TS val 168916 ecr 4233225106], length 75
+13:52:20.386827 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 313:319, ack 3315, win 592, options [nop,nop,TS val 168916 ecr 4233225106], length 6
+13:52:20.386829 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 319:364, ack 3315, win 592, options [nop,nop,TS val 168916 ecr 4233225106], length 45
+13:52:20.405850 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [.], ack 364, win 110, options [nop,nop,TS val 4233225137 ecr 168916], length 0
+13:52:20.407068 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [P.], seq 3315:3366, ack 364, win 110, options [nop,nop,TS val 4233225137 ecr 168916], length 51
+13:52:20.413987 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 364:495, ack 3366, win 592, options [nop,nop,TS val 168919 ecr 4233225137], length 131
+13:52:20.444327 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [P.], seq 3366:3565, ack 495, win 114, options [nop,nop,TS val 4233225175 ecr 168919], length 199
+13:52:20.445572 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [P.], seq 495:526, ack 3565, win 638, options [nop,nop,TS val 168922 ecr 4233225175], length 31
+13:52:20.455322 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [F.], seq 526, ack 3565, win 638, options [nop,nop,TS val 168923 ecr 4233225175], length 0
+13:52:20.461788 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [F.], seq 3565, ack 526, win 114, options [nop,nop,TS val 4233225194 ecr 168922], length 0
+13:52:20.462033 IP hubv2-d052a8a7feff0001.lan.45716 > ec2-34-234-133-142.compute-1.amazonaws.com.443: Flags [.], ack 3566, win 638, options [nop,nop,TS val 168924 ecr 4233225194], length 0
+13:52:20.469676 IP ec2-34-234-133-142.compute-1.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45716: Flags [.], ack 527, win 114, options [nop,nop,TS val 4233225202 ecr 168923], length 0
+13:52:21.242822 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2602:2651, ack 1186, win 2668, options [nop,nop,TS val 169002 ecr 3549948190], length 49
+13:52:21.272284 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1186:1241, ack 2651, win 25, options [nop,nop,TS val 3549953681 ecr 169002], length 55
+13:52:21.272537 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1241, win 2668, options [nop,nop,TS val 169005 ecr 3549953681], length 0
+13:52:22.308246 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2651, win 25, options [nop,nop,TS val 3549954720 ecr 169005], length 0
+13:52:22.308445 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1241, win 2668, options [nop,nop,TS val 169108 ecr 3549953681], length 0
+13:52:27.520639 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:52:27.520811 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:52:42.341019 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2651, win 25, options [nop,nop,TS val 3549974752 ecr 169108], length 0
+13:52:42.341222 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1241, win 2668, options [nop,nop,TS val 171111 ecr 3549953681], length 0
+13:52:42.687628 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2651:2705, ack 1241, win 2668, options [nop,nop,TS val 171145 ecr 3549953681], length 54
+13:52:42.756791 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2705, win 25, options [nop,nop,TS val 3549975168 ecr 171145], length 0
+13:52:44.689103 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2705:2976, ack 1241, win 2668, options [nop,nop,TS val 171346 ecr 3549975168], length 271
+13:52:44.715292 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 2976, win 26, options [nop,nop,TS val 3549977126 ecr 171346], length 0
+13:52:44.715523 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 2976:3030, ack 1241, win 2668, options [nop,nop,TS val 171348 ecr 3549977126], length 54
+13:52:44.716887 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1241:1332, ack 2976, win 26, options [nop,nop,TS val 3549977127 ecr 171346], length 91
+13:52:44.717098 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1332, win 2668, options [nop,nop,TS val 171348 ecr 3549977127], length 0
+13:52:44.784297 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 3030, win 26, options [nop,nop,TS val 3549977196 ecr 171348], length 0
+13:52:44.784526 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 3030:3079, ack 1332, win 2668, options [nop,nop,TS val 171355 ecr 3549977196], length 49
+13:52:44.805820 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 3079, win 26, options [nop,nop,TS val 3549977219 ecr 171355], length 0
+13:52:44.806640 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [P.], seq 1332:1379, ack 3079, win 26, options [nop,nop,TS val 3549977220 ecr 171355], length 47
+13:52:44.806807 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1379, win 2668, options [nop,nop,TS val 171357 ecr 3549977220], length 0
+13:52:44.807796 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 3079:3126, ack 1379, win 2668, options [nop,nop,TS val 171357 ecr 3549977220], length 47
+13:52:44.874593 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 3126, win 26, options [nop,nop,TS val 3549977288 ecr 171357], length 0
+13:53:02.825755 IP ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443 > hubv2-d052a8a7feff0001.lan.45958: Flags [.], ack 3126, win 26, options [nop,nop,TS val 3549995234 ecr 171357], length 0
+13:53:02.825982 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [.], ack 1379, win 2668, options [nop,nop,TS val 173159 ecr 3549977288], length 0
+13:53:07.968639 ARP, Request who-has hubv2-d052a8a7feff0001.lan tell OpenWrt.lan, length 28
+13:53:07.972686 ARP, Reply hubv2-d052a8a7feff0001.lan is-at d0:52:a8:a7:fe:0c (oui Unknown), length 46
+13:53:15.808685 IP hubv2-d052a8a7feff0001.lan.45958 > ec2-3-141-212-7.us-east-2.compute.amazonaws.com.443: Flags [P.], seq 3126:3171, ack 1379, win 2668, options [nop,nop,TS val 174458 ecr 3549977288], length 45
