@@ -8,8 +8,8 @@ namespace: "oai"
 
 nfimage:
   registry: local
-  repository: rdefosseoai/oai-ausf #tolgaomeratalay/oai-ausf   ## rdefosseoai/oai-ausf # image name either locally present or in a public/private repository
-  version: develop #"6.0"  ## latest/v1.2.0 tag for stable and develop for experimental
+  repository: tolgaomeratalay/ausf
+  version: bench
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: Always
 

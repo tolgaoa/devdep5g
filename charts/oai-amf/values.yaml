@@ -7,8 +7,8 @@ namespace: "oai"
 
 nfimage:  # image name either locally present or in a public/private repository
   registry: local
-  repository: rdefosseoai/oai-amf #tolgaomeratalay/oai-amf           ## dockerhub rdefosseoai/oai-amf 
-  version: develop #"6.0" # image tag   ### v1.1.0  develop for experimental features
+  repository: tolgaomeratalay/amf
+  version: bench
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -104,7 +104,7 @@ config:
   nfRegistration: "yes" 
   smfSelection: "yes" 
   useFqdnDns: "no"  # Important to avoid mentioning any static ip-address
-  mySqlServer: "10.9.0.42"
+  mySqlServer: "10.42.0.177"
   mySqlUser: "root" # used only if not using AUSF
   mySqlPass: "linux" # used only if not using AUSF
   mySqlDb: "oai_db" # used only if not using AUSF
