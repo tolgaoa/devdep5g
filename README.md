@@ -10,14 +10,14 @@ The infrastructure that we used for the large-scale deployments in given below.
 
 Our testbed is comprised of a PowerEdge T640 Server with 2 x Intel Xeon Gold 6240R 2.4G CPUs, 768 GB RAM, 2TB disk space and two Precision 7920 Tower servers with 2 x Intel Xeon Gold 5218R 2.1GHz CPUs, 512GB RAM, 1TB disk space. All the hosts (VMs and baremetal are running Ubuntu 20.04). 
 
-- ![#f03c15](Using Ubuntu 22.04 might cause issues with the SSH server used during the RKE cluster setup process) `#f03c15`
-
-
 ------------------------------------------------------------------------------
 
 ## Step 1: Setting up the K8s Cluster
 
 In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engine (RKE) which can be installed following this [link](https://rancher.com/docs/rke/latest/en/installation/). Certain RKE versions can only setup certain versions of Kubernetes. We used rke 1.2.11 with Kubernetes 1.19.
+
+**Warning**
+Using Ubuntu 22.04 might cause issues with the SSH server used during the RKE cluster setup process
 
 Once the RKE binary is setup, the [cluster.yaml](cluster.yml) file is used in order to setup the K8s cluster. The current file is used to set up a single node cluster, however additional nodes can be specified using the same format. To proceed with the installation, the following are the required steps: 
 1. A minimum of one target node with sufficient capacity to install the cluster accessible from the workstation (our cluster runs on 16 Openstack VMs with a total of 220GB RAM and 80 vCPUs, however ). Note that if you choose to create a cluster with multiple nodes you'll have to change the way the K8s volumes are created because the files will need to be shared across multiple nodes, which will require a network file system. 
