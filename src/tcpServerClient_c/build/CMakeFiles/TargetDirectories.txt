@@ -1,3 +1,0 @@
-/home/taport/Documents/iottrafficmodel/tcpServerClient/build/CMakeFiles/tcpclient.dir
-/home/taport/Documents/iottrafficmodel/tcpServerClient/build/CMakeFiles/edit_cache.dir
-/home/taport/Documents/iottrafficmodel/tcpServerClient/build/CMakeFiles/rebuild_cache.dir
