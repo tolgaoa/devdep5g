@@ -12,7 +12,7 @@ imagePullSecrets: []
 
 serviceAccount:
   create: true
-  name: "oai-gnbsim-sa12"
+  name: "oai-gnbsim-sa28"
 
 podSecurityContext:
   runAsUser: 0
@@ -29,32 +29,32 @@ start:
   gnbsim: true
 
 multus:
-  ngapIPadd: "10.100.19.12"
+  ngapIPadd: "10.100.19.28"
   ngapNetmask: "16"
   ngapGateway: "10.100.10.1"
-  gtpIPadd: "10.100.20.12"
+  gtpIPadd: "10.100.20.28"
   gtpNetmask: "16"
   gtpGateway: "10.100.10.1"
 config:
   mcc: "208"
   mnc: "95"
-  gnbid: "12"
+  gnbid: "28"
   tac: "0x00a000"
   sst: "222"
   sd: "00007b"
   pagingdrx: "v32"
   ranuengapid: "0"
   imeisv: "35609204079514"
-  msin: "0000000012"
+  msin: "0000000028"
   routingindicator: "1234"
   protectionscheme: "null"
-  key: "0C0A34601D4F07677303652C04625312"
+  key: "0C0A34601D4F07677303652C04625328"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "default"
   url: "http://10.100.25.10:8000"
   nrcellid: "1"
   ngappeeraddr: "10.100.15.10"
-  gtpulocaladdr: "10.100.19.12"
+  gtpulocaladdr: "10.100.19.28"
   gtpuifname: "net1"
   usefqdn: "no"
   deregafter: "360000"

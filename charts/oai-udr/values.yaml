@@ -59,7 +59,7 @@ config:
   udrInterfaceHttp1PortForNudr: "80"
   udrInterfaceHttp2PortForNudr: "8080"
   udrApiVersion: "v1"
-  mySqlServer: "10.42.0.177"
+  mySqlServer: "10.42.0.24"
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"
