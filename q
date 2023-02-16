@@ -9,7 +9,7 @@ namespace: "oai"
 nfimage:
   registry: local
   repository: tolgaomeratalay/udm
-  version: apidebugv6 #f1_f2345_gautn_kausfv3 #f1_f2345_gautn_annexa4_kausfv1  #modfall_v2 #fall_gautn_v1 #modfall_annexv7 #modfall_anv1 #testintv06
+  version: bench #f1_f2345_gautn_kausfv3 #f1_f2345_gautn_annexa4_kausfv1  #modfall_v2 #fall_gautn_v1 #modfall_annexv7 #modfall_anv1 #testintv06
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 

@@ -18,6 +18,8 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: "{{ .Chart.Name }}-{{ .Values.namespace }}-net1"
     spec:
+      nodeSelector:
+        type: run
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}

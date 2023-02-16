@@ -1,27 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-dnn27
+  name: oai-dnn10
   labels:
-    app: oai-dnn27
+    app: oai-dnn10
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-dnn27
+      app: oai-dnn10
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-dnn27
+        app: oai-dnn10
       annotations:
-        k8s.v1.cni.cncf.io/networks: dnn-net27
+        k8s.v1.cni.cncf.io/networks: dnn-net10
     spec:
+      nodeSelector:
+        type: run
       securityContext:
         runAsUser: 0
         runAsGroup: 0
-      containers:
+        image: tolgaomeratalay/oai-dnn:4kaggrdu
       - name: dnn
         image: tolgaomeratalay/oai-dnn:4kaggrdu
         #command: ['bash', '-c', "iptables -t nat -A POSTROUTING -o net1 -j MASQUERADE; ip route add 12.1.0.0/16 via 192.168.15.10 dev net1;"]

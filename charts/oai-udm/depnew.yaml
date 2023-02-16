@@ -36,20 +36,14 @@ spec:
     {{- end }}
       containers:
       - name: proxy
-        image: tolgaomeratalay/reverseproxy:v1.1
+        image: tolgaomeratalay/reverseproxy:v10
         securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
           privileged: true
         ports:
         - containerPort: 11095
-        env:
-        - name: SERVICENAME
-          value: "udm1"
-        #command:
-        #- /bin/sleep
-        #- infinity
+        command:
+          - /bin/sleep
+          - infinity
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         {{- if .Values.start.tcpdump}}

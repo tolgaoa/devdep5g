@@ -8,7 +8,7 @@ namespace: "oai"
 nfimage:  # image name either locally present or in a public/private repository
   registry: local
   repository: tolgaomeratalay/amf
-  version: bench
+  version: apidebugv1 #bench #bench_readdelayv1 #kamf_knasv7 #kamfv3 #bench_readdelayv1 #kamfv2 #kamf_knasv6 
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -104,7 +104,7 @@ config:
   nfRegistration: "yes" 
   smfSelection: "yes" 
   useFqdnDns: "no"  # Important to avoid mentioning any static ip-address
-  mySqlServer: "10.42.0.24"
+  mySqlServer: "10.42.1.14"
   mySqlUser: "root" # used only if not using AUSF
   mySqlPass: "linux" # used only if not using AUSF
   mySqlDb: "oai_db" # used only if not using AUSF

@@ -25,6 +25,8 @@ spec:
           }]
     {{- end }}
     spec:
+      nodeSelector:
+        type: run
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}

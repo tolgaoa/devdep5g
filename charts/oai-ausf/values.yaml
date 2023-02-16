@@ -9,9 +9,9 @@ namespace: "oai"
 nfimage:
   registry: local
   repository: tolgaomeratalay/ausf
-  version: bench
+  version: apidebugv1 #mod_allv3 #bench_readdelayv2 #mod_allv2
   #pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 tcpdumpimage:
   registry: local

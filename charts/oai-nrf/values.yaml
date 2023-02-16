@@ -10,7 +10,7 @@ namespace: "oai"
 nfimage:
   registry: local
   repository: tolgaomeratalay/nrf
-  version: bench
+  version:  bench #measregv4 #bench
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
