@@ -18,8 +18,6 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: dnn-net10
     spec:
-      nodeSelector:
-        type: run
       securityContext:
         runAsUser: 0
         runAsGroup: 0

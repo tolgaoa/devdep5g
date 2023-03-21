@@ -42,7 +42,8 @@ gnbsims=10
 		fi
 
                 kubectl wait --for=condition=available --timeout=200s deployment/mysql$sqlc -n oai
-                mysqlIP=$(kubectl get pods -n oai -o wide| grep mysql$sqlc | awk '{print $6}');
+                mysqlIP=$(kubectl get pods -n oai -o wide| grep mysql | awk '{print $6}');
+                #mysqlIP=$(kubectl get pods -n oai -o wide| grep mysql$sqlc | awk '{print $6}');
 
 
 		#----------------------------------NRF Deployment----------------------------------------------------------

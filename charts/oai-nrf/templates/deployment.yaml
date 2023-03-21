@@ -18,8 +18,6 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: "{{ .Chart.Name }}-{{ .Values.namespace }}-net1"
     spec:
-      nodeSelector:
-        type: run
       initContainers:
       - name: init-networking
         image: tolgaomeratalay/init-networking:v5
@@ -42,6 +40,11 @@ spec:
             add:
             - NET_ADMIN
           privileged: true
+        ports:
+        - containerPort: 11095
+        env:
+        - name: SERVICENAME
+          value: "nrf1"
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         {{- if .Values.start.tcpdump}}
