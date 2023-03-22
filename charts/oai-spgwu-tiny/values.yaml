@@ -18,7 +18,7 @@ tcpdumpimage:
   repository: corfr/tcpdump
   version: latest
   #pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 ## good to use when pulling images from docker-hub mention 
 #imagePullSecrets: 

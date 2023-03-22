@@ -140,6 +140,31 @@ spec:
               configMapKeyRef:
                 name: {{ .Chart.Name }}-configmap
                 key: udrFqdn
+          - name: F1_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: f1ip
+          - name: F2345_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: f2345ip
+          - name: GAUTN_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: gautnip
+          - name: KAUSF_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: kausfip
+          - name: ANNEX_IP
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: annexip
         {{- if .Values.start.udm}}
         {{- else}}
         command:

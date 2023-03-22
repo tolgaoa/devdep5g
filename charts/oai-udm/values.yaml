@@ -9,7 +9,7 @@ namespace: "oai"
 nfimage:
   registry: local
   repository: tolgaomeratalay/udm
-  version: bench
+  version: f1_f2345_gautn_kausfv3 #f1_f2345_gautn_annexa4_kausfv1  #modfall_v2 #fall_gautn_v1 #modfall_annexv7 #modfall_anv1 #testintv06
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -18,7 +18,7 @@ tcpdumpimage:
   repository: corfr/tcpdump
   version: latest
   #pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 ## good to use when pulling images from docker-hub mention 
 #imagePullSecrets: 
@@ -66,6 +66,11 @@ config:
   udrPort: "80"
   udrVersionNb: "v1"
   udrFqdn: "oai-udr-svc"
+  f1ip: "10.100.30.11"
+  f2345ip: "10.100.30.10"
+  gautnip: "10.100.30.12"
+  kausfip: "10.100.30.15"
+  annexip: "10.100.30.13"
 
 persistence:
   sharedvolume: false

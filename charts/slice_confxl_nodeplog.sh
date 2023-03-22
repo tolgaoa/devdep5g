@@ -132,7 +132,7 @@ gnbsims=10
 				kubectl wait --for=condition=available --timeout=200s deployment/oai-gnbsim$gnbsims -n oai	
 				
 				#---------------------------------------------------------------------------------------
-				sleep 12
+				#sleep 12
 
 				gnbsimpod=$(kubectl get pods -n oai  | grep oai-gnbsim$gnbsims | awk '{print $1}')
 				((gnbsimIP=$sim+1))
@@ -166,12 +166,12 @@ gnbsims=10
 		((supfc2+=1))
 	done
 
-	echo "Finished core network deployment for $a aggregated users. Starting traffic generation"
+	#echo "Finished core network deployment for $a aggregated users. Starting traffic generation"
 
 	((trafficusers=$nousers-1))
-	/bin/bash ./charts/start_traffic_cm.sh $trafficusers $a $rep $dnnim
+	#/bin/bash ./charts/start_traffic_cm.sh $trafficusers $a $rep $dnnim
 	((undeployusers=$nousers*$rep+1))
-	/bin/bash ./charts/undeploy_all.sh $undeployusers
-	echo "Finished this round. Waiting 60s for undeployment"
-	sleep 60
+	#/bin/bash ./charts/undeploy_all.sh $undeployusers
+	#echo "Finished this round. Waiting 60s for undeployment"
+	#sleep 60
 done

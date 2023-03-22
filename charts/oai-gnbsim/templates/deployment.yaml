@@ -145,8 +145,8 @@ spec:
               configMapKeyRef:
                 name: {{ .Chart.Name }}-configmap
                 key: deregafter
-#        command: ["/bin/bash","-c"]
-#        args: ["sleep infinity"]
+        command: ["/bin/bash","-c"]
+        args: ["sleep infinity"]
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
