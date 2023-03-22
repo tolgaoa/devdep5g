@@ -1,0 +1,21 @@
+apiVersion: v2
+name: gnbsim
+description: A Helm chart for GNBSIM network function
+
+type: application
+
+icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
+
+version: 0.0.0
+
+appVersion: 0.0.0
+
+keywords:
+  - GNBSIM
+
+sources:
+  - https://gitlab.eurecom.fr/kharade/gnbsim/-/tree/master
+
+maintainers:
+  - name:  OPENAIRINTERFACE
+    email: contact@openairinterface.org

@@ -1,0 +1,168 @@
+mysql:
+  enabled: true
+  weight: 0
+  imagePullPolicy: IfNotPresent
+  oai5gdatabase: basic
+  imagePullSecrets:
+    - name: "regcred"
+  persistence:
+    enabled: false
+oai-nrf:
+  enabled: true
+  weight: 0
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-nrf           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  nodeSelector: {}
+oai-udr:
+  enabled: true
+  weight: 1
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-udr           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  nodeSelector: {}
+oai-udm:
+  enabled: true
+  weight: 2
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-udm           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  nodeSelector: {}
+oai-ausf:
+  enabled: true
+  weight: 3
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-ausf           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  nodeSelector: {}
+oai-amf:
+  enabled: true
+  weight: 4
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-amf           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  multus:
+    create: false
+    n1IPadd: "172.21.6.200"
+    n1Netmask: "22"
+    n1Gateway: "172.21.7.254"
+    hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
+  config:
+    amfInterfaceNameForNGAP: "eth0" # If multus creation is true then net1 else eth0
+    amfInterfaceNameForN11: "eth0"  # Service based interface
+    externalAusf: "yes"
+    # Mandatory
+    sst0: "1"
+    sd0: "0xFFFFFF"
+    # Optional upto 4 slices can be define using below template
+    sst1: "1"
+    sd1: "1"
+    mcc: "001"
+    mnc: "01"
+    tac: "0x0001"
+    nfRegistration: "yes"
+    smfSelection: "no"        #Bug in SMF can not have SMF selection when using UDR to fetch user-information
+    useHttp2: "no"
+    intAlgoList: '[ "NIA1" , "NIA1" , "NIA2" ]'
+    ciphAlgoList: '[ "NEA1" , "NEA1" , "NEA2" ]'
+  nodeSelector: {}
+oai-spgwu-tiny:
+  enabled: true
+  weight: 5
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-spgwu-tiny    ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  multus:
+    create: false
+    n3Ip: "172.21.6.201"
+    n3Netmask: "22"
+    n6Gw: "172.21.7.254"
+    hostInterface: "bond0"
+  config:
+    n3If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0
+    n4If: "eth0" # use for SMF communication
+    n6If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0 (important because it sends the traffic towards internet)
+    threadsN3Ul: "1"
+    threadsN6Dl: "1"
+    threadsN6Prio: 98
+    threadsN3Prio: 88
+    threadsN4Prio: 88
+    netUeIp: "12.1.1.0/24"  # The range in which UE ip-address will be allocated should be configured the same in SMF
+    registerNRF: "yes"
+    nrfFqdn: "oai-nrf-svc" # make sure this can be resolved by container dns
+    #Mandatory to configure atlease one slice
+    nssaiSst0: 1 # should match with SMF information
+    nssaiSd0: "0xFFFFFF"  # should match with SMF information (Optional, if removed sd value will be 0xFFFFFF)
+    dnn0: "oai" # should match with SMF information
+    #Upto 4 slices can be added from here to add more you need to add manullay in config.yaml. Please follow the same way of adding slices nssaiSST$,nssaiSd$,dnn$ ($=0,1,2,3)
+    nssaiSst1: 1 # should match with SMF information (Optional, if removed slice will not be configured)
+    nssaiSd1: "0xFFFFFF"  # should match with SMF information (Optional, if removed sd value will be 0xFFFFFF only if nssaiSst1 is configured)
+    dnn1: "ims" # should match with SMF information
+  nodeSelector: {}
+oai-smf:
+  enabled: true
+  weight: 6
+  kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-smf           ## The image will be pulled from dockerhub
+    version: v1.5.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    useLocalSubscriptionInfo: "no" #this means ip-address information will be fetched from UDR
+    ueMtu: 1500
+    dnsIpv4Address: "172.21.3.100" # configure the dns for UE don't use Kubernetes DNS
+    dnsSecIpv4Address: "172.21.3.100" # configure the dns for UE don't use Kubernetes DNS
+    defaultCSCFIpv4Address: "172.21.6.13" # For IMS server if needed
+    discoverUpf: "yes"              # if NRF is used then it can be used for UPF discovery
+    # You can define maximum 4 slices from here in case of more please change the configuration file.
+    dnnNi0: "oai"
+    pdusessiontype0: "IPv4"
+    ipv4dnnRange0: "12.1.1.2 - 12.1.1.254"
+    nssaiSst0: 1
+    nssaiSd0: "0xFFFFFF"
+    qosProfile5qi0: 2
+    sessionAmbrUl0: "1000Mbps"
+    sessionAmbrDl0: "1000Mbps"
+    # Extra optional slice
+    dnnNi1: "ims"
+    pdusessiontype1: "IPv4v6"
+    ipv4dnnRange1: "12.2.1.2 - 12.2.1.254"
+    nssaiSst1: 1
+    nssaiSd1: "0xFFFFFF"
+    qosProfile5qi1: 1
+    sessionAmbrUl1: "1000Mbps"
+    sessionAmbrDl1: "1000Mbps"
+  nodeSelector: {}

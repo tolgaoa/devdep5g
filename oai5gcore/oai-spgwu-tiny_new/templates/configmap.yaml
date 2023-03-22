@@ -1,0 +1,128 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  spgw_u.conf: |
+      SPGW-U =
+      {
+          FQDN = "oai-spgwu-tiny-svc";                    # only needed for 4g
+          INSTANCE                       = 0;             # 0 is the default
+          PID_DIRECTORY                  = "/var/run";    # /var/run is the default
+
+          INTERFACES :
+          {
+              S1U_S12_S4_UP :
+              {
+                  # S-GW binded interface for S1-U communication (GTPV1-U) can be ethernet interface, virtual ethernet interface, we don't advise wireless interfaces
+                  INTERFACE_NAME         = "{{ .Values.config.n3If }}";  # STRING, interface name, YOUR NETWORK CONFIG HERE
+                  IPV4_ADDRESS           = "read";                                    # STRING, CIDR or "read to let app read interface configured IP address
+                  #PORT                   = 2152;                                     # Default is 2152
+                  SCHED_PARAMS :
+                  {
+                      #CPU_ID       = 2;
+                      SCHED_POLICY = "SCHED_FIFO"; # Values in { SCHED_OTHER, SCHED_IDLE, SCHED_BATCH, SCHED_FIFO, SCHED_RR }
+                      SCHED_PRIORITY = {{ .Values.config.threadsN3Prio }};
+                      POOL_SIZE = {{ .Values.config.threadsN3Ul }}; # NUM THREADS
+                  };
+              };
+              SX :
+              {
+                  # S/P-GW binded interface for SX communication
+                  INTERFACE_NAME         = "{{ .Values.config.n4If }}"; # STRING, interface name
+                  IPV4_ADDRESS           = "read";                        # STRING, CIDR or "read" to let app read interface configured IP address
+                  #PORT                   = 8805;                         # Default is 8805
+                  SCHED_PARAMS :
+                  {
+                      #CPU_ID       = 1;
+                      SCHED_POLICY = "SCHED_FIFO"; # Values in { SCHED_OTHER, SCHED_IDLE, SCHED_BATCH, SCHED_FIFO, SCHED_RR }
+                      SCHED_PRIORITY = {{ .Values.config.threadsN4Prio }};
+                      POOL_SIZE = 1; # NUM THREADS
+                  };
+              };
+              SGI :
+              {
+                 # No config to set, the software will set the SGi interface to the interface used for the default route.
+                  INTERFACE_NAME         = "{{ .Values.config.n6If }}"; # STRING, interface name or "default_gateway"
+                  IPV4_ADDRESS           = "read";                         # STRING, CIDR or "read" to let app read interface configured IP address
+                  SCHED_PARAMS :
+                  {
+                      #CPU_ID       = 3;
+                      SCHED_POLICY = "SCHED_FIFO"; # Values in { SCHED_OTHER, SCHED_IDLE, SCHED_BATCH, SCHED_FIFO, SCHED_RR }
+                      SCHED_PRIORITY = {{ .Values.config.threadsN6Prio }};
+                      POOL_SIZE = {{ .Values.config.threadsN6Dl }}; # NUM THREADS
+                  };
+              };
+          };
+
+          SNAT = "{{ .Values.config.netUeNatOption }}"; # SNAT Values in {yes, no}
+          PDN_NETWORK_LIST  = (
+                            {NETWORK_IPV4 = "{{ .Values.config.netUeIp }}";} # 1 ITEM SUPPORTED ONLY
+                          );
+
+          SPGW-C_LIST = (
+               {IPV4_ADDRESS="{{ .Values.config.smfIpAdd }}" ;}
+          );
+
+          NON_STANDART_FEATURES :
+          {
+              BYPASS_UL_PFCP_RULES = "{{ .Values.config.bypassUlPfcpRules }}"; # 'no' for standart features, yes for enhancing UL throughput
+          };
+
+          SUPPORT_5G_FEATURES:
+          {
+             # STRING, {"yes", "no"},
+             ENABLE_5G_FEATURES = "yes" # Set to 'yes' to support 5G Features
+             REGISTER_NRF = "{{ .Values.config.registerNRF }}";  # Set to 'yes' if UPF resgisters to an NRF
+             USE_FQDN_NRF = "{{ .Values.config.useFqdnNrf }}"; # Set to 'yes' if UPF relies on a DNS/FQDN service to resolve NRF's FQDN
+             UPF_FQDN_5G  = "{{ .Values.config.fqdn }}";  #Set FQDN of UPF
+
+             NRF :
+             {
+                IPV4_ADDRESS = "{{ if .Values.config.nrfIpv4Add}}{{ .Values.config.nrfIpv4Add }}{{ else}}127.0.0.1{{ end }}";  # YOUR NRF CONFIG HERE
+                PORT         = {{ if .Values.config.nrfPort}}{{ .Values.config.nrfPort }}{{ else }}80{{ end }};            # YOUR NRF CONFIG HERE (default: 80)
+                HTTP_VERSION = {{ if .Values.config.nrfHTTPVersion }}{{ .Values.config.nrfHTTPVersion }}{{ else }}1{{ end }};   #Set HTTP version for NRF (1 or 2)Default 1
+                API_VERSION  = "{{ if .Values.config.nrfApiVersion }}{{ .Values.config.nrfApiVersion }}{{ else }}v1{{ end }}";   # YOUR NRF API VERSION HERE
+                FQDN = "{{ if .Values.config.nrfFqdn }}{{ .Values.config.nrfFqdn }}{{ else }}localhost{{ end }}";
+             };
+
+             # Additional info to be sent to NRF for supporting Network Slicing
+             UPF_INFO = (
+                {
+                  NSSAI_SST = {{ .Values.config.nssaiSst0 }};
+                  {{- if .Values.config.nssaiSd0}}
+                  NSSAI_SD = "{{ .Values.config.nssaiSd0 }}";
+                  {{- end }}
+                  DNN_LIST = ({DNN = "{{ .Values.config.dnn0 }}";});
+                }
+                {{- if .Values.config.nssaiSd1}}
+                ,{
+                  NSSAI_SST = {{ .Values.config.nssaiSst1 }};
+                  {{- if .Values.config.nssaiSd1}}
+                  NSSAI_SD = "{{ .Values.config.nssaiSd1 }}";
+                  {{- end }}
+                  DNN_LIST = ({DNN = "{{ .Values.config.dnn1 }}";});
+                }
+                {{- end }}
+                {{- if .Values.config.nssaiSd2}}
+                ,{
+                  NSSAI_SST = {{ .Values.config.nssaiSst2 }};
+                  {{- if .Values.config.nssaiSd2}}
+                  NSSAI_SD = "{{ .Values.config.nssaiSd2 }}";
+                  {{- end }}
+                  DNN_LIST = ({DNN = "{{ .Values.config.dnn2 }}";});
+                }
+                {{- end }}
+                {{- if .Values.config.nssaiSd3}}
+                ,{
+                  NSSAI_SST = {{ .Values.config.nssaiSst3 }};
+                  {{- if .Values.config.nssaiSd3}}
+                  NSSAI_SD = "{{ .Values.config.nssaiSd3 }}";
+                  {{- end }}
+                  DNN_LIST = ({DNN = "{{ .Values.config.dnn3 }}";});
+                }
+                {{- end }}
+             );
+          }
+      };

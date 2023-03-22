@@ -1,0 +1,116 @@
+# Default values for oai-spgwu-tiny.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+namespace: "oai"
+
+nfimage:
+  registry: local
+  repository: tolgaomeratalay/upf #rdefosseoai/oai-spgwu-tiny
+  version: bench #v1.1.2 #gtp-ext-header 
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  registry: local
+  repository: corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+#imagePullSecrets: 
+#  - name: "personalkey"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-spgwu-tiny-sa10"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+
+service:
+  type: ClusterIP
+  pfcpPort: 8805 # default port no need to change unless necessary
+  gtpuPort: 2152 # default port no need to change unless necessary
+
+start:
+  spgwu: true
+  tcpdump: false
+
+# create an extra interface for N3 incase the gNB is outside the cluster network or there is a need to have dedicated interface for N3
+multus:
+  create: false
+  nupfIP1main: "10.100.17.10"
+  nupfIP1netmask: "16"
+  nupfIP1Gw: "10.100.17.10"
+  nupfIP2main: "10.100.18.10"
+  nupfIP2netmask: "16"
+  nupfIP2Gw: "10.100.18.10"
+
+config:
+  gwId: 1 # no need to configure
+  mcc: 208 # should match with AMF and SMF
+  mnc: 95 # should match with AMF and SMF
+  realm: "3gpp.org" # no need to configure
+  pidDirectory: "/var/run" # no need to configure
+  sgwS1uIf: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0
+  s1uThreads: 1 # experimental to play with the performance of SPGWU
+  sxThreads: 1 # experimental to play with the performance of SPGWU
+  sgiThreads: 1 # experimental to play with the performance of SPGWU
+  threadS1Upriority: 98 # experimental to play with the performance of SPGWU
+  threadSXpriority: 98 # experimental to play with the performance of SPGWU
+  threadSGIpriority: 98 # experimental to play with the performance of SPGWU
+  sgwSxIf: "eth0" # use for SMF communication
+  pgwSgiIf: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0 (important because it sends the traffic towards internet)
+  netUeNatOption: "yes" # yes to get the traffic out towards internet
+  gtpExtentionHeaderPresent: "yes" # needed for 5G (Always true)
+  netUeIp: "12.1.1.0/24"  # The range in which UE ip-address will be allocated should be configured the same in SMF
+  nssaiSst0: 222 # should match with SMF information
+  nssaiSd0: "123"  # should match with SMF information
+  dnn0: "oai" # should match with SMF information
+  spgwc0IpAdd: "10.100.16.10" #SMF IP address
+  bypassUlPfcpRules: "no"
+  enable5GFeatures: "yes" # This will make SPGWU to function as 5G UPF, if set no then it will work for 4G
+  registerNRF: "yes" 
+  useFqdnNrf: "yes"  # use FQDN to resolve nrf ip-address 
+  nrfIpv4Add: "10.100.11.10" #NRF IP address
+  nrfPort: "80"
+  nrfApiVersion: "v1" 
+  nrfFqdn: "oai-nrf-svc" # make sure this can be resolved by container dns
+  upfFqdn5g: "oai-spgwu-tiny-svc" # fqdn of upf 
+
+## currently only used by tcpdump container to store the tcpdump, this volume will be shared between all the network functions
+persistence:
+  sharedvolume: false  # should be true when if wants to store the tcpdump of all the network functions at same place
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+
+resources:
+  define: false
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 256Mi
+
+readinessProbe: true
+
+livenessProbe: true
+
+terminationGracePeriodSeconds: 30
+
+nodeSelector: {}
+
+nodeName: 

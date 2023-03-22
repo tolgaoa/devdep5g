@@ -1,0 +1,56 @@
+apiVersion: v2
+name: oai-5g-basic
+type: application
+icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
+version: v1.5.0
+description: OAI 5G Release 16 Core Network
+
+appVersion: master-v1.5.0
+
+keywords:
+  - 5GCN
+  - AMF
+  - SMF
+  - NRF
+  - UPF
+  - UDM
+  - UDR
+  - AUSF
+
+maintainers:
+  - name:  OPENAIRINTERFACE
+    email: contact@openairinterface.org
+
+dependencies:
+- condition: mysql.enabled
+  name: mysql
+  repository: "file://../mysql"
+  version: 8.0.31
+- condition: oai-nrf.enabled
+  name: oai-nrf
+  repository: "file://../oai-nrf"
+  version: v1.5.0
+- condition: oai-udr.enabled
+  name: oai-udr
+  repository: "file://../oai-udr"
+  version: v1.5.0
+- condition: oai-udm.enabled
+  name: oai-udm
+  repository: "file://../oai-udm"
+  version: v1.5.0
+- condition: oai-ausf.enabled
+  name: oai-ausf
+  repository: "file://../oai-ausf"
+  version: v1.5.0
+- condition: oai-amf.enabled
+  name: oai-amf
+  repository: "file://../oai-amf"
+  version: v1.5.0
+- condition: oai-smf.enabled
+  name: oai-smf
+  repository: "file://../oai-smf"
+  version: v1.5.0
+- condition: oai-spgwu-tiny.enabled
+  name: oai-spgwu-tiny
+  repository: "file://../oai-spgwu-tiny"
+  version: v1.5.0

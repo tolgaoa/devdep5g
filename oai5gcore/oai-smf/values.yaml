@@ -1,0 +1,127 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:
+  repository: tolgaomeratalay/smf          # dockerhub oaisoftwarealliance/oai-smf
+  version: augv1    #image tag, develop tag for experimental features 
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+# good to use when pulling images from docker-hub mention for RHEL images it can be commented
+imagePullSecrets: 
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-smf-sa"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: false   # Make it true only if you want to capture packets inside tcpdump container
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+# Just for debugging
+start:
+  smf: true
+  tcpdump: false  #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+
+# SMF needs two seperate interface one for http and other one for N4 to communicate with UPD. 
+# But for experimentation only one interface can be used. 
+# When you need multus:
+# 1. you want seperate interface for N4 and Nsmf 
+# 2. Your UPF is outside the cluster and the host machine can communicate but pods can not then you can provide ip-address in the same range as your host machine
+# 3. You want static ip-address for N4 interface, Namf can be discovered by its service name
+
+multus:
+  create: false
+  n4IPadd: "172.21.6.202"
+  n4Netmask: "22"
+  n4Gateway: "172.21.7.254"
+  hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
+
+config:
+  smfInterfaceNameForN4: "eth0"  # net1 if multus creation is true else eth0
+  smfInterfaceNameForSBI: "eth0"
+  smfInterfacePortForSBI: 80
+  smfInterfaceHttp2PortForSBI: 8080
+  smfApiVersion: "v1"
+  httpVersion: 1          #default is 1 HTTP1 you can make it 2 HTTP2
+  defaultCSCFIpv4Address: "172.21.6.13" # For IMS server if needed
+  dnsIpv4Address: "8.8.8.8" # configure the dns for UE don't use Kubernetes DNS
+  dnsSecIpv4Address: "172.21.3.100" # configure the dns for UE don't use Kubernetes DNS
+  upfSpgwu: true                    # for vpp upf set it to false
+  discoverUpf: "yes"              # if NRF is used then it can be used for UPF discovery 
+  useLocalSubscriptionInfo: "yes" # If yes ip-allocation will be handled by SMF if no the information will be reterived from UDM
+  useFqdnDns: "yes" # use only when the DNS can resolve FQDN of other network functions
+  useLocalPCCRules: "yes"      # Set to yes if SMF uses local PCC rules instead of from an PCF
+  discoverPcf: "no"            # Set to yes if PCF is used and want to be discovered via NRF
+  ueMtu: 1500
+  registerNrf: "yes" # if wants to use NRF registry and discovery
+  nrfFqdn: "oai-nrf-svc" # configure if NRF can be reached using Kubernetes service
+  udmFqdn: "oai-udm-svc" #Will be used only if useLocalSubscriptionInfo set to yes meaning subscriber information will be fetched from database
+  amfFqdn: "oai-amf-svc" 
+  # slicing parameter defining one slice is mandatory, if you want to have multiple just copy the below structure and add 1,2 or 3. 
+  # You can define maximum 4 slices from here in case of more please change the configuration file. 
+  dnnNi0: "oai"
+  pdusessiontype0: "IPv4"
+  ipv4dnnRange0: "12.1.1.2 - 12.1.1.254"
+  nssaiSst0: 222
+  nssaiSd0: "123"
+  qosProfile5qi0: 2
+  sessionAmbrUl0: "1000Mbps"
+  sessionAmbrDl0: "1000Mbps"
+  # Extra optional slice
+  dnnNi1: "ims"
+  pdusessiontype1: "IPv4v6"
+  ipv4dnnRange1: "12.2.1.41 - 12.2.1.254"
+  nssaiSst1: 1
+  nssaiSd1: "0xFFFFFF"
+  qosProfile5qi1: 1
+  sessionAmbrUl1: "1000Mbps"
+  sessionAmbrDl1: "1000Mbps"
+
+
+## currently only used by tcpdump container to store the tcpdump, this volume will be shared between all the network functions (If true it should be true for all the NFs specially NRF)
+persistent:
+  sharedvolume: false  # should be true when if wants to store the tcpdump of all the network functions at same place
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName: 

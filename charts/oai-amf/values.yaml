@@ -104,7 +104,7 @@ config:
   nfRegistration: "yes" 
   smfSelection: "yes" 
   useFqdnDns: "no"  # Important to avoid mentioning any static ip-address
-  mySqlServer: "10.42.1.7"
+  mySqlServer: "10.42.0.33"
   mySqlUser: "root" # used only if not using AUSF
   mySqlPass: "linux" # used only if not using AUSF
   mySqlDb: "oai_db" # used only if not using AUSF

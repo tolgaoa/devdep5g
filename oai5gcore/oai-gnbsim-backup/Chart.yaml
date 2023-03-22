@@ -1,0 +1,11 @@
+apiVersion: v2
+name: oai-gnbsim11
+
+type: application
+
+version: 0.1.0
+
+keywords:
+  - 5GCN
+  - Gnbsim
+

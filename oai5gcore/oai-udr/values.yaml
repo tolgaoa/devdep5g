@@ -1,24 +1,19 @@
-# Default values for oai-udr.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
-
-namespace: "oai"
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
 
 nfimage:
-  registry: local
-  repository: tolgaomeratalay/udr 
-  version: bench
+  repository: docker.io/oaisoftwarealliance/oai-udr # image name either locally present or in a public/private repository
+  version: v1.5.0 #image tag, develop tag for experimental features 
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
 tcpdumpimage:
-  registry: local
-  repository: corfr/tcpdump
+  repository: docker.io/corfr/tcpdump
   version: latest
   #pullPolicy: IfNotPresent or Never or Always
-  pullPolicy: IfNotPresent  
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: 
+  - name: "regcred"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -27,7 +22,9 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-udr-sa10"
+  name: "oai-udr-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
 
 podSecurityContext:
   runAsUser: 0
@@ -45,21 +42,23 @@ start:
   udr: true
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
 
-multus:
-  nudrIPmain: "10.100.12.10"
-  nudrIPGw: "10.100.10.1"
-  nudrIPnetmask: "16"
-
-
 config:
   tz: "Europe/Paris"
   instance: "0"
+  udrname: "oai-udr"
   pidDirectory: "/var/run"
-  udrInterfaceNameForNudr: "net1"
-  udrInterfaceHttp1PortForNudr: "80"
-  udrInterfaceHttp2PortForNudr: "8080"
+  sbiIfName: "eth0"
+  sbiPortHttp1: "80"
+  sbiPortHttp2: "8080"
   udrApiVersion: "v1"
-  mySqlServer: "10.42.0.33"
+  nrfIpv4Address: "127.0.0.1"
+  nrfPort: "80"
+  nrfApiVersion: "v1"
+  nrfFqdn: "oai-nrf-svc"
+  registerNrf: "no"
+  usehttp2: "no"
+  useFqdnDns: "yes"
+  mySqlServer: "mysql"
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"
@@ -72,13 +71,25 @@ persistence:
 resources:
   define: false
   limits:
-    cpu: 100m
-    memory: 128Mi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
   requests:
-   cpu: 100m
-   memory: 256Mi
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
 
-terminationGracePeriodSeconds: 30
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
 
 nodeSelector: {}
 

@@ -1,0 +1,100 @@
+[2023-03-22T04:03:06.497128] [nrf] [nrf_app] [start] Options parsed
+[2023-03-22T04:03:06.497284] [nrf] [nrf_app] [info ] ==== OAI-CN5G NRF vBranch: HEAD Abrev. Hash: f66cc2f Date: Wed Jan 18 13:23:43 2023 +0000 ====
+[2023-03-22T04:03:06.497287] [nrf] [nrf_app] [info ] Configuration NRF:
+[2023-03-22T04:03:06.497289] [nrf] [nrf_app] [info ] - Instance ..............: 0
+
+[2023-03-22T04:03:06.497290] [nrf] [nrf_app] [info ] - PID dir ...............: /var/run
+
+[2023-03-22T04:03:06.497291] [nrf] [nrf_app] [info ] - SBI Interface:
+[2023-03-22T04:03:06.497292] [nrf] [nrf_app] [info ]     Interface name ......: eth0
+[2023-03-22T04:03:06.497294] [nrf] [nrf_app] [info ]     IPv4 Addr ...........: 10.42.0.48
+[2023-03-22T04:03:06.497295] [nrf] [nrf_app] [info ]     Port ................: 80
+[2023-03-22T04:03:06.497296] [nrf] [nrf_app] [info ]     HTTP2 port ..........: 8080
+[2023-03-22T04:03:06.497297] [nrf] [nrf_app] [info ]     API version..........: v1
+[2023-03-22T04:03:06.497302] [nrf] [nrf_app] [start] Starting...
+[2023-03-22T04:03:06.497380] [nrf] [nrf_app] [start] Started
+[2023-03-22T04:03:06.497777] [nrf] [sbi_srv] [info ] HTTP1 server started
+[2023-03-22T04:03:06.497904] [nrf] [nrf_app] [info ] HTTP2 server started
+[2023-03-22T04:03:40.912006] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: 2cb64fb6-b45f-49e5-8a17-1ce5888db225
+[2023-03-22T04:03:40.912039] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)
+[2023-03-22T04:03:40.912948] [nrf] [nrf_app] [info ] Check if a profile with this ID 2cb64fb6-b45f-49e5-8a17-1ce5888db225 exist
+[2023-03-22T04:03:40.912960] [nrf] [nrf_app] [info ] NF profile (ID 2cb64fb6-b45f-49e5-8a17-1ce5888db225) not found
+[2023-03-22T04:03:40.912966] [nrf] [nrf_app] [info ] Added/Updated NF Profile (ID 2cb64fb6-b45f-49e5-8a17-1ce5888db225) to the DB
+[2023-03-22T04:03:40.912979] [nrf] [nrf_app] [info ] Handle NF status registered event, profile id 2cb64fb6-b45f-49e5-8a17-1ce5888db225
+[2023-03-22T04:03:40.912983] [nrf] [nrf_app] [info ] 	Find a NF profile with ID 2cb64fb6-b45f-49e5-8a17-1ce5888db225
+[2023-03-22T04:03:40.912988] [nrf] [nrf_app] [info ] 	Get the list of subscriptions related to this profile, profile id 2cb64fb6-b45f-49e5-8a17-1ce5888db225
+[2023-03-22T04:03:40.913094] [nrf] [nrf_app] [info ] Added/Updated NF Instance, NF info: {"amfInfo":{"amfRegionId":"128","amfSetId":"1","guamiList":[{"amfId":"128:1:0","plmnId":{"mcc":"208","mnc":"95"}}]},"capacity":100,"heartBeatTimer":10,"ipv4Addresses":["10.42.0.52"],"json_data":null,"nfInstanceId":"2cb64fb6-b45f-49e5-8a17-1ce5888db225","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"10.42.0.52","port":80,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1}
+[2023-03-22T04:03:49.325743] [nrf] [sbi_srv] [info ] Got a request to create a new subscription
+[2023-03-22T04:03:49.325814] [nrf] [nrf_app] [info ] Handle Create a new subscription (HTTP version 1)
+[2023-03-22T04:03:49.333212] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:03:49.333239] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)
+[2023-03-22T04:03:49.333304] [nrf] [nrf_app] [info ] Check if a profile with this ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36 exist
+[2023-03-22T04:03:49.333312] [nrf] [nrf_app] [info ] NF profile (ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36) not found
+[2023-03-22T04:03:49.333318] [nrf] [nrf_app] [info ] Added/Updated NF Profile (ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36) to the DB
+[2023-03-22T04:03:49.333336] [nrf] [nrf_app] [info ] Handle NF status registered event, profile id da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:03:49.333343] [nrf] [nrf_app] [info ] 	Find a NF profile with ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:03:49.333351] [nrf] [nrf_app] [info ] 	Get the list of subscriptions related to this profile, profile id da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:03:49.333357] [nrf] [nrf_app] [info ] 	Verifying subscription, subscription id 1
+[2023-03-22T04:03:49.333493] [nrf] [nrf_app] [info ] Added/Updated NF Instance, NF info: {"capacity":100,"heartBeatTimer":10,"ipv4Addresses":["10.42.0.53"],"json_data":null,"nfInstanceId":"da9ef2ba-1bf2-41fe-8fcc-823e7e813c36","nfInstanceName":"OAI-SMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"10.42.0.53","port":80,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SMF","priority":1,"sNssais":[{"sd":"123","sst":222},{"sd":"16777215","sst":1}],"smfInfo":{"sNssaiSmfInfoList":[{"dnnSmfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"123","sst":222}},{"dnnSmfInfoList":[{"dnn":"ims"}],"sNssai":{"sd":"16777215","sst":1}}]}}
+[2023-03-22T04:03:56.152553] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: 35ec8123-2dca-4fdd-b859-18e76b6b2c39
+[2023-03-22T04:03:56.152585] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)
+[2023-03-22T04:03:56.152652] [nrf] [nrf_app] [info ] Check if a profile with this ID 35ec8123-2dca-4fdd-b859-18e76b6b2c39 exist
+[2023-03-22T04:03:56.152659] [nrf] [nrf_app] [info ] NF profile (ID 35ec8123-2dca-4fdd-b859-18e76b6b2c39) not found
+[2023-03-22T04:03:56.152666] [nrf] [nrf_app] [info ] Added/Updated NF Profile (ID 35ec8123-2dca-4fdd-b859-18e76b6b2c39) to the DB
+[2023-03-22T04:03:56.152681] [nrf] [nrf_app] [info ] Handle NF status registered event, profile id 35ec8123-2dca-4fdd-b859-18e76b6b2c39
+[2023-03-22T04:03:56.152684] [nrf] [nrf_app] [info ] 	Find a NF profile with ID 35ec8123-2dca-4fdd-b859-18e76b6b2c39
+[2023-03-22T04:03:56.152690] [nrf] [nrf_app] [info ] 	Get the list of subscriptions related to this profile, profile id 35ec8123-2dca-4fdd-b859-18e76b6b2c39
+[2023-03-22T04:03:56.152695] [nrf] [nrf_app] [info ] 	Verifying subscription, subscription id 1
+[2023-03-22T04:03:56.152723] [nrf] [nrf_app] [info ] 	Subscription id 1, uri 10.42.0.53:80/nsmf-nfstatus-notify/v1/subscriptions
+[2023-03-22T04:03:57.154583] [nrf] [nrf_app] [info ] Added/Updated NF Instance, NF info: {"capacity":100,"fqdn":"oai-spgwu-tiny-svc","heartBeatTimer":10,"ipv4Addresses":["10.42.0.54"],"json_data":null,"nfInstanceId":"35ec8123-2dca-4fdd-b859-18e76b6b2c39","nfInstanceName":"OAI-UPF","nfServices":[],"nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"123","sst":222},{"sd":"0xFFFFFF","sst":1}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"123","sst":222}},{"dnnUpfInfoList":[{"dnn":"ims"}],"sNssai":{"sd":"0xFFFFFF","sst":1}}]}}
+[2023-03-22T04:03:59.336489] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:03:59.336523] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:03:59.336533] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:03:59.336546] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:03:59.336552] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:00.989748] [nrf] [nrf_app] [info ] 
+Handle the first Heartbeat timeout, NF instance ID 2cb64fb6-b45f-49e5-8a17-1ce5888db225, current time 125628176
+[2023-03-22T04:04:09.157778] [nrf] [sbi_srv] [info ] Got a request to discover the set of NF instances that satisfies a number of input query parameters
+[2023-03-22T04:04:09.157835] [nrf] [nrf_app] [info ] Handle NFDiscover to discover the set of NF Instances (HTTP version 1)
+[2023-03-22T04:04:09.336631] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:09.336661] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:09.336670] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:09.336680] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:09.336686] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:11.481687] [nrf] [nrf_app] [info ] 
+Handle heartbeat timeout (NF update), NF instance ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36, time 1679457851386, current ms 1679457851481
+[2023-03-22T04:04:16.255726] [nrf] [nrf_app] [info ] 
+Handle the first Heartbeat timeout, NF instance ID 35ec8123-2dca-4fdd-b859-18e76b6b2c39, current time 125643416
+[2023-03-22T04:04:19.337114] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:19.337154] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:19.337163] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:19.337174] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:19.337180] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:21.489755] [nrf] [nrf_app] [info ] 
+Handle heartbeat timeout (NF update), NF instance ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36, time 1679457861386, current ms 1679457861489
+[2023-03-22T04:04:29.337449] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:29.337487] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:29.337496] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:29.337508] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:29.337515] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:31.489660] [nrf] [nrf_app] [info ] 
+Handle heartbeat timeout (NF update), NF instance ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36, time 1679457871386, current ms 1679457871489
+[2023-03-22T04:04:39.337625] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:39.337666] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:39.337677] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:39.337691] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:39.337698] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:41.490655] [nrf] [nrf_app] [info ] 
+Handle heartbeat timeout (NF update), NF instance ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36, time 1679457881386, current ms 1679457881490
+[2023-03-22T04:04:49.337893] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:49.337935] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:49.337945] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:49.337958] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:49.337965] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
+[2023-03-22T04:04:51.490656] [nrf] [nrf_app] [info ] 
+Handle heartbeat timeout (NF update), NF instance ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36, time 1679457891386, current ms 1679457891490
+[2023-03-22T04:04:59.338014] [nrf] [sbi_srv] [info ] 
+[2023-03-22T04:04:59.338051] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: da9ef2ba-1bf2-41fe-8fcc-823e7e813c36
+[2023-03-22T04:04:59.338061] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)
+[2023-03-22T04:04:59.338073] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!
+[2023-03-22T04:04:59.338080] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID da9ef2ba-1bf2-41fe-8fcc-823e7e813c36)
