@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-spgwu-tiny.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "oai-spgwu-tiny.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "oai-spgwu-tiny.selectorLabels" . | nindent 8 }}
+    {{- if .Values.multus.create }}
+      annotations:
+        k8s.v1.cni.cncf.io/networks: >-
+          [{
+                 "name": "{{ .Chart.Name }}-n3-net"
+          }]
+    {{- end }}
+    spec:
+      nodeSelector:
+        type: edge
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{ toYaml .Values.imagePullSecrets | indent 8 }}
+    {{- end }}
+      containers:
+      - name: tcpdump
+        image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
+        imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
+        securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+        {{- if .Values.start.tcpdump}}
+        command:
+          - /bin/sh
+          - -c
+          - /usr/sbin/tcpdump -i any -w /pcap/{{ .Chart.Name }}_`date +%Y-%m-%d_%H_%M-%S-%Z`.pcap
+        {{- else}}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.tcpdump.requests.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.tcpdump.limits.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.limits.cpu | quote }}
+        {{- end}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        {{- if .Values.persistent.sharedvolume}}
+        volumeMounts:
+        - mountPath: "/pcap"
+          name: cn5g-pvc
+        {{- end}}
+      - name: spgwu
+        image: "{{ .Values.nfimage.repository }}:{{ .Values.nfimage.version }}"
+        imagePullPolicy: {{ .Values.nfimage.pullPolicy }}
+        volumeMounts:
+          - mountPath: /openair-spgwu-tiny/etc
+            name: configuration
+        securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+        {{- if .Values.readinessProbe}}
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-spgwu-tiny/bin/healthcheck.sh
+          initialDelaySeconds: 2
+          periodSeconds: 3
+        {{- end}}
+        {{- if .Values.livenessProbe}}
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-spgwu-tiny/bin/healthcheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        {{- end}}
+        ports:
+        - containerPort: 8805
+          name: pfcp
+        - containerPort: 2152
+          name: s1u
+        {{- if .Values.start.spgwu}}
+        command: 
+          - /openair-spgwu-tiny/bin/oai_spgwu 
+          - -c
+          - /openair-spgwu-tiny/etc/spgw_u.conf 
+          - -o
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.nf.requests.memory | quote }}
+            cpu: {{ .Values.resources.nf.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.nf.limits.memory | quote }}
+            cpu: {{ .Values.resources.nf.limits.cpu | quote }}
+        {{- end}}
+      volumes:
+      {{- if .Values.persistent.sharedvolume}}
+      - name: cn5g-pvc
+        persistentVolumeClaim:
+          claimName: cn5g-pvc
+      {{- end }}
+      - configMap:
+          name: {{ .Chart.Name }}-configmap
+        name: configuration
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- if .Values.nodeSelector}}
+      nodeSelector: 
+         {{- toYaml .Values.nodeSelector | nindent 12 }}
+      {{- end }}
+      {{- if .Values.nodeName}}
+      nodeName: {{ .Values.nodeName }}
+      {{- end }}
+

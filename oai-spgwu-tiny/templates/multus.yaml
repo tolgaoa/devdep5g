@@ -1,0 +1,22 @@
+---
+{{- if .Values.multus.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n3-net
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": {{- cat .Values.multus.hostInterface | nospace | quote }},
+      "mode": "l3",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n3Ip "/" .Values.multus.n3Netmask | nospace | quote }}
+                }
+        ]
+      }
+    }'
+{{- end }}

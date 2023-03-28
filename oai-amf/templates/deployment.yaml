@@ -1,0 +1,160 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-amf.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "oai-amf.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "oai-amf.selectorLabels" . | nindent 8 }}
+    {{- if .Values.multus.create }}
+      annotations:
+        k8s.v1.cni.cncf.io/networks: >-
+          [{
+                 "name": "{{ .Chart.Name }}-n2-net1",
+                 "default-route": ["{{ .Values.multus.n2Gateway }}"]
+          }]
+    {{- end }}
+    spec:
+      nodeSelector:
+        type: az
+      initContainers:
+      - name: init-networking
+        image: tolgaomeratalay/init-networking:v5
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{ toYaml .Values.imagePullSecrets | indent 8 }}
+    {{- end }}
+      containers:
+      - name: proxy
+        image: tolgaomeratalay/reverseproxy:v1.1
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+        ports:
+        - containerPort: 11095
+        env:
+        - name: SERVICENAME
+          value: "amf1"
+      - name: tcpdump
+        image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
+        imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.tcpdump.requests.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.tcpdump.limits.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.limits.cpu | quote }}
+        {{- end}}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        {{- if .Values.start.tcpdump}}
+        command:
+          - /bin/sh
+          - -c
+          - /usr/sbin/tcpdump -i any -w /pcap/{{ .Chart.Name }}_`date +%Y-%m-%d_%H_%M-%S-%Z`.pcap
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        {{- if .Values.persistent.sharedvolume}}
+        volumeMounts:
+        - mountPath: "/pcap"
+          name: cn5g-pv
+        {{- end}}
+      - name: amf
+        image: "{{ .Values.nfimage.repository }}:{{ .Values.nfimage.version }}"
+        imagePullPolicy: {{ .Values.nfimage.pullPolicy }}
+        volumeMounts:
+          - mountPath: /openair-amf/etc
+            name: configuration
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.nf.requests.memory | quote }}
+            cpu: {{ .Values.resources.nf.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.nf.limits.memory | quote }}
+            cpu: {{ .Values.resources.nf.limits.cpu | quote }}
+        {{- end}}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        {{- if .Values.readinessProbe}}
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-amf/bin/healthcheck.sh
+          initialDelaySeconds: 2
+          periodSeconds: 3
+        {{- end}}
+        {{- if .Values.livenessProbe}}
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-amf/bin/healthcheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        {{- end}}
+        ports:
+        - containerPort: 38412
+          name: oai-amf
+          protocol: SCTP
+        - containerPort: {{ .Values.config.amfInterfaceSBIHTTPPort }}
+          name: http1
+          protocol: TCP
+        - containerPort: {{ .Values.config.amfInterfaceSBIHTTP2Port }}
+          name: http2
+          protocol: TCP
+        {{- if .Values.start.amf}}
+        command:
+          - /openair-amf/bin/oai_amf
+          - -c
+          - /openair-amf/etc/amf.conf
+          - -o
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+      volumes:
+      {{- if .Values.persistent.sharedvolume}}
+      - name: cn5g-pv
+        persistentVolumeClaim:
+          claimName: cn5g-pvc
+      {{- end }}
+      - configMap:
+          name: {{ .Chart.Name }}-configmap
+        name: configuration
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- if .Values.nodeSelector}}
+      nodeSelector: 
+         {{- toYaml .Values.nodeSelector | nindent 12 }}
+      {{- end }}
+      {{- if .Values.nodeName}}
+      nodeName: {{ .Values.nodeName }}
+      {{- end }}

@@ -1,0 +1,21 @@
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: dnn-net11
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": "eno1np0",
+      "mode": "l3",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": "10.100.25.11/16",
+                        "gateway": "10.100.10.1"
+                }
+        ]
+      }
+    }'

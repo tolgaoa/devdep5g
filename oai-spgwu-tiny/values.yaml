@@ -1,0 +1,111 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-spgwu-tiny
+  version: v1.5.0           #image tag, develop tag for experimental features
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub
+imagePullSecrets:
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-spgwu-tiny"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+service:
+  pfcpPort: 8805 # default port no need to change unless necessary
+  gtpuPort: 2152 # default port no need to change unless necessary
+
+# Just for debugging
+start:
+  spgwu: true
+  tcpdump: false
+
+# create an extra interface for N3 incase the gNB is outside the cluster network or there is a need to have dedicated interface for N3
+multus:
+  create: true
+  n3Ip: "10.100.17.10"
+  n3Netmask: "16"
+  n6Gw: "10.100.18.10"
+  hostInterface: "eno1np0"
+
+config:
+  fqdn: "oai-spgwu-tiny-svc"
+  n3If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0
+  n4If: "eth0" # use for SMF communication
+  n6If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0 (important because it sends the traffic towards internet)
+  threadsN3Ul: "1"
+  threadsN6Dl: "1"
+  threadsN6Prio: 99
+  threadsN3Prio: 98
+  threadsN4Prio: 88
+  netUeNatOption: "yes"
+  bypassUlPfcpRules: "no" #standart feature is no, put yes if you want less UL packet delay
+  smfIpAdd: "127.0.0.1" # SMF ip-address incase NRF is not used to initiate a PFCP session
+  netUeIp: "12.1.1.0/24"  # The range in which UE ip-address will be allocated should be configured the same in SMF
+  registerNRF: "yes"
+  useFqdnNrf: "yes"  # use FQDN to resolve nrf ip-address
+  nrfFqdn: "oai-nrf-svc" # make sure this can be resolved by container dns
+  #Mandatory to configure atlease one slice
+  nssaiSst0: 222 # should match with SMF information
+  nssaiSd0: "123"  # should match with SMF information (Optional, if removed sd value will be 0xFFFFFF)
+  dnn0: "oai" # should match with SMF information
+  #Upto 4 slices can be added from here to add more you need to add manullay in config.yaml. Please follow the same way of adding slices nssaiSST$,nssaiSd$,dnn$ ($=0,1,2,3)
+  nssaiSst1: 1 # should match with SMF information (Optional, if removed slice will not be configured)
+  nssaiSd1: "0xFFFFFF"  # should match with SMF information (Optional, if removed sd value will be 0xFFFFFF only if nssaiSst1 is configured)
+  dnn1: "ims" # should match with SMF information
+
+
+## currently only used by tcpdump container to store the tcpdump, this volume will be shared between all the network functions
+persistent:
+  sharedvolume: false  # should be true when if wants to store the tcpdump of all the network functions at same place
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName:

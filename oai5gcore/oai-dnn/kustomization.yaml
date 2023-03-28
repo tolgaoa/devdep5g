@@ -1,5 +1,0 @@
-resources:
-# - 01_multus.yaml
- - 02_deployment.yaml
-
-namespace: oai

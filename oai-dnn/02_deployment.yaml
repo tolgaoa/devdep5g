@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-dnn11
+  labels:
+    app: oai-dnn11
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oai-dnn11
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oai-dnn11
+      annotations:
+        k8s.v1.cni.cncf.io/networks: dnn-net11
+    spec:
+      nodeSelector:
+        type: edge
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      containers:
+      - name: dnn
+        image: tolgaomeratalay/oai-dnn:fortnitev1
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+        command:
+          - sleep
+          - infinity
+        imagePullPolicy: IfNotPresent
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30

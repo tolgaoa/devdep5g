@@ -1,0 +1,152 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-nrf.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "oai-nrf.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "oai-nrf.selectorLabels" . | nindent 8 }}
+    spec:
+      nodeSelector:
+        type: az
+      initContainers:
+      - name: init-networking
+        image: tolgaomeratalay/init-networking:v5
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{ toYaml .Values.imagePullSecrets | indent 8 }}
+    {{- end }}
+      containers:
+      - name: proxy
+        image: tolgaomeratalay/reverseproxy:v1.1
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+        ports:
+        - containerPort: 11095
+        env:
+        - name: SERVICENAME
+          value: "nrf1"
+      - name: tcpdump
+        image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
+        imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.tcpdump.requests.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.tcpdump.limits.memory | quote }}
+            cpu: {{ .Values.resources.tcpdump.limits.cpu | quote }}
+        {{- end}}
+        {{- if .Values.start.tcpdump}}
+        command:
+          - /bin/sh
+          - -c
+          - /usr/sbin/tcpdump -i any -w /pcap/{{ .Chart.Name }}_`date +%Y-%m-%d_%H_%M-%S-%Z`.pcap
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        {{- if .Values.persistent.sharedvolume}}
+        volumeMounts:
+        - mountPath: "/pcap"
+          name: cn5g-pvc
+        {{- end}}
+      - name: nrf
+        image: "{{ .Values.nfimage.repository }}:{{ .Values.nfimage.version }}"
+        imagePullPolicy: {{ .Values.nfimage.pullPolicy }}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.nf.requests.memory | quote }}
+            cpu: {{ .Values.resources.nf.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.nf.limits.memory | quote }}
+            cpu: {{ .Values.resources.nf.limits.cpu | quote }}
+        {{- end}}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        {{- if .Values.readinessProbe}}
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-nrf/bin/healthcheck.sh
+          initialDelaySeconds: 2
+          periodSeconds: 3
+        {{- end}}
+        {{- if .Values.livenessProbe}}
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - /openair-nrf/bin/healthcheck.sh
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        {{- end}}
+        ports:
+        - containerPort: {{ .Values.config.nrfInterfacePortForSBI }}
+          name: http1
+          protocol: TCP
+        - containerPort: {{ .Values.config.nrfInterfaceHttp2PortForSBI }}
+          name: http2
+          protocol: TCP
+        env:
+          - name: NRF_INTERFACE_NAME_FOR_SBI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfInterfaceNameForSBI
+          - name: NRF_INTERFACE_PORT_FOR_SBI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfInterfacePortForSBI
+          - name: NRF_INTERFACE_HTTP2_PORT_FOR_SBI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfInterfaceHttp2PortForSBI
+          - name: NRF_API_VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Chart.Name }}-configmap
+                key: nrfApiVersion
+      volumes:
+      {{- if .Values.persistent.sharedvolume}}
+      - name: cn5g-pvc
+        persistentVolumeClaim:
+          claimName: cn5g-pvc
+      {{- end }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- if .Values.nodeSelector}}
+      nodeSelector: 
+         {{- toYaml .Values.nodeSelector | nindent 12 }}
+      {{- end }}
+      {{- if .Values.nodeName}}
+      nodeName: {{ .Values.nodeName }}
+      {{- end }}
+
