@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-dnn11
+  name: oai-dnn40
   labels:
-    app: oai-dnn11
+    app: oai-dnn40
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-dnn11
+      app: oai-dnn40
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-dnn11
+        app: oai-dnn40
       annotations:
         k8s.v1.cni.cncf.io/networks: dnn-net11
     spec:
@@ -25,7 +25,7 @@ spec:
         runAsGroup: 0
       containers:
       - name: dnn
-        image: tolgaomeratalay/oai-dnn:fortnitev1
+        image: tolgaomeratalay/oai-dnn:4kaggrdu
         securityContext:
           capabilities:
             add:

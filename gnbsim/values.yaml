@@ -3,7 +3,7 @@ kubernetesType: Vanila  #Vanila for community kubernetes distribution
 # NF image
 nfimage:
   repository: tolgaomeratalay/gnbsim #docker.io/rohankharade/gnbsim
-  version: fortnitev1
+  version: n4kul
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -25,7 +25,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "gnbsim-sa11"
+  name: "gnbsim-sa40"
 
 podSecurityContext:
   runAsUser: 0
@@ -56,24 +56,24 @@ multus:
 config:
   mcc: "208"
   mnc: "95"
-  gnbid: "11"
+  gnbid: "40"
   tac: "0x00a000"
   sst: "222"
   sd: "00007b"
   pagingdrx: "v32"
   ranuengapid: "0"
   imeisv: "35609204079514"
-  msin: "0000000011"
+  msin: "0000000040"
   routingindicator: "1234"
   protectionscheme: "null"
-  key: "0C0A34601D4F07677303652C04625311"
+  key: "0C0A34601D4F07677303652C04625340"
   opc: "63bfa50ee6523365ff14c1f45f88737d"
   dnn: "oai"
   useFqdn: "no"
   amfFqdn: "oai-amf-svc"
   url: "http://google.com"
   nrcellid: "1"
-  ngappeeraddr: "10.42.1.99"
+  ngappeeraddr: "10.42.0.193"
   gtpulocaladdr: "status.podIP"     #in case of using multus just provide the above multus gtpu ip-address
   gtpuifname: "eth0"
 

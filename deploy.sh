@@ -116,5 +116,5 @@ echo "-------------------------------------------------"
 echo -e "${GREEN} ${bold} Finished 5G Deployment ${NC} ${NORMAL}"
 echo "-------------------------------------------------"
 
-/bin/bash ./charts/start_traffic_cm.sh $trafficusers 1 $dnnim
+/bin/bash ./start_traffic.sh $trafficusers $dnnim
 

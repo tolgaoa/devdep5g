@@ -43,7 +43,7 @@ start:
 
 # create an extra interface for N3 incase the gNB is outside the cluster network or there is a need to have dedicated interface for N3
 multus:
-  create: true
+  create: false
   n3Ip: "10.100.17.10"
   n3Netmask: "16"
   n6Gw: "10.100.18.10"
@@ -90,15 +90,15 @@ resources:
       cpu: 100m
       memory: 128Mi
     nf:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 3000m
+      memory: 512Mi
   requests:
     tcpdump:
       cpu: 100m
       memory: 128Mi
     nf:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 3000m
+      memory: 512Mi
 
 readinessProbe: false
 
