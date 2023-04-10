@@ -44,7 +44,7 @@ spec:
         - containerPort: 11095
         env:
         - name: SERVICENAME
-          value: "ausf1"
+          value: "ausf14"
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         securityContext:

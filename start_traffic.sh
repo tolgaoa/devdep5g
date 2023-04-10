@@ -70,7 +70,7 @@ do
 	fi
 
 ssh nsslr2@192.168.1.117 /bin/bash << EOF
-iperf3 -c 192.168.1.116 -t 10 > iperf.log
+iperf3 -c 192.168.1.116 -t 100 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp avg.log nsslm@192.168.1.119:/home/nsslm/Documents/oai5gtrafficgendns/logs/$usecase/throughput/iperf.log
 EOF
@@ -91,7 +91,7 @@ do
 	fi
 
 	for run in $(seq 1 $runs); do
-	kubectl exec -n oai $iperfdnnpod -- iperf3 -c 12.1.1.2 -t 10 | awk '/[0-9]]/{sub(/.*]/,""); print $1" "$5}'  >> $log
+	kubectl exec -n oai $iperfdnnpod -- iperf3 -c 12.1.1.2 -t 100 | awk '/[0-9]]/{sub(/.*]/,""); print $1" "$5}'  >> $log
 	done
 
 	avg=$(cat $log | awk 'END{print $2}')
@@ -195,7 +195,7 @@ do
 		fi
 
 ssh nsslr2@192.168.1.117 /bin/bash << EOF
-iperf3 -c 192.168.1.116 -t 10 > iperf.log
+iperf3 -c 192.168.1.116 -t 100 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp avg.log nsslm@192.168.1.119:/home/nsslm/Documents/oai5gtrafficgendns/logs/$usecase/throughput/iperf.log
 EOF
@@ -216,7 +216,7 @@ EOF
 		fi
 
 		for run in $(seq 1 $runs); do
-		kubectl exec -n oai $iperfdnnpod -- iperf3 -c 12.1.1.2 -t 10 | awk '/[0-9]]/{sub(/.*]/,""); print $1" "$5}'  >> $log
+		kubectl exec -n oai $iperfdnnpod -- iperf3 -c 12.1.1.2 -t 100 | awk '/[0-9]]/{sub(/.*]/,""); print $1" "$5}'  >> $log
 		done
 
 		avg=$(cat $log | awk 'END{print $2}')

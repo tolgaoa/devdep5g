@@ -19,7 +19,7 @@ spec:
         k8s.v1.cni.cncf.io/networks: {{ .Chart.Name }}-{{ .Values.namespace }}-gtp-net
     spec:
       nodeSelector:
-        type: az
+        type: edge
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}

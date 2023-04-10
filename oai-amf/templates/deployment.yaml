@@ -52,7 +52,7 @@ spec:
         - containerPort: 11095
         env:
         - name: SERVICENAME
-          value: "amf1"
+          value: "amf14"
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
