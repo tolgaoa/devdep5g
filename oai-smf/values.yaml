@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-smf-sa"
+  name: "oai-smf14-sa"
 
 podSecurityContext:
   runAsUser: 0
@@ -69,15 +69,15 @@ config:
   discoverPcf: "no"            # Set to yes if PCF is used and want to be discovered via NRF
   ueMtu: 1500
   registerNrf: "yes" # if wants to use NRF registry and discovery
-  nrfFqdn: "oai-nrf-svc" # configure if NRF can be reached using Kubernetes service
-  udmFqdn: "oai-udm-svc" #Will be used only if useLocalSubscriptionInfo set to yes meaning subscriber information will be fetched from database
-  amfFqdn: "oai-amf-svc" 
+  nrfFqdn: "oai-nrf14-svc"
+  udmFqdn: "oai-udm14-svc"
+  amfFqdn: "oai-amf14-svc"
   # slicing parameter defining one slice is mandatory, if you want to have multiple just copy the below structure and add 1,2 or 3. 
   # You can define maximum 4 slices from here in case of more please change the configuration file. 
   dnnNi0: "oai"
   pdusessiontype0: "IPv4"
   ipv4dnnRange0: "12.1.1.2 - 12.1.1.254"
-  nssaiSst0: 222
+  nssaiSst0: "214"
   nssaiSd0: "123"
   qosProfile5qi0: 2
   sessionAmbrUl0: "1000Mbps"

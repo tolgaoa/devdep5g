@@ -12,18 +12,25 @@ NORMAL=$(tput sgr0)
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
+#gnbsimim dnnim users slices iterationstest
 st=`date +%s`
 
-#/bin/bash ./deploy.sh fortnitev2 fortnitev1 41
-#/bin/bash ./deploy.sh netflixv1 netflixv1 31
-#/bin/bash ./deploy.sh oculusv1 oculusv1 31
-#/bin/bash ./deploy.sh tiktokv1 tiktokv1 31
-#/bin/bash ./deploy.sh whatsappv1 whatsappv1 31
-/bin/bash ./deploy.sh n4kul 4kaggrdu 31
+/bin/bash ./deploy.sh zoomv1 zoomv1 9 5 3
+
+et=`date +%s`
+rt=$((et-st))
+echo $rt >> ite1.txt
+
+/bin/bash ./deploy.sh netflixv1 netflixv1 9 5 3
+/bin/bash ./deploy.sh oculusv1 oculusv1 9 5 3
+/bin/bash ./deploy.sh tiktokv1 tiktokv1 9 5 3
+/bin/bash ./deploy.sh whatsappv1 whatsappv1 9 5 3
+/bin/bash ./deploy.sh fortnitev2 fortnitev1 9 5 3
 
 et=`date +%s`
 rt=$((et-st))
 echo $rt
+echo $rt >> itetot.txt
 
 
 echo "-------------------------------------------------"

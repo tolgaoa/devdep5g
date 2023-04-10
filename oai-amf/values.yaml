@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # Annotations to add to the service account
   annotations: {}
-  name: "oai-amf-sa"
+  name: "oai-amf14-sa"
 
 #service type is fixed to clusterIP, it is only support for non multus interface (eth0)
 
@@ -61,7 +61,7 @@ config:
   regionId: "128"
   amfSetId: "1"
   tac: "0x00a000"
-  sst0: "222"
+  sst0: "214"
   sd0: "123"
   sst1: "1"
   sd1: "1"
@@ -69,9 +69,9 @@ config:
   amfInterfaceNameForSBI: "eth0"  # Service based interface
   amfInterfaceSBIHTTPPort: 80  # Service based interface
   amfInterfaceSBIHTTP2Port: 8080  # Service based interface
-  smfFqdn: "oai-smf-svc"
-  nrfFqdn: "oai-nrf-svc"  # amf communicates using FQDN
-  ausfFqdn: "oai-ausf-svc"   #only needed if ausf is used and externalAusf is true else internal ausf will be used
+  nrfFqdn: "oai-nrf14-svc"
+  nrfFqdn: "oai-nrf14-svc"
+  ausfFqdn: "oai-ausf14-svc"
   nfRegistration: "yes"
   nrfSelection: "no"
   smfSelection: "yes"

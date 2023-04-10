@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-udm-sa"
+  name: "oai-udm14-sa"
 
 podSecurityContext:
   runAsUser: 0
@@ -51,11 +51,11 @@ config:
   udrIpAddress: "127.0.0.1"
   udrPort: "80"
   udrApiVersionNb: "v1"   #Nb means northbound
-  udrFqdn: "oai-udr-svc"
+  udrFqdn: "oai-udr14-svc"
   nrfIpAddress: "127.0.0.1"
   nrfPort: "80"
   nrfApiVersionNb: "v1"   #Nb means northbound
-  nrfFqdn: "oai-nrf-svc"
+  nrfFqdn: "oai-nrf14-svc"
 
 persistence:
   sharedvolume: false

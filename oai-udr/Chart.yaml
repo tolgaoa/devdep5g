@@ -20,7 +20,7 @@
 ################################################################################
 
 apiVersion: v2
-name: oai-udr
+name: oai-udr14
 description: Helm chart for UDR network function
 
 type: application

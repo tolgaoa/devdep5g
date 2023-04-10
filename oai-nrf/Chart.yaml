@@ -19,7 +19,7 @@
 #      contact@openairinterface.org
 ################################################################################
 apiVersion: v2
-name: oai-nrf
+name: oai-nrf14
 description: A Helm chart for NRF network function
 
 type: application

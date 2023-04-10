@@ -19,7 +19,7 @@
 #      contact@openairinterface.org
 ################################################################################
 apiVersion: v2
-name: oai-spgwu-tiny
+name: oai-spgwu-tiny14
 description: A Helm chart for UPF/SPGWU TINY as network function
 
 type: application

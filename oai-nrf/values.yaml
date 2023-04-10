@@ -22,7 +22,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-nrf-sa"
+  name: "oai-nrf14-sa"
 
 #service type is fixed to clusterIP, it is only support for non multus interface (eth0)
 
