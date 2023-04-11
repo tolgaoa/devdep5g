@@ -1,0 +1,91 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:
+  repository: tolgaomeratalay/ausf   ## oaisoftwarealliance/oai-ausf # image name either locally present or in a public/private repository
+  version: augv1       #image tag, develop tag for experimental features 
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+imagePullSecrets: 
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-ausf17-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: false
+
+start:
+  ausf: true
+  tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+
+config:
+  tz: "Europe/Paris"
+  instanceId: "0"
+  pidDirectory: "/var/run"
+  ausfName: "OAI_AUSF"
+  sbiIfName: "eth0"
+  sbiPortHttp1: "80"
+  sbiPortHttp2: "8080"
+  useHttp2: "no"          #If set to yes then HTTP2 will be used to talk to every other network function and HTTP server will be started
+  useFqdnDns: "yes"
+  udmIpAddress: "127.0.0.1"
+  udmPort: "80"
+  udmVersionNb: "v1"
+  udmFqdn: "oai-udm17-svc"
+  nrfIpAddress: "127.0.0.1"
+  nrfPort: "80"
+  nrfApiVersion: "v1"
+  nrfFqdn: "oai-nrf17-svc"
+  registerNrf: "no"
+
+persistence:
+  sharedvolume: false
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName: 

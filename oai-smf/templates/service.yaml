@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "oai-smf.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    {{- include "oai-smf.selectorLabels" . | nindent 4 }}
+  ports:
+    {{- if .Values.multus.create }}
+    - name: oai-smf
+      # Port accessible outside cluster
+      port: 8805
+      # Port to forward to inside the pod
+      targetPort: 8805
+      protocol: UDP
+    {{ end }}
+    - name: http1
+      port: {{ .Values.config.smfInterfacePortForSBI }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.config.smfInterfaceHttp2PortForSBI }}
+      protocol: TCP
+    - name: http2
+      port: {{ .Values.config.smfInterfaceHttp2PortForSBI }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.config.smfInterfaceHttp2PortForSBI }}
+      protocol: TCP

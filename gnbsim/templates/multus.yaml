@@ -1,0 +1,43 @@
+---
+{{- if .Values.multus.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n2-net1
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": {{- cat .Values.multus.hostInterface | nospace | quote }},
+      "mode": "l3",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n2IPadd "/" .Values.multus.n2Netmask | nospace | quote }}
+                }
+        ]
+      }
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: {{ .Chart.Name }}-gtp-net
+spec:
+  config: '{ 
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": {{- cat .Values.multus.hostInterface | nospace | quote }},
+      "mode": "l3",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.gtpIPadd "/" .Values.multus.gtpNetmask | nospace | quote }}
+                }
+        ]
+      }
+    }'
+---
+{{- end }}

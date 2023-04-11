@@ -1,0 +1,97 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-udr # image name either locally present or in a public/private repository
+  version: v1.5.0 #image tag, develop tag for experimental features 
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: 
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-udr17-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: false
+
+service:
+  type: ClusterIP
+  http1Port: 80
+  http2Port: 8080
+
+start:
+  udr: true
+  tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+
+config:
+  tz: "Europe/Paris"
+  instance: "0"
+  udrname: "oai-udr"
+  pidDirectory: "/var/run"
+  sbiIfName: "eth0"
+  sbiPortHttp1: "80"
+  sbiPortHttp2: "8080"
+  udrApiVersion: "v1"
+  nrfIpv4Address: "127.0.0.1"
+  nrfPort: "80"
+  nrfApiVersion: "v1"
+  nrfFqdn: "oai-nrf17-svc"
+  registerNrf: "no"
+  usehttp2: "no"
+  useFqdnDns: "yes"
+  mySqlServer: "mysql"
+  mySqlUser: "root"
+  mySqlPass: "linux"
+  mySqlDb: "oai_db"
+
+persistence:
+  sharedvolume: false
+  volumneName: managed-nfs-storage
+  size: 1Gi
+  
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName:
+

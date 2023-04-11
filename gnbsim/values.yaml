@@ -1,0 +1,93 @@
+kubernetesType: Vanila  #Vanila for community kubernetes distribution
+
+# NF image
+nfimage:
+  repository: tolgaomeratalay/gnbsim #docker.io/rohankharade/gnbsim
+  version: netflixv1
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: corfr/tcpdump
+  version: latest
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+imagePullSecrets: 
+  - name: "regcred"
+
+persistent:
+  sharedvolume: false
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "gnbsim-sa89"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: true
+
+service:
+  type: ClusterIP
+  ngapPort: 80
+  gtpPort: 9090
+
+start:
+  gnbsim: true
+  tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+
+# create multus interface in case the NRF wants to use a separate interface 
+# than kubernetes general CNI or it needs to be accessed from outside cluster network using ip-address. 
+
+multus:
+  create: false
+  n2IPadd: "172.21.10.6"
+  n2Netmask: "22"
+  n2Gateway: "172.21.11.254"
+  hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
+
+config:
+  mcc: "208"
+  mnc: "95"
+  gnbid: "89"
+  tac: "0x00a000"
+  sst: "217"
+  sd: "00007b"
+  pagingdrx: "v32"
+  ranuengapid: "0"
+  imeisv: "35609204079514"
+  msin: "0000000089"
+  routingindicator: "1234"
+  protectionscheme: "null"
+  key: "0C0A34601D4F07677303652C04625389"
+  opc: "63bfa50ee6523365ff14c1f45f88737d"
+  dnn: "oai"
+  useFqdn: "no"
+  amfFqdn: "oai-amf-svc"
+  url: "http://google.com"
+  nrcellid: "1"
+  ngappeeraddr: "10.42.8.146"
+  gtpulocaladdr: "status.podIP"     #in case of using multus just provide the above multus gtpu ip-address
+  gtpuifname: "eth0"
+
+resources:
+  define: false
+  limits:
+    cpu: 300m
+    memory: 128Mi
+  requests:
+   cpu: 300m
+   memory: 512Mi
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName: 

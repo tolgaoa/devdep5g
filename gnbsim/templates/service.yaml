@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "gnbsim.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  {{- if eq .Values.service.type "ClusterIP" }}
+  clusterIP: None
+  {{ end }}
+  ports:
+    - name: ngap
+      # Port accessible outside cluster
+      port: {{ .Values.service.ngapPort }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.service.ngapPort }}
+      protocol: SCTP
+    - name: gtp
+      # Port accessible outside cluster
+      port: {{ .Values.service.gtpPort }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.service.gtpPort }}
+      protocol: UDP
+      #
+  selector:
+    {{- include "gnbsim.selectorLabels" . | nindent 4 }}

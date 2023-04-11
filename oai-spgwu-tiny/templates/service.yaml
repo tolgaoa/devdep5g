@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "oai-spgwu-tiny.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: pfcp
+      port: 8805
+      # Port to forward to inside the pod
+      targetPort: 8805
+      protocol: UDP
+    - name: http1
+      port: {{ if .Values.config.nrfPort }}{{ .Values.config.nrfPort }}{{ else }}80{{ end }}
+      # Port to forward to inside the pod
+      targetPort: {{ if .Values.config.nrfPort }}{{ .Values.config.nrfPort }}{{ else }}80{{ end }}
+      protocol: TCP
+  selector:
+    {{- include "oai-spgwu-tiny.selectorLabels" . | nindent 4 }}

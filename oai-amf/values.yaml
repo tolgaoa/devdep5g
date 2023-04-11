@@ -1,0 +1,121 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:  # image name either locally present or in a public/private repository
+  repository: tolgaomeratalay/amf          ## The image will be pulled from dockerhub
+  version: augv1                                    #image tag, develop tag for experimental features 
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+imagePullSecrets:
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  name: "oai-amf17-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+## OPENSHIFT terminology
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+## OPENSHIFT terminology
+securityContext:
+  privileged: false
+
+start:
+  amf: true
+  tcpdump: false # WARNING: start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+
+# AMF needs two seperate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
+# But for experimentation only one interface can be used. 
+# When you need multus:
+# 1. you want seperate interface for N1/N2 and Namf 
+# 2. Your gnB is outside the cluster and the host machine can communicate but pods can not then you can provide ip-address in the same range as your host machine
+# 3. You want static ip-address for N1/N2 interface, Namf can be discovered by its service name
+
+
+multus:
+  create: false
+  n2IPadd: "172.21.10.6"
+  n2Netmask: "22"
+  n2Gateway: "172.21.11.254"
+  hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
+
+## Incase the pod is not able to resolve the FQDN of other network functions example nrf then you can disable useFqdnDns feature this way AMF will talk to other network functions using their ip-address. 
+
+config:
+  mcc: "208"
+  mnc: "95"
+  regionId: "128"
+  amfSetId: "1"
+  tac: "0x00a000"
+  sst0: "217"
+  sd0: "123"
+  sst1: "1"
+  sd1: "1"
+  amfInterfaceNameForNGAP: "eth0" # If multus creation is true then net1 else eth0
+  amfInterfaceNameForSBI: "eth0"  # Service based interface
+  amfInterfaceSBIHTTPPort: 80  # Service based interface
+  amfInterfaceSBIHTTP2Port: 8080  # Service based interface
+  nrfFqdn: "oai-nrf17-svc"
+  nrfFqdn: "oai-nrf17-svc"
+  ausfFqdn: "oai-ausf17-svc"
+  nfRegistration: "yes"
+  nrfSelection: "no"
+  smfSelection: "yes"
+  externalAusf: "yes"
+  externalUdm: "no"
+  externalNrf: "no"
+  externalNssf: "no"
+  useHttp2: "no"
+  intAlgoList: '[ "NIA0" , "NIA1" , "NIA2" ]'
+  ciphAlgoList: '[ "NEA0" , "NEA1" , "NEA2" ]'
+  mySqlServer: "mysql" # OPTIONAL: used only if not using AUSF
+  mySqlUser: "root" # OPTIONAL: used only if not using AUSF
+  mySqlPass: "linux" # OPTIONAL: used only if not using AUSF
+  mySqlDb: "oai_db" # OPTIONAL: used only if not using AUSF
+
+
+persistent:
+  sharedvolume: false
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName:
