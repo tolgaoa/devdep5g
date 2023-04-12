@@ -69,7 +69,7 @@ if [ $5 -eq 1 ]; then
                 fi
 
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 100 > iperf.log
+iperf3 -c 10.0.1.84 -t 50 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -188,7 +188,7 @@ do
                           rm $log
                         fi
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 100 > iperf.log
+iperf3 -c 10.0.1.84 -t 50 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
