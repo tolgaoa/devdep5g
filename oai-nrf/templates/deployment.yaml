@@ -17,7 +17,7 @@ spec:
         {{- include "oai-nrf.selectorLabels" . | nindent 8 }}
     spec:
       nodeSelector:
-        type: az8
+        type: az1
       initContainers:
       - name: init-networking
         image: tolgaomeratalay/init-networking:v5
@@ -44,7 +44,7 @@ spec:
         - containerPort: 11095
         env:
         - name: SERVICENAME
-          value: "nrf17"
+          value: "nrf10"
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}

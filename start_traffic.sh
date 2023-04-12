@@ -9,6 +9,14 @@ NC='\033[0m'
 
 bold=$(tput bold)
 NORMAL=$(tput sgr0)
+
+measthr () {
+ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
+iperf3 -c 10.0.1.84 -t 70 > iperf.log
+tail -3 iperf.log | head -1 > avg.log
+scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
+EOF
+}
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
@@ -67,12 +75,14 @@ if [ $5 -eq 1 ]; then
                   echo removing $log
                   rm $log
                 fi
+		
+		measthr
 
-ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 50 > iperf.log
-tail -3 iperf.log | head -1 > avg.log
-scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
-EOF
+#ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
+#iperf3 -c 10.0.1.84 -t 70 > iperf.log
+#tail -3 iperf.log | head -1 > avg.log
+#scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
+#EOF
                 value=`cat logs/$usecase/throughput/iperf.log`
 
                 echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.host$tc.log.txt
@@ -187,11 +197,14 @@ do
                           echo removing $log
                           rm $log
                         fi
-ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 50 > iperf.log
-tail -3 iperf.log | head -1 > avg.log
-scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
-EOF
+		
+			measthr
+
+#ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
+#iperf3 -c 10.0.1.84 -t 70 > iperf.log
+#tail -3 iperf.log | head -1 > avg.log
+#scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
+#EOF
 
                         value=`cat logs/$usecase/throughput/iperf.log`
 
@@ -243,4 +256,4 @@ echo -e "${GREEN} ${bold} Traffic generation complete for current user set. ${NC
 echo -e "${GREEN} ${bold} Undeploying users for next experiment. ${NC} ${NORMAL}"
 
 /bin/bash ./undeploy.sh $total
-sleep 180
+sleep 240
