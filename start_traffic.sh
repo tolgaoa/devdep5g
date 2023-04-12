@@ -38,24 +38,24 @@ kubectl exec -n oai -c gnbsim $iperfgnbsimpod -- iperf3 -s &
 
 #if [ $((sim%4)) -eq 0 ]; then
 
-echo -e "${GREEN} ${bold} Waiting metrics-server resolution window (17s) and gathering compute log  ${NC} ${NORMAL}"
+#echo -e "${GREEN} ${bold} Waiting metrics-server resolution window (17s) and gathering compute log  ${NC} ${NORMAL}"
 
-sleep 17
-
-for ((ite=0;ite<3;ite++))
-do
-        upfdata=$(kubectl top pod -n oai $upfpod)
-        k="0"
-        while [ $k -lt 4 ]
-        do
-                upfdata=$(echo $upfdata | awk '{$1=""}1' | awk '{$1=$1}1')
-                ((k++))
-        done
-        echo "$upfdata" | sed 's/[A-Za-z]*//g' >> logs/$usecase/compute/compute_logs$tc.txt
-
-        sleep 17
-done
-echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
+#sleep 17
+#
+#for ((ite=0;ite<3;ite++))
+#do
+#        upfdata=$(kubectl top pod -n oai $upfpod)
+#        k="0"
+#        while [ $k -lt 4 ]
+#        do
+#                upfdata=$(echo $upfdata | awk '{$1=""}1' | awk '{$1=$1}1')
+#                ((k++))
+#        done
+#        echo "$upfdata" | sed 's/[A-Za-z]*//g' >> logs/$usecase/compute/compute_logs$tc.txt
+#
+#        sleep 17
+#done
+#echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
 
 if [ $5 -eq 1 ]; then
         for ((ite=0;ite<$4;ite++))
@@ -160,23 +160,23 @@ do
         #if [ $((sim%4)) -eq 0 ]; then
 
 
-        sleep 17
-
-        for ((ite=0;ite<3;ite++))
-        do
-                upfdata=$(kubectl top pod -n oai $upfpod)
-                k="0"
-                while [ $k -lt 4 ]
-                do
-                        upfdata=$(echo $upfdata | awk '{$1=""}1' | awk '{$1=$1}1')
-                        ((k++))
-                done
-                echo "$upfdata" | sed 's/[A-Za-z]*//g' >> logs/$usecase/compute/compute_logs$tc.txt
-
-                sleep 17
-        done
-        echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
-
+#        sleep 17
+#
+#        for ((ite=0;ite<3;ite++))
+#        do
+#                upfdata=$(kubectl top pod -n oai $upfpod)
+#                k="0"
+#                while [ $k -lt 4 ]
+#                do
+#                        upfdata=$(echo $upfdata | awk '{$1=""}1' | awk '{$1=$1}1')
+#                        ((k++))
+#                done
+#                echo "$upfdata" | sed 's/[A-Za-z]*//g' >> logs/$usecase/compute/compute_logs$tc.txt
+#
+#                sleep 17
+#        done
+#        echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
+#
         if [ $5 -eq 1 ]; then
                 for ((ite=0;ite<$4;ite++))
                 do
@@ -197,7 +197,7 @@ EOF
 
                         echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.host$tc.log.txt
 
-                        sleep 8
+                        sleep 5
                 done
         else
 
@@ -217,7 +217,7 @@ EOF
                         avg=$(cat $log | awk 'END{print $2}')
                         echo $avg >> logs/$usecase/throughput/throughput.avg$tc.log.txt
 
-                        sleep 8
+                        sleep 5
                 done
         fi
 
@@ -243,4 +243,4 @@ echo -e "${GREEN} ${bold} Traffic generation complete for current user set. ${NC
 echo -e "${GREEN} ${bold} Undeploying users for next experiment. ${NC} ${NORMAL}"
 
 /bin/bash ./undeploy.sh $total
-sleep 150
+sleep 180
