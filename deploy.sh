@@ -139,7 +139,7 @@ do
 		sed -i "/sst/c\  sst: \"2$s\"" gnbsim/values.yaml
 
 		helm install gnb$u gnbsim/ -n oai 
-		sleep 8 
+		sleep 10
 		echo -e "${BLUE} ${bold} GNBSIM$u deployed ${NC} ${NORMAL}"
 		gnbsimpod=$(kubectl get pods -n oai  | grep gnbsim$u | awk '{print $1}')
 		gnbsimeth0=$(kubectl exec -n oai $gnbsimpod -c gnbsim -- ifconfig | grep "inet 10.42" | awk '{print $2}')

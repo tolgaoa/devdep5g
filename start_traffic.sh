@@ -10,12 +10,21 @@ NC='\033[0m'
 bold=$(tput bold)
 NORMAL=$(tput sgr0)
 
-measthr () {
+measthrTCP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 70 > iperf.log
+iperf3 -c 10.0.1.84 -t 60 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
+}
+
+measplUDP () {
+ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
+iperf3 -c 10.0.1.84 -u -b 1G -t 20 > iperf.log
+tail -3 iperf.log | head -1 > avg.log
+scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
+EOF
+
 }
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -70,24 +79,26 @@ if [ $5 -eq 1 ]; then
         do
 
                 log=logs/$usecase/throughput/iperf.log
-
                 if [ -f $log ]; then
-                  echo removing $log
+                  echo removing TCP $log
                   rm $log
-                fi
-		
-		measthr
-
-#ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-#iperf3 -c 10.0.1.84 -t 70 > iperf.log
-#tail -3 iperf.log | head -1 > avg.log
-#scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
-#EOF
+                fi	
+		measthrTCP
                 value=`cat logs/$usecase/throughput/iperf.log`
+                echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt        
+		sleep 3
+        done
+        for ((ite=0;ite<$4;ite++))
+        do
 
-                echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.host$tc.log.txt
-
-                sleep 3
+                log=logs/$usecase/throughput/iperf.log
+                if [ -f $log ]; then
+                  echo removing UDP $log
+                  rm $log
+                fi	
+		measplUDP
+                value=`cat logs/$usecase/throughput/iperf.log`
+                echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt               	 sleep 3
         done
 else
         for ((ite=0;ite<$4;ite++))
@@ -190,27 +201,28 @@ do
         if [ $5 -eq 1 ]; then
                 for ((ite=0;ite<$4;ite++))
                 do
-
                         log=logs/$usecase/throughput/iperf.log
 
                         if [ -f $log ]; then
-                          echo removing $log
+                          echo removing TCP $log
                           rm $log
                         fi
-		
-			measthr
-
-#ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-#iperf3 -c 10.0.1.84 -t 70 > iperf.log
-#tail -3 iperf.log | head -1 > avg.log
-#scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
-#EOF
-
+			measthrTCP
                         value=`cat logs/$usecase/throughput/iperf.log`
-
-                        echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.host$tc.log.txt
-
+                        echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt
                         sleep 5
+                done
+                for ((ite=0;ite<$4;ite++))
+                do
+                        log=logs/$usecase/throughput/iperf.log
+
+                        if [ -f $log ]; then
+                          echo removing UDP $log
+                          rm $log
+                        fi
+			measplUDP
+                        value=`cat logs/$usecase/throughput/iperf.log`
+                        echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 sleep 5
                 done
         else
 
@@ -256,4 +268,4 @@ echo -e "${GREEN} ${bold} Traffic generation complete for current user set. ${NC
 echo -e "${GREEN} ${bold} Undeploying users for next experiment. ${NC} ${NORMAL}"
 
 /bin/bash ./undeploy.sh $total
-sleep 240
+sleep 420
