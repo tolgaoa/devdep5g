@@ -98,7 +98,8 @@ if [ $5 -eq 1 ]; then
                 fi	
 		measplUDP
                 value=`cat logs/$usecase/throughput/iperf.log`
-                echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt               	 sleep 3
+                echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt               	 
+		sleep 3
         done
 else
         for ((ite=0;ite<$4;ite++))
@@ -222,7 +223,8 @@ do
                         fi
 			measplUDP
                         value=`cat logs/$usecase/throughput/iperf.log`
-                        echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 sleep 5
+                        echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 
+			sleep 5
                 done
         else
 
