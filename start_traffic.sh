@@ -12,7 +12,7 @@ NORMAL=$(tput sgr0)
 
 measthrTCP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 100 > iperf.log
+iperf3 -c 10.0.1.84 -t 70 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -20,7 +20,7 @@ EOF
 
 measplUDP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -u -b 1G -t 50 > iperf.log
+iperf3 -c 10.0.1.84 -u -b 1G -t 40 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
