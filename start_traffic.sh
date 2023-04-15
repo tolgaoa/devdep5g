@@ -12,7 +12,7 @@ NORMAL=$(tput sgr0)
 
 measthrTCP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 60 > iperf.log
+iperf3 -c 10.0.1.84 -t 100 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -20,7 +20,7 @@ EOF
 
 measplUDP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -u -b 1G -t 20 > iperf.log
+iperf3 -c 10.0.1.84 -u -b 1G -t 50 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -142,6 +142,7 @@ sleep 3
 
 tc=0
 gip=1
+
 for ((sim=0;sim<$1;sim++))
 do
         ((gip+=1))
@@ -199,7 +200,9 @@ do
 #        done
 #        echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
 #
-        if [ $5 -eq 1 ]; then
+
+	#if [ $5 -eq 1 ]; then
+        if [ $sim -eq 4 ] || [ $sim = 9 ]; then
                 for ((ite=0;ite<$4;ite++))
                 do
                         log=logs/$usecase/throughput/iperf.log
@@ -246,9 +249,10 @@ do
 
                         sleep 5
                 done
+        	echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
         fi
-
-        echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
+	
+	sleep 5
 
         log=logs/$usecase/throughput/lat.log
 
