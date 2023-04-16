@@ -201,34 +201,35 @@ do
 #        echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
 #
 
-	#if [ $5 -eq 1 ]; then
-        if [ $sim -eq 4 ] || [ $sim = 9 ]; then
-                for ((ite=0;ite<$4;ite++))
-                do
-                        log=logs/$usecase/throughput/iperf.log
+	if [ $5 -eq 1 ]; then
+        	if [ $sim -eq 4 ] || [ $sim = 9 ]; then
+			for ((ite=0;ite<$4;ite++))
+			do
+				log=logs/$usecase/throughput/iperf.log
 
-                        if [ -f $log ]; then
-                          echo removing TCP $log
-                          rm $log
-                        fi
-			measthrTCP
-                        value=`cat logs/$usecase/throughput/iperf.log`
-                        echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt
-                        sleep 5
-                done
-                for ((ite=0;ite<$4;ite++))
-                do
-                        log=logs/$usecase/throughput/iperf.log
+				if [ -f $log ]; then
+				  echo removing TCP $log
+				  rm $log
+				fi
+				measthrTCP
+				value=`cat logs/$usecase/throughput/iperf.log`
+				echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt
+				sleep 5
+			done
+			for ((ite=0;ite<$4;ite++))
+			do
+				log=logs/$usecase/throughput/iperf.log
 
-                        if [ -f $log ]; then
-                          echo removing UDP $log
-                          rm $log
-                        fi
-			measplUDP
-                        value=`cat logs/$usecase/throughput/iperf.log`
-                        echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 
-			sleep 5
-                done
+				if [ -f $log ]; then
+				  echo removing UDP $log
+				  rm $log
+				fi
+				measplUDP
+				value=`cat logs/$usecase/throughput/iperf.log`
+				echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 
+				sleep 5
+			done
+		fi
         else
 
                 for ((ite=0;ite<$4;ite++))
