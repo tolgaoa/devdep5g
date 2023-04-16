@@ -25,7 +25,7 @@ echo $rt >> ite1.txt
 /bin/bash ./deploy.sh netflixv3 netflixv3 10 8 20 1
 /bin/bash ./deploy.sh oculusv3 oculusv3 10 8 20 1
 /bin/bash ./deploy.sh tiktokv3 tiktokv3 10 8 20 1
-/bin/bash ./deploy.sh whatsappv3 whatsappv3 10 8 20 1
+#/bin/bash ./deploy.sh whatsappv3 whatsappv3 10 8 20 1
 /bin/bash ./deploy.sh fortnitev3 fortnitev3 10 8 20 1
 
 et=`date +%s`
