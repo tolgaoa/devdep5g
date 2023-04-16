@@ -176,7 +176,7 @@ et=`date +%s`
 rt=$((et-st))
 hr=$((rt/3600))
 echo "-------------------------------------------------"
-echo -e "${BLUE} ${bold} Deployment took $hr seconds ${NC} ${NORMAL}"
+echo -e "${BLUE} ${bold} Deployment took $rt seconds ${NC} ${NORMAL}"
 echo "-------------------------------------------------"
 echo $rt >> depite.txt
 
