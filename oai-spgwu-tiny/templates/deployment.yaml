@@ -24,7 +24,7 @@ spec:
     {{- end }}
     spec:
       nodeSelector:
-        type: az8
+        type: az
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}

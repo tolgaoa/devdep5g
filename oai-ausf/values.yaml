@@ -46,7 +46,7 @@ config:
   sbiIfName: "eth0"
   sbiPortHttp1: "80"
   sbiPortHttp2: "8080"
-  useHttp2: "no"          #If set to yes then HTTP2 will be used to talk to every other network function and HTTP server will be started
+  useHttp2: "yes"          #If set to yes then HTTP2 will be used to talk to every other network function and HTTP server will be started
   useFqdnDns: "yes"
   udmIpAddress: "127.0.0.1"
   udmPort: "80"

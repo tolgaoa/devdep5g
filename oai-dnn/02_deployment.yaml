@@ -19,7 +19,7 @@ spec:
         k8s.v1.cni.cncf.io/networks: dnn-net11
     spec:
       nodeSelector:
-        type: az8
+        type: az
       securityContext:
         runAsUser: 0
         runAsGroup: 0

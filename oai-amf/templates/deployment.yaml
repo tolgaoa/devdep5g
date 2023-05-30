@@ -25,15 +25,15 @@ spec:
     {{- end }}
     spec:
       nodeSelector:
-        type: az8
-      initContainers:
-      - name: init-networking
-        image: tolgaomeratalay/init-networking:v5
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
+        type: az
+#      initContainers:
+#      - name: init-networking
+#        image: tolgaomeratalay/init-networking:v5
+#        securityContext:
+#          capabilities:
+#            add:
+#            - NET_ADMIN
+#          privileged: true
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}
@@ -41,18 +41,18 @@ spec:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
       containers:
-      - name: proxy
-        image: tolgaomeratalay/reverseproxy:v1.1
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
-        ports:
-        - containerPort: 11095
-        env:
-        - name: SERVICENAME
-          value: "amf17"
+#      - name: proxy
+#        image: tolgaomeratalay/reverseproxy:v1.1
+#        securityContext:
+#          capabilities:
+#            add:
+#            - NET_ADMIN
+#          privileged: true
+#        ports:
+#        - containerPort: 11095
+#        env:
+#        - name: SERVICENAME
+#          value: "amf17"
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}

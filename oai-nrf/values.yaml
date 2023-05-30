@@ -46,7 +46,7 @@ config:
   nrfInterfaceNameForSBI: "eth0" # net1 if multus.create is set true
   nrfInterfacePortForSBI: "80"
   nrfInterfaceHttp2PortForSBI: "8080"
-  nrfApiVersion: "v1"
+  nrfApiVersion: "v2"
 
 persistent:
   sharedvolume: false

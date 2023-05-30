@@ -79,7 +79,7 @@ config:
   externalUdm: "no"
   externalNrf: "no"
   externalNssf: "no"
-  useHttp2: "no"
+  useHttp2: "yes"
   intAlgoList: '[ "NIA0" , "NIA1" , "NIA2" ]'
   ciphAlgoList: '[ "NEA0" , "NEA1" , "NEA2" ]'
   mySqlServer: "mysql" # OPTIONAL: used only if not using AUSF

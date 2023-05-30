@@ -56,8 +56,8 @@ config:
   smfInterfaceNameForSBI: "eth0"
   smfInterfacePortForSBI: 80
   smfInterfaceHttp2PortForSBI: 8080
-  smfApiVersion: "v1"
-  httpVersion: 1          #default is 1 HTTP1 you can make it 2 HTTP2
+  smfApiVersion: "v2"
+  httpVersion: 2          #default is 1 HTTP1 you can make it 2 HTTP2
   defaultCSCFIpv4Address: "172.21.6.13" # For IMS server if needed
   dnsIpv4Address: "8.8.8.8" # configure the dns for UE don't use Kubernetes DNS
   dnsSecIpv4Address: "172.21.3.100" # configure the dns for UE don't use Kubernetes DNS

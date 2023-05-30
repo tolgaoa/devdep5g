@@ -47,7 +47,7 @@ config:
   udmApiVersionNb: "v1"
   useFqdnDns: "yes"       #yes to enable FQDN resoultion instead of ip-addresses but we still need to put some dummy ip-address in Ip-address field 
   nfRegistration: "no"    #yes to register to NRF
-  useHttp2: "no"          #yes to enable http2
+  useHttp2: "yes"          #yes to enable http2
   udrIpAddress: "127.0.0.1"
   udrPort: "80"
   udrApiVersionNb: "v1"   #Nb means northbound
