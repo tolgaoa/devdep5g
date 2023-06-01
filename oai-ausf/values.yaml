@@ -23,7 +23,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-ausf17-sa"
+  name: "oai-ausf10-sa"
 
 #service type is fixed to clusterIP, it is only support for non multus interface (eth0)
 
@@ -51,11 +51,11 @@ config:
   udmIpAddress: "127.0.0.1"
   udmPort: "80"
   udmVersionNb: "v1"
-  udmFqdn: "oai-udm17-svc"
+  udmFqdn: "oai-udm10-svc"
   nrfIpAddress: "127.0.0.1"
   nrfPort: "80"
   nrfApiVersion: "v1"
-  nrfFqdn: "oai-nrf17-svc"
+  nrfFqdn: "oai-nrf10-svc"
   registerNrf: "no"
 
 persistence:

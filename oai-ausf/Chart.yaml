@@ -19,7 +19,7 @@
 #      contact@openairinterface.org
 ################################################################################
 apiVersion: v2
-name: oai-ausf17
+name: oai-ausf10
 description: Helm chart for AUSF network function
 
 type: application

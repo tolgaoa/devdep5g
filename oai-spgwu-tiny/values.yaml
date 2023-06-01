@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-spgwu-tiny17"
+  name: "oai-spgwu-tiny10"
 
 podSecurityContext:
   runAsUser: 0
@@ -50,7 +50,7 @@ multus:
   hostInterface: "eno1np0"
 
 config:
-  fqdn: "oai-spgwu-tiny17-svc"
+  fqdn: "oai-spgwu-tiny10-svc"
   n3If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0
   n4If: "eth0" # use for SMF communication
   n6If: "eth0"  # net1 if gNB is outside the cluster network and multus creation is true else eth0 (important because it sends the traffic towards internet)
@@ -65,9 +65,9 @@ config:
   netUeIp: "12.1.1.0/24"  # The range in which UE ip-address will be allocated should be configured the same in SMF
   registerNRF: "yes"
   useFqdnNrf: "yes"  # use FQDN to resolve nrf ip-address
-  nrfFqdn: "oai-nrf17-svc"
+  nrfFqdn: "oai-nrf10-svc"
   #Mandatory to configure atlease one slice
-  nssaiSst0: "217"
+  nssaiSst0: "210"
   nssaiSd0: "123"  # should match with SMF information (Optional, if removed sd value will be 0xFFFFFF)
   dnn0: "oai" # should match with SMF information
   #Upto 4 slices can be added from here to add more you need to add manullay in config.yaml. Please follow the same way of adding slices nssaiSST$,nssaiSd$,dnn$ ($=0,1,2,3)
