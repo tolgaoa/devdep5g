@@ -1,6 +1,6 @@
 # OAI 5G Core Traffic Emulation with Real Life User Patterns
  
-This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale in order emulate various user traffic patterns pertaining to real-life use cases. [Globecom 2022] 
+This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale in order emulate various user traffic patterns pertaining to real-life use cases.
 
 ------------------------------------------------------------------------------
 ## Infrastructure Setup
@@ -32,7 +32,7 @@ All the OAI 5G core components are v1.3.0 or newer.
 
 ### Step 1: Setting up the K8s Cluster
 
-In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engine (RKE) which can be installed following this [link](https://rancher.com/docs/rke/latest/en/installation/). Certain RKE versions can only setup certain versions of Kubernetes. We used rke 1.2.11 with Kubernetes 1.19.
+In this deployment, the K8s cluster is set up using the Ranchers Kubernetes Engine (RKE) which can be installed following this [link](https://rancher.com/docs/rke/latest/en/installation/). Certain RKE versions can only setup certain versions of Kubernetes. We used rke 1.4.1 with Kubernetes 1.24.8.
 
 
 **Warning**
@@ -73,7 +73,7 @@ $ mkdir -p ~/.kube \
 3. Install the multus networking plugin from [here](https://github.com/k8snetworkplumbingwg/multus-cni) required for the OAI core network and RAN components. You can execute this from the workstation which has kubectl access to the target node where the cluster was set up.
 4. Make sure the required container networking plugins are installed on the target node. The installation of these plugins first requires go. 
 ```
-$ wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz \ 
+$ wget https://dl.google.com/go/go1.17.linux-amd64.tar.gz \ 
   sudo tar -xvf go1.17.linux-amd64.tar.gz
   mv go /usr/local 
   export GOROOT=/usr/local/go
