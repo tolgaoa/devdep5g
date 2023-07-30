@@ -1,6 +1,6 @@
 # OAI 5G Core Traffic Emulation with Real Life User Patterns
  
-This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale in order emulate various user traffic patterns pertaining to real-life use cases. [Globecom 2022] 
+This is the implementation of the OpenAirInterface 5G core network and gNBSIM RAN in a Kubernetes cluster at a large-scale in order emulate various user traffic patterns pertaining to real-life use cases. 
 
 ------------------------------------------------------------------------------
 ## Infrastructure Setup
