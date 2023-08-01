@@ -35,6 +35,7 @@ securityContext:
 start:
   udm: true
   tcpdump: false
+  monProxy: false
 
 config:
   tz: "Europe/Paris"

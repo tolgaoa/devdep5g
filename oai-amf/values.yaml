@@ -37,6 +37,7 @@ securityContext:
 start:
   amf: true
   tcpdump: false # WARNING: start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+  monProxy: false
 
 # AMF needs two seperate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
 # But for experimentation only one interface can be used. 

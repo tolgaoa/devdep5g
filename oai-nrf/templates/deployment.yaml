@@ -17,7 +17,8 @@ spec:
         {{- include "oai-nrf.selectorLabels" . | nindent 8 }}
     spec:
       nodeSelector:
-        type: az1
+        type: az
+      {{- if .Values.start.monProxy}}
       initContainers:
       - name: init-networking
         image: tolgaomeratalay/init-networking:v5
@@ -26,6 +27,8 @@ spec:
             add:
             - NET_ADMIN
           privileged: true
+      {{- else }}
+      {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}
@@ -33,6 +36,7 @@ spec:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
       containers:
+      {{- if .Values.start.monProxy}}
       - name: proxy
         image: tolgaomeratalay/reverseproxy:v1.1
         securityContext:
@@ -45,6 +49,8 @@ spec:
         env:
         - name: SERVICENAME
           value: "nrf10"
+      {{- else }}
+      {{- end }}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}

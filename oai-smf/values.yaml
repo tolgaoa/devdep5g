@@ -36,6 +36,7 @@ securityContext:
 start:
   smf: true
   tcpdump: false  #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+  monProxy: false
 
 # SMF needs two seperate interface one for http and other one for N4 to communicate with UPD. 
 # But for experimentation only one interface can be used. 

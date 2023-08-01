@@ -38,6 +38,7 @@ securityContext:
 start:
   nrf: true
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+  monProxy: false
 
 # create multus interface in case the NRF wants to use a separate interface 
 # than kubernetes general CNI or it needs to be accessed from outside cluster network using ip-address (please use amf multus.yaml as an example). 
