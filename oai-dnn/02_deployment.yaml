@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-dnn89
+  name: oai-dnn10
   labels:
-    app: oai-dnn89
+    app: oai-dnn10
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oai-dnn89
+      app: oai-dnn10
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: oai-dnn89
+        app: oai-dnn10
       annotations:
         k8s.v1.cni.cncf.io/networks: dnn-net11
     spec:
       nodeSelector:
-        type: az8
+        type: az
       securityContext:
         runAsUser: 0
         runAsGroup: 0
       containers:
       - name: dnn
-        image: tolgaomeratalay/oai-dnn:netflixv1
+        image: tolgaomeratalay/oai-dnn:zoomv3
         securityContext:
           capabilities:
             add:

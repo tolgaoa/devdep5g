@@ -19,7 +19,7 @@
 #      contact@openairinterface.org
 ################################################################################
 apiVersion: v2
-name: oai-amf17
+name: oai-amf10
 description: Helm chart for AMF network function
 
 type: application

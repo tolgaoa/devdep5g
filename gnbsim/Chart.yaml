@@ -1,5 +1,5 @@
 apiVersion: v2
-name: gnbsim89
+name: gnbsim10
 description: A Helm chart for GNBSIM network function
 
 type: application

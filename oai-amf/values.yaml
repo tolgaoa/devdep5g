@@ -2,7 +2,7 @@ kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
 
 nfimage:  # image name either locally present or in a public/private repository
   repository: tolgaomeratalay/amf          ## The image will be pulled from dockerhub
-  version: augv1                                    #image tag, develop tag for experimental features 
+  version: istiov1 #augv1          #image tag, develop tag for experimental features 
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # Annotations to add to the service account
   annotations: {}
-  name: "oai-amf17-sa"
+  name: "oai-amf10-sa"
 
 #service type is fixed to clusterIP, it is only support for non multus interface (eth0)
 
@@ -36,8 +36,9 @@ securityContext:
 
 start:
   amf: true
-  tcpdump: false # WARNING: start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+  tcpdump: false 
   monProxy: false
+  linkerd: enabled
 
 # AMF needs two seperate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
 # But for experimentation only one interface can be used. 
@@ -62,7 +63,7 @@ config:
   regionId: "128"
   amfSetId: "1"
   tac: "0x00a000"
-  sst0: "217"
+  sst0: "210"
   sd0: "123"
   sst1: "1"
   sd1: "1"
@@ -70,9 +71,9 @@ config:
   amfInterfaceNameForSBI: "eth0"  # Service based interface
   amfInterfaceSBIHTTPPort: 80  # Service based interface
   amfInterfaceSBIHTTP2Port: 8080  # Service based interface
-  nrfFqdn: "oai-nrf17-svc"
-  nrfFqdn: "oai-nrf17-svc"
-  ausfFqdn: "oai-ausf17-svc"
+  nrfFqdn: "oai-nrf10-svc"
+  nrfFqdn: "oai-nrf10-svc"
+  ausfFqdn: "oai-ausf10-svc"
   nfRegistration: "yes"
   nrfSelection: "no"
   smfSelection: "yes"

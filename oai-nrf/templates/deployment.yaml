@@ -13,22 +13,13 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: "{{ .Values.start.linkerd }}"
       labels:
         {{- include "oai-nrf.selectorLabels" . | nindent 8 }}
     spec:
       nodeSelector:
         type: az
-      {{- if .Values.start.monProxy}}
-      initContainers:
-      - name: init-networking
-        image: tolgaomeratalay/init-networking:v5
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
-      {{- else }}
-      {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}
@@ -36,21 +27,6 @@ spec:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
       containers:
-      {{- if .Values.start.monProxy}}
-      - name: proxy
-        image: tolgaomeratalay/reverseproxy:v1.1
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
-        ports:
-        - containerPort: 11095
-        env:
-        - name: SERVICENAME
-          value: "nrf10"
-      {{- else }}
-      {{- end }}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}

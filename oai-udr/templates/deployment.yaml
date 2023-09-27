@@ -13,6 +13,8 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: "{{ .Values.start.linkerd }}"
       labels:
         {{- include "oai-udr.selectorLabels" . | nindent 8 }}
     spec:
@@ -22,33 +24,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       imagePullSecrets:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
-      initContainers:
-      {{- if .Values.start.monProxy}}
-      - name: init-networking
-        image: tolgaomeratalay/init-networking:v5
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
-      {{- else}}
-      {{- end}}
       containers:
-      {{- if .Values.start.monProxy}}
-      - name: proxy
-        image: tolgaomeratalay/reverseproxy:v1.1
-        securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
-          privileged: true
-        ports:
-        - containerPort: 11095
-        env:
-          value: "udr10"
-          value: "udr17"
-      {{- else}}
-      {{- end}}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}

@@ -19,7 +19,7 @@
 #      contact@openairinterface.org
 ################################################################################
 apiVersion: v2
-name: oai-smf17
+name: oai-smf10
 description: A Helm chart for SMF network function
 
 type: application

@@ -21,7 +21,7 @@ serviceAccount:
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "oai-smf17-sa"
+  name: "oai-smf10-sa"
 
 podSecurityContext:
   runAsUser: 0
@@ -37,6 +37,7 @@ start:
   smf: true
   tcpdump: false  #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
   monProxy: false
+  linkerd: enabled
 
 # SMF needs two seperate interface one for http and other one for N4 to communicate with UPD. 
 # But for experimentation only one interface can be used. 
@@ -70,15 +71,15 @@ config:
   discoverPcf: "no"            # Set to yes if PCF is used and want to be discovered via NRF
   ueMtu: 1500
   registerNrf: "yes" # if wants to use NRF registry and discovery
-  nrfFqdn: "oai-nrf17-svc"
-  udmFqdn: "oai-udm17-svc"
-  amfFqdn: "oai-amf17-svc"
+  nrfFqdn: "oai-nrf10-svc"
+  udmFqdn: "oai-udm10-svc"
+  amfFqdn: "oai-amf10-svc"
   # slicing parameter defining one slice is mandatory, if you want to have multiple just copy the below structure and add 1,2 or 3. 
   # You can define maximum 4 slices from here in case of more please change the configuration file. 
   dnnNi0: "oai"
   pdusessiontype0: "IPv4"
   ipv4dnnRange0: "12.1.1.2 - 12.1.1.254"
-  nssaiSst0: "217"
+  nssaiSst0: "210"
   nssaiSd0: "123"
   qosProfile5qi0: 2
   sessionAmbrUl0: "1000Mbps"
