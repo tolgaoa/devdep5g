@@ -73,7 +73,7 @@ config:
   amfFqdn: "oai-amf-svc"
   url: "http://google.com"
   nrcellid: "1"
-  ngappeeraddr: "10.42.0.55"
+  ngappeeraddr: "10.42.0.73"
   gtpulocaladdr: "status.podIP"     #in case of using multus just provide the above multus gtpu ip-address
   gtpuifname: "eth0"
 
