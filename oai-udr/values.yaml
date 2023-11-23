@@ -12,6 +12,11 @@ tcpdumpimage:
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
+proxyimage:
+  repository: tolgaomeratalay/5gstreamsa
+  version: 1.1.17
+  pullPolicy: IfNotPresent
+
 imagePullSecrets: 
   - name: "regcred"
 
@@ -41,8 +46,7 @@ service:
 start:
   udr: true
   tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
-  monProxy: false
-  linkerd: enabled
+  proxy: false
 
 config:
   tz: "Europe/Paris"
@@ -64,6 +68,25 @@ config:
   mySqlUser: "root"
   mySqlPass: "linux"
   mySqlDb: "oai_db"
+
+proxyconfig:
+  saname: "UDR1"
+  sasubfunc: "test" # this is not used right now
+  saip: "127.0.0.1" # this is currently set to podIP in the source code
+  saloc: "local"
+  sak8sdns: "oai-udr10-svc"
+  savnftype: "udr"
+  savnfid: "udr1"
+  sasliceid: "1"
+  streamscpip: "192.168.1.119"
+  streamscpport: "10090"
+  randomize: "1"
+  loglevel: "trace"
+  clientcount: "2"
+  multireg: "1"
+  operationmode: "5G_SA"
+  valmethod: "NONE"
+  useotel: "NO" # set to yes for integrating with an OpenTelemetry node. SVC fixed for now
 
 persistence:
   sharedvolume: false
@@ -93,7 +116,8 @@ livenessProbe: false
 
 terminationGracePeriodSeconds: 5
 
-nodeSelector: {}
+nodeSelector:
+  type: az
 
 nodeName:
 

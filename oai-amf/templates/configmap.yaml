@@ -10,6 +10,7 @@ data:
       PID_DIRECTORY = "/var/run";   # /var/run is the default
 
       AMF_NAME = "OAI-AMF";
+      LOG_LEVEL = "{{ .Values.config.logLevel }}";
 
       RELATIVE_CAPACITY = 30;
       # Display statistics about whole system (in seconds)

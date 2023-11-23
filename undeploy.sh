@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-for ((c=10;c<=$1+10;c++))
+for ((c=10;c<=$1+9;c++))
 do
 	helm delete nrf$c -n oai
 	helm delete udr$c -n oai

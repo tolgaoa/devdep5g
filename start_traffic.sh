@@ -12,7 +12,7 @@ NORMAL=$(tput sgr0)
 
 measthrTCP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -t 40 > iperf.log
+iperf3 -c 10.0.1.84 -t 60 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -20,7 +20,7 @@ EOF
 
 measplUDP () {
 ssh -i ~/.ssh/awscluster.pem ubuntu@10.0.13.33 /bin/bash << EOF
-iperf3 -c 10.0.1.84 -u -b 1G -t 40 > iperf.log
+iperf3 -c 10.0.1.84 -u -b 1G -t 20 > iperf.log
 tail -3 iperf.log | head -1 > avg.log
 scp -i ~/.ssh/awscluster.pem avg.log ubuntu@10.0.1.71:/home/ubuntu/oai5gtrafficgen/logs/$usecase/throughput/iperf.log
 EOF
@@ -74,66 +74,66 @@ kubectl exec -n oai -c gnbsim $iperfgnbsimpod -- iperf3 -s &
 #done
 #echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
 
-#if [ $5 -eq 1 ]; then
-#        for ((ite=0;ite<$4;ite++))
-#        do
-#
-#                log=logs/$usecase/throughput/iperf.log
-#                if [ -f $log ]; then
-#                  echo removing TCP $log
-#                  rm $log
-#                fi	
-#		measthrTCP
-#                value=`cat logs/$usecase/throughput/iperf.log`
-#                echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt        
-#		sleep 3
-#        done
-#        for ((ite=0;ite<$4;ite++))
-#        do
-#
-#                log=logs/$usecase/throughput/iperf.log
-#                if [ -f $log ]; then
-#                  echo removing UDP $log
-#                  rm $log
-#                fi	
-#		measplUDP
-#                value=`cat logs/$usecase/throughput/iperf.log`
-#                echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt               	 
-#		sleep 3
-#        done
-#else
-#        for ((ite=0;ite<$4;ite++))
-#        do
-#                log=logs/$usecase/throughput/iperf.log
-#
-#                if [ -f $log ]; then
-#                  echo removing $log
-#                  rm $log
-#                fi
-#
-#                for run in $(seq 1 $runs); do
-#                avg=$(cat $log | awk 'END{print $2}')
-#                echo $avg >> logs/$usecase/throughput/throughput.avg$tc.log.txt
-#                done
-#
-#                sleep 3
-#        done
-#fi
+if [ $5 -eq 1 ]; then
+        for ((ite=0;ite<$4;ite++))
+        do
 
-#echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
+                log=logs/$usecase/throughput/iperf.log
+                if [ -f $log ]; then
+                  echo removing TCP $log
+                  rm $log
+                fi	
+		measthrTCP
+                value=`cat logs/$usecase/throughput/iperf.log`
+                echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt        
+		sleep 3
+        done
+        for ((ite=0;ite<$4;ite++))
+        do
 
-#if [ -f $log ]; then
-#log=logs/$usecase/throughput/lat.log
-#  echo removing $log
-#  rm $log
-#fi
+                log=logs/$usecase/throughput/iperf.log
+                if [ -f $log ]; then
+                  echo removing UDP $log
+                  rm $log
+                fi	
+		measplUDP
+                value=`cat logs/$usecase/throughput/iperf.log`
+                echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt               	 
+		sleep 3
+        done
+else
+        for ((ite=0;ite<$4;ite++))
+        do
+                log=logs/$usecase/throughput/iperf.log
 
-#kubectl exec -n oai $iperfdnnpod -- ping -c 40 12.1.1.2 | awk -F '[:=]'  'NR!=1 {print $5}' >> $log
+                if [ -f $log ]; then
+                  echo removing $log
+                  rm $log
+                fi
 
-#avg=$(cat $log | sed 's/[^.0-9][^.0-9]*/ /g')
-#echo $avg >> logs/$usecase/throughput/lat.avg$tc.log.txt
+                for run in $(seq 1 $runs); do
+                avg=$(cat $log | awk 'END{print $2}')
+                echo $avg >> logs/$usecase/throughput/throughput.avg$tc.log.txt
+                done
 
-#sleep 3
+                sleep 3
+        done
+fi
+
+echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
+
+if [ -f $log ]; then
+log=logs/$usecase/throughput/lat.log
+  echo removing $log
+  rm $log
+fi
+
+kubectl exec -n oai $iperfdnnpod -- ping -c 40 12.1.1.2 | awk -F '[:=]'  'NR!=1 {print $5}' >> $log
+
+avg=$(cat $log | sed 's/[^.0-9][^.0-9]*/ /g')
+echo $avg >> logs/$usecase/throughput/lat.avg$tc.log.txt
+
+sleep 3
 #fi
 
 #---------------------------------------------------------------------------------------
@@ -142,7 +142,6 @@ kubectl exec -n oai -c gnbsim $iperfgnbsimpod -- iperf3 -s &
 
 tc=0
 gip=1
-
 for ((sim=0;sim<$1;sim++))
 do
         ((gip+=1))
@@ -200,51 +199,33 @@ do
 #        done
 #        echo -e "${GREEN} ${bold} Gathered compute logs. Starting throughput test over UPF ${NC} ${NORMAL}"
 #
+        if [ $5 -eq 1 ]; then
+                for ((ite=0;ite<$4;ite++))
+                do
+                        log=logs/$usecase/throughput/iperf.log
 
-	if [ $5 -eq 1 ]; then
-        	if [ $sim -eq 4 ] || [ $sim = 9 ]; then
-			for ((ite=0;ite<$4;ite++))
-			do
-				log=logs/$usecase/throughput/iperf.log
+                        if [ -f $log ]; then
+                          echo removing TCP $log
+                          rm $log
+                        fi
+			measthrTCP
+                        value=`cat logs/$usecase/throughput/iperf.log`
+                        echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt
+                        sleep 5
+                done
+                for ((ite=0;ite<$4;ite++))
+                do
+                        log=logs/$usecase/throughput/iperf.log
 
-				if [ -f $log ]; then
-				  echo removing TCP $log
-				  rm $log
-				fi
-				measthrTCP
-				value=`cat logs/$usecase/throughput/iperf.log`
-				echo $value | awk '{print $7}' >> logs/$usecase/throughput/throughput.TCP$tc.log.txt
-				sleep 5
-			done
-			for ((ite=0;ite<$4;ite++))
-			do
-				log=logs/$usecase/throughput/iperf.log
-
-				if [ -f $log ]; then
-				  echo removing UDP $log
-				  rm $log
-				fi
-				measplUDP
-				value=`cat logs/$usecase/throughput/iperf.log`
-				echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 
-				sleep 5
-			done
-
-
-			log=logs/$usecase/throughput/lat.log
-
-			if [ -f $log ]; then
-			  echo removing $log
-			  rm $log
-			fi
-
-			kubectl exec -n oai $iperfdnnpod -- ping -c 40 12.1.1.2 | awk -F '[:=]'  'NR!=1 {print $5}' >> $log
-
-			avg=$(cat $log | sed 's/[^.0-9][^.0-9]*/ /g')
-			echo $avg >> logs/$usecase/throughput/lat.avg$tc.log.txt
-
-			sleep 3
-		fi
+                        if [ -f $log ]; then
+                          echo removing UDP $log
+                          rm $log
+                        fi
+			measplUDP
+                        value=`cat logs/$usecase/throughput/iperf.log`
+                        echo $value | awk '{print $12}' | sed 's/[^0-9.]//g' >> logs/$usecase/throughput/pl.UDP$tc.log.txt			 
+			sleep 5
+                done
         else
 
                 for ((ite=0;ite<$4;ite++))
@@ -265,9 +246,23 @@ do
 
                         sleep 5
                 done
-        	echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
         fi
-	
+
+        echo -e "${GREEN} ${bold} Finished throughput test. Starting Latency Test ${NC} ${NORMAL}"
+
+        log=logs/$usecase/throughput/lat.log
+
+        if [ -f $log ]; then
+          echo removing $log
+          rm $log
+        fi
+
+        kubectl exec -n oai $iperfdnnpod -- ping -c 40 12.1.1.2 | awk -F '[:=]'  'NR!=1 {print $5}' >> $log
+
+        avg=$(cat $log | sed 's/[^.0-9][^.0-9]*/ /g')
+        echo $avg >> logs/$usecase/throughput/lat.avg$tc.log.txt
+
+        sleep 3
         #fi
 done
 

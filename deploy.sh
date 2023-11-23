@@ -14,11 +14,13 @@ NORMAL=$(tput sgr0)
 
 gnbsimim=$1
 dnnim=$2
+sa_version=1.1.17 # SA version for when indirect communication is enabled with redirection
 
 ((user=$3+10))
 ((trafficusers=$3-1))
 ((slice=$4+9))
 u=10
+
 
 
 echo "-------------------------------------------------"
@@ -39,55 +41,60 @@ for ((s=10;s<=$slice;s++))
 do
 	((z=$s-9))
 	#------------------------NRF-------------------------
+	sed -i "18s/.*/  version: $sa_version/" oai-nrf/values.yaml
 	sed -i "22s/.*/name: oai-nrf$s/" oai-nrf/Chart.yaml
-	sed -i "25s/.*/  name: \"oai-nrf$s-sa\"/" oai-nrf/values.yaml
-#	sed -i "47s/.*/          value: \"nrf$s\"/" oai-nrf/templates/deployment.yaml
-#	sed -i "20s/.*/        type: az/" oai-nrf/templates/deployment.yaml
+	sed -i "30s/.*/  name: \"oai-nrf$s-sa\"/" oai-nrf/values.yaml
+	#sed -i "47s/.*/          value: \"nrf$s\"/" oai-nrf/templates/deployment.yaml
+	#sed -i "20s/.*/        type: az$z/" oai-nrf/templates/deployment.yaml
 	helm install nrf$s oai-nrf/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} NRF$s deployed ${NC} ${NORMAL}"
 
 	#------------------------UDR-------------------------
+	sed -i "17s/.*/  version: $sa_version/" oai-udr/values.yaml
 	sed -i "23s/.*/name: oai-udr$s/" oai-udr/Chart.yaml
 	sed -i "/nrfFqdn/c\  nrfFqdn: \"oai-nrf$s-svc\"" oai-udr/values.yaml
-	sed -i "25s/.*/  name: \"oai-udr$s-sa\"/" oai-udr/values.yaml
-#	sed -i "45s/.*/          value: \"udr$s\"/" oai-udr/templates/deployment.yaml
-#	sed -i "20s/.*/        type: az/" oai-udr/templates/deployment.yaml
+	sed -i "30s/.*/  name: \"oai-udr$s-sa\"/" oai-udr/values.yaml
+	#sed -i "45s/.*/          value: \"udr$s\"/" oai-udr/templates/deployment.yaml
+	#sed -i "20s/.*/        type: az$z/" oai-udr/templates/deployment.yaml
 	helm install udr$s oai-udr/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} UDR$s deployed ${NC} ${NORMAL}"
 	
 	#------------------------UDM-------------------------
+	sed -i "17s/.*/  version: $sa_version/" oai-udm/values.yaml
 	sed -i "23s/.*/name: oai-udm$s/" oai-udm/Chart.yaml
 	sed -i "/nrfFqdn/c\  nrfFqdn: \"oai-nrf$s-svc\"" oai-udm/values.yaml
 	sed -i "/udrFqdn/c\  udrFqdn: \"oai-udr$s-svc\"" oai-udm/values.yaml
-	sed -i "24s/.*/  name: \"oai-udm$s-sa\"/" oai-udm/values.yaml
-#	sed -i "47s/.*/          value: \"udm$s\"/" oai-udm/templates/deployment.yaml
-#	sed -i "20s/.*/        type: az/" oai-udm/templates/deployment.yaml
+	sed -i "29s/.*/  name: \"oai-udm$s-sa\"/" oai-udm/values.yaml
+	#sed -i "47s/.*/          value: \"udm$s\"/" oai-udm/templates/deployment.yaml
+	#sed -i "20s/.*/        type: az$z/" oai-udm/templates/deployment.yaml
 	helm install udm$s oai-udm/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} UDM$s deployed ${NC} ${NORMAL}"
 	
 	#------------------------AUSF------------------------
+	sed -i "17s/.*/  version: $sa_version/" oai-ausf/values.yaml
 	sed -i "22s/.*/name: oai-ausf$s/" oai-ausf/Chart.yaml
 	sed -i "/nrfFqdn/c\  nrfFqdn: \"oai-nrf$s-svc\"" oai-ausf/values.yaml
 	sed -i "/udmFqdn/c\  udmFqdn: \"oai-udm$s-svc\"" oai-ausf/values.yaml
-	sed -i "26s/.*/  name: \"oai-ausf$s-sa\"/" oai-ausf/values.yaml
-#	sed -i "47s/.*/          value: \"ausf$s\"/" oai-ausf/templates/deployment.yaml
-#	sed -i "20s/.*/        type: az/" oai-ausf/templates/deployment.yaml
+	sed -i "31s/.*/  name: \"oai-ausf$s-sa\"/" oai-ausf/values.yaml
+	#sed -i "47s/.*/          value: \"ausf$s\"/" oai-ausf/templates/deployment.yaml
+	#sed -i "20s/.*/        type: az$z/" oai-ausf/templates/deployment.yaml
 	helm install ausf$s oai-ausf/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} AUSF$s deployed ${NC} ${NORMAL}"
 	
 	#------------------------AMF-------------------------
-	sed -i "22s/.*/name: oai-amf$s/" oai-amf/Chart.yaml
+	sed -i "22s/.*/name: oai-amf$s/" oai-amf/Chart.yaml	
+	sed -i "17s/.*/  version: $sa_version/" oai-amf/values.yaml
 	sed -i "/nrfFqdn/c\  nrfFqdn: \"oai-nrf$s-svc\"" oai-amf/values.yaml
 	sed -i "/smfFqdn/c\  nrfFqdn: \"oai-smf$s-svc\"" oai-amf/values.yaml
 	sed -i "/ausfFqdn/c\  ausfFqdn: \"oai-ausf$s-svc\"" oai-amf/values.yaml
-	sed -i "24s/.*/  name: \"oai-amf$s-sa\"/" oai-amf/values.yaml
+	sed -i "29s/.*/  name: \"oai-amf$s-sa\"/" oai-amf/values.yaml
 	sed -i "/sst0/c\  sst0: \"2$s\"" oai-amf/values.yaml
-#	sed -i "55s/.*/          value: \"amf$s\"/" oai-amf/templates/deployment.yaml
-#	sed -i "28s/.*/        type: az/" oai-amf/templates/deployment.yaml
+	#sed -i "55s/.*/          value: \"amf$s\"/" oai-amf/templates/deployment.yaml
+	#sed -i "28s/.*/        type: az$z/" oai-amf/templates/deployment.yaml
 	helm install amf$s oai-amf/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} AMF$s deployed ${NC} ${NORMAL}"
@@ -96,13 +103,14 @@ do
 	
 	#------------------------SMF-------------------------
 	sed -i "22s/.*/name: oai-smf$s/" oai-smf/Chart.yaml
+	sed -i "17s/.*/  version: $sa_version/" oai-smf/values.yaml
 	sed -i "/nrfFqdn/c\  nrfFqdn: \"oai-nrf$s-svc\"" oai-smf/values.yaml
 	sed -i "/udmFqdn/c\  udmFqdn: \"oai-udm$s-svc\"" oai-smf/values.yaml
 	sed -i "/amfFqdn/c\  amfFqdn: \"oai-amf$s-svc\"" oai-smf/values.yaml
-	sed -i "24s/.*/  name: \"oai-smf$s-sa\"/" oai-smf/values.yaml
+	sed -i "29s/.*/  name: \"oai-smf$s-sa\"/" oai-smf/values.yaml
 	sed -i "/nssaiSst0/c\  nssaiSst0: \"2$s\"" oai-smf/values.yaml
-#	sed -i "61s/.*/          value: \"smf$s\"/" oai-smf/templates/deployment.yaml
-#	sed -i "28s/.*/        type: az/" oai-smf/templates/deployment.yaml
+	#sed -i "61s/.*/          value: \"smf$s\"/" oai-smf/templates/deployment.yaml
+	#sed -i "28s/.*/        type: az$z/" oai-smf/templates/deployment.yaml
 	helm install smf$s oai-smf/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} SMF$s deployed ${NC} ${NORMAL}"
@@ -114,7 +122,7 @@ do
 	sed -i "/oai-spgwu-tiny-sa/c\  name: \"oai-spgwu-tiny$s-sa\"" oai-spgwu-tiny/values.yaml
 	sed -i "24s/.*/  name: \"oai-spgwu-tiny$s\"/" oai-spgwu-tiny/values.yaml
 	sed -i "/nssaiSst0/c\  nssaiSst0: \"2$s\"" oai-spgwu-tiny/values.yaml
-#	sed -i "27s/.*/        type: az/" oai-spgwu-tiny/templates/deployment.yaml
+	#sed -i "27s/.*/        type: az$z/" oai-spgwu-tiny/templates/deployment.yaml
 	helm install upf$s oai-spgwu-tiny/ -n oai
 	sleep 6
 	echo -e "${GREEN} ${bold} UPF$s deployed ${NC} ${NORMAL}"
@@ -151,7 +159,7 @@ do
 		sed -i "11s/.*/      app: oai-dnn$u/" oai-dnn/02_deployment.yaml
 		sed -i "17s/.*/        app: oai-dnn$u/" oai-dnn/02_deployment.yaml
 		sed -i "28s/.*/        image: tolgaomeratalay\/oai-dnn:${dnnim}/" oai-dnn/02_deployment.yaml
-#		sed -i "22s/.*/        type: az/" oai-dnn/02_deployment.yaml
+		#sed -i "22s/.*/        type: az$z/" oai-dnn/02_deployment.yaml
 
 		kubectl apply -k oai-dnn/
 		sleep 2
@@ -176,10 +184,10 @@ et=`date +%s`
 rt=$((et-st))
 hr=$((rt/3600))
 echo "-------------------------------------------------"
-echo -e "${BLUE} ${bold} Deployment took $rt seconds ${NC} ${NORMAL}"
+echo -e "${BLUE} ${bold} Deployment took $hr seconds ${NC} ${NORMAL}"
 echo "-------------------------------------------------"
-echo $rt >> depite.txt
+#echo $rt >> depite.txt
 
-#/bin/bash ./start_traffic.sh $trafficusers $4 $dnnim
+#/bin/bash ./ftart_traffic.sh $trafficusers $4 $dnnim
 #/bin/bash ./start_traffic.sh $3 $4 $dnnim $5 $6
 

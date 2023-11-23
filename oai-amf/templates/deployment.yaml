@@ -25,14 +25,78 @@ spec:
     {{- end }}
     spec:
       nodeSelector:
-        type: az
+      {{ toYaml .Values.nodeSelector | indent 2 }}
+      initContainers:
+      {{- if .Values.start.proxy }}
+      - name: init-networking
+        image: tolgaomeratalay/init-networking:v5
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
     {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
+    {{- end }}
       containers:
+      - name: proxy
+        image: "{{ .Values.proxyimage.repository }}:{{ .Values.proxyimage.version }}"
+        imagePullPolicy: {{ .Values.proxyimage.pullPolicy }}
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+        ports:
+        - containerPort: 11095
+        env:
+        - name: SA_NAME
+          value: {{ .Values.proxyconfig.saname | quote }}
+        - name: SA_SUB_FUNC
+          value: {{ .Values.proxyconfig.sasubfunc | quote }}
+        - name: SA_IP
+          value: {{ .Values.proxyconfig.saip | quote }}
+        - name: SA_LOC
+          value: {{ .Values.proxyconfig.saloc | quote }}
+        - name: SA_K8S_DNS
+          value: {{ .Values.proxyconfig.sak8sdns | quote }}
+        - name: SA_VNF_TYPE
+          value: {{ .Values.proxyconfig.savnftype | quote }}
+        - name: SA_VNF_ID
+          value: {{ .Values.proxyconfig.savnfid | quote }}
+        - name: SA_SLICE_ID
+          value: {{ .Values.proxyconfig.sasliceid | quote }}
+        - name: STREAM_SCP_IP
+          value: {{ .Values.proxyconfig.streamscpip | quote }}
+        - name: STREAM_SCP_PORT
+          value: {{ .Values.proxyconfig.streamscpport | quote }}
+        - name: RANDOMIZE
+          value: {{ .Values.proxyconfig.randomize | quote }}
+        - name: LOG_LEVEL
+          value: {{ .Values.proxyconfig.loglevel | quote }}
+        - name: CLIENT_COUNT
+          value: {{ .Values.proxyconfig.clientcount | quote }}
+        - name: MULTI_REG
+          value: {{ .Values.proxyconfig.multireg | quote }}
+        - name: OPERATION_MODE
+          value: {{ .Values.proxyconfig.operationmode | quote }}
+        - name: VAL_METHOD
+          value: {{ .Values.proxyconfig.valmethod | quote }}
+        - name: USE_OTEL
+          value: {{ .Values.proxyconfig.useotel | quote }}
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        {{- if not .Values.start.proxy }}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end }}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
         imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
