@@ -49,7 +49,7 @@ start:
 # than kubernetes general CNI or it needs to be accessed from outside cluster network using ip-address (please use amf multus.yaml as an example). 
 
 config:
-  nrfInterfaceNameForSBI: "eth0" # net1 if multus.create is set true
+  nrfInterfaceNameForSBI: "eth1" # net1 if multus.create is set true
   nrfInterfacePortForSBI: "80"
   nrfInterfaceHttp2PortForSBI: "8080"
   nrfApiVersion: "v1"
@@ -104,4 +104,4 @@ livenessProbe: false
 nodeSelector:
   type: az
 
-nodeName: 
+nodeName: k8s-worker0 

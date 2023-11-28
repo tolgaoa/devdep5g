@@ -99,7 +99,7 @@ do
 	sleep 6
 	echo -e "${GREEN} ${bold} AMF$s deployed ${NC} ${NORMAL}"
 	amfpod=$(kubectl get pods -n oai  | grep amf$s | awk '{print $1}')
-	amfeth0=$(kubectl exec -n oai $amfpod -c amf -- ifconfig | grep "inet 10.42" | awk '{print $2}')
+	amfeth0=$(kubectl exec -n oai $amfpod -c amf -- ifconfig | grep "inet 10.8" | awk '{print $2}')
 	
 	#------------------------SMF-------------------------
 	sed -i "22s/.*/name: oai-smf$s/" oai-smf/Chart.yaml
@@ -127,7 +127,7 @@ do
 	sleep 6
 	echo -e "${GREEN} ${bold} UPF$s deployed ${NC} ${NORMAL}"
 	upfpod=$(kubectl get pods -n oai  | grep spgwu-tiny$s | awk '{print $1}')
-	upfeth0=$(kubectl exec -n oai $upfpod -c spgwu -- ifconfig | grep "inet 10.42" | awk '{print $2}')
+	upfeth0=$(kubectl exec -n oai $upfpod -c spgwu -- ifconfig | grep "inet 10.8" | awk '{print $2}')
 	
 	echo "-------------------------------------------------"
 	echo -e "${GREEN} ${bold} Finished Core VNF deployment. Starting RAN. ${NC} ${NORMAL}"
@@ -150,7 +150,7 @@ do
 		sleep 10
 		echo -e "${BLUE} ${bold} GNBSIM$u deployed ${NC} ${NORMAL}"
 		gnbsimpod=$(kubectl get pods -n oai  | grep gnbsim$u | awk '{print $1}')
-		gnbsimeth0=$(kubectl exec -n oai $gnbsimpod -c gnbsim -- ifconfig | grep "inet 10.42" | awk '{print $2}')
+		gnbsimeth0=$(kubectl exec -n oai $gnbsimpod -c gnbsim -- ifconfig | grep "inet 10.8" | awk '{print $2}')
 
 
 		#-----------------------------DNN Deployment-------------------------------------------
@@ -158,14 +158,14 @@ do
 		sed -i "6s/.*/    app: oai-dnn$u/" oai-dnn/02_deployment.yaml
 		sed -i "11s/.*/      app: oai-dnn$u/" oai-dnn/02_deployment.yaml
 		sed -i "17s/.*/        app: oai-dnn$u/" oai-dnn/02_deployment.yaml
-		sed -i "28s/.*/        image: tolgaomeratalay\/oai-dnn:${dnnim}/" oai-dnn/02_deployment.yaml
+		#sed -i "28s/.*/        image: tolgaomeratalay\/oai-dnn:${dnnim}/" oai-dnn/02_deployment.yaml
 		#sed -i "22s/.*/        type: az$z/" oai-dnn/02_deployment.yaml
 
 		kubectl apply -k oai-dnn/
 		sleep 2
 		echo -e "${BLUE} ${bold} DNN$u deployed ${NC} ${NORMAL}"
 		dnnpod=$(kubectl get pods -n oai  | grep oai-dnn$u | awk '{print $1}')
-		dnneth0=$(kubectl exec -n oai $dnnpod -- ifconfig | grep "inet 10.42" | awk '{print $2}')
+		dnneth0=$(kubectl exec -n oai $dnnpod -- ifconfig | grep "inet 10.8" | awk '{print $2}')
 		
 		kubectl exec -it -n oai $dnnpod -- iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 		kubectl exec -it -n oai $dnnpod -- ip route add 12.1.1.0/24 via $upfeth0 dev eth0

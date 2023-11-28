@@ -144,4 +144,4 @@ terminationGracePeriodSeconds: 5
 nodeSelector:
   type: az
 
-nodeName:
+nodeName: k8s-worker0

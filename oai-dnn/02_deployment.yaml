@@ -15,8 +15,6 @@ spec:
     metadata:
       labels:
         app: oai-dnn10
-      annotations:
-        k8s.v1.cni.cncf.io/networks: dnn-net11
     spec:
       nodeSelector:
         type: az

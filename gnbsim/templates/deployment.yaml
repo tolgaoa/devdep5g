@@ -15,8 +15,6 @@ spec:
     metadata:
       labels:
         {{- include "gnbsim.selectorLabels" . | nindent 8 }}
-      annotations:
-        k8s.v1.cni.cncf.io/networks: {{ .Chart.Name }}-{{ .Values.namespace }}-gtp-net
     spec:
       nodeSelector:
         type: az

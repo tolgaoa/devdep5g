@@ -108,4 +108,4 @@ terminationGracePeriodSeconds: 5
 
 nodeSelector: {}
 
-nodeName:
+nodeName: k8s-worker0
