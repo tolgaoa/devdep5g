@@ -6,7 +6,7 @@ Currently various Side Car Proxy forwarding strategies are supported. Details ar
 
 ## Stable Versions
 ### HTTP1/2/3 bi-directional SCP: tolgaomeratalay/biproxy:3.2.0
-### NDN domain abstraction SCP: tolgaomeratalay/biproxy:2.2.0
+### NDN domain abstraction SCP: tolgaomeratalay/ndnproxy:2.2.0
 ### init-container: tolgaomeratalay/init:3.0.0
 
 

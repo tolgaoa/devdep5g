@@ -52,9 +52,9 @@ securityContext:
 start:
   amf: true
   tcpdump: false
-  startproxy: true
+  startproxy: false
   startbiproxy: false
-  startndnproxy: true
+  startndnproxy: false
 
 # AMF needs two seperate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
 # But for experimentation only one interface can be used. 
@@ -64,7 +64,7 @@ start:
 # 3. You want static ip-address for N1/N2 interface, Namf can be discovered by its service name
 
 multus:
-  hostInterface: "ens5"
+  hostInterface: "eno1"
   ndnIP: "5.100.1.14"
   ndnNetmask: "24"
   ndnGateway: "5.100.1.1"
@@ -106,7 +106,7 @@ config:
   mySqlDb: "oai_db" # OPTIONAL: used only if not using AUSF
 
 biproxy:
-  opmode: "NDN"
+  opmode: "NONE"
   loglevel: "trace"
   http1tls: "false"
   packetloss: "0%"

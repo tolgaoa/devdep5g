@@ -50,12 +50,12 @@ securityContext:
 start:
   udm: true
   tcpdump: false
-  startproxy: true
+  startproxy: false
   startbiproxy: false
-  startndnproxy: true
+  startndnproxy: false
 
 multus:
-  hostInterface: "ens5"
+  hostInterface: "eno1"
   ndnIP: "5.100.1.12"
   ndnNetmask: "24"
   ndnGateway: "5.100.1.1"
@@ -82,7 +82,7 @@ config:
   nrfFqdn: "oai-nrf10-svc"
 
 biproxy:
-  opmode: "NDN"
+  opmode: "NONE"
   loglevel: "trace"
   http1tls: "false"
   packetloss: "0%"

@@ -5,7 +5,7 @@ ndn_proxy_version=2.2.0
 init_version=3.0.0
 
 packetloss=0%
-proxymode=HTTP1
+proxymode=NONE
 proxyon=false
 biproxyon=false
 ndnproxyon=false
