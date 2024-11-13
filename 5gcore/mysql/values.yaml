@@ -1,0 +1,644 @@
+# mysql image version
+## ref: https://hub.docker.com/r/library/mysql/tags/
+##
+image: "mysql"
+imageTag: "5.7"
+
+strategy:
+  type: Recreate
+
+busybox:
+  image: "busybox"
+  tag: "1.32"
+
+testFramework:
+  enabled: false
+  image: "bats/bats"
+  tag: "1.2.1"
+  imagePullPolicy: IfNotPresent
+  securityContext: {}
+
+## Specify password for root user
+##
+## Default: random 10 character string
+mysqlRootPassword: linux
+
+## Create a database user
+##
+mysqlUser: test
+## Default: random 10 character string
+mysqlPassword: test
+
+## Allow unauthenticated access, uncomment to enable
+##
+# mysqlAllowEmptyPassword: true
+
+## Create a database
+##
+mysqlDatabase: oai_db
+
+## Specify an imagePullPolicy (Required)
+## It's recommended to change this to 'Always' if the image tag is 'latest'
+## ref: http://kubernetes.io/docs/user-guide/images/#updating-images
+##
+imagePullPolicy: IfNotPresent
+
+## Additionnal arguments that are passed to the MySQL container.
+## For example use --default-authentication-plugin=mysql_native_password if older clients need to
+## connect to a MySQL 8 instance.
+args: []
+
+extraVolumes: |
+  # - name: extras
+  #   emptyDir: {}
+extraVolumeMounts: |
+  # - name: extras
+  #   mountPath: /usr/share/extras
+  #   readOnly: true
+extraInitContainers: |
+  # - name: do-something
+  #   image: busybox
+  #   command: ['do', 'something']
+## A string to add extra environment variables
+# extraEnvVars: |
+#   - name: EXTRA_VAR
+#     value: "extra"
+
+# Optionally specify an array of imagePullSecrets.
+# Secrets must be manually created in the namespace.
+# ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+# imagePullSecrets:
+  # - name: myRegistryKeySecretName
+
+## Node selector
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+nodeSelector: {}
+
+## Affinity
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+## Tolerations for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+##
+tolerations: []
+
+multus:
+  nmysqlIP: "192.100.10.10"
+  nmysqlIPGw: "192.100.10.1"
+  nmysqlIPnetmask: "16"
+
+
+livenessProbe:
+  initialDelaySeconds: 50
+  periodSeconds: 15
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+readinessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+## Persist data to a persistent volume
+persistence:
+  enabled: true
+  ## database data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  accessMode: ReadWriteMany
+  size: 8Gi
+  annotations: {}
+  volumeClaimName: dataclaimmysql1
+  volumePath: "/k8s-data/sharedpvmysql1"
+
+## Use an alternate scheduler, e.g. "stork".
+## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+##
+# schedulerName:
+
+## Security context
+securityContext:
+  enabled: false
+  runAsUser: 999
+  fsGroup: 999
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+
+# Custom mysql configuration files path
+configurationFilesPath: /etc/mysql/conf.d/
+
+# Custom mysql configuration files used to override default mysql settings
+configurationFiles: {}
+#  mysql.cnf: |-
+#    [mysqld]
+#    skip-name-resolve
+#    ssl-ca=/ssl/ca.pem
+#    ssl-cert=/ssl/server-cert.pem
+#    ssl-key=/ssl/server-key.pem
+
+# Custom mysql init SQL files used to initialize the database
+initializationFiles:
+  first-db.sql: |-
+    -- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+    -- phpMyAdmin SQL Dump
+    -- version 5.1.0
+    -- https://www.phpmyadmin.net/
+    --
+    -- Host: 172.16.200.10:3306
+    -- Generation Time: Mar 22, 2021 at 10:31 AM
+    -- Server version: 5.7.33
+    -- PHP Version: 7.4.15
+    
+    SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+    START TRANSACTION;
+    SET time_zone = "+00:00";
+    
+    
+    /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+    /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+    /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+    /*!40101 SET NAMES utf8mb4 */;
+    
+    --
+    -- Database: `oai_db`
+    --
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `AccessAndMobilitySubscriptionData`
+    --
+    
+    CREATE TABLE `AccessAndMobilitySubscriptionData` (
+      `ueid` varchar(15) NOT NULL,
+      `servingPlmnid` varchar(15) NOT NULL,
+      `supportedFeatures` varchar(50) DEFAULT NULL,
+      `gpsis` json DEFAULT NULL,
+      `internalGroupIds` json DEFAULT NULL,
+      `sharedVnGroupDataIds` json DEFAULT NULL,
+      `subscribedUeAmbr` json DEFAULT NULL,
+      `nssai` json DEFAULT NULL,
+      `ratRestrictions` json DEFAULT NULL,
+      `forbiddenAreas` json DEFAULT NULL,
+      `serviceAreaRestriction` json DEFAULT NULL,
+      `coreNetworkTypeRestrictions` json DEFAULT NULL,
+      `rfspIndex` int(10) DEFAULT NULL,
+      `subsRegTimer` int(10) DEFAULT NULL,
+      `ueUsageType` int(10) DEFAULT NULL,
+      `mpsPriority` tinyint(1) DEFAULT NULL,
+      `mcsPriority` tinyint(1) DEFAULT NULL,
+      `activeTime` int(10) DEFAULT NULL,
+      `sorInfo` json DEFAULT NULL,
+      `sorInfoExpectInd` tinyint(1) DEFAULT NULL,
+      `sorafRetrieval` tinyint(1) DEFAULT NULL,
+      `sorUpdateIndicatorList` json DEFAULT NULL,
+      `upuInfo` json DEFAULT NULL,
+      `micoAllowed` tinyint(1) DEFAULT NULL,
+      `sharedAmDataIds` json DEFAULT NULL,
+      `odbPacketServices` json DEFAULT NULL,
+      `serviceGapTime` int(10) DEFAULT NULL,
+      `mdtUserConsent` json DEFAULT NULL,
+      `mdtConfiguration` json DEFAULT NULL,
+      `traceData` json DEFAULT NULL,
+      `cagData` json DEFAULT NULL,
+      `stnSr` varchar(50) DEFAULT NULL,
+      `cMsisdn` varchar(50) DEFAULT NULL,
+      `nbIoTUePriority` int(10) DEFAULT NULL,
+      `nssaiInclusionAllowed` tinyint(1) DEFAULT NULL,
+      `rgWirelineCharacteristics` varchar(50) DEFAULT NULL,
+      `ecRestrictionDataWb` json DEFAULT NULL,
+      `ecRestrictionDataNb` tinyint(1) DEFAULT NULL,
+      `expectedUeBehaviourList` json DEFAULT NULL,
+      `primaryRatRestrictions` json DEFAULT NULL,
+      `secondaryRatRestrictions` json DEFAULT NULL,
+      `edrxParametersList` json DEFAULT NULL,
+      `ptwParametersList` json DEFAULT NULL,
+      `iabOperationAllowed` tinyint(1) DEFAULT NULL,
+      `wirelineForbiddenAreas` json DEFAULT NULL,
+      `wirelineServiceAreaRestriction` json DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `Amf3GppAccessRegistration`
+    --
+    
+    CREATE TABLE `Amf3GppAccessRegistration` (
+      `ueid` varchar(15) NOT NULL,
+      `amfInstanceId` varchar(50) NOT NULL,
+      `supportedFeatures` varchar(50) DEFAULT NULL,
+      `purgeFlag` tinyint(1) DEFAULT NULL,
+      `pei` varchar(50) DEFAULT NULL,
+      `imsVoPs` json DEFAULT NULL,
+      `deregCallbackUri` varchar(50) NOT NULL,
+      `amfServiceNameDereg` json DEFAULT NULL,
+      `pcscfRestorationCallbackUri` varchar(50) DEFAULT NULL,
+      `amfServiceNamePcscfRest` json DEFAULT NULL,
+      `initialRegistrationInd` tinyint(1) DEFAULT NULL,
+      `guami` json NOT NULL,
+      `backupAmfInfo` json DEFAULT NULL,
+      `drFlag` tinyint(1) DEFAULT NULL,
+      `ratType` json NOT NULL,
+      `urrpIndicator` tinyint(1) DEFAULT NULL,
+      `amfEeSubscriptionId` varchar(50) DEFAULT NULL,
+      `epsInterworkingInfo` json DEFAULT NULL,
+      `ueSrvccCapability` tinyint(1) DEFAULT NULL,
+      `registrationTime` varchar(50) DEFAULT NULL,
+      `vgmlcAddress` json DEFAULT NULL,
+      `contextInfo` json DEFAULT NULL,
+      `noEeSubscriptionInd` tinyint(1) DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `AuthenticationStatus`
+    --
+    
+    CREATE TABLE `AuthenticationStatus` (
+      `ueid` varchar(20) NOT NULL,
+      `nfInstanceId` varchar(50) NOT NULL,
+      `success` tinyint(1) NOT NULL,
+      `timeStamp` varchar(50) NOT NULL,
+      `authType` varchar(25) NOT NULL,
+      `servingNetworkName` varchar(50) NOT NULL,
+      `authRemovalInd` tinyint(1) DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `AuthenticationSubscription`
+    --
+    
+    CREATE TABLE `AuthenticationSubscription` (
+      `ueid` varchar(20) NOT NULL,
+      `authenticationMethod` varchar(25) NOT NULL,
+      `encPermanentKey` varchar(50) DEFAULT NULL,
+      `protectionParameterId` varchar(50) DEFAULT NULL,
+      `sequenceNumber` json DEFAULT NULL,
+      `authenticationManagementField` varchar(50) DEFAULT NULL,
+      `algorithmId` varchar(50) DEFAULT NULL,
+      `encOpcKey` varchar(50) DEFAULT NULL,
+      `encTopcKey` varchar(50) DEFAULT NULL,
+      `vectorGenerationInHss` tinyint(1) DEFAULT NULL,
+      `n5gcAuthMethod` varchar(15) DEFAULT NULL,
+      `rgAuthenticationInd` tinyint(1) DEFAULT NULL,
+      `supi` varchar(20) DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    --
+    -- Dumping data for table `AuthenticationSubscription`
+    --
+    
+    INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPermanentKey`, `protectionParameterId`, `sequenceNumber`, `authenticationManagementField`, `algorithmId`, `encOpcKey`, `encTopcKey`, `vectorGenerationInHss`, `n5gcAuthMethod`, `rgAuthenticationInd`, `supi`) VALUES
+
+    ('208950000000010', '5G_AKA', '0C0A34601D4F07677303652C04625310', '0C0A34601D4F07677303652C04625310', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000010'),
+    ('208950000000011', '5G_AKA', '0C0A34601D4F07677303652C04625311', '0C0A34601D4F07677303652C04625311', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000011'),
+    ('208950000000012', '5G_AKA', '0C0A34601D4F07677303652C04625312', '0C0A34601D4F07677303652C04625312', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000012'),
+    ('208950000000013', '5G_AKA', '0C0A34601D4F07677303652C04625313', '0C0A34601D4F07677303652C04625313', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000013'),
+    ('208950000000014', '5G_AKA', '0C0A34601D4F07677303652C04625314', '0C0A34601D4F07677303652C04625314', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000014'),
+    ('208950000000015', '5G_AKA', '0C0A34601D4F07677303652C04625315', '0C0A34601D4F07677303652C04625315', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000015'),
+    ('208950000000016', '5G_AKA', '0C0A34601D4F07677303652C04625316', '0C0A34601D4F07677303652C04625316', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000016'),
+    ('208950000000017', '5G_AKA', '0C0A34601D4F07677303652C04625317', '0C0A34601D4F07677303652C04625317', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000017'),
+    ('208950000000018', '5G_AKA', '0C0A34601D4F07677303652C04625318', '0C0A34601D4F07677303652C04625318', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000018'),
+    ('208950000000019', '5G_AKA', '0C0A34601D4F07677303652C04625319', '0C0A34601D4F07677303652C04625319', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000019'),
+    ('208950000000020', '5G_AKA', '0C0A34601D4F07677303652C04625320', '0C0A34601D4F07677303652C04625320', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000020'),
+    ('208950000000021', '5G_AKA', '0C0A34601D4F07677303652C04625321', '0C0A34601D4F07677303652C04625321', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000021'),
+    ('208950000000022', '5G_AKA', '0C0A34601D4F07677303652C04625322', '0C0A34601D4F07677303652C04625322', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000022'),
+    ('208950000000023', '5G_AKA', '0C0A34601D4F07677303652C04625323', '0C0A34601D4F07677303652C04625323', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000023'),
+    ('208950000000024', '5G_AKA', '0C0A34601D4F07677303652C04625324', '0C0A34601D4F07677303652C04625324', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000024'),
+    ('208950000000025', '5G_AKA', '0C0A34601D4F07677303652C04625325', '0C0A34601D4F07677303652C04625325', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000025'),
+    ('208950000000026', '5G_AKA', '0C0A34601D4F07677303652C04625326', '0C0A34601D4F07677303652C04625326', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000026'),
+    ('208950000000027', '5G_AKA', '0C0A34601D4F07677303652C04625327', '0C0A34601D4F07677303652C04625327', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000027'),
+    ('208950000000028', '5G_AKA', '0C0A34601D4F07677303652C04625328', '0C0A34601D4F07677303652C04625328', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000028'),
+    ('208950000000029', '5G_AKA', '0C0A34601D4F07677303652C04625329', '0C0A34601D4F07677303652C04625329', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000029'),
+    ('208950000000030', '5G_AKA', '0C0A34601D4F07677303652C04625330', '0C0A34601D4F07677303652C04625330', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000030'),
+    ('208950000000031', '5G_AKA', '0C0A34601D4F07677303652C04625331', '0C0A34601D4F07677303652C04625331', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000031'),
+    ('208950000000032', '5G_AKA', '0C0A34601D4F07677303652C04625332', '0C0A34601D4F07677303652C04625332', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000032'),
+    ('208950000000033', '5G_AKA', '0C0A34601D4F07677303652C04625333', '0C0A34601D4F07677303652C04625333', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000033'),
+    ('208950000000034', '5G_AKA', '0C0A34601D4F07677303652C04625334', '0C0A34601D4F07677303652C04625334', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000034'),
+    ('208950000000035', '5G_AKA', '0C0A34601D4F07677303652C04625335', '0C0A34601D4F07677303652C04625335', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000035'),
+    ('208950000000036', '5G_AKA', '0C0A34601D4F07677303652C04625336', '0C0A34601D4F07677303652C04625336', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000036'),
+    ('208950000000037', '5G_AKA', '0C0A34601D4F07677303652C04625337', '0C0A34601D4F07677303652C04625337', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000037'),
+    ('208950000000038', '5G_AKA', '0C0A34601D4F07677303652C04625338', '0C0A34601D4F07677303652C04625338', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000038'),
+    ('208950000000039', '5G_AKA', '0C0A34601D4F07677303652C04625339', '0C0A34601D4F07677303652C04625339', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000039'),
+    ('208950000000040', '5G_AKA', '0C0A34601D4F07677303652C04625340', '0C0A34601D4F07677303652C04625340', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000040'),
+    ('208950000000041', '5G_AKA', '0C0A34601D4F07677303652C04625341', '0C0A34601D4F07677303652C04625341', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000041'),
+    ('208950000000042', '5G_AKA', '0C0A34601D4F07677303652C04625342', '0C0A34601D4F07677303652C04625342', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000042'),
+    ('208950000000043', '5G_AKA', '0C0A34601D4F07677303652C04625343', '0C0A34601D4F07677303652C04625343', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000043'),
+    ('208950000000044', '5G_AKA', '0C0A34601D4F07677303652C04625344', '0C0A34601D4F07677303652C04625344', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000044'),
+    ('208950000000045', '5G_AKA', '0C0A34601D4F07677303652C04625345', '0C0A34601D4F07677303652C04625345', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000045'),
+    ('208950000000046', '5G_AKA', '0C0A34601D4F07677303652C04625346', '0C0A34601D4F07677303652C04625346', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000046'),
+    ('208950000000047', '5G_AKA', '0C0A34601D4F07677303652C04625347', '0C0A34601D4F07677303652C04625347', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000047'),
+    ('208950000000048', '5G_AKA', '0C0A34601D4F07677303652C04625348', '0C0A34601D4F07677303652C04625348', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000048'),
+    ('208950000000049', '5G_AKA', '0C0A34601D4F07677303652C04625349', '0C0A34601D4F07677303652C04625349', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000049'),
+    ('208950000000050', '5G_AKA', '0C0A34601D4F07677303652C04625350', '0C0A34601D4F07677303652C04625350', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000050'),
+    ('208950000000051', '5G_AKA', '0C0A34601D4F07677303652C04625351', '0C0A34601D4F07677303652C04625351', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000051'),
+    ('208950000000052', '5G_AKA', '0C0A34601D4F07677303652C04625352', '0C0A34601D4F07677303652C04625352', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000052'),
+    ('208950000000053', '5G_AKA', '0C0A34601D4F07677303652C04625353', '0C0A34601D4F07677303652C04625353', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000053'),
+    ('208950000000054', '5G_AKA', '0C0A34601D4F07677303652C04625354', '0C0A34601D4F07677303652C04625354', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000054'),
+    ('208950000000055', '5G_AKA', '0C0A34601D4F07677303652C04625355', '0C0A34601D4F07677303652C04625355', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000055'),
+    ('208950000000056', '5G_AKA', '0C0A34601D4F07677303652C04625356', '0C0A34601D4F07677303652C04625356', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000056'),
+    ('208950000000057', '5G_AKA', '0C0A34601D4F07677303652C04625357', '0C0A34601D4F07677303652C04625357', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000057'),
+    ('208950000000058', '5G_AKA', '0C0A34601D4F07677303652C04625358', '0C0A34601D4F07677303652C04625358', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000058'),
+    ('208950000000059', '5G_AKA', '0C0A34601D4F07677303652C04625359', '0C0A34601D4F07677303652C04625359', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000059'),
+    ('208950000000060', '5G_AKA', '0C0A34601D4F07677303652C04625360', '0C0A34601D4F07677303652C04625360', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000060'),
+    ('208950000000061', '5G_AKA', '0C0A34601D4F07677303652C04625361', '0C0A34601D4F07677303652C04625361', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000061'),
+    ('208950000000062', '5G_AKA', '0C0A34601D4F07677303652C04625362', '0C0A34601D4F07677303652C04625362', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000062'),
+    ('208950000000063', '5G_AKA', '0C0A34601D4F07677303652C04625363', '0C0A34601D4F07677303652C04625363', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000063'),
+    ('208950000000064', '5G_AKA', '0C0A34601D4F07677303652C04625364', '0C0A34601D4F07677303652C04625364', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000064'),
+    ('208950000000065', '5G_AKA', '0C0A34601D4F07677303652C04625365', '0C0A34601D4F07677303652C04625365', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000065'),
+    ('208950000000066', '5G_AKA', '0C0A34601D4F07677303652C04625366', '0C0A34601D4F07677303652C04625366', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000066'),
+    ('208950000000067', '5G_AKA', '0C0A34601D4F07677303652C04625367', '0C0A34601D4F07677303652C04625367', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000067'),
+    ('208950000000068', '5G_AKA', '0C0A34601D4F07677303652C04625368', '0C0A34601D4F07677303652C04625368', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000068'),
+    ('208950000000069', '5G_AKA', '0C0A34601D4F07677303652C04625369', '0C0A34601D4F07677303652C04625369', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000069'),
+    ('208950000000070', '5G_AKA', '0C0A34601D4F07677303652C04625370', '0C0A34601D4F07677303652C04625370', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000070'),
+    ('208950000000071', '5G_AKA', '0C0A34601D4F07677303652C04625371', '0C0A34601D4F07677303652C04625371', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000071'),
+    ('208950000000072', '5G_AKA', '0C0A34601D4F07677303652C04625372', '0C0A34601D4F07677303652C04625372', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000072'),
+    ('208950000000073', '5G_AKA', '0C0A34601D4F07677303652C04625373', '0C0A34601D4F07677303652C04625373', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000073'),
+    ('208950000000074', '5G_AKA', '0C0A34601D4F07677303652C04625374', '0C0A34601D4F07677303652C04625374', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000074'),
+    ('208950000000075', '5G_AKA', '0C0A34601D4F07677303652C04625375', '0C0A34601D4F07677303652C04625375', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000075'),
+    ('208950000000076', '5G_AKA', '0C0A34601D4F07677303652C04625376', '0C0A34601D4F07677303652C04625376', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000076'),
+    ('208950000000077', '5G_AKA', '0C0A34601D4F07677303652C04625377', '0C0A34601D4F07677303652C04625377', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000077'),
+    ('208950000000078', '5G_AKA', '0C0A34601D4F07677303652C04625378', '0C0A34601D4F07677303652C04625378', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000078'),
+    ('208950000000079', '5G_AKA', '0C0A34601D4F07677303652C04625379', '0C0A34601D4F07677303652C04625379', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000079'),
+    ('208950000000080', '5G_AKA', '0C0A34601D4F07677303652C04625380', '0C0A34601D4F07677303652C04625380', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000080'),
+    ('208950000000081', '5G_AKA', '0C0A34601D4F07677303652C04625381', '0C0A34601D4F07677303652C04625381', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000081'),
+    ('208950000000082', '5G_AKA', '0C0A34601D4F07677303652C04625382', '0C0A34601D4F07677303652C04625382', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000082'),
+    ('208950000000083', '5G_AKA', '0C0A34601D4F07677303652C04625383', '0C0A34601D4F07677303652C04625383', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000083'),
+    ('208950000000084', '5G_AKA', '0C0A34601D4F07677303652C04625384', '0C0A34601D4F07677303652C04625384', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000084'),
+    ('208950000000085', '5G_AKA', '0C0A34601D4F07677303652C04625385', '0C0A34601D4F07677303652C04625385', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000085'),
+    ('208950000000086', '5G_AKA', '0C0A34601D4F07677303652C04625386', '0C0A34601D4F07677303652C04625386', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000086'),
+    ('208950000000087', '5G_AKA', '0C0A34601D4F07677303652C04625387', '0C0A34601D4F07677303652C04625387', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000087'),
+    ('208950000000088', '5G_AKA', '0C0A34601D4F07677303652C04625388', '0C0A34601D4F07677303652C04625388', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000088'),
+    ('208950000000089', '5G_AKA', '0C0A34601D4F07677303652C04625389', '0C0A34601D4F07677303652C04625389', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000089'),
+    ('208950000000090', '5G_AKA', '0C0A34601D4F07677303652C04625390', '0C0A34601D4F07677303652C04625390', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000090'),
+    ('208950000000091', '5G_AKA', '0C0A34601D4F07677303652C04625391', '0C0A34601D4F07677303652C04625391', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000091'),
+    ('208950000000092', '5G_AKA', '0C0A34601D4F07677303652C04625392', '0C0A34601D4F07677303652C04625392', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000092');
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `SdmSubscriptions`
+    --
+    
+    CREATE TABLE `SdmSubscriptions` (
+      `ueid` varchar(15) NOT NULL,
+      `subsId` int(10) UNSIGNED NOT NULL,
+      `nfInstanceId` varchar(50) NOT NULL,
+      `implicitUnsubscribe` tinyint(1) DEFAULT NULL,
+      `expires` varchar(50) DEFAULT NULL,
+      `callbackReference` varchar(50) NOT NULL,
+      `amfServiceName` json DEFAULT NULL,
+      `monitoredResourceUris` json NOT NULL,
+      `singleNssai` json DEFAULT NULL,
+      `dnn` varchar(50) DEFAULT NULL,
+      `subscriptionId` varchar(50) DEFAULT NULL,
+      `plmnId` json DEFAULT NULL,
+      `immediateReport` tinyint(1) DEFAULT NULL,
+      `report` json DEFAULT NULL,
+      `supportedFeatures` varchar(50) DEFAULT NULL,
+      `contextInfo` json DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `SessionManagementSubscriptionData`
+    --
+    
+    CREATE TABLE `SessionManagementSubscriptionData` (
+      `ueid` varchar(15) NOT NULL,
+      `servingPlmnid` varchar(15) NOT NULL,
+      `singleNssai` json NOT NULL,
+      `dnnConfigurations` json DEFAULT NULL,
+      `internalGroupIds` json DEFAULT NULL,
+      `sharedVnGroupDataIds` json DEFAULT NULL,
+      `sharedDnnConfigurationsId` varchar(50) DEFAULT NULL,
+      `odbPacketServices` json DEFAULT NULL,
+      `traceData` json DEFAULT NULL,
+      `sharedTraceDataId` varchar(50) DEFAULT NULL,
+      `expectedUeBehavioursList` json DEFAULT NULL,
+      `suggestedPacketNumDlList` json DEFAULT NULL,
+      `3gppChargingCharacteristics` varchar(50) DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    --
+    -- Dumping data for table `SessionManagementSubscriptionData`
+    --
+    
+    INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES 
+    ('208950000000031', '20895', '{\"sst\": 222, \"sd\": \"123\"}','{\"default\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"},\"staticIpAddress\":[{\"ipv4Addr\": \"12.1.1.4\"}]}}');
+    INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES 
+    ('208950000000032', '20895', '{\"sst\": 222, \"sd\": \"123\"}','{\"default\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"}}}');
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `SmfRegistrations`
+    --
+    
+    CREATE TABLE `SmfRegistrations` (
+      `ueid` varchar(15) NOT NULL,
+      `subpduSessionId` int(10) NOT NULL,
+      `smfInstanceId` varchar(50) NOT NULL,
+      `smfSetId` varchar(50) DEFAULT NULL,
+      `supportedFeatures` varchar(50) DEFAULT NULL,
+      `pduSessionId` int(10) NOT NULL,
+      `singleNssai` json NOT NULL,
+      `dnn` varchar(50) DEFAULT NULL,
+      `emergencyServices` tinyint(1) DEFAULT NULL,
+      `pcscfRestorationCallbackUri` varchar(50) DEFAULT NULL,
+      `plmnId` json NOT NULL,
+      `pgwFqdn` varchar(50) DEFAULT NULL,
+      `epdgInd` tinyint(1) DEFAULT NULL,
+      `deregCallbackUri` varchar(50) DEFAULT NULL,
+      `registrationReason` json DEFAULT NULL,
+      `registrationTime` varchar(50) DEFAULT NULL,
+      `contextInfo` json DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `SmfSelectionSubscriptionData`
+    --
+    
+    CREATE TABLE `SmfSelectionSubscriptionData` (
+      `ueid` varchar(15) NOT NULL,
+      `servingPlmnid` varchar(15) NOT NULL,
+      `supportedFeatures` varchar(50) DEFAULT NULL,
+      `subscribedSnssaiInfos` json DEFAULT NULL,
+      `sharedSnssaiInfosId` varchar(50) DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    --
+    -- Indexes for dumped tables
+    --
+    
+    --
+    -- Indexes for table `AccessAndMobilitySubscriptionData`
+    --
+    ALTER TABLE `AccessAndMobilitySubscriptionData`
+      ADD PRIMARY KEY (`ueid`,`servingPlmnid`) USING BTREE;
+    
+    --
+    -- Indexes for table `Amf3GppAccessRegistration`
+    --
+    ALTER TABLE `Amf3GppAccessRegistration`
+      ADD PRIMARY KEY (`ueid`);
+    
+    --
+    -- Indexes for table `AuthenticationStatus`
+    --
+    ALTER TABLE `AuthenticationStatus`
+      ADD PRIMARY KEY (`ueid`);
+    
+    --
+    -- Indexes for table `AuthenticationSubscription`
+    --
+    ALTER TABLE `AuthenticationSubscription`
+      ADD PRIMARY KEY (`ueid`);
+    
+    --
+    -- Indexes for table `SdmSubscriptions`
+    --
+    ALTER TABLE `SdmSubscriptions`
+      ADD PRIMARY KEY (`subsId`,`ueid`) USING BTREE;
+    
+    --
+    -- Indexes for table `SessionManagementSubscriptionData`
+    --
+    ALTER TABLE `SessionManagementSubscriptionData`
+      ADD PRIMARY KEY (`ueid`,`servingPlmnid`) USING BTREE;
+    
+    --
+    -- Indexes for table `SmfRegistrations`
+    --
+    ALTER TABLE `SmfRegistrations`
+      ADD PRIMARY KEY (`ueid`,`subpduSessionId`) USING BTREE;
+    
+    --
+    -- Indexes for table `SmfSelectionSubscriptionData`
+    --
+    ALTER TABLE `SmfSelectionSubscriptionData`
+      ADD PRIMARY KEY (`ueid`,`servingPlmnid`) USING BTREE;
+    
+    --
+    -- AUTO_INCREMENT for dumped tables
+    --
+    
+    --
+    -- AUTO_INCREMENT for table `SdmSubscriptions`
+    --
+    ALTER TABLE `SdmSubscriptions`
+      MODIFY `subsId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    COMMIT;
+    
+    /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+    /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+    /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+mysqlx:
+  port:
+    enabled: false
+
+metrics:
+  enabled: false
+  image: prom/mysqld-exporter
+  imageTag: v0.10.0
+  imagePullPolicy: IfNotPresent
+  resources: {}
+  annotations: {}
+    # prometheus.io/scrape: "true"
+    # prometheus.io/port: "9104"
+  livenessProbe:
+    initialDelaySeconds: 15
+    timeoutSeconds: 5
+  readinessProbe:
+    initialDelaySeconds: 5
+    timeoutSeconds: 1
+  flags: []
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+
+## Configure the service
+## ref: http://kubernetes.io/docs/user-guide/services/
+service:
+  annotations: {}
+  ## Specify a service type
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
+  type: ClusterIP
+  port: 3306
+  # nodePort: 32000
+  # loadBalancerIP:
+
+## Pods Service Account
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+serviceAccount:
+  ## Specifies whether a ServiceAccount should be created
+  ##
+  create: false
+  ## The name of the ServiceAccount to use.
+  ## If not set and create is true, a name is generated using the mariadb.fullname template
+  # name:
+
+ssl:
+  enabled: false
+  secret: mysql-ssl-certs
+  certificates:
+#  - name: mysql-ssl-certs
+#    ca: |-
+#      -----BEGIN CERTIFICATE-----
+#      ...
+#      -----END CERTIFICATE-----
+#    cert: |-
+#      -----BEGIN CERTIFICATE-----
+#      ...
+#      -----END CERTIFICATE-----
+#    key: |-
+#      -----BEGIN RSA PRIVATE KEY-----
+#      ...
+#      -----END RSA PRIVATE KEY-----
+
+## Populates the 'TZ' system timezone environment variable
+## ref: https://dev.mysql.com/doc/refman/5.7/en/time-zone-support.html
+##
+## Default: nil (mysql will use image's default timezone, normally UTC)
+## Example: 'Australia/Sydney'
+# timezone:
+
+# Deployment Annotations
+deploymentAnnotations: {}
+
+# To be added to the database server pod(s)
+podAnnotations: {}
+podLabels: {}
+
+## Set pod priorityClassName
+# priorityClassName: {}
+
+
+## Init container resources defaults
+initContainer:
+  resources:
+    requests:
+      memory: 10Mi
+      cpu: 10m

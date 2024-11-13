@@ -1,0 +1,153 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+nfimage:  # image name either locally present or in a public/private repository
+  repository: tolgaomeratalay/amf         ## The image will be pulled from dockerhub
+  version: augv4 #augv3                                  #image tag, develop tag for experimental features
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: docker.io/corfr/tcpdump
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+proxyimage:
+  repository: tolgaomeratalay/biproxy
+  saversion: 3.2.0
+  pullPolicy: IfNotPresent
+
+ndnproxyimage:
+  repository: tolgaomeratalay/ndnproxy
+  ndnpversion: 2.2.0
+  pullPolicy: IfNotPresent
+
+initimage:
+  repository: tolgaomeratalay/init
+  initversion: 3.0.0
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+imagePullSecrets:
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  svcname: "oai-amf10-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+## OPENSHIFT terminology
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+## OPENSHIFT terminology
+securityContext:
+  privileged: false
+
+start:
+  amf: true
+  tcpdump: false
+  startproxy: true
+  startbiproxy: false
+  startndnproxy: true
+
+# AMF needs two seperate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
+# But for experimentation only one interface can be used. 
+# When you need multus:
+# 1. you want seperate interface for N1/N2 and Namf 
+# 2. Your gnB is outside the cluster and the host machine can communicate but pods can not then you can provide ip-address in the same range as your host machine
+# 3. You want static ip-address for N1/N2 interface, Namf can be discovered by its service name
+
+multus:
+  hostInterface: "ens5"
+  ndnIP: "5.100.1.14"
+  ndnNetmask: "24"
+  ndnGateway: "5.100.1.1"
+
+
+## Incase the pod is not able to resolve the FQDN of other network functions example nrf then you can disable useFqdnDns feature this way AMF will talk to other network functions using their ip-address. 
+
+config:
+  logLevel: "debug"
+  mcc: "208"
+  mnc: "95"
+  regionId: "128"
+  amfSetId: "1"
+  tac: "0x00a000"
+  sst0: "210"
+  sd0: "123"
+  sst1: "1"
+  sd1: "1"
+  amfInterfaceNameForNGAP: "eth0" # If multus creation is true then net1 else eth0
+  amfInterfaceNameForSBI: "eth0"  # Service based interface
+  amfInterfaceSBIHTTPPort: 80  # Service based interface
+  amfInterfaceSBIHTTP2Port: 8080  # Service based interface
+  nrfFqdn: "oai-nrf10-svc"
+  nrfFqdn: "oai-nrf10-svc"
+  ausfFqdn: "oai-ausf10-svc"
+  nfRegistration: "yes"
+  nrfSelection: "no"
+  smfSelection: "yes"
+  externalAusf: "yes"
+  externalUdm: "no"
+  externalNrf: "no"
+  externalNssf: "no"
+  useHttp2: "no"
+  intAlgoList: '[ "NIA0" , "NIA1" , "NIA2" ]'
+  ciphAlgoList: '[ "NEA0" , "NEA1" , "NEA2" ]'
+  mySqlServer: "mysql" # OPTIONAL: used only if not using AUSF
+  mySqlUser: "root" # OPTIONAL: used only if not using AUSF
+  mySqlPass: "linux" # OPTIONAL: used only if not using AUSF
+  mySqlDb: "oai_db" # OPTIONAL: used only if not using AUSF
+
+biproxy:
+  opmode: "NDN"
+  loglevel: "trace"
+  http1tls: "false"
+  packetloss: "0%"
+
+ndnproxy:
+  loglevel: "trace"
+  threadcount: "3"
+  nfdserverip: "5.100.1.100"
+  ndnprefixes: "/ndn/5g/namf,/ndn/5g/namf-comm"
+  htoimode: "HTTP_TO_INTEREST"
+  itohmode: "INTEREST_TO_HTTP"
+
+persistent:
+  sharedvolume: false
+  volumneName: managed-nfs-storage
+  size: 1Gi
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: false
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector:
+  type: az1
+
+nodeName:

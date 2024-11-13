@@ -1,0 +1,121 @@
+kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
+
+# NF image
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-nrf
+  version: v1.5.0
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+tcpdumpimage:
+  repository: corfr/tcpdump
+  version: latest
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+proxyimage:
+  repository: tolgaomeratalay/biproxy
+  saversion: 3.2.0
+  pullPolicy: IfNotPresent
+
+ndnproxyimage:
+  repository: tolgaomeratalay/ndnproxy
+  ndnpversion: 2.2.0
+  pullPolicy: IfNotPresent
+
+initimage:
+  repository: tolgaomeratalay/init
+  initversion: 3.0.0
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention 
+imagePullSecrets: 
+  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  svcname: "oai-nrf10-sa"
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+  privileged: false
+
+#service type is fixed to clusterIP
+
+start:
+  nrf: true
+  tcpdump: false #start tcpdump collection to analyse but beware it will take a lot of space in the container/persistent volume
+  startproxy: true
+  startbiproxy: false
+  startndnproxy: true
+
+# create multus interface in case the NRF wants to use a separate interface 
+# than kubernetes general CNI or it needs to be accessed from outside cluster network using ip-address (please use amf multus.yaml as an example). 
+
+multus:
+  hostInterface: "ens5"
+  ndnIP: "5.100.1.10"
+  ndnNetmask: "24"
+  ndnGateway: "5.100.1.1"
+
+config:
+  nrfInterfaceNameForSBI: "eth0" # net1 if multus.create is set true
+  nrfInterfacePortForSBI: "80"
+  nrfInterfaceHttp2PortForSBI: "8080"
+  nrfApiVersion: "v1"
+
+biproxy:
+  opmode: "NDN"
+  loglevel: "trace"
+  http1tls: "false"
+  packetloss: "0%"
+
+ndnproxy:
+  loglevel: "trace"
+  threadcount: "3"
+  nfdserverip: "5.100.1.100"
+  ndnprefixes: "/ndn/5g/nnrf,/ndn/5g/nnrf-nfm,/ndn/5g/nnrf-disc,/ndn/5g/nfStatus"
+  htoimode: "HTTP_TO_INTEREST"
+  itohmode: "INTEREST_TO_HTTP"
+
+
+persistent:
+  sharedvolume: false
+  volumeName: managed-nfs-storage
+  size: 1Gi
+
+resources:
+  define: false
+  limits:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+    nf:
+      cpu: 100m
+      memory: 128Mi
+
+terminationGracePeriodSeconds: 5
+
+readinessProbe: true
+
+livenessProbe: false
+
+nodeSelector:
+  type: az1
+
+nodeName: 

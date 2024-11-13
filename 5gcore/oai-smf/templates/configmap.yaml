@@ -1,0 +1,164 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  smf.conf: |
+    SMF =
+    {
+        FQDN          = "oai-smf";
+        INSTANCE      = 0;         # 0 is the default
+        PID_DIRECTORY = "/var/run";  # /var/run is the default
+
+        INTERFACES :
+        {
+            N4 :
+            {
+                # SMF binded interface for N4 communication (UPF)
+                INTERFACE_NAME = "{{ .Values.config.smfInterfaceNameForN4 }}"; # YOUR NETWORK CONFIG HERE
+                IPV4_ADDRESS   = "read";
+             };
+
+            SBI :
+            {
+                # SMF binded interface for SBI interface (e.g., communication with AMF, UDM)
+                INTERFACE_NAME = "{{ .Values.config.smfInterfaceNameForSBI }}";     # YOUR NETWORK CONFIG HERE
+                IPV4_ADDRESS   = "read";
+                PORT           = {{ .Values.config.smfInterfacePortForSBI }};       # YOUR NETWORK CONFIG HERE (default: 80)
+                HTTP2_PORT     = {{ .Values.config.smfInterfaceHttp2PortForSBI }}; # YOUR NETWORK CONFIG HERE
+                API_VERSION    = "{{ .Values.config.smfApiVersion }}";     # YOUR SMF API VERSION CONFIG HERE
+             };
+
+        };
+
+        # DNN configurations with pool of UE assigned IP addresses
+        # Do not make IP pools overlap
+        # first IPv4 address X.Y.Z.1 is reserved for GTP network device on UPF
+        DNN_LIST = (
+           # PDU_SESSION_TYPE choice in {IPv4, IPv6, IPv4v6}
+           # DNN IP ADDRESS RANGE format is for example: "12.2.1.2 - 12.2.1.128"
+          {DNN_NI = "{{ .Values.config.dnnNi0 }}"; PDU_SESSION_TYPE = "{{ .Values.config.pdusessiontype0 }}"; IPV4_RANGE = "{{ .Values.config.ipv4dnnRange0 }}"; IPV6_PREFIX = "2001:1:2::/64"}
+          {{- if .Values.config.dnnNi1}}
+          ,{DNN_NI = "{{ .Values.config.dnnNi1 }}"; PDU_SESSION_TYPE = "{{ .Values.config.pdusessiontype1 }}"; IPV4_RANGE = "{{ .Values.config.ipv4dnnRange1 }}"; IPV6_PREFIX = "3001:1:2::/64"}
+          {{- end }}
+          {{- if .Values.config.dnnNi2}}
+          ,{DNN_NI = "{{ .Values.config.dnnNi2 }}"; PDU_SESSION_TYPE = "{{ .Values.config.pdusessiontype2 }}"; IPV4_RANGE = "{{ .Values.config.ipv4dnnRange2 }}"; IPV6_PREFIX = "4001:1:2::/64"}
+          {{- end }}
+          {{- if .Values.config.dnnNi3}}
+          {DNN_NI = "{{ .Values.config.dnnNi3 }}"; PDU_SESSION_TYPE = "{{ .Values.config.pdusessiontype3 }}"; IPV4_RANGE = "{{ .Values.config.ipv4dnnRange3 }}"; IPV6_PREFIX = "5001:1:2::/64"}
+          {{- end }}
+        );
+
+        # DNS address communicated to UEs
+        DEFAULT_DNS_IPV4_ADDRESS     = "{{ .Values.config.dnsIpv4Address }}";      # YOUR DNS CONFIG HERE
+        DEFAULT_DNS_SEC_IPV4_ADDRESS = "{{ .Values.config.dnsSecIpv4Address }}";  # YOUR DNS CONFIG HERE
+        # IPV6 tunnels are not supported
+        DEFAULT_DNS_IPV6_ADDRESS     = "2001:4860:4860::8888";            # YOUR DNS CONFIG HERE
+        DEFAULT_DNS_SEC_IPV6_ADDRESS = "2001:4860:4860::8844";            # YOUR DNS CONFIG HERE
+        
+        #Default P-CSCF server 
+        DEFAULT_CSCF_IPV4_ADDRESS = "{{ .Values.config.defaultCSCFIpv4Address }}"; 
+        DEFAULT_CSCF_IPV6_ADDRESS = "fe80::7915:f408:1787:db8b";
+
+        #Default UE MTU
+        UE_MTU = {{ .Values.config.ueMtu }};
+
+        # SUPPORT FEATURES
+        SUPPORT_FEATURES:
+        {
+          # STRING, {"yes", "no"},
+          REGISTER_NRF = "{{ .Values.config.registerNrf }}";  # Set to yes if SMF resgisters to an NRF
+          DISCOVER_UPF = "{{ .Values.config.discoverUpf }}";  # Set to yes to enable UPF discovery and selection
+          DISCOVER_PCF = "{{ .Values.config.discoverPcf }}";  # Set to yes to enable PCF discovery and selection
+          FORCE_PUSH_PROTOCOL_CONFIGURATION_OPTIONS = "no"; # Non standard feature, normally should be set to "no",
+                                                            # but you may need to set to yes for UE that do not explicitly request a PDN address through NAS signalling
+          USE_LOCAL_SUBSCRIPTION_INFO = "{{ .Values.config.useLocalSubscriptionInfo }}";  # Set to yes if SMF uses local subscription information instead of from an UDM
+          USE_LOCAL_PCC_RULES = "{{ .Values.config.useLocalPCCRules }}";  # Set to yes if SMF uses local PCC rules instead of from an PCF
+          USE_FQDN_DNS = "{{ .Values.config.useFqdnDns }}";                  # Set to yes if AMF/UDM/NRF/UPF will relying on a DNS to resolve FQDN
+          HTTP_VERSION = {{ .Values.config.httpVersion }};                    # Default: 1
+          {{- if .Values.config.upfSpgwu}}
+          ENABLE_USAGE_REPORTING = "no"   # Set yes if UE USAGE REPORTING is to be done at UPF
+          {{- else }}
+          ENABLE_USAGE_REPORTING = "yes"   # Set yes if UE USAGE REPORTING is to be done at UPF
+          {{- end }}
+        }
+
+        AMF :
+        {
+          IPV4_ADDRESS = "{{ if .Values.config.amfIpv4Address}}{{ .Values.config.amfIpv4Address }}{{ else }}127.0.0.1{{ end }}";  # YOUR AMF CONFIG HERE
+          PORT         =  {{ if .Values.config.amfPort}}{{ .Values.config.amfPort }}{{ else }}80{{ end }};    # YOUR AMF CONFIG HERE (default: 80)
+          API_VERSION  = "{{ if .Values.config.amfApiVersion}}{{ .Values.config.amfApiVersion }}{{ else }}v1{{ end }}";   # YOUR AMF API VERSION FOR SBI CONFIG HERE
+          FQDN         = "{{ if .Values.config.amfFqdn}}{{ .Values.config.amfFqdn }}{{ else }}localhost{{ end }}"         # YOUR AMF FQDN CONFIG HERE
+        };
+
+        UDM :
+        {
+          IPV4_ADDRESS = "{{ if .Values.config.udmIpv4Address}}{{ .Values.config.udmIpv4Address }}{{ else }}127.0.0.1{{ end }}";  # YOUR UDM CONFIG HERE
+          PORT         =  {{ if .Values.config.udmPort}}{{ .Values.config.udmPort }}{{ else }}80{{ end }};   # YOUR UDM CONFIG HERE (default: 80)
+          API_VERSION  = "{{ if .Values.config.udmApiVersion}}{{ .Values.config.udmApiVersion }}{{ else }}v1{{ end }}";   # YOUR UDM API VERSION FOR SBI CONFIG HERE
+          FQDN         = "{{ if .Values.config.udmFqdn}}{{ .Values.config.udmFqdn }}{{ else }}localhost{{ end }}"           # YOUR UDM FQDN CONFIG HERE
+        };
+
+        NRF :
+        {
+          IPV4_ADDRESS = "{{ if .Values.config.nrfIpv4Address}}{{ .Values.config.nrfIpv4Address }}{{ else }}127.0.0.1{{ end }}";  # YOUR NRF CONFIG HERE
+          PORT         =  {{ if .Values.config.nrfPort}}{{ .Values.config.nrfPort }}{{ else }}80{{ end }};            # YOUR NRF CONFIG HERE (default: 80)
+          API_VERSION  = "{{ if .Values.config.nrfApiVersion}}{{ .Values.config.nrfApiVersion }}{{ else }}v1{{ end }}";   # YOUR NRF API VERSION FOR SBI CONFIG HERE
+          FQDN         = "{{ if .Values.config.nrfFqdn}}{{ .Values.config.nrfFqdn }}{{ else }}localhost{{ end }}"           # YOUR NRF FQDN CONFIG HERE
+        };
+
+        PCF :
+        {
+          IPV4_ADDRESS = "{{ if .Values.config.pcfIpv4Address}}{{ .Values.config.pcfIpv4Address }}{{ else }}127.0.0.1{{ end }}";  # YOUR PCF CONFIG HERE
+          PORT         =  {{ if .Values.config.pcfPort}}{{ .Values.config.pcfPort }}{{ else }}80{{ end }};           # YOUR PCF CONFIG HERE (default: 80)
+          API_VERSION  = "{{ if .Values.config.pcfApiVersion}}{{ .Values.config.pcfApiVersion }}{{ else }}v1{{ end }}";   # YOUR PCF API VERSION FOR SBI CONFIG HERE
+          FQDN         = "{{ if .Values.config.pcfFqdn}}{{ .Values.config.pcfFqdn }}{{ else }}localhost{{ end }}"           # YOUR PCF FQDN CONFIG HERE
+        };
+
+        UPF_LIST = (
+             {IPV4_ADDRESS = "{{ if .Values.config.upfIpv4Address}}{{ .Values.config.upfIpv4Address }}{{ else }}127.0.0.1{{ end }}"; 
+             FQDN = "{{ if .Values.config.upfFqdn0}}{{ .Values.config.upfFqdn0 }}{{ else }}localhost{{ end }}"; NWI_LIST = ({DOMAIN_ACCESS  = "{{ if .Values.config.domainAccess}}{{ .Values.config.domainAccess }}{{ else }}none{{ end }}",
+             DOMAIN_CORE = "{{ if .Values.config.domainCore}}{{ .Values.config.domainCore }}{{ else }}none{{ end }}"})}   # YOUR UPF CONFIG HERE
+        );                                                               # NWI_LIST IS OPTIONAL PARAMETER
+
+        LOCAL_CONFIGURATION :
+        {
+          SESSION_MANAGEMENT_SUBSCRIPTION_LIST = (
+             { NSSAI_SST = {{ .Values.config.nssaiSst0 }},DNN = "{{ .Values.config.dnnNi0 }}", DEFAULT_SESSION_TYPE = "{{ .Values.config.pdusessiontype0 }}", DEFAULT_SSC_MODE = 1,
+               QOS_PROFILE_5QI = {{ .Values.config.qosProfile5qi0 }}, QOS_PROFILE_PRIORITY_LEVEL = 1, QOS_PROFILE_ARP_PRIORITY_LEVEL = 15, QOS_PROFILE_ARP_PREEMPTCAP = "NOT_PREEMPT",
+               QOS_PROFILE_ARP_PREEMPTVULN = "NOT_PREEMPTABLE", SESSION_AMBR_UL = "{{ .Values.config.sessionAmbrUl0 }}", SESSION_AMBR_DL = "{{ .Values.config.sessionAmbrDl0 }}"
+              {{- if .Values.config.nssaiSd0}}
+                ,NSSAI_SD = "{{ .Values.config.nssaiSd0 }}"
+              {{- end }}
+               }
+            {{- if .Values.config.dnnNi1}}
+             ,{ NSSAI_SST = {{ .Values.config.nssaiSst1 }},DNN = "{{ .Values.config.dnnNi1 }}", DEFAULT_SESSION_TYPE = "{{ .Values.config.pdusessiontype1 }}", DEFAULT_SSC_MODE = 1,
+               QOS_PROFILE_5QI = {{ .Values.config.qosProfile5qi1 }}, QOS_PROFILE_PRIORITY_LEVEL = 1, QOS_PROFILE_ARP_PRIORITY_LEVEL = 15, QOS_PROFILE_ARP_PREEMPTCAP = "NOT_PREEMPT",
+               QOS_PROFILE_ARP_PREEMPTVULN = "NOT_PREEMPTABLE", SESSION_AMBR_UL = "{{ .Values.config.sessionAmbrUl1 }}", SESSION_AMBR_DL = "{{ .Values.config.sessionAmbrDl1 }}"
+              {{- if .Values.config.nssaiSd1}}
+                ,NSSAI_SD = "{{ .Values.config.nssaiSd1 }}"
+              {{- end }}
+               }
+            {{- end }}
+            {{- if .Values.config.dnnNi2}}
+             ,{ NSSAI_SST = {{ .Values.config.nssaiSst2 }},DNN = "{{ .Values.config.dnnNi2 }}", DEFAULT_SESSION_TYPE = "{{ .Values.config.pdusessiontype2 }}", DEFAULT_SSC_MODE = 1,
+               QOS_PROFILE_5QI = {{ .Values.config.qosProfile5qi2 }}, QOS_PROFILE_PRIORITY_LEVEL = 1, QOS_PROFILE_ARP_PRIORITY_LEVEL = 15, QOS_PROFILE_ARP_PREEMPTCAP = "NOT_PREEMPT",
+               QOS_PROFILE_ARP_PREEMPTVULN = "NOT_PREEMPTABLE", SESSION_AMBR_UL = "{{ .Values.config.sessionAmbrUl2 }}", SESSION_AMBR_DL = "{{ .Values.config.sessionAmbrDl2 }}"
+              {{- if .Values.config.nssaiSd2}}
+                ,NSSAI_SD = "{{ .Values.config.nssaiSd2 }}"
+              {{- end }}
+               }
+            {{- end }}
+            {{- if .Values.config.dnnNi3}}
+             ,{ NSSAI_SST = {{ .Values.config.nssaiSst3 }},DNN = "{{ .Values.config.dnnNi3 }}", DEFAULT_SESSION_TYPE = "{{ .Values.config.pdusessiontype3 }}", DEFAULT_SSC_MODE = 1,
+               QOS_PROFILE_5QI = {{ .Values.config.qosProfile5qi3 }}, QOS_PROFILE_PRIORITY_LEVEL = 1, QOS_PROFILE_ARP_PRIORITY_LEVEL = 15, QOS_PROFILE_ARP_PREEMPTCAP = "NOT_PREEMPT",
+               QOS_PROFILE_ARP_PREEMPTVULN = "NOT_PREEMPTABLE", SESSION_AMBR_UL = "{{ .Values.config.sessionAmbrUl3 }}", SESSION_AMBR_DL = "{{ .Values.config.sessionAmbrDl3 }}"
+              {{- if .Values.config.nssaiSd3}}
+                ,NSSAI_SD = "{{ .Values.config.nssaiSd3 }}"
+              {{- end }}
+               }
+            {{- end }}
+            );
+        };
+
+    };

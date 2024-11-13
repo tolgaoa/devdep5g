@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-dnn10
+  labels:
+    app: oai-dnn10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oai-dnn10
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oai-dnn10
+    spec:
+      nodeSelector:
+        type: az1
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      containers:
+      - name: dnn
+        image: tolgaomeratalay/oai-dnn:zoomv3
+        securityContext:
+        image: tolgaomeratalay/oai-dnn:zoomv3
+            add:
+            - NET_ADMIN
+          privileged: true
+        command:
+          - sleep
+          - infinity
+        imagePullPolicy: IfNotPresent
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30

@@ -1,6 +1,0 @@
-# Any CI/CD artifact
-openair-spgwu.tar.bz2
-archives
-*-cfg.sh
-*-env.list
-src/oai_rules_result*txt

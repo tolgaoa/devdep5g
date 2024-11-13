@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-svc
+  labels:
+    {{- include "oai-amf.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: http1
+      port: {{ .Values.config.amfInterfaceSBIHTTPPort }}
+      targetPort: {{ .Values.config.amfInterfaceSBIHTTPPort }}
+      protocol: TCP
+    - name: http2
+      port: {{ .Values.config.amfInterfaceSBIHTTP2Port }}
+      targetPort: {{ .Values.config.amfInterfaceSBIHTTP2Port }}
+      protocol: TCP
+  selector:
+    {{- include "oai-amf.selectorLabels" . | nindent 4 }}
