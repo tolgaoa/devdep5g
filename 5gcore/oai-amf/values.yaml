@@ -2,7 +2,7 @@ kubernetesType: Vanilla  #Vanilla for community kubernetes distribution
 
 nfimage:  # image name either locally present or in a public/private repository
   repository: tolgaomeratalay/amf         ## The image will be pulled from dockerhub
-  version: augv4 #augv3                                  #image tag, develop tag for experimental features
+  version: augv5_thr10 #augv3                                  #image tag, develop tag for experimental features
   # pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
@@ -131,14 +131,14 @@ resources:
       cpu: 100m
       memory: 128Mi
     nf:
-      cpu: 100m
+      cpu: 2000m
       memory: 128Mi
   requests:
     tcpdump:
       cpu: 100m
       memory: 128Mi
     nf:
-      cpu: 100m
+      cpu: 2000m
       memory: 128Mi
 
 readinessProbe: false

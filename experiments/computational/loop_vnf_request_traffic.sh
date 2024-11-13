@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# Check if the number of requests and VNF type were provided
+# Check if the number of requests per minute and VNF type were provided
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <number_of_requests> <vnf_type>"
+    echo "Usage: $0 <requests_per_minute> <vnf_type>"
     echo "Available VNF types: smf, nrf, ausf, amf"
     exit 1
 fi
 
-n=$1
+requests_per_minute=$1
 vnf_type=$2
+duration_minutes=10
+interval=$(bc <<< "scale=2; 60 / $requests_per_minute")  # Interval in seconds between requests
 
 # Retrieve pod names for VNFs
 ausfpod=$(kubectl get pods -n oai | grep ausf | awk '{print $1}')
@@ -20,7 +22,7 @@ make_amf_ausf_aka_request() {
     local pod_name=$1
     local namespace=$2
     local outputFile="amf_to_ausf_aka_request_times.csv"
-gnbsim10-869986db47-drc9r
+
     if [ ! -f "$outputFile" ]; then
         touch "$outputFile"
     fi
@@ -137,14 +139,15 @@ case $vnf_type in
         ;;
 esac
 
-# Execute selected requests
-for (( i=1; i<=n; i++ )); do
+# Run the requests for 10 minutes
+end_time=$((SECONDS + duration_minutes * 60))
+
+while [ $SECONDS -lt $end_time ]; do
     for request in "${requests[@]}"; do
-        $request "$pod_name" "oai"
-        sleep 1  # Adjust sleep time if needed
+        $request "$pod_name" "oai" &
+        sleep "$interval"
     done
-    echo "Complete iteration $i"
 done
 
-echo "All requests for $vnf_type completed. Data written to respective files."
+echo "All requests for $vnf_type completed for $duration_minutes minutes. Data written to respective files."
 
